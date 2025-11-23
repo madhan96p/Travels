@@ -1,55 +1,49 @@
-/* Base Config */
+/* Base Settings */
 body { font-family: 'Poppins', sans-serif; }
 html { scroll-behavior: smooth; }
 
-/* Hero Section */
+/* --- PREMIUM HERO SECTION --- */
 .hero-bg {
-    background-image: url('../images/hero-bg.jpg'); /* Ensure you have this image */
+    /* Replace with your actual image path */
+    background-image: url('../images/hero-bg.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
-/* Form Inputs */
-.form-input {
-    width: 100%;
-    padding: 14px 16px;
-    background-color: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    font-weight: 600;
-    color: #1f2937;
-    transition: all 0.2s;
+/* Floating Animation for 3D elements */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
+.animate-float { animation: float 4s ease-in-out infinite; }
 
-.form-input:focus {
-    outline: none;
-    border-color: #2563eb;
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
-.form-input::placeholder {
-    color: #9ca3af;
-    font-weight: 400;
-}
-
-/* Navigation Links */
-.nav-link {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #4b5563;
-    transition: color 0.2s;
-}
-.nav-link:hover {
-    color: #2563eb;
-}
-
-/* Animations */
-@keyframes fade-in-up {
+/* Fade In Animation */
+@keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
+.animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+
+/* Form Inputs Custom Styling */
+.form-input {
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+.form-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* --- MOBILE NAV FIX --- */
+/* Ensures it sits on top of everything */
+.mobile-nav-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999 !important; /* Maximum priority */
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
 }
