@@ -1,123 +1,92 @@
-/* ===================================================================
-   INDEX PAGE JAVASCRIPT | SHRISH TRAVELS
-   Handles the Quick Booking form, animations, and API submission.
-   =================================================================== */
+// 1. CONFIGURATION
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwY6JLOSO9zZUcBkQ_38EIKMLWMwCZtpotLo61D_rsaRzBltxF5AhK-Mz8y9kST3mQC/exec";
+const WHATSAPP_NUM = "918883451668";
 
-'use strict';
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. DOM Element Selection & Configuration ---
-    const quickBookingForm = document.getElementById('quick-booking-form');
-    const submitBtn = quickBookingForm ? quickBookingForm.querySelector('.submit-btn') : null;
-    const bookingPopup = document.getElementById('booking-popup');
-    const popupOkBtn = document.getElementById('popup-ok');
-    const popupBookInstantBtn = document.getElementById('popup-book-instant');
+// 2. TRIP TYPE TOGGLE LOGIC
+function setTripType(type) {
+    document.getElementById('tripType').value = type;
     
-    // API Endpoint for quick submission (uses the same endpoint as full booking)
-    const API_ENDPOINT = '/.netlify/functions/travels-api?action=submitBooking'; 
-
-    if (!quickBookingForm) return; 
-
-    // --- 2. Core Popup Logic ---
-
-    /**
-     * Shows the confirmation popup and prepares the full booking link.
-     */
-    function showPopup(name, mobile, pickup) {
-        if (bookingPopup) {
-            // Encode data for the 'Book Instantly' link to pre-fill the full booking form
-            popupBookInstantBtn.href = `booking.html?name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}&pickup=${encodeURIComponent(pickup)}`;
-
-            bookingPopup.classList.remove('hidden');
-            // The rest of the visual transitions are handled by CSS/common.js (if any)
+    const btns = document.querySelectorAll('.trip-btn');
+    btns.forEach(btn => {
+        if(btn.innerText === type) {
+            btn.className = "trip-btn flex-1 py-2.5 rounded-lg shadow-sm text-sm font-bold bg-white text-blue-900 transition";
+        } else {
+            btn.className = "trip-btn flex-1 py-2.5 rounded-lg text-gray-500 text-sm font-bold hover:text-gray-700 transition";
         }
+    });
+}
+
+// 3. QUICK ESTIMATE (Silent Pull + WhatsApp)
+const form = document.getElementById('quickBookForm');
+const statusMsg = document.getElementById('formStatus');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    const data = new FormData(form);
+    const pickup = data.get('pickup');
+    const drop = data.get('drop');
+    const mobile = data.get('mobile');
+    const type = data.get('tripType');
+
+    statusMsg.innerText = "Connecting...";
+
+    // A. Silent Submission to Google Sheet
+    fetch(SCRIPT_URL, { method: 'POST', body: data, mode: 'no-cors' })
+    .then(() => console.log("Data pushed to Sheet successfully"))
+    .catch(error => console.error('Error!', error.message));
+
+    // B. Redirect to WhatsApp
+    const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0AMobile: ${mobile}`;
+    
+    // Small delay to ensure user sees we are processing
+    setTimeout(() => {
+        statusMsg.innerText = "";
+        window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
+    }, 800);
+});
+
+// 4. BOOK NOW (Redirect with Data)
+document.getElementById('btnBookNow').addEventListener('click', () => {
+    const pickup = document.getElementById('pickup').value;
+    const drop = document.getElementById('drop').value;
+    const mobile = document.getElementById('mobile').value;
+    const type = document.getElementById('tripType').value;
+
+    if(!pickup && !drop) {
+        alert("Please enter Pickup and Drop cities first.");
+        return;
     }
 
-    /**
-     * Hides the confirmation popup.
-     */
-    function hidePopup() {
-        if (bookingPopup) {
-            bookingPopup.classList.add('hidden');
-        }
-    }
+    // Redirect to booking.html with pre-filled params
+    window.location.href = `booking.html?pickup=${encodeURIComponent(pickup)}&drop=${encodeURIComponent(drop)}&mobile=${encodeURIComponent(mobile)}&type=${encodeURIComponent(type)}`;
+});
 
-    // --- 3. API Submission Logic ---
-    
-    /**
-     * Sends the quick booking request to the Netlify API.
-     */
-    const handleFormSubmit = async (e) => {
-        e.preventDefault(); 
-        
-        const originalBtnHTML = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<i class="ri-loader-4-line rotating"></i> Sending...`;
-        
-        // 1. Capture Data
-        const name = document.getElementById('quick-name').value.trim();
-        const mobile = document.getElementById('quick-mobile').value.trim();
-        const pickup = document.getElementById('quick-pickup').value.trim();
-        
-        // Data structure mapped to the 'travels_bookings' GSheet columns
-        const data = {
-            Name: name,
-            Phone: mobile,
-            Pickup: pickup,
-            Dropoff: 'N/A (Quick Callback)',
-            Journey_Type: 'Callback Request',
-            // Other required columns will be empty, which the API handles
-            Status: 'Quick Lead' 
-        };
-
-        try {
-            // 2. Send to API
-            const response = await fetch(API_ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                // 3. Show Success & Offer Upsell (Book Instantly)
-                showPopup(name, mobile, pickup);
-                quickBookingForm.reset(); 
-            } else {
-                // 4. Handle API Error
-                alert(`Submission Failed. Please call us directly at +91 888 345 1668. Error: ${result.error || 'Unknown Error'}`);
-            }
-
-        } catch (error) {
-            // Network Failure
-            console.error('Quick Form Submission Error:', error);
-            alert('A network error occurred. Please check your connection or call us directly.');
-        } finally {
-            // 5. Restore Button
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnHTML;
-        }
-    };
-    
-    // --- 4. Event Listeners & Initializations ---
-
-    // Attach form submission listener
-    quickBookingForm.addEventListener('submit', handleFormSubmit);
-
-    // Attach click listeners to the popup buttons and overlay
-    if (popupOkBtn) {
-        popupOkBtn.addEventListener('click', hidePopup);
-    }
-    if (bookingPopup) {
-        bookingPopup.addEventListener('click', (e) => {
-            if (e.target === bookingPopup) {
-                hidePopup();
-            }
+// 5. LOAD ROUTES (Dynamic)
+fetch('assets/data/routes.json')
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById('routes-container');
+    if(container) {
+        container.innerHTML = '';
+        data.slice(0, 6).forEach(route => {
+            const slug = `routes/${route.Origin.toLowerCase()}-to-${route.Destination.toLowerCase()}.html`.replace(/\s+/g, '');
+            container.innerHTML += `
+                <a href="${slug}" class="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 group flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase mb-1 flex items-center gap-1">
+                            <i class="fas fa-road"></i> ${route.Distance_Km} km
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition">
+                            ${route.Origin} ➝ ${route.Destination}
+                        </h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="block font-extrabold text-xl text-green-600">₹${route.Price_Sedan}</span>
+                        <span class="text-xs text-gray-400 font-medium">Sedan</span>
+                    </div>
+                </a>`;
         });
     }
-
-    // NOTE: Animations (3D Tilt, Marquee Pause) are handled here in a final version of this script.
-    // For this step, we focus on the core API integration.
-});
+})
+.catch(e => console.error("Routes error:", e));

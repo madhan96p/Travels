@@ -1,0 +1,55 @@
+/* Base Config */
+body { font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; }
+
+/* Hero Section */
+.hero-bg {
+    background-image: url('../images/hero-bg.jpg'); /* Ensure you have this image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Form Inputs */
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #1f2937;
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+/* Navigation Links */
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+    transition: color 0.2s;
+}
+.nav-link:hover {
+    color: #2563eb;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+}
