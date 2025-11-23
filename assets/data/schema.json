@@ -1,0 +1,90 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "LocalBusiness",
+            "@id": "https://travels.shrishgroup.com/#business",
+            "name": "Shrish Travels",
+            "image": "https://travels.shrishgroup.com/assets/images/hero-car.jpg",
+            "url": "https://travels.shrishgroup.com/",
+            "logo": "https://travels.shrishgroup.com/assets/images/favicon/favicon.svg",
+            "description": "Shrish Travels is a premium travel service provider in Chennai, offering car rentals, airport transfers, and outstation taxi services across Tamil Nadu.",
+            "telephone": "+91 8883451668",
+            "email": "travels@shrishgroup.com",
+            "priceRange": "₹10 - ₹40 per km",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "5, Gangai Nagar 1st Main Rd, New Secretariat Colony, Velachery",
+                "addressLocality": "Chennai",
+                "addressRegion": "Tamil Nadu",
+                "postalCode": "600042",
+                "addressCountry": "IN"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "12.9843576",
+                "longitude": "80.215133"
+            },
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday"
+                    ],
+                    "opens": "00:00",
+                    "closes": "23:59"
+                }
+            ],
+            "sameAs": [
+                "https://www.instagram.com/shrish_travels/",
+                "https://shrishgroup.com/links#travels",
+                "https://www.instagram.com/jeganrak/"
+            ],
+            "founder": [
+                {
+                    "@type": "Person",
+                    "name": "Jeganraj Srinivasan",
+                    "sameAs": "https://www.instagram.com/jeganrak/"
+                },
+                {
+                    "@type": "Person",
+                    "name": "SaravanaPerumal Subramani",
+                    "sameAs": "https://www.instagram.com/saravanaperumal0994/"
+                }
+            ],
+            "service": [
+                {
+                    "@type": "Service",
+                    "name": "One-Way Drop Taxi"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Airport Pickup and Drop"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Round Trip Outstation"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Wedding & Event Transport"
+                }
+            ]
+        },
+        {
+            "@type": "Organization",
+            "name": "Shrish Group",
+            "url": "https://shrishgroup.com",
+            "logo": "https://travels.shrishgroup.com/assets/images/favicon/favicon.svg",
+            "subOrganization": {
+                "@id": "https://travels.shrishgroup.com/#business"
+            }
+        }
+    ]
+}
