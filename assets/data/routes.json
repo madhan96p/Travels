@@ -1,0 +1,20 @@
+[
+    {
+        "Origin": "Chennai",
+        "Destination": "Thiruvarur",
+        "Distance_Km": 320,
+        "Time_Hours": "7 Hours",
+        "Price_Sedan": 4500,
+        "Price_Innova": 6500,
+        "Popular_Route": "TRUE"
+    },
+    {
+        "Origin": "Trichy",
+        "Destination": "Chennai",
+        "Distance_Km": 330,
+        "Time_Hours": "6.5 Hours",
+        "Price_Sedan": 4200,
+        "Price_Innova": 6000,
+        "Popular_Route": "TRUE"
+    }
+]

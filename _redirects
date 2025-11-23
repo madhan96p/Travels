@@ -1,0 +1,11 @@
+/*                /:splat.html    200
+
+# Redirect all www to non-www
+https://www.shrishtravels.netlify.app/* https://shrishtravels.netlify.app/:splat 301!
+
+# Sitemap access
+/sitemap.xml      /sitemap.xml    200
+
+# Optional cleanup redirects
+/%7Bignore%7D     /               301
+/{ignore}         /               301

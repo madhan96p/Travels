@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Cab Routes in Tamil Nadu | Shrish Travels | Outstation & B2B Travel</title>
+    <meta name="description" content="Discover all outstation and intercity cab routes from Shrish Travels. Explore our network for B2B travel, hill station getaways, and spiritual journeys across Tamil Nadu and beyond." />
+    <meta name="keywords" content="chennai outstation routes, cab routes tamil nadu, chennai to madurai cab, hill station taxi service, spiritual travel south india" />
+    <link rel="canonical" href="https://travels.shrishgroup.com/routes.html" />
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Shrish Travels - All Cab Routes",
+        "description": "A comprehensive directory of all outstation and intercity cab routes offered by Shrish Travels, primarily serving Tamil Nadu and neighboring states.",
+        "url": "https://travels.shrishgroup.com/routes.html",
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Travel Routes",
+            "itemListElement": [] 
+        }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="assets/css/routes-list.css" /> 
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content container">
+            <nav class="desktop-nav">
+                <ul class="nav-links-left">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="routes.html" class="active">Routes</a></li>
+                    <li><a href="tariff.html">Tariff</a></li>
+                </ul>
+
+                <a href="index.html" class="logo">
+                    <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo-icon">
+                </a>
+
+                <ul class="nav-links-right">
+                    <li><a href="booking.html" class="cta-link">Book Now</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-header-bar">
+                <a href="index.html" class="mobile-logo">
+                    <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo-icon">
+                </a>
+                <div class="header-title">
+                    <span id="mobile-page-title" class="main-heading">Outstation Routes</span>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="routes-hero" class="hero-section">
+            <div class="hero-content container" data-aos="fade-in">
+                <h1 class="hero-title">Explore Tamil Nadu & Beyond</h1>
+                <p class="hero-subtitle">Discover our extensive network of outstation and intercity cab routes. Filter by category or search by destination.</p>
+                <div class="search-bar-container" data-aos="fade-up" data-aos-delay="200">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="route-search" placeholder="Search for a destination (e.g., Madurai, Ooty...)" autocomplete="off">
+                    <div id="search-results-dropdown" class="search-results-dropdown hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="routes-main" class="section light-bg">
+            <div class="container">
+                <div class="filters-container" data-aos="fade-up">
+                    <button class="filter-button active" data-filter="all">All Routes</button>
+                    <button class="filter-button" data-filter="b2b">B2B & City Connectors</button>
+                    <button class="filter-button" data-filter="hills">Hill Stations</button>
+                    <button class="filter-button" data-filter="spiritual">Spiritual Journeys</button>
+                    <button class="filter-button" data-filter="leisure">Weekend Getaways</button>
+                </div>
+
+                <div class="routes-grid">
+                    <div id="loading-routes" style="text-align: center; padding: 50px;">
+                        <i class="ri-loader-4-line rotating" style="font-size: 2rem; color: #4f46e5;"></i>
+                        <p>Fetching premium route data...</p>
+                    </div>
+                </div>
+                
+                 <div class="routes-footer" data-aos="fade-up">
+                    <h3>Can't Find Your Route? Request a Custom Itinerary.</h3>
+                    <p>For corporate tours or unique pilgrimage circuits, our travel experts can create a custom itinerary for any destination in South India.</p>
+                    <div class="cta-container">
+                        <a href="tel:+918883451668" class="cta-btn primary"><i class="ri-phone-fill"></i> Call Our Experts</a>
+                        <a href="contact.html?query=custom+route" class="cta-btn secondary">Request Custom Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="submission-popup" class="submission-popup hidden">
+            <div class="popup-content">
+                </div>
+        </div>
+    </main>
+
+    <nav class="mobile-bottom-nav">
+        <a href="index.html" class="nav-item" aria-label="Go to Home page">
+            <i class="ri-home-line"></i><span>Home</span>
+        </a>
+        <a href="booking.html" class="nav-item nav-item--cta" aria-label="Book a Cab Now">
+            <i class="ri-calendar-check-line"></i><span>Booking</span>
+        </a>
+        <a href="services.html" class="nav-item" aria-label="View Car Rental Services">
+            <i class="ri-car-line"></i><span>Services</span>
+        </a>
+        <a href="tariff.html" class="nav-item" aria-label="View Pricing and Tariffs">
+            <i class="ri-money-dollar-circle-line"></i><span>Tariff</span>
+        </a>
+        <a href="contact.html" class="nav-item" aria-label="Contact Support 24/7">
+            <i class="ri-message-2-line"></i><span>Contact</span>
+        </a>
+    </nav>
+    <div class="floating-whatsapp-btn">
+        <a href="https://wa.me/918883451668?text=Hello%20Shrish%20Travels,%20I%20have%20an%20inquiry%20from%20your%20website." 
+           target="_blank" 
+           aria-label="Chat with Shrish Travels on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+    <footer class="footer">
+        <div class="footer-container container">
+            <div class="footer-grid">
+
+                <div class="footer-brand" data-aos="fade-up">
+                    <a href="index.html">
+                        <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo">
+                    </a>
+                    <p>Your reliable partner for premium corporate and personal travel in Chennai and across Tamil Nadu.
+                        Reliability and professionalism, guaranteed.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/shrish_travels" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UC5xOOggNg80T7uoijMfz3jA" target="_blank"
+                            aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/918883451668" target="_blank" aria-label="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <a href="https://g.page/r/CaYoGVSEfXMNEBM/review" target="_blank" aria-label="Google Reviews"><i
+                                class="ri-google-fill"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="routes.html">Outstation Routes</a></li>
+                        <li><a href="tariff.html">View Tariffs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Shrish Group</h3>
+                    <ul>
+                        <li><a href="booking.html">Instant Booking</a></li>
+                        <li><a href="career.html">Careers (Drive with Us)</a></li>
+                        <li><a href="blog.html">Travel Blog</a></li>
+                        <li class="footer-divider"></li>
+                        <li><a href="https://www.shrishgroup.com" target="_blank" rel="noopener noreferrer">Shrish
+                                Group (Main)</a></li>
+                        <li><a href="https://associates.shrishgroup.com" target="_blank"
+                                rel="noopener noreferrer">Shrish Associates</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i>
+                            <div><span>Phone (24/7)</span><a href="tel:+918883451668">+91 888 345 1668</a></div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i>
+                            <div><span>Email</span><a
+                                    href="mailto:travels@shrishgroup.com">travels@shrishgroup.com</a></div>
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i>
+                            <div><span>Office Address</span>
+                                <address>Gangai Nagar, Velachery,<br />Chennai, Tamil Nadu 600042</address>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-links-bar" data-aos="fade-up">
+                <hr />
+                <h3>Important Information</h3>
+                <div class="links-container">
+                    <a href="privacy-policy.html" rel="nofollow">Privacy Policy</a>
+                    <a href="terms-of-service.html" rel="nofollow">Terms of Service</a>
+                    <a href="contact.html">Site Map</a>
+                    <a href="404.html">404 Page</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="copyright-year"></span> Shrish Group Pvt Ltd. All rights reserved.</p>
+            <div class="developer-credit">
+                <a href="https://pragadeeshfolio.netlify.app" class="developer-link" target="_blank">Developed by
+                    <strong>PS</strong></a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
+    </script>
+
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/routes.js" defer></script>
+</body>
+
+</html>
