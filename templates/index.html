@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO & Meta Tags (Preserved from Old Site) -->
+    <title>Shrish Travels - Premium Car Rentals in Chennai & Tamil Nadu</title>
+    <meta name="description" content="Shrish Travels offers 24/7 reliable car rental and tour services across Chennai and all over Tamil Nadu. Safe rides, clean cars, professional drivers for outstation trips, local sightseeing, and airport transfers.">
+    <meta name="keywords" content="Chennai taxi service, Chennai airport cab, outstation taxi Chennai, Chennai city cab, reliable cab Chennai, cheap taxi Chennai, 24/7 taxi service, Chennai to Pondicherry taxi, Chennai to Vellore cab, safe cab Chennai, verified drivers Chennai">
+    <meta name="author" content="Shrish Travels">
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="canonical" href="https://travels.shrishgroup.com/">
+
+    <!-- Tailwind CSS (The New Engine) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-bg { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%), url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+    
+    <!-- Inject Dynamic Schema -->
+    {% include 'components/_seo_schema.html' %}
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- 1. Header -->
+    {% include 'components/_header.html' %}
+
+    <!-- 2. Hero & Booking Widget -->
+    {% include 'components/_hero.html' %}
+
+    <!-- 3. Trust Bar (Mobile First) -->
+    <section class="bg-white py-6 border-b border-gray-100 shadow-sm relative z-20 -mt-4 rounded-t-3xl md:mt-0 md:rounded-none">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center gap-6 md:justify-between text-center text-gray-600 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-lg"></i> 5.0 Google Rated</div>
+            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-500 text-lg"></i> Verified Drivers</div>
+            <div class="flex items-center gap-2"><i class="fas fa-clock text-purple-500 text-lg"></i> 24/7 Service</div>
+            <div class="flex items-center gap-2"><i class="fas fa-car text-green-500 text-lg"></i> AC Cabs</div>
+        </div>
+    </section>
+
+    <!-- 4. About Us (Condensed) -->
+    <section class="py-16 px-4 max-w-4xl mx-auto text-center">
+        <span class="text-blue-600 font-bold text-sm uppercase tracking-widest">Welcome to Shrish Travels</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6">Travel with Comfort and Confidence</h2>
+        <p class="text-gray-600 leading-relaxed text-lg">
+            Your trusted partner for airport transfers, outstation trips, and city rides across Chennai and beyond. 
+            With just a few clicks, book clean, well-maintained cabs. We provide 24/7 customer support, live tracking, 
+            and verified drivers — ensuring your comfort and safety every step of the way.
+        </p>
+    </section>
+
+    <!-- 5. Popular Routes (Dynamic) -->
+    <section class="bg-gray-100 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">Popular Routes</h2>
+                    <p class="text-gray-500 text-sm mt-1">Top destinations from Chennai</p>
+                </div>
+                <a href="/routes.html" class="text-blue-600 font-semibold hover:underline hidden md:inline text-sm">View all routes →</a>
+            </div>
+            
+            <div id="routes-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Skeleton Loading State -->
+                <div class="bg-white h-32 rounded-xl animate-pulse shadow-sm"></div>
+                <div class="bg-white h-32 rounded-xl animate-pulse shadow-sm"></div>
+                <div class="bg-white h-32 rounded-xl animate-pulse shadow-sm"></div>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                <a href="/routes.html" class="bg-white border border-gray-300 text-gray-700 font-bold py-3 px-6 rounded-full shadow-sm hover:bg-gray-50 transition">View all routes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Why Choose Us (Upgraded UI) -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Why Choose Us?</h2>
+                <p class="text-gray-500">We don’t just drive — we deliver exceptional travel experiences.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="p-6 rounded-2xl bg-blue-50 border border-blue-100 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Always On Time</h3>
+                    <p class="text-sm text-gray-600">We value your time. No delays, ever. Punctuality is our promise.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 rounded-2xl bg-green-50 border border-green-100 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Verified Drivers</h3>
+                    <p class="text-sm text-gray-600">Courteous, trained professionals behind the wheel for your safety.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 rounded-2xl bg-purple-50 border border-purple-100 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Clean Cabs</h3>
+                    <p class="text-sm text-gray-600">We maintain high hygiene standards. Cabs are sanitized daily.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="p-6 rounded-2xl bg-orange-50 border border-orange-100 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Clear Pricing</h3>
+                    <p class="text-sm text-gray-600">No hidden charges. Transparent and fair rates for every trip.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    {% include 'components/_footer.html' %}
+
+    <!-- Hiring Icon (Floating) -->
+    <a href="/career.html" id="hiring-float-icon" class="fixed top-32 left-4 z-40 w-20 cursor-pointer transition opacity-90 hover:opacity-100 hidden md:block">
+        <img src="/assets/transparent_hiring.png" alt="We're Hiring" class="w-full drop-shadow-lg animate-bounce">
+    </a>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-gray-900 text-white p-4 z-[60] text-center text-sm hidden">
+        <p class="mb-2">We use cookies to improve your experience. By using our site, you agree to our terms.</p>
+        <div class="flex justify-center gap-4">
+            <button onclick="acceptCookies()" class="bg-green-500 px-4 py-1 rounded font-bold hover:bg-green-600">Accept</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-400 hover:text-white underline">Close</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // 1. Booking Logic (WhatsApp)
+        function handleBooking(e) {
+            e.preventDefault();
+            const pickup = document.getElementById('pickup').value;
+            const drop = document.getElementById('drop').value;
+            const mobile = document.getElementById('mobile').value;
+            const msg = `Hi Shrish Travels, I need a taxi estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0AMobile: ${mobile}%0A%0APlease share the tariff.`;
+            window.location.href = `https://wa.me/918883451668?text=${msg}`;
+        }
+
+        // 2. Load Popular Routes
+        fetch('assets/data/routes.json')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('routes-container');
+                container.innerHTML = '';
+                
+                // Sort by distance or popularity if available, else take top 6
+                data.slice(0, 6).forEach(route => {
+                    const slug = `routes/${route.Origin.toLowerCase()}-to-${route.Destination.toLowerCase()}.html`.replace(/\s+/g, '');
+                    
+                    container.innerHTML += `
+                        <a href="${slug}" class="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 group flex justify-between items-center">
+                            <div>
+                                <div class="text-xs font-bold text-gray-400 uppercase mb-1 flex items-center gap-1">
+                                    <i class="fas fa-road"></i> ${route.Distance_Km} km
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition">
+                                    ${route.Origin} <span class="text-gray-300">➝</span> ${route.Destination}
+                                </h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="block font-extrabold text-xl text-green-600">₹${route.Price_Sedan}</span>
+                                <span class="text-xs text-gray-400 font-medium">Sedan</span>
+                            </div>
+                        </a>`;
+                });
+            })
+            .catch(e => console.error("Routes error:", e));
+
+        // 3. Cookie Logic
+        if (!localStorage.getItem("cookieConsent")) {
+            document.getElementById("cookie-banner").classList.remove("hidden");
+        }
+        function acceptCookies() {
+            localStorage.setItem("cookieConsent", "true");
+            document.getElementById("cookie-banner").classList.add("hidden");
+        }
+    </script>
+</body>
+</html>
