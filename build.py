@@ -1,8 +1,36 @@
-import gspread
+try:
+    import gspread
+except ImportError:
+    gspread = None
+
 import json
 import os
-from oauth2client.service_account import ServiceAccountCredentials
-from jinja2 import Environment, FileSystemLoader
+import sys
+
+try:
+    from oauth2client.service_account import ServiceAccountCredentials
+except ImportError:
+    ServiceAccountCredentials = None
+
+try:
+    from jinja2 import Environment, FileSystemLoader
+except ImportError:
+    Environment = None
+    FileSystemLoader = None
+
+# If required third-party libraries are missing, show an actionable error and exit.
+missing = []
+if gspread is None:
+    missing.append("gspread")
+if ServiceAccountCredentials is None:
+    missing.append("oauth2client")
+if Environment is None or FileSystemLoader is None:
+    missing.append("jinja2")
+
+if missing:
+    print(f"❌ Missing required packages: {', '.join(missing)}. Install with:")
+    print("   pip install gspread oauth2client jinja2")
+    sys.exit(1)
 
 # --- CONFIGURATION ---
 SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -53,6 +81,7 @@ def fetch_data_and_build():
     print("✅ Saved routes.json")
 
     # 3. Setup Template Engine (Jinja2)
+    # This tells Python to look for HTML files inside the 'templates' folder
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
 
@@ -63,7 +92,6 @@ def fetch_data_and_build():
         route_template = env.get_template('route_template.html')
         count = 0
         for route in routes_data:
-            # Skip empty rows
             if not route.get('Origin'): continue
 
             filename = f"{route['Origin'].lower()}-to-{route['Destination'].lower()}.html".replace(" ", "")
@@ -85,20 +113,22 @@ def fetch_data_and_build():
     except Exception as e:
         print(f"⚠️ Error generating routes: {e}")
 
-    # 5. Generate Static Pages (Home, etc.) 🟢 CRITICAL FIX
-    # This reads templates/index.html -> injects components -> saves to root index.html
+    # 5. Generate Static Pages (Home, etc.) 🟢 THIS FIXES YOUR 404 ERROR
+    # This reads templates/index.html -> injects components -> saves to ROOT index.html
     static_pages = ['index.html'] 
 
     for page in static_pages:
         try:
             print(f"🏠 Building {page}...")
+            # Load the raw file from 'templates/'
             template = env.get_template(page)
+            # Process it (replace {% include %} tags)
             output = template.render()
             
-            # Save to ROOT directory (One level up from templates)
+            # Save to ROOT directory (./index.html)
             with open(page, "w", encoding="utf-8") as f:
                 f.write(output)
-            print(f"   ✅ Processed and saved: {page}")
+            print(f"   ✅ Processed and saved to root: {page}")
         except Exception as e:
             print(f"   ❌ Error building {page}: {e}")
 
