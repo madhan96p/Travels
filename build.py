@@ -30,24 +30,22 @@ def fetch_data_and_build():
     else:
         print("💻 Local Environment. Loading keys from file...")
         try:
+            creds_json = json.load(open(CREDS_FILE)) # Load json safely
             creds = ServiceAccountCredentials.from_json_keyfile_name(CREDS_FILE, SCOPE)
         except Exception as e:
             print(f"❌ Could not find local file '{CREDS_FILE}'.")
             return
 
     # 1. Connect to Google Sheets
+    routes_data = []
     try:
-        # 🛑 I REMOVED THE BAD LINE HERE. We use the 'creds' we just loaded above.
         client = gspread.authorize(creds)
-        
-        # USE ID, NOT NAME (It is much safer)
         sheet = client.open_by_key(SHEET_ID)
-        
         routes_data = sheet.worksheet("routes").get_all_records()
         print(f"✅ Fetched {len(routes_data)} routes from Google Sheets.")
     except Exception as e:
         print(f"❌ Error connecting to Sheets: {e}")
-        return
+        # We continue even if sheets fail, so we can at least build the homepage!
 
     # 2. Save Data to JSON (Caching for Frontend JS to use if needed)
     os.makedirs("assets/data", exist_ok=True)
@@ -58,19 +56,17 @@ def fetch_data_and_build():
     # 3. Setup Template Engine (Jinja2)
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
-    template = env.get_template('route_template.html')
 
-    # 4. Generate HTML Pages
-    os.makedirs("routes", exist_ok=True) # Create 'routes' folder if missing
+    # 4. Generate Route Pages (Dynamic)
+    os.makedirs("routes", exist_ok=True)
+    
+    route_template = env.get_template('route_template.html')
     
     count = 0
     for route in routes_data:
-        # Create a clean filename: "chennai-to-thiruvarur.html"
-        filename = f"{route['Origin'].lower()}-to-{route['Destination'].lower()}.html"
-        filename = filename.replace(" ", "") # Remove spaces
+        filename = f"{route['Origin'].lower()}-to-{route['Destination'].lower()}.html".replace(" ", "")
         
-        # Render the HTML
-        output = template.render(
+        output = route_template.render(
             origin=route['Origin'],
             destination=route['Destination'],
             distance=route['Distance_Km'],
@@ -79,14 +75,31 @@ def fetch_data_and_build():
             price_innova=route['Price_Innova']
         )
 
-        # Write the file
         with open(f"routes/{filename}", "w", encoding="utf-8") as f:
             f.write(output)
-        
         count += 1
-        print(f"   👉 Generated: routes/{filename}")
+        
+    print(f"   👉 Generated {count} route pages.")
 
-    print(f"🎉 Build Complete! Generated {count} pages.")
+    # 5. Generate Static Pages (Home, etc.) 🟢 NEW SECTION
+    # List any file in 'templates/' you want to compile to root
+    static_pages = ['index.html'] 
+
+    for page in static_pages:
+        try:
+            print(f"🏠 Building {page}...")
+            template = env.get_template(page)
+            # Render the template (Injects the headers/footers)
+            output = template.render()
+            
+            # Save it to the ROOT folder (outside templates)
+            with open(page, "w", encoding="utf-8") as f:
+                f.write(output)
+            print(f"   ✅ Processed: {page}")
+        except Exception as e:
+            print(f"   ❌ Error building {page}: {e}")
+
+    print(f"🎉 Build Complete!")
 
 if __name__ == "__main__":
     fetch_data_and_build()
