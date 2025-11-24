@@ -1,132 +1,90 @@
-// netlify/functions/travels-api.js
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { JWT } = require('google-auth-library'); // Required for modern Google Sheets auth
+const { JWT } = require('google-auth-library');
 const { Resend } = require('resend');
 
 const SPREADSHEET_ID = '1eqSsdKzF71WR6KR7XFkEI8NW7ObtnxC16ZtavJeePq8';
 
-// 1. Initialize Resend SAFELY
-let resend;
-if (process.env.RESEND_API_KEY) {
-    resend = new Resend(process.env.RESEND_API_KEY);
-} else {
-    console.warn("⚠️ RESEND_API_KEY is missing. Emails will be skipped.");
-}
-
-const generateBookingID = () => {
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const random = Math.floor(100 + Math.random() * 900);
-    return `ST-${day}${month}-${random}`;
-};
-
-const getSheet = async (doc, sheetTitle) => {
-    const sheet = doc.sheetsByTitle[sheetTitle];
-    if (!sheet) throw new Error(`Tab "${sheetTitle}" not found. Check your Sheet tabs.`);
-    return sheet;
-};
-
-function generateBookingEmail(data, bookingID) {
-    return `
-    <body style="font-family: Arial, sans-serif; color: #333;">
-        <div style="max-width: 600px; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
-            <h2 style="color: #2563eb;">🚖 New Booking Alert</h2>
-            <p><strong>ID:</strong> ${bookingID}</p>
-            <p><strong>Name:</strong> ${data.Customer_Name}</p>
-            <p><strong>Mobile:</strong> ${data.Mobile_Number}</p>
-            <p><strong>Route:</strong> ${data.Pickup_City} ➝ ${data.Drop_City}</p>
-            <p><strong>Date:</strong> ${data.Travel_Date}</p>
-            <p><strong>Type:</strong> ${data.Vehicle_Type}</p>
-             <p style="margin-top: 20px; font-size: 12px; color: #666;">Received via Website</p>
-        </div>
-    </body>`;
-}
-
 exports.handler = async function (event, context) {
-    // Handle Preflight (CORS)
+    // 1. CORS Headers (Allow request from anywhere)
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    };
+
     if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS'
-            },
-            body: ''
-        };
+        return { statusCode: 200, headers, body: '' };
     }
 
     try {
-        // DEBUG: Check if keys exist (Do not log the actual keys for security)
-        if (!process.env.GOOGLE_PRIVATE_KEY || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) {
-            throw new Error("Missing Google Credentials in Netlify Environment Variables.");
+        // 2. CHECK: Are the libraries loaded?
+        if (!GoogleSpreadsheet || !JWT) throw new Error("Dependencies not loaded. Check package.json");
+
+        // 3. CHECK: Are variables set?
+        if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
+            throw new Error(`Missing Env Vars: Email=${!!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL}, Key=${!!process.env.GOOGLE_PRIVATE_KEY}`);
         }
 
-        // 2. Authenticate with Google (New JWT Method)
+        // 4. Setup Auth
         const serviceAccountAuth = new JWT({
-            // FIXED: Changed from GOOGLE_CLIENT_EMAIL to match your Netlify settings
             email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
             key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
             scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
 
         const doc = new GoogleSpreadsheet(SPREADSHEET_ID, serviceAccountAuth);
-        
-        // 3. Load Info
-        await doc.loadInfo();
+        await doc.loadInfo(); // This checks connection to Sheet
 
-        const { action } = event.queryStringParameters;
-        const data = event.body ? JSON.parse(event.body) : {};
-        const timestamp = new Date().toLocaleString('en-IN');
+        // 5. Check if 'bookings' sheet exists
+        const sheet = doc.sheetsByTitle['bookings'];
+        if (!sheet) throw new Error("Sheet 'bookings' not found. Check tab name in Google Sheets.");
 
-        if (action === 'submitBooking') {
-            const sheet = await getSheet(doc, 'bookings');
-            const bookingID = generateBookingID();
+        // 6. Process Data
+        const data = JSON.parse(event.body);
+        const bookingID = `ST-${Date.now().toString().slice(-6)}`;
 
-            const rowData = {
-                Booking_ID: bookingID,
-                Timestamp: timestamp,
-                Customer_Name: data.Customer_Name || 'Guest',
-                Mobile_Number: data.Mobile_Number,
-                Pickup_City: data.Pickup_City,
-                Drop_City: data.Drop_City,
-                Travel_Date: data.Travel_Date || new Date().toISOString().split('T')[0],
-                Vehicle_Type: data.Vehicle_Type || 'Sedan',
-                Status: 'New',
-                Driver_Assigned: 'Pending'
-            };
+        await sheet.addRow({
+            Booking_ID: bookingID,
+            Timestamp: new Date().toLocaleString('en-IN'),
+            Customer_Name: data.Customer_Name || 'Guest',
+            Mobile_Number: data.Mobile_Number,
+            Pickup_City: data.Pickup_City,
+            Drop_City: data.Drop_City,
+            Travel_Date: data.Travel_Date,
+            Vehicle_Type: data.Vehicle_Type || 'Sedan',
+            Status: 'New',
+            Driver_Assigned: 'Pending'
+        });
 
-            await sheet.addRow(rowData);
-            
-            // Send Email (Safe Check)
-            if (resend) {
-                try {
-                    await resend.emails.send({
-                        from: 'Shrish Travels <travels@shrishgroup.com>',
-                        to: ['travels@shrishgroup.com'],
-                        cc: ['shrishtravels1@gmail.com'], // Optional CC
-                        subject: `🚖 New Booking: ${rowData.Pickup_City}`,
-                        html: generateBookingEmail(rowData, bookingID),
-                    });
-                } catch (emailError) {
-                    console.error("Email failed but lead saved:", emailError);
-                }
-            }
+        // 7. Send Email (Optional - Wrapped to prevent crash)
+        if (process.env.RESEND_API_KEY) {
+            try {
+                const resend = new Resend(process.env.RESEND_API_KEY);
+                await resend.emails.send({
+                    from: 'Shrish Travels <travels@shrishgroup.com>',
+                    to: ['travels@shrishgroup.com'],
+                    subject: `New Booking: ${data.Pickup_City}`,
+                    html: `<p>New booking received from ${data.Customer_Name}</p>`
+                });
+            } catch (e) { console.warn("Email failed:", e); }
+        }
 
-            return { statusCode: 200, body: JSON.stringify({ success: true, id: bookingID }) };
-        } 
-        
-        return { statusCode: 400, body: JSON.stringify({ error: 'Invalid Action' }) };
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ success: true, message: "Booking Saved!" })
+        };
 
     } catch (error) {
-        console.error('API Error:', error);
-        return { 
-            statusCode: 500, 
-            body: JSON.stringify({ 
-                success: false, 
-                error: error.message || "Internal Server Error" 
-            }) 
+        console.error("Server Error:", error);
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({
+                success: false,
+                error: error.message,
+                stack: error.stack // sending stack trace to frontend for debugging
+            })
         };
     }
 };
