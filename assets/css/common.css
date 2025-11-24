@@ -1,1 +1,11 @@
-/*  Need to add Common Css which will common to all and in here that will impliment to that nave changes too here in common.js */
+/* Add padding to bottom of body so Mobile Nav doesn't cover content */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 80px; /* Height of the mobile nav */
+    }
+    
+    /* Ensure toast/cookie banners appear above the nav */
+    #cookie-banner {
+        bottom: 90px !important; 
+    }
+}

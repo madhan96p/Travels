@@ -1,72 +1,57 @@
-/* ===================================================================
-   COMMON JAVASCRIPT (FINAL V3 - PUBLIC SITE) | SHRISH TRAVELS
-   Contains all shared scripts for Header, Footer, FAQ, etc.
-   =================================================================== */
+// assets/js/common.js
 
-// --- 1. GLOBAL POPUP HANDLER (Exported for other scripts) ---
-// Note: This logic assumes a single popup element with ID 'submission-popup' in the HTML body of every page.
-// The index.html popup is a special case and uses its own ID ('booking-popup').
-
-// We export these functions so booking.js, contact.js, and career.js can use them.
-window.showGlobalPopup = (status, title, message) => {
-    const submissionPopup = document.getElementById('submission-popup');
-    if (!submissionPopup) {
-        // Fallback for pages like index.html that use a custom popup
-        console.error('Submission popup element not found.');
-        alert(`${title}: ${message}`);
-        return;
-    }
+document.addEventListener('DOMContentLoaded', async () => {
     
-    const popupContent = submissionPopup.querySelector('.popup-content') || document.createElement('div');
-    const iconClass = status === 'success' ? 'ri-checkbox-circle-fill success-icon' : 'ri-error-warning-fill error-icon';
-    
-    // Clear existing content and set new content
-    popupContent.innerHTML = `
-        <i class="${iconClass}" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-        <h3 class="popup-title">${title}</h3>
-        <p class="popup-message">${message}</p>
-        <div class="popup-buttons">
-            <button id="popup-ok-btn" class="cta-btn primary">OK</button>
-        </div>
-    `;
+    // 1. COMPONENT INJECTOR FUNCTION
+    const loadComponent = async (id, filePath) => {
+        const element = document.getElementById(id);
+        if (element) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error(`Failed to load ${filePath}`);
+                const html = await response.text();
+                element.innerHTML = html;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
-    // Make visible
-    submissionPopup.classList.add('visible');
-    submissionPopup.classList.remove('hidden');
+    // 2. INJECT HEADER, FOOTER, SCHEMA
+    // We use Promise.all to load them simultaneously
+    await Promise.all([
+        loadComponent('header-placeholder', '_header.html'),
+        loadComponent('footer-placeholder', '_footer.html'),
+        loadComponent('schema-placeholder', '_seo_schema.html')
+    ]);
 
-    // Add listener to dismiss the popup
-    document.getElementById('popup-ok-btn').addEventListener('click', hideGlobalPopup);
-    submissionPopup.addEventListener('click', (e) => {
-        if (e.target === submissionPopup) hideGlobalPopup();
-    });
-};
-
-window.hideGlobalPopup = () => {
-    const submissionPopup = document.getElementById('submission-popup');
-    if (submissionPopup) {
-        submissionPopup.classList.add('hidden');
-        submissionPopup.classList.remove('visible');
-    }
-};
-
-// ... [Existing common.js code follows here] ...
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // ... [Existing common.js logic for nav updates, scrolling, etc.] ...
-
-    // --- 5. Global Initialization ---
-    // Ensure all global setup runs here.
-
-    // No need for local showPopup/hidePopup definition anymore, rely on window.showGlobalPopup
-
-    // --- 6. Event Listeners & Initializations ---
-    // ... [Existing event listeners] ...
-    
-    // Call initialization functions
-    // handleHeaderScroll();
-    // updateActiveNavLinks();
-    // updateMobileHeaderTitle();
-    // setCopyrightYear();
-    // initializeFAQAccordion();
+    // 3. RE-INITIALIZE UI LOGIC (Since HTML was just injected)
+    highlightActiveLink();
+    initializeCookieBanner();
 });
+
+// Helper: Highlight active menu item based on current URL
+function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('nav a');
+    
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('text-blue-600'); 
+            link.classList.remove('text-gray-600');
+        }
+    });
+}
+
+function initializeCookieBanner() {
+    if (!localStorage.getItem("cookieConsent")) {
+        const banner = document.getElementById("cookie-banner");
+        if(banner) {
+            setTimeout(() => banner.classList.remove("hidden"), 2000);
+        }
+    }
+}
+window.acceptCookies = function() {
+    localStorage.setItem("cookieConsent", "true");
+    document.getElementById("cookie-banner").classList.add("hidden");
+};

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,19 +8,16 @@
     <meta name="description" content="Book premium outstation taxis, corporate car rentals, and airport transfers in Chennai. Safe, sanitized, and reliable 24/7 service. Call +91 8883451668.">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <link rel="stylesheet" href="assets/css/index.css">
-    
-    <script>
-        fetch('assets/data/schema.json').then(res=>res.json()).then(data=>{
-            const s=document.createElement('script');s.type='application/ld+json';s.text=JSON.stringify(data);document.head.appendChild(s);
-        });
-    </script>
+    <link rel="stylesheet" href="assets/css/common.css">
+
+    <div id="schema-placeholder"></div>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
+    
+    <div id="header-placeholder"></div>
 
     <nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -41,6 +39,52 @@
             </a>
         </div>
     </nav>
+
+    
+
+    <section class="bg-white py-8 border-b border-gray-100 relative z-20 -mt-6 mx-4 rounded-xl shadow-lg lg:mx-auto lg:max-w-6xl lg:rounded-full lg:-mt-10">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center text-gray-600 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-xl"></i> 5.0 Google Rated</div>
+            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-500 text-xl"></i> Verified Drivers</div>
+            <div class="flex items-center gap-2"><i class="fas fa-clock text-purple-500 text-xl"></i> 24/7 Service</div>
+            <div class="flex items-center gap-2"><i class="fas fa-car text-green-500 text-xl"></i> AC Cabs</div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900">Popular Routes</h2>
+            <p class="text-gray-500 mt-2">Top destinations from Chennai</p>
+        </div>
+        <div id="routes-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
+            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
+            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
+        </div>
+        <div class="mt-10 text-center">
+            <a href="/routes.html" class="inline-block border border-gray-300 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition">View All Routes</a>
+        </div>
+    </section>
+
+    <section class="bg-slate-50 py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Voices of Our Happy Travelers</h2>
+            <p class="text-gray-500 mb-10 max-w-2xl mx-auto">Discover why hundreds of customers trust Shrish Travels.</p>
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-6b4baccb-caf5-4d45-a9f8-97df6c9e7fd3" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-white">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold mb-4">We’d Love to Hear From You!</h2>
+                <p class="text-blue-100 mb-8 text-lg">Have feedback or need a custom package? We are committed to providing the best experience.</p>
+                <a href="contact.html" class="inline-block bg-white text-blue-800 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition transform hover:-translate-y-1 shadow-lg">Contact Us</a>
+            </div>
+        </div>
+    </section>
 
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden hero-bg">
         <div class="absolute inset-0 bg-slate-900/80 z-0"></div> <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
@@ -101,102 +145,9 @@
         </div>
     </section>
 
-    <section class="bg-white py-8 border-b border-gray-100 relative z-20 -mt-6 mx-4 rounded-xl shadow-lg lg:mx-auto lg:max-w-6xl lg:rounded-full lg:-mt-10">
-        <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center text-gray-600 text-xs font-bold uppercase tracking-wider">
-            <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-xl"></i> 5.0 Google Rated</div>
-            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-500 text-xl"></i> Verified Drivers</div>
-            <div class="flex items-center gap-2"><i class="fas fa-clock text-purple-500 text-xl"></i> 24/7 Service</div>
-            <div class="flex items-center gap-2"><i class="fas fa-car text-green-500 text-xl"></i> AC Cabs</div>
-        </div>
-    </section>
+    <div id="footer-placeholder"></div>
 
-    <section class="py-20 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900">Popular Routes</h2>
-            <p class="text-gray-500 mt-2">Top destinations from Chennai</p>
-        </div>
-        <div id="routes-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-        </div>
-        <div class="mt-10 text-center">
-            <a href="/routes.html" class="inline-block border border-gray-300 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition">View All Routes</a>
-        </div>
-    </section>
-
-    <section class="bg-slate-50 py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Voices of Our Happy Travelers</h2>
-            <p class="text-gray-500 mb-10 max-w-2xl mx-auto">Discover why hundreds of customers trust Shrish Travels.</p>
-            <script src="https://static.elfsight.com/platform/platform.js" async></script>
-            <div class="elfsight-app-6b4baccb-caf5-4d45-a9f8-97df6c9e7fd3" data-elfsight-app-lazy></div>
-        </div>
-    </section>
-
-    <section class="py-20 px-4 bg-white">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-            <div class="relative z-10">
-                <h2 class="text-3xl font-bold mb-4">We’d Love to Hear From You!</h2>
-                <p class="text-blue-100 mb-8 text-lg">Have feedback or need a custom package? We are committed to providing the best experience.</p>
-                <a href="contact.html" class="inline-block bg-white text-blue-800 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition transform hover:-translate-y-1 shadow-lg">Contact Us</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-gray-300 py-12 px-4 mt-auto pb-24 md:pb-12">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
-            <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center gap-2 mb-4">
-                    <img src="assets/images/favicon/favicon.svg" alt="Logo" class="w-8 h-8">
-                    <h2 class="text-white text-2xl font-bold">Shrish<span class="text-blue-500">.</span></h2>
-                </div>
-                <p class="text-gray-400 max-w-sm">Premium corporate & outstation travel services based in Chennai.</p>
-            </div>
-            <div>
-                <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="/booking.html" class="hover:text-white transition">Instant Booking</a></li>
-                    <li><a href="/tariff.html" class="hover:text-white transition">Tariff Card</a></li>
-                    <li><a href="/career.html" class="hover:text-white transition">Careers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact</h3>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="tel:+918883451668" class="hover:text-white transition"><i class="fas fa-phone mr-2"></i> +91 8883451668</a></li>
-                    <li><a href="mailto:travels@shrishgroup.com" class="hover:text-white transition"><i class="fas fa-envelope mr-2"></i> travels@shrishgroup.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
-            &copy; 2025 Shrish Group. Developed by <a href="https://pragadeeshfolio.netlify.app" target="_blank" class="text-blue-500 hover:underline">PS</a>.
-        </div>
-    </footer>
-
-    <div class="md:hidden mobile-nav-fixed bg-white border-t border-gray-200 flex justify-around py-3">
-        <a href="/" class="flex flex-col items-center text-blue-600 font-bold text-xs">
-            <i class="fas fa-home text-lg mb-1"></i> Home
-        </a>
-        <a href="routes.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium">
-            <i class="fas fa-route text-lg mb-1"></i> Routes
-        </a>
-        <a href="booking.html" class="flex flex-col items-center text-blue-600 font-bold text-xs relative">
-            <div class="bg-blue-100 p-3 rounded-full -mt-8 border-4 border-white shadow-lg">
-                <i class="fas fa-calendar-check text-xl"></i>
-            </div>
-            <span class="mt-1">Book</span>
-        </a>
-        <a href="tariff.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium">
-            <i class="fas fa-tags text-lg mb-1"></i> Tariff
-        </a>
-        <a href="contact.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium">
-            <i class="fas fa-headset text-lg mb-1"></i> Support
-        </a>
-    </div>
-
-    <a href="https://wa.me/918883451668?text=Hi Shrish Travels" target="_blank" class="fixed bottom-24 right-4 bg-green-500 text-white p-3 rounded-full shadow-2xl z-40 hover:bg-green-600 transition animate-bounce w-12 h-12 flex items-center justify-center">
+    <a href="https://wa.me/918883451668?text=Hi Shrish Travels" target="_blank" class="fixed bottom-24 right-4 bg-green-500 text-white w-12 h-12 rounded-full shadow-lg z-40 flex items-center justify-center hover:bg-green-600 transition animate-bounce">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
@@ -210,6 +161,5 @@
         </div>
     </div>
 
-    <script src="assets/js/index.js"></script>
-</body>
+    <script src="assets/js/api.js"></script> <script src="assets/js/common.js"></script> <script src="assets/js/index.js"></script> </body>
 </html>

@@ -1,15 +1,10 @@
-// --- CONFIGURATION ---
-// Your Google Apps Script Web App URL (from script.js)
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwY6JLOSO9zZUcBkQ_38EIKMLWMwCZtpotLo61D_rsaRzBltxF5AhK-Mz8y9kST3mQC/exec";
-const WHATSAPP_NUM = "918883451668";
+// assets/js/index.js
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. TRIP TYPE TOGGLE LOGIC
+    // 1. TRIP TYPE TOGGLE
     window.setTripType = function(type) {
         document.getElementById('tripType').value = type;
-        
-        // Update Button Styles
         const btns = document.querySelectorAll('.trip-btn');
         btns.forEach(btn => {
             if(btn.innerText.includes(type)) {
@@ -20,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 2. QUICK ESTIMATE (Silent Pull + WhatsApp)
+    // 2. QUICK ESTIMATE (Uses ApiService)
     const form = document.getElementById('quickBookForm');
     const statusMsg = document.getElementById('formStatus');
 
@@ -34,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const mobile = document.getElementById('mobile').value;
             const type = document.getElementById('tripType').value;
 
-            // Basic Validation
             if(!pickup || !drop || !mobile) {
                 statusMsg.innerText = "Please fill all details.";
                 statusMsg.style.color = "red";
@@ -42,48 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             statusMsg.innerText = "Processing...";
-            statusMsg.style.color = "gray";
 
-            // A. SILENT SUBMISSION TO GOOGLE SHEET
-            fetch(SCRIPT_URL, { method: 'POST', body: data, mode: 'no-cors' })
-            .then(() => console.log("Lead Captured to Sheet"))
-            .catch(error => console.error('Sheet Error:', error));
+            // A. API Call via Service
+            ApiService.submitLead(data);
 
-            // B. REDIRECT TO WHATSAPP
+            // B. WhatsApp Redirect
             const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0AMobile: ${mobile}`;
             
             setTimeout(() => {
                 statusMsg.innerText = "";
-                window.open(`https://wa.me/${WHATSAPP_NUM}?text=${msg}`, '_blank');
-            }, 1000); // 1 second delay to ensure fetch starts
+                window.open(ApiService.getWhatsAppLink(msg), '_blank');
+            }, 1000); 
         });
     }
 
-    // 3. BOOK NOW BUTTON (Redirect to booking.html with Data)
-    const btnBookNow = document.getElementById('btnBookNow');
-    if(btnBookNow) {
-        btnBookNow.addEventListener('click', () => {
-            const pickup = document.getElementById('pickup').value;
-            const drop = document.getElementById('drop').value;
-            const mobile = document.getElementById('mobile').value;
-            const type = document.getElementById('tripType').value;
-
-            if(!pickup && !drop) {
-                alert("Please enter Pickup and Drop cities first.");
-                return;
-            }
-
-            // Redirect with URL Parameters
-            window.location.href = `booking.html?pickup=${encodeURIComponent(pickup)}&drop=${encodeURIComponent(drop)}&mobile=${encodeURIComponent(mobile)}&type=${encodeURIComponent(type)}`;
-        });
-    }
-
-    // 4. LOAD POPULAR ROUTES (Dynamic)
-    fetch('assets/data/routes.json')
-    .then(res => res.json())
+    // 3. LOAD POPULAR ROUTES (Uses ApiService)
+    ApiService.getRoutes()
     .then(data => {
         const container = document.getElementById('routes-container');
-        if(container) {
+        if(container && data) {
             container.innerHTML = '';
             data.slice(0, 6).forEach(route => {
                 const slug = `routes/${route.Origin.toLowerCase()}-to-${route.Destination.toLowerCase()}.html`.replace(/\s+/g, '');
@@ -106,15 +77,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
     .catch(e => console.error("Routes error:", e));
-
-    // 5. COOKIE BANNER
-    if (!localStorage.getItem("cookieConsent")) {
-        setTimeout(() => {
-            document.getElementById("cookie-banner").classList.remove("hidden");
-        }, 2000);
-    }
-    window.acceptCookies = function() {
-        localStorage.setItem("cookieConsent", "true");
-        document.getElementById("cookie-banner").classList.add("hidden");
-    };
 });
