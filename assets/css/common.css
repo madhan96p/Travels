@@ -1,11 +1,10 @@
-/* Add padding to bottom of body so Mobile Nav doesn't cover content */
-@media (max-width: 768px) {
-    body {
-        padding-bottom: 80px; /* Height of the mobile nav */
-    }
+.hero-bg {
+    /* Ensure this file name matches EXACTLY what is in your assets/images folder */
+    background-image: url('../images/hero-bg.jpg'); 
+    /* OR if you are using the logo as placeholder: */
+    /* background-image: url('../images/sh1.webp'); */
     
-    /* Ensure toast/cookie banners appear above the nav */
-    #cookie-banner {
-        bottom: 90px !important; 
-    }
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }

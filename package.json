@@ -20,7 +20,7 @@
   "homepage": "https://github.com/madhan96p/Travels#readme",
   "dependencies": {
     "google-auth-library": "^10.5.0",
-    "google-spreadsheet": "^5.0.2",
+    "google-spreadsheet": "^3.3.0",
     "nodemailer": "^7.0.10",
     "resend": "^6.5.2"
   }
