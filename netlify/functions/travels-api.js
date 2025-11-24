@@ -1,15 +1,16 @@
 // netlify/functions/travels-api.js
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+const { JWT } = require('google-auth-library'); // Required for modern Google Sheets auth
 const { Resend } = require('resend');
 
 const SPREADSHEET_ID = '1eqSsdKzF71WR6KR7XFkEI8NW7ObtnxC16ZtavJeePq8';
 
-// 1. Initialize Resend SAFELY (Don't crash if key is missing)
+// 1. Initialize Resend SAFELY
 let resend;
 if (process.env.RESEND_API_KEY) {
     resend = new Resend(process.env.RESEND_API_KEY);
 } else {
-    console.warn("⚠️ RESEND_API_KEY is missing. Email will be skipped.");
+    console.warn("⚠️ RESEND_API_KEY is missing. Emails will be skipped.");
 }
 
 const generateBookingID = () => {
@@ -22,7 +23,7 @@ const generateBookingID = () => {
 
 const getSheet = async (doc, sheetTitle) => {
     const sheet = doc.sheetsByTitle[sheetTitle];
-    if (!sheet) throw new Error(`Tab "${sheetTitle}" not found.`);
+    if (!sheet) throw new Error(`Tab "${sheetTitle}" not found. Check your Sheet tabs.`);
     return sheet;
 };
 
@@ -57,13 +58,22 @@ exports.handler = async function (event, context) {
     }
 
     try {
-        const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
-        
-        await doc.useServiceAccountAuth({
-            client_email: process.env.GOOGLE_CLIENT_EMAIL,
-            private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        // DEBUG: Check if keys exist (Do not log the actual keys for security)
+        if (!process.env.GOOGLE_PRIVATE_KEY || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL) {
+            throw new Error("Missing Google Credentials in Netlify Environment Variables.");
+        }
+
+        // 2. Authenticate with Google (New JWT Method)
+        const serviceAccountAuth = new JWT({
+            // FIXED: Changed from GOOGLE_CLIENT_EMAIL to match your Netlify settings
+            email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+            key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
 
+        const doc = new GoogleSpreadsheet(SPREADSHEET_ID, serviceAccountAuth);
+        
+        // 3. Load Info
         await doc.loadInfo();
 
         const { action } = event.queryStringParameters;
@@ -89,13 +99,13 @@ exports.handler = async function (event, context) {
 
             await sheet.addRow(rowData);
             
-            // Only send email if resend is initialized
+            // Send Email (Safe Check)
             if (resend) {
                 try {
                     await resend.emails.send({
                         from: 'Shrish Travels <travels@shrishgroup.com>',
                         to: ['travels@shrishgroup.com'],
-                        cc: ['shrishtravels1@gmail.com'],
+                        cc: ['shrishtravels1@gmail.com'], // Optional CC
                         subject: `🚖 New Booking: ${rowData.Pickup_City}`,
                         html: generateBookingEmail(rowData, bookingID),
                     });
@@ -111,6 +121,12 @@ exports.handler = async function (event, context) {
 
     } catch (error) {
         console.error('API Error:', error);
-        return { statusCode: 500, body: JSON.stringify({ success: false, error: error.message }) };
+        return { 
+            statusCode: 500, 
+            body: JSON.stringify({ 
+                success: false, 
+                error: error.message || "Internal Server Error" 
+            }) 
+        };
     }
 };
