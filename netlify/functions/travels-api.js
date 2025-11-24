@@ -2,10 +2,15 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { Resend } = require('resend');
 
-// YOUR SHEET ID
 const SPREADSHEET_ID = '1eqSsdKzF71WR6KR7XFkEI8NW7ObtnxC16ZtavJeePq8';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// 1. Initialize Resend SAFELY (Don't crash if key is missing)
+let resend;
+if (process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY);
+} else {
+    console.warn("⚠️ RESEND_API_KEY is missing. Email will be skipped.");
+}
 
 const generateBookingID = () => {
     const today = new Date();
@@ -16,26 +21,29 @@ const generateBookingID = () => {
 };
 
 const getSheet = async (doc, sheetTitle) => {
-    // In V3, we access sheets differently
     const sheet = doc.sheetsByTitle[sheetTitle];
     if (!sheet) throw new Error(`Tab "${sheetTitle}" not found.`);
     return sheet;
 };
 
-// ... (Keep your existing generateBookingEmail function here) ...
 function generateBookingEmail(data, bookingID) {
-    // Paste your existing email HTML generator logic here
     return `
-    <body>
-        <h2>New Booking: ${bookingID}</h2>
-        <p>Name: ${data.Customer_Name}</p>
-        <p>Phone: ${data.Mobile_Number}</p>
-        <p>Route: ${data.Pickup_City} to ${data.Drop_City}</p>
+    <body style="font-family: Arial, sans-serif; color: #333;">
+        <div style="max-width: 600px; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+            <h2 style="color: #2563eb;">🚖 New Booking Alert</h2>
+            <p><strong>ID:</strong> ${bookingID}</p>
+            <p><strong>Name:</strong> ${data.Customer_Name}</p>
+            <p><strong>Mobile:</strong> ${data.Mobile_Number}</p>
+            <p><strong>Route:</strong> ${data.Pickup_City} ➝ ${data.Drop_City}</p>
+            <p><strong>Date:</strong> ${data.Travel_Date}</p>
+            <p><strong>Type:</strong> ${data.Vehicle_Type}</p>
+             <p style="margin-top: 20px; font-size: 12px; color: #666;">Received via Website</p>
+        </div>
     </body>`;
 }
 
 exports.handler = async function (event, context) {
-    // Handle CORS preflight (Optional but good practice)
+    // Handle Preflight (CORS)
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
@@ -49,7 +57,6 @@ exports.handler = async function (event, context) {
     }
 
     try {
-        // 1. Setup Auth (V3 Style)
         const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
         
         await doc.useServiceAccountAuth({
@@ -57,17 +64,14 @@ exports.handler = async function (event, context) {
             private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
         });
 
-        await doc.loadInfo(); // loads document properties and worksheets
+        await doc.loadInfo();
 
-        // 2. Parse Data
         const { action } = event.queryStringParameters;
         const data = event.body ? JSON.parse(event.body) : {};
         const timestamp = new Date().toLocaleString('en-IN');
 
-        let response = {};
-
         if (action === 'submitBooking') {
-            const sheet = await getSheet(doc, 'bookings'); 
+            const sheet = await getSheet(doc, 'bookings');
             const bookingID = generateBookingID();
 
             const rowData = {
@@ -77,17 +81,17 @@ exports.handler = async function (event, context) {
                 Mobile_Number: data.Mobile_Number,
                 Pickup_City: data.Pickup_City,
                 Drop_City: data.Drop_City,
-                Travel_Date: data.Travel_Date || '',
-                Vehicle_Type: data.Vehicle_Type || 'Sedan', // Ensure matches JS
+                Travel_Date: data.Travel_Date || new Date().toISOString().split('T')[0],
+                Vehicle_Type: data.Vehicle_Type || 'Sedan',
                 Status: 'New',
                 Driver_Assigned: 'Pending'
             };
 
             await sheet.addRow(rowData);
             
-            // Email Logic (Wrapped in try/catch so it doesn't fail the booking if email fails)
-            try {
-                if (process.env.RESEND_API_KEY) {
+            // Only send email if resend is initialized
+            if (resend) {
+                try {
                     await resend.emails.send({
                         from: 'Shrish Travels <travels@shrishgroup.com>',
                         to: ['travels@shrishgroup.com'],
@@ -95,27 +99,18 @@ exports.handler = async function (event, context) {
                         subject: `🚖 New Booking: ${rowData.Pickup_City}`,
                         html: generateBookingEmail(rowData, bookingID),
                     });
+                } catch (emailError) {
+                    console.error("Email failed but lead saved:", emailError);
                 }
-            } catch (emailErr) {
-                console.error("Email failed:", emailErr);
             }
 
-            response = { success: true, id: bookingID };
-        } else {
-            return { statusCode: 400, body: JSON.stringify({ error: 'Invalid Action' }) };
-        }
-
-        return {
-            statusCode: 200,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(response)
-        };
+            return { statusCode: 200, body: JSON.stringify({ success: true, id: bookingID }) };
+        } 
+        
+        return { statusCode: 400, body: JSON.stringify({ error: 'Invalid Action' }) };
 
     } catch (error) {
         console.error('API Error:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ success: false, error: error.message })
-        };
+        return { statusCode: 500, body: JSON.stringify({ success: false, error: error.message }) };
     }
 };

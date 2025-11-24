@@ -47,3 +47,17 @@ html { scroll-behavior: smooth; }
     z-index: 9999 !important; /* Maximum priority */
     box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
 }
+
+.hero-bg {
+    /* Try to load the image, fallback to dark blue if missing */
+    background-color: #1e293b; 
+    
+    /* Ensure the path is correct: CSS is in assets/css, Image is in assets/images */
+    background-image: url('../images/hero-bg.jpg'); 
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Ensure text is readable if image fails */
+    position: relative;
+}
