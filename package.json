@@ -23,5 +23,8 @@
     "google-spreadsheet": "^3.3.0",
     "nodemailer": "^7.0.10",
     "resend": "^6.5.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.17"
   }
 }
