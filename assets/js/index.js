@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 2. QUICK ESTIMATE (Uses ApiService)
+    // 2. QUICK ESTIMATE FORM
     const form = document.getElementById('quickBookForm');
     const statusMsg = document.getElementById('formStatus');
 
     if(form) {
-        form.addEventListener('submit', e => {
+        form.addEventListener('submit', async (e) => { // Made function async
             e.preventDefault();
             
             const data = new FormData(form);
@@ -36,40 +36,55 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             statusMsg.innerText = "Processing...";
+            statusMsg.style.color = "blue";
 
-            // A. API Call via Service
-            ApiService.submitLead(data);
+            // A. API Call (Send to Sheet)
+            // We don't await this strictly for the redirect, but we trigger it.
+            ApiService.submitLead(data).then(res => {
+                console.log("Lead Saved:", res);
+            }).catch(err => {
+                console.error("Save Failed:", err);
+            });
 
             // B. WhatsApp Redirect
             const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0AMobile: ${mobile}`;
             
             setTimeout(() => {
-                statusMsg.innerText = "";
+                statusMsg.innerText = "Redirecting to WhatsApp...";
+                statusMsg.style.color = "green";
                 window.open(ApiService.getWhatsAppLink(msg), '_blank');
-            }, 1000); 
+            }, 500); // Small delay to allow UI to update
         });
     }
 
-    // 3. LOAD POPULAR ROUTES (Uses ApiService)
+    // 3. LOAD POPULAR ROUTES
     ApiService.getRoutes()
     .then(data => {
         const container = document.getElementById('routes-container');
         if(container && data) {
             container.innerHTML = '';
+            // Limit to 6 routes for homepage
             data.slice(0, 6).forEach(route => {
-                const slug = `routes/${route.Origin.toLowerCase()}-to-${route.Destination.toLowerCase()}.html`.replace(/\s+/g, '');
+                // Handle missing properties safely
+                const origin = route.Origin || 'Chennai';
+                const dest = route.Destination || 'Destination';
+                const km = route.Distance_Km || '0';
+                const price = route.Price_Sedan || 'Ask';
+                
+                const slug = `routes/${origin.toLowerCase()}-to-${dest.toLowerCase()}.html`.replace(/\s+/g, '');
+                
                 container.innerHTML += `
                     <a href="${slug}" class="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 group flex justify-between items-center">
                         <div>
                             <div class="text-xs font-bold text-gray-400 uppercase mb-1 flex items-center gap-1">
-                                <i class="fas fa-road"></i> ${route.Distance_Km} km
+                                <i class="fas fa-road"></i> ${km} km
                             </div>
                             <h3 class="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition">
-                                ${route.Origin} <span class="text-gray-300">➝</span> ${route.Destination}
+                                ${origin} <span class="text-gray-300">➝</span> ${dest}
                             </h3>
                         </div>
                         <div class="text-right">
-                            <span class="block font-extrabold text-xl text-green-600">₹${route.Price_Sedan}</span>
+                            <span class="block font-extrabold text-xl text-green-600">₹${price}</span>
                             <span class="text-xs text-gray-400 font-medium">Sedan</span>
                         </div>
                     </a>`;
