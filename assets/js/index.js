@@ -1,7 +1,11 @@
-// assets/js/index.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // Set Default Date to Today
+    const dateInput = document.getElementById('travelDate');
+    if(dateInput) {
+        dateInput.valueAsDate = new Date();
+    }
+
     // 1. TRIP TYPE TOGGLE
     window.setTripType = function(type) {
         document.getElementById('tripType').value = type;
@@ -15,45 +19,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 2. QUICK ESTIMATE FORM
+    // 2. QUICK ESTIMATE & BOOKING
     const form = document.getElementById('quickBookForm');
     const statusMsg = document.getElementById('formStatus');
 
     if(form) {
-        form.addEventListener('submit', async (e) => { // Made function async
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // --- SPAM CHECK (Frontend) ---
+            const lastBooked = localStorage.getItem('lastBookingTime');
+            const now = Date.now();
+            
+            // If booked within last 5 minutes (300000 ms)
+            if (lastBooked && (now - lastBooked) < 300000) {
+                alert("⚠️ You have already requested a booking recently.\n\nOur team is reviewing your request. Please wait for our call!");
+                return; // Stop execution
+            }
+
             const data = new FormData(form);
             const pickup = document.getElementById('pickup').value;
             const drop = document.getElementById('drop').value;
             const mobile = document.getElementById('mobile').value;
             const type = document.getElementById('tripType').value;
 
-            if(!pickup || !drop || !mobile) {
-                statusMsg.innerText = "Please fill all details.";
-                statusMsg.style.color = "red";
-                return;
-            }
-
             statusMsg.innerText = "Processing...";
             statusMsg.style.color = "blue";
 
             // A. API Call (Send to Sheet)
-            // We don't await this strictly for the redirect, but we trigger it.
             ApiService.submitLead(data).then(res => {
-                console.log("Lead Saved:", res);
+                if(res.success) {
+                    // Save timestamp to prevent spam
+                    localStorage.setItem('lastBookingTime', Date.now());
+                    console.log("Booking Saved:", res);
+                }
             }).catch(err => {
                 console.error("Save Failed:", err);
             });
 
             // B. WhatsApp Redirect
-            const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0AMobile: ${mobile}`;
+            const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0APhone: ${mobile}`;
             
             setTimeout(() => {
-                statusMsg.innerText = "Redirecting to WhatsApp...";
-                statusMsg.style.color = "green";
+                statusMsg.innerText = "Redirecting...";
                 window.open(ApiService.getWhatsAppLink(msg), '_blank');
-            }, 500); // Small delay to allow UI to update
+            }, 800); 
         });
     }
 
