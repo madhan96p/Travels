@@ -1,27 +1,11 @@
 {
   "name": "travels",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shrish Travels API",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/madhan96p/Travels.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/madhan96p/Travels/issues"
-  },
-  "homepage": "https://github.com/madhan96p/Travels#readme",
   "dependencies": {
     "google-auth-library": "^9.0.0",
     "google-spreadsheet": "^4.1.4",
-    "nodemailer": "^6.9.0",
     "resend": "^2.0.0"
   },
   "devDependencies": {
