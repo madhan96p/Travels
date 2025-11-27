@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 3. LOGIC: Get Estimate (Form Submit)
+    // 3. LOGIC: Get Estimate (Form Submit -> WhatsApp + Save to Sheet)
     const form = document.getElementById('quickBookForm');
     const statusMsg = document.getElementById('formStatus');
 
@@ -40,21 +40,34 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(waLink, '_blank');
 
             // B. Silent Background Save (Fire and Forget)
-            statusMsg.innerText = "Sent to dispatch...";
-            const formData = new FormData(form);
+            if(statusMsg) statusMsg.innerText = "Request sent...";
 
-            // Use the API Service defined in api.js
-            ApiService.submitLead(formData)
-                .then(res => console.log("Silent Save Success:", res))
-                .catch(err => console.error("Silent Save Error:", err));
+            // Prepare data for the API (Matches the 'submitLead' action we made)
+            const leadData = {
+                pickup: pickup,
+                drop: drop,
+                mobile: mobile,
+                date: date,
+                type: type
+            };
+
+            // Send to Netlify Function
+            fetch('/.netlify/functions/travels-api?action=submitLead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(leadData)
+            })
+            .then(response => response.json())
+            .then(data => console.log("Lead Saved Successfully:", data))
+            .catch(err => console.error("Silent Save Error:", err));
         });
     }
 
-    // 4. LOGIC: Book Now (Redirect with Parameters)
+    // 4. LOGIC: Book Now (Redirect to Booking Page)
     const btnBookNow = document.getElementById('btnBookNow');
     if (btnBookNow) {
         btnBookNow.addEventListener('click', () => {
-            // Get current values from the inputs
+            // Get current values
             const pickup = document.getElementById('pickup').value;
             const drop = document.getElementById('drop').value;
             const date = document.getElementById('travelDate').value;
@@ -64,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Construct URL Params
+            // Construct URL Params for the Booking Page
             const params = new URLSearchParams({
                 from: pickup,
                 to: drop,
                 date: date
             });
 
-            // Redirect to booking page
+            // Redirect
             window.location.href = `booking.html?${params.toString()}`;
         });
     }

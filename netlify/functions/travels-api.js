@@ -81,7 +81,32 @@ exports.handler = async function (event, context) {
             });
 
             responseData = { success: true, message: "Booking Saved", id: bookingID };
-        } else {
+        }
+
+        else if (action === 'submitLead') {
+            const data = JSON.parse(event.body);
+
+            // Connect to Sheet (Fallback to first sheet)
+            let sheet = doc.sheetsByTitle['leads']; // Create a tab named 'leads' in your sheet
+            if (!sheet) sheet = doc.sheetsByIndex[0];
+
+            const now = new Date();
+
+            // Add row to Google Sheet
+            await sheet.addRow({
+                Timestamp: now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                Type: 'WhatsApp Estimate',
+                Pickup: data.pickup || '',
+                Drop: data.drop || '',
+                Date: data.date || '',
+                Mobile: data.mobile || '',
+                Vehicle_Type: data.type || ''
+            });
+
+            responseData = { success: true, message: "Lead Saved" };
+        }
+
+        else {
             responseData = { error: "Invalid Action" };
         }
 
