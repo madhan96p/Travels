@@ -22,18 +22,14 @@
 
 <body>
 
+    <!-- HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- HERO PLACEHOLDER -->
+    <div id="hero-placeholder"></div>
+
     <header class="header">
         <div class="header-content container">
-            <nav class="desktop-nav">
-                <a href="index.html" class="logo">
-                    <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo-icon">
-                    <span class="brand-name">Shrish Travels</span>
-                </a>
-                <ul class="nav-links-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -41,7 +37,8 @@
         <div class="booking-hero">
             <div class="container">
                 <h1 data-aos="fade-up">Finalize Your Journey</h1>
-                <p data-aos="fade-up" data-aos-delay="100">Premium fleet. Professional Chauffeurs. Guaranteed Callback.
+                <p data-aos="fade-up" data-aos-delay="100">
+                    Premium fleet. Professional Chauffeurs. Guaranteed Callback.
                 </p>
             </div>
         </div>
@@ -52,6 +49,7 @@
                 <div class="form-wrapper" data-aos="fade-up">
                     <form id="full-booking-form">
 
+                        <!-- TRIP DETAILS CARD -->
                         <div class="form-card">
                             <div class="card-header">
                                 <i class="ri-map-pin-time-line"></i>
@@ -66,6 +64,7 @@
                                         <span>One Way</span>
                                     </div>
                                 </label>
+
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="Round Trip">
                                     <div class="card-content">
@@ -73,6 +72,7 @@
                                         <span>Round Trip</span>
                                     </div>
                                 </label>
+
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="Local Hire">
                                     <div class="card-content">
@@ -91,6 +91,7 @@
                                             placeholder="Airport, Hotel, or Address" required>
                                     </div>
                                 </div>
+
                                 <div class="input-group">
                                     <label>Drop Destination</label>
                                     <div class="input-wrapper">
@@ -103,6 +104,7 @@
 
                             <div class="input-grid">
                                 <div class="input-grid">
+
                                     <div class="input-group">
                                         <label>Pickup Date</label>
                                         <div class="input-wrapper">
@@ -145,17 +147,10 @@
                                             placeholder="e.g. Roof carrier needed, Pet friendly...">
                                     </div>
                                 </div>
-                                <div class="input-group">
-                                    <label>Passengers</label>
-                                    <div class="input-wrapper">
-                                        <i class="ri-group-fill"></i>
-                                        <input type="number" id="travelers" name="travelers" min="1" max="50"
-                                            placeholder="e.g. 4" required>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
+                        <!-- CONTACT DETAILS CARD -->
                         <div class="form-card">
                             <div class="card-header">
                                 <i class="ri-user-star-line"></i>
@@ -179,6 +174,7 @@
                                             pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
+
                                 <div class="input-group">
                                     <label>Email (Optional)</label>
                                     <div class="input-wrapper">
@@ -189,6 +185,7 @@
                                 </div>
                             </div>
 
+                            <!-- CORPORATE SECTION -->
                             <div class="corporate-section">
                                 <div class="toggle-wrapper">
                                     <input type="checkbox" id="corporate-booking-checkbox">
@@ -209,21 +206,27 @@
                             </div>
                         </div>
 
+                        <!-- SUBMIT BUTTON -->
                         <button type="submit" class="premium-submit-btn">
                             <span>Get Instant Quote</span>
                             <i class="ri-arrow-right-line"></i>
                         </button>
-                        <p class="spam-notice"><i class="ri-lock-2-line"></i> Your details are secure. No spam.</p>
+
+                        <p class="spam-notice">
+                            <i class="ri-lock-2-line"></i> Your details are secure. No spam.
+                        </p>
 
                     </form>
                 </div>
 
+                <!-- SIDEBAR -->
                 <aside class="sidebar-wrapper" data-aos="fade-left" data-aos-delay="200">
                     <div class="trust-card">
                         <div class="trust-header">
                             <img src="assets/images/sh1.webp" alt="Logo" class="mini-logo">
                             <h4>Shrish Promise</h4>
                         </div>
+
                         <ul class="benefit-list">
                             <li>
                                 <span class="icon-box"><i class="ri-verified-badge-fill"></i></span>
@@ -232,6 +235,7 @@
                                     <p>Background checked & trained.</p>
                                 </div>
                             </li>
+
                             <li>
                                 <span class="icon-box"><i class="ri-money-rupee-circle-fill"></i></span>
                                 <div>
@@ -239,6 +243,7 @@
                                     <p>No hidden surges or fees.</p>
                                 </div>
                             </li>
+
                             <li>
                                 <span class="icon-box"><i class="ri-e-bike-2-fill"></i></span>
                                 <div>
@@ -247,22 +252,31 @@
                                 </div>
                             </li>
                         </ul>
+
                         <div class="divider"></div>
+
                         <div class="urgent-help">
                             <p>Need it urgently?</p>
-                            <a href="tel:+918883451668" class="call-btn"><i class="ri-phone-fill"></i> +91 888 345
-                                1668</a>
+                            <a href="tel:+918883451668" class="call-btn">
+                                <i class="ri-phone-fill"></i> +91 888 345 1668
+                            </a>
                         </div>
                     </div>
                 </aside>
+
             </div>
         </div>
     </main>
 
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init();</script>
+
     <script src="assets/js/common.js"></script>
     <script src="assets/js/booking.js"></script>
+
 </body>
 
 </html>

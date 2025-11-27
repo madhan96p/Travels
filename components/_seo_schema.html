@@ -1,12 +1,13 @@
-<!-- Dynamic Schema Injection -->
 <script>
-    fetch('/assets/data/schema.json')
-        .then(res => res.json())
-        .then(data => {
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.text = JSON.stringify(data);
-            document.head.appendChild(script);
-        })
-        .catch(err => console.error('Schema load error:', err));
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/assets/data/schema.json')
+            .then(res => res.json())
+            .then(data => {
+                const script = document.createElement('script');
+                script.type = 'application/ld+json';
+                script.text = JSON.stringify(data);
+                document.head.appendChild(script);
+            })
+            .catch(err => console.error('SEO Schema load error:', err));
+    });
 </script>

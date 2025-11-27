@@ -1,58 +1,70 @@
-<footer class="bg-gray-900 text-gray-300 py-12 px-4 mt-auto mb-16 md:mb-0">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
-        <div class="col-span-1 md:col-span-2">
-            <div class="flex items-center gap-2 mb-4">
-                <img src="assets/images/favicon/favicon.svg" alt="Logo" class="w-8 h-8">
-                <h2 class="text-white text-2xl font-bold">Shrish<span class="text-blue-500">.</span></h2>
+<footer class="main-footer">
+    <div class="container footer-grid">
+        
+        <div class="footer-col brand-col">
+            <div class="footer-logo">
+                <img src="assets/images/favicon/favicon.svg" alt="Logo">
+                <h3>Shrish<span class="brand-dot">.</span></h3>
             </div>
-            <p class="text-gray-400 max-w-sm">Premium corporate & outstation travel services based in Chennai.</p>
+            <p>Premium corporate & outstation travel services based in Chennai. Reliability you can trust.</p>
         </div>
-        <div>
-            <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h3>
-            <ul class="space-y-2 text-sm">
-                <li><a href="/booking.html" class="hover:text-white transition">Instant Booking</a></li>
-                <li><a href="/tariff.html" class="hover:text-white transition">Tariff Card</a></li>
-                <li><a href="/career.html" class="hover:text-white transition">Careers</a></li>
+
+        <div class="footer-col links-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/booking.html">Instant Booking</a></li>
+                <li><a href="/tariff.html">Tariff Card</a></li>
+                <li><a href="/career.html">Careers</a></li>
+                <li><a href="/terms-of-service.html">Terms</a></li>
             </ul>
         </div>
-        <div>
-            <h3 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Contact</h3>
-            <ul class="space-y-3 text-sm">
-                <li><a href="tel:+918883451668" class="hover:text-white transition"><i class="fas fa-phone mr-2"></i> +91 8883451668</a></li>
-                <li><a href="mailto:travels@shrishgroup.com" class="hover:text-white transition"><i class="fas fa-envelope mr-2"></i> travels@shrishgroup.com</a></li>
+
+        <div class="footer-col contact-col">
+            <h4>Contact Us</h4>
+            <ul>
+                <li><a href="tel:+918883451668"><i class="fas fa-phone"></i> +91 8883451668</a></li>
+                <li><a href="mailto:travels@shrishgroup.com"><i class="fas fa-envelope"></i> travels@shrishgroup.com</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu</li>
             </ul>
         </div>
     </div>
-    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs text-gray-500">
-        &copy; 2025 Shrish Group. Developed by <a href="https://pragadeeshfolio.netlify.app" target="_blank" class="text-blue-500 hover:underline">PS</a>.
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Shrish Group. Developed by <a href="https://pragadeeshfolio.netlify.app" target="_blank">PS</a>.</p>
     </div>
 </footer>
 
-<div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 flex justify-around py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] z-[9999]">
-    <a href="/" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium py-1">
-        <i class="fas fa-home text-lg mb-1"></i> Home
+<nav class="mobile-bottom-nav">
+    <a href="/" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
     </a>
-    <a href="/routes.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium py-1">
-        <i class="fas fa-route text-lg mb-1"></i> Routes
+    <a href="/routes.html" class="nav-item">
+        <i class="fas fa-route"></i>
+        <span>Routes</span>
     </a>
-    <a href="/booking.html" class="flex flex-col items-center justify-center relative -top-6">
-        <div class="bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-gray-50 transform hover:scale-105 transition">
-            <i class="fas fa-calendar-check text-xl"></i>
+    <a href="/booking.html" class="nav-item fab-item">
+        <div class="fab-circle">
+            <i class="fas fa-calendar-check"></i>
         </div>
-        <span class="text-blue-600 text-xs font-bold mt-1">Book</span>
+        <span>Book</span>
     </a>
-    <a href="/tariff.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium py-1">
-        <i class="fas fa-tags text-lg mb-1"></i> Tariff
+    <a href="/tariff.html" class="nav-item">
+        <i class="fas fa-tags"></i>
+        <span>Tariff</span>
     </a>
-    <a href="/contact.html" class="flex flex-col items-center text-gray-500 hover:text-blue-600 text-xs font-medium py-1">
-        <i class="fas fa-headset text-lg mb-1"></i> Support
+    <a href="/contact.html" class="nav-item">
+        <i class="fas fa-headset"></i>
+        <span>Support</span>
     </a>
-</div>
+</nav>
 
-<div id="cookie-banner" class="hidden fixed bottom-20 md:bottom-4 left-4 right-4 md:right-auto md:w-96 bg-gray-900/95 backdrop-blur text-white p-4 z-[10000] rounded-lg shadow-xl border border-gray-700 flex flex-col gap-3">
-    <p class="text-sm">🍪 We use cookies to improve your experience.</p>
-    <div class="flex gap-3 justify-end">
-        <button onclick="acceptCookies()" class="bg-blue-600 px-4 py-1.5 rounded text-xs font-bold hover:bg-blue-700 transition">Accept</button>
-        <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-400 hover:text-white text-xs underline">Close</button>
+<div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-content">
+        <p>🍪 We use cookies to improve your experience.</p>
+        <div class="cookie-actions">
+            <button onclick="acceptCookies()" class="btn-accept">Accept</button>
+            <button onclick="document.getElementById('cookie-banner').style.display='none'" class="btn-close">Close</button>
+        </div>
     </div>
 </div>

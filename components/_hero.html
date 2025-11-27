@@ -1,69 +1,63 @@
-<!-- Premium Hero Section -->
-<section class="hero-bg pt-32 pb-20 px-4 min-h-[85vh] flex items-center justify-center relative overflow-hidden">
-
-    <!-- Animated Background Elements -->
-    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div class="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl -top-20 -left-20 animate-pulse"></div>
-        <div
-            class="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl bottom-10 right-10 animate-pulse delay-700">
-        </div>
+<section class="hero-section">
+    <div class="hero-bg-overlay">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
     </div>
 
-    <div class="relative z-10 w-full max-w-lg text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-white drop-shadow-lg">
-            Premium Rides.<br><span class="text-blue-300">Local Prices.</span>
-        </h1>
-        <p class="text-blue-100 text-lg mb-8 font-medium">Chennai's #1 Corporate & Outstation Taxi Service.</p>
+    <div class="container hero-content">
+        
+        <div class="hero-text">
+            <h1 class="hero-headline">
+                Premium Rides.<br>
+                <span class="highlight-text">Local Prices.</span>
+            </h1>
+            <p class="hero-subheadline">
+                Chennai's #1 Corporate & Outstation Taxi Service. Verified Drivers & 24/7 Support.
+            </p>
+            <div class="hero-trust-badges">
+                <span><i class="fas fa-shield-alt"></i> Safe</span>
+                <span><i class="fas fa-clock"></i> On-Time</span>
+                <span><i class="fas fa-star"></i> 5.0 Rated</span>
+            </div>
+        </div>
 
-        <!-- Booking Widget -->
-        <div
-            class="bg-white/95 backdrop-blur text-left text-gray-800 p-6 rounded-2xl shadow-2xl transform transition hover:scale-[1.01]">
-            <form id="bookingForm" onsubmit="handleBooking(event)" class="space-y-4">
-                <!-- Tabs -->
-                <div class="flex bg-gray-100 p-1 rounded-xl mb-4">
-                    <button type="button"
-                        class="flex-1 py-2.5 rounded-lg bg-white shadow-sm text-sm font-bold text-blue-900 transition">One
-                        Way</button>
-                    <button type="button"
-                        class="flex-1 py-2.5 rounded-lg text-gray-500 text-sm font-bold hover:text-gray-700 hover:bg-gray-200 transition">Round
-                        Trip</button>
+        <div class="booking-widget-card">
+            <form id="bookingForm" class="hero-booking-form">
+                
+                <div class="trip-tabs">
+                    <label class="tab-radio">
+                        <input type="radio" name="trip_type" value="One Way" checked>
+                        <span class="tab-label">One Way</span>
+                    </label>
+                    <label class="tab-radio">
+                        <input type="radio" name="trip_type" value="Round Trip">
+                        <span class="tab-label">Round Trip</span>
+                    </label>
                 </div>
 
-                <!-- Inputs -->
-                <div class="space-y-3">
-                    <div class="relative group">
-                        <i
-                            class="fas fa-location-dot absolute left-4 top-4 text-green-600 group-focus-within:text-green-700"></i>
-                        <input type="text" id="pickup" required placeholder="Pickup City (e.g., Chennai)"
-                            class="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none transition placeholder-gray-400">
+                <div class="form-inputs">
+                    <div class="input-group">
+                        <i class="fas fa-location-dot input-icon start-icon"></i>
+                        <input type="text" id="pickup" placeholder="Pickup City" required>
                     </div>
 
-                    <div class="relative group">
-                        <i
-                            class="fas fa-map-pin absolute left-4 top-4 text-red-500 group-focus-within:text-red-600"></i>
-                        <input type="text" id="drop" required placeholder="Drop City (e.g., Trichy)"
-                            class="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none transition placeholder-gray-400">
+                    <div class="input-group">
+                        <i class="fas fa-map-pin input-icon end-icon"></i>
+                        <input type="text" id="drop" placeholder="Drop City" required>
                     </div>
 
-                    <div class="relative group">
-                        <i
-                            class="fas fa-phone absolute left-4 top-4 text-gray-400 group-focus-within:text-blue-600"></i>
-                        <input type="tel" id="mobile" required placeholder="Mobile Number"
-                            class="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold focus:ring-2 focus:ring-blue-600 focus:outline-none transition placeholder-gray-400">
+                    <div class="input-group">
+                        <i class="fas fa-phone input-icon phone-icon"></i>
+                        <input type="tel" id="mobile" placeholder="Mobile Number" required pattern="[0-9]{10}">
                     </div>
                 </div>
 
-                <!-- CTA -->
-                <button type="submit"
-                    class="w-full bg-black text-white font-bold text-lg py-4 rounded-xl hover:bg-gray-900 hover:shadow-lg transition flex justify-center items-center gap-3 group mt-2">
+                <button type="submit" class="hero-submit-btn">
                     <span>Get Estimate</span>
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
         </div>
 
-        <p class="text-xs text-blue-200 mt-4 opacity-80">
-            <i class="fas fa-shield-alt mr-1"></i> Verified Drivers • Sanitized Cabs • 24/7 Support
-        </p>
     </div>
 </section>
