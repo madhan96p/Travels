@@ -33,24 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. MODAL LOGIC (The Calculator)
     const modal = document.getElementById('estimatorModal');
-    const closeBtn = document.querySelector('.modal-close');
     
-    // Attach Click Event to ALL "Estimate Fare" buttons (Static & Dynamic)
+    // SAFETY FIX: Look for either class name (.modal-close OR .close-modal)
+    const closeBtn = document.querySelector('.modal-close') || document.querySelector('.close-modal');
+    
+    // Attach Click Event to ALL "Estimate Fare" buttons
     document.body.addEventListener('click', (e) => {
+        // Handle the "Estimate Fare" buttons
         if (e.target.classList.contains('btn-estimate')) {
             const vehicleId = e.target.getAttribute('data-vehicle-id');
             openCalculator(vehicleId);
         }
+        
+        // Handle the "Close" button inside the modal (Alternative way)
+        if (e.target.closest('.modal-close') || e.target.closest('.close-modal')) {
+            if(modal) modal.classList.add('hidden');
+        }
     });
 
-    closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
-    
-    // Close on clicking outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.add('hidden');
-    });
+    // Only attach listener if button explicitly exists (Prevents the Line 46 error)
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+    }
 
-    // --- HELPER FUNCTIONS ---
+    // Close on clicking outside the modal box
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+    }
 
     function updateLocalCards(data) {
         // This function looks for cards with matching data-vehicle IDs and updates price
