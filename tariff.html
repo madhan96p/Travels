@@ -3,68 +3,165 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tariff & Pricing | Shrish Travels</title>
-    <meta name="description" content="Transparent car rental tariff in Chennai. Check rates for Sedan, Innova, Crysta, and Tempo Traveller." />
+    <title>Chennai Car Rental Tariffs 2025 | Shrish Travels</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/tariff.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="header-placeholder"></div>
 
     <main>
-        <div class="page-header">
+        <section class="page-header">
             <div class="container">
                 <h1>Transparent Pricing</h1>
                 <p>No hidden charges. Pay only for what you use.</p>
             </div>
-        </div>
+        </section>
 
-        <div class="container tariff-section">
-            
-            <div class="tariff-tabs">
-                <button class="tab-btn active" data-target="local">
-                    <i class="ri-time-line"></i> Hourly / Local
-                </button>
-                <button class="tab-btn" data-target="outstation">
-                    <i class="ri-road-map-line"></i> Outstation
-                </button>
-            </div>
-
-            <div id="tariff-loader" class="text-center">
-                <i class="fas fa-spinner fa-spin fa-2x"></i>
-                <p>Loading latest rates...</p>
-            </div>
-
-            <div id="tariff-content" class="tariff-grid hidden">
+        <section id="tariff-main" class="section light-bg">
+            <div class="container">
+                
+                <div class="tariff-tabs">
+                    <button class="tab-button active" data-tab="local">
+                        <i class="ri-map-pin-2-fill"></i> Local Packages
+                    </button>
+                    <button class="tab-button" data-tab="outstation">
+                        <i class="ri-road-map-fill"></i> Outstation
+                    </button>
                 </div>
 
+                <div id="local-tab" class="tab-content active">
+                    <div class="tariff-grid">
+                        
+                        <div class="package-card" data-vehicle="local_sedan">
+                            <div class="card-icon"><i class="fas fa-car-side"></i></div>
+                            <h3>4+1 Sedan</h3>
+                            <div class="card-price"><span class="price">₹1,300</span> / 5hr</div>
+                            <ul class="card-features">
+                                <li><i class="ri-time-line"></i> Extra Hour: ₹260</li>
+                                <li><i class="ri-route-line"></i> Extra KM: ₹14</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="local_sedan">Estimate Fare</button>
+                        </div>
+
+                        <div class="package-card" data-vehicle="local_innova">
+                            <div class="card-icon"><i class="fas fa-shuttle-van"></i></div>
+                            <h3>7+1 Innova</h3>
+                            <div class="card-price"><span class="price">₹1,900</span> / 5hr</div>
+                            <ul class="card-features">
+                                <li><i class="ri-time-line"></i> Extra Hour: ₹300</li>
+                                <li><i class="ri-route-line"></i> Extra KM: ₹19</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="local_innova">Estimate Fare</button>
+                        </div>
+                         <div class="package-card" data-vehicle="local_crysta">
+                            <div class="card-icon"><i class="fas fa-gem"></i></div>
+                            <h3>7+1 Crysta</h3>
+                            <div class="card-price"><span class="price">₹2,200</span> / 5hr</div>
+                            <ul class="card-features">
+                                <li><i class="ri-time-line"></i> Extra Hour: ₹440</li>
+                                <li><i class="ri-route-line"></i> Extra KM: ₹22</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="local_crysta">Estimate Fare</button>
+                        </div>
+
+                        <div class="package-card" data-vehicle="local_tempo">
+                            <div class="card-icon"><i class="fas fa-bus"></i></div>
+                            <h3>12+1 Tempo</h3>
+                            <div class="card-price"><span class="price">₹3,000</span> / 5hr</div>
+                            <ul class="card-features">
+                                <li><i class="ri-time-line"></i> Extra Hour: ₹550</li>
+                                <li><i class="ri-route-line"></i> Extra KM: ₹24</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="local_tempo">Estimate Fare</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="outstation-tab" class="tab-content">
+                    <div class="tariff-grid">
+                        <div class="package-card" data-vehicle="out_sedan">
+                            <div class="card-icon"><i class="fas fa-car-side"></i></div>
+                            <h3>4+1 Sedan</h3>
+                            <div class="card-price"><span class="price">₹14</span> / km</div>
+                            <ul class="card-features">
+                                <li>Driver BATA: ₹700/day</li>
+                                <li>Min 250km / day</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="out_sedan">Estimate Fare</button>
+                        </div>
+                        
+                        <div class="package-card" data-vehicle="out_innova">
+                            <div class="card-icon"><i class="fas fa-shuttle-van"></i></div>
+                            <h3>7+1 Innova</h3>
+                            <div class="card-price"><span class="price">₹19</span> / km</div>
+                            <ul class="card-features">
+                                <li>Driver BATA: ₹800/day</li>
+                                <li>Min 250km / day</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="out_innova">Estimate Fare</button>
+                        </div>
+
+                         <div class="package-card" data-vehicle="out_crysta">
+                            <div class="card-icon"><i class="fas fa-gem"></i></div>
+                            <h3>7+1 Crysta</h3>
+                            <div class="card-price"><span class="price">₹22</span> / km</div>
+                            <ul class="card-features">
+                                <li>Driver BATA: ₹800/day</li>
+                                <li>Min 250km / day</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="out_crysta">Estimate Fare</button>
+                        </div>
+
+                         <div class="package-card" data-vehicle="out_tempo">
+                            <div class="card-icon"><i class="fas fa-bus"></i></div>
+                            <h3>12+1 Tempo</h3>
+                            <div class="card-price"><span class="price">₹24</span> / km</div>
+                            <ul class="card-features">
+                                <li>Driver BATA: ₹1000/day</li>
+                                <li>Min 300km / day</li>
+                            </ul>
+                            <button class="btn-estimate" data-vehicle-id="out_tempo">Estimate Fare</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="estimatorModal" class="modal-overlay hidden">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 id="modalTitle" class="modal-title">Estimate Fare</h3>
+                    <button class="modal-close"><i class="ri-close-line"></i></button>
+                </div>
+                <div id="modalBody" class="modal-body"></div>
+                <div id="modalFooter" class="modal-footer"></div>
+            </div>
         </div>
+
     </main>
-
-    <div id="estimatorModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Estimate Cost</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div id="modalBody" class="modal-body">
-                </div>
-            <div id="modalFooter" class="modal-footer">
-                </div>
-        </div>
-    </div>
-
     <div id="footer-placeholder"></div>
 
     <script src="assets/js/common.js"></script>
     <script src="assets/js/tariff.js"></script>
+    <script>
+        // Simple loader for Header/Footer
+        async function loadComponent(id, url) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) document.getElementById(id).innerHTML = await response.text();
+            } catch (e) { console.error("Error loading component:", url); }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('header-placeholder', 'components/_header.html');
+            loadComponent('footer-placeholder', 'components/_footer.html');
+        });
+    </script>
 </body>
 </html>
