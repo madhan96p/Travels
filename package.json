@@ -1,7 +1,7 @@
 {
-  "name": "shrish-travels",
+  "name": "shrish-travels-api",
   "version": "1.0.0",
-  "description": "Premium Travels Website",
+  "description": "Backend for Travels Website",
   "main": "index.js",
   "dependencies": {
     "google-auth-library": "^9.0.0",
