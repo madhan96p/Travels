@@ -27,27 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.log("Using static fallback data due to API error:", err));
 
 
-    // --- 3. SMART PROCESSING LOGIC (The Magic) ---
+    // 3. SMART PROCESSING LOGIC
     function processCards(data, type) {
         const container = document.querySelector(`#${type}-tab .tariff-grid`);
         
         data.forEach(item => {
-            // Try to find existing card
             const existingCard = document.querySelector(`.package-card[data-vehicle="${item.ID}"]`);
-
             if (existingCard) {
-                // A. UPDATE EXISTING (SEO Card)
                 updateCardData(existingCard, item, type);
             } else {
-                // B. CREATE NEW (Dynamic Card)
                 const newCardHTML = createCardHTML(item, type);
-                // Append to grid
                 container.insertAdjacentHTML('beforeend', newCardHTML);
             }
         });
     }
 
-    // Helper: Updates existing HTML
     function updateCardData(card, item, type) {
         if (type === 'local') {
             card.querySelector('.price').textContent = `₹${Number(item.Base_Fare).toLocaleString()}`;
@@ -65,11 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Helper: Builds New HTML for new vehicles
     function createCardHTML(item, type) {
-        // Default icon if missing in sheet
         const iconClass = item.Image_Class || 'fas fa-car'; 
-        
         if (type === 'local') {
             return `
             <div class="package-card" data-vehicle="${item.ID}">
@@ -98,9 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 4. MODAL LOGIC (Event Delegation - Works for New Cards too!)
+    // 4. MODAL LOGIC WITH DYNAMIC WHATSAPP LINK
     const modal = document.getElementById('estimatorModal');
-    const closeBtn = document.querySelector('.modal-close') || document.querySelector('.close-modal');
     
     document.body.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-estimate')) {
@@ -118,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // CALCULATOR LOGIC (Same as before)
     function openCalculator(vehicleId) {
         const modalBody = document.getElementById('modalBody');
         const modalFooter = document.getElementById('modalFooter');
@@ -126,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         modal.classList.remove('hidden');
         
-        // Find card (works for both static and dynamic)
         const card = document.querySelector(`.package-card[data-vehicle="${vehicleId}"]`);
         if(!card) return;
 
@@ -140,9 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modalTitle.innerText = `Estimate: ${title}`;
 
+        // Initialize Button
+        modalFooter.innerHTML = `
+            <a href="#" id="wa-link" target="_blank" class="cta-btn primary" style="width:100%; text-align:center;">
+                <i class="fab fa-whatsapp"></i> Book This Estimate
+            </a>
+        `;
+        const waBtn = document.getElementById('wa-link');
+
         if (isLocal) {
+            // --- LOCAL LOGIC ---
             const baseFare = getPrice('.price');
-            // Logic handles dynamic cards correctly
             const rows = card.querySelectorAll('.card-features li');
             const extraHrRate = rows[0] ? parseInt(rows[0].innerText.replace(/[^\d]/g, '')) : 0;
             const extraKmRate = rows[1] ? parseInt(rows[1].innerText.replace(/[^\d]/g, '')) : 0;
@@ -166,11 +162,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const km = parseInt(document.getElementById('calc-km').value) || 0;
                 const hr = parseInt(document.getElementById('calc-hr').value) || 0;
                 const total = baseFare + (km * extraKmRate) + (hr * extraHrRate);
+                
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
+
+                // Construct Detailed Message
+                const msg = `*New Quote Request* %0A%0A` +
+                            `🚗 *Vehicle:* ${title} (Local) %0A` +
+                            `📍 *Base Fare:* ₹${baseFare} %0A` + 
+                            `➕ *Extra:* ${km} km & ${hr} hrs %0A` +
+                            `💰 *Est. Total:* ₹${total.toLocaleString()}`;
+                
+                waBtn.href = `https://wa.me/918883451668?text=${msg}`;
             };
+            
             modalBody.addEventListener('input', calculate);
+            calculate(); // Run once to set initial link
 
         } else {
+            // --- OUTSTATION LOGIC ---
             const perKm = getPrice('.price');
             const rows = card.querySelectorAll('.card-features li');
             const bata = rows[0] ? parseInt(rows[0].innerText.replace(/[^\d]/g, '')) : 0;
@@ -196,15 +205,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const minDist = days * 250;
                 const chargeableDist = Math.max(dist, minDist);
                 const total = (chargeableDist * perKm) + (days * bata);
+                
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
-            };
-            modalBody.addEventListener('input', calculate);
-        }
 
-        modalFooter.innerHTML = `
-            <a href="https://wa.me/918883451668?text=Hi, I am interested in ${title} booking." target="_blank" class="cta-btn primary" style="width:100%; text-align:center;">
-                <i class="fab fa-whatsapp"></i> Book This Estimate
-            </a>
-        `;
+                // Construct Detailed Message
+                const msg = `*New Quote Request* %0A%0A` +
+                            `🚗 *Vehicle:* ${title} (Outstation) %0A` +
+                            `📅 *Duration:* ${days} Days %0A` + 
+                            `🛣 *Distance:* ${dist} km (Chargeable: ${chargeableDist} km) %0A` +
+                            `💰 *Est. Total:* ₹${total.toLocaleString()}`;
+                
+                waBtn.href = `https://wa.me/918883451668?text=${msg}`;
+            };
+            
+            modalBody.addEventListener('input', calculate);
+            calculate(); // Run once to set initial link
+        }
     }
 });
