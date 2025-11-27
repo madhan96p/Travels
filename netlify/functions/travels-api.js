@@ -127,6 +127,31 @@ exports.handler = async function (event, context) {
             responseData = { success: true, message: "Lead Saved to Main Sheet" };
         }
 
+        else if (action === 'getTariff') {
+            // 1. Load both sheets
+            const localSheet = doc.sheetsByTitle['tariff_local'];
+            const outstationSheet = doc.sheetsByTitle['tariff_outstation'];
+
+            // 2. Fetch Rows
+            const localRows = localSheet ? await localSheet.getRows() : [];
+            const outstationRows = outstationSheet ? await outstationSheet.getRows() : [];
+
+            // 3. Helper to clean data
+            const cleanRow = (row) => {
+                const obj = {};
+                row._rawData.forEach((val, i) => {
+                    obj[row._headerValues[i]] = val;
+                });
+                return obj;
+            };
+
+            // 4. Send back as structured JSON
+            responseData = {
+                local: localRows.map(cleanRow),
+                outstation: outstationRows.map(cleanRow)
+            };
+        }
+
         else {
             responseData = { error: "Invalid Action" };
         }

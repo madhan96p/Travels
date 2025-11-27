@@ -1,68 +1,158 @@
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.venv
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\admin
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\admin\index.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\booking.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\career.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\common.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\contact.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\index.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\routes-list.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\routes-single.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\services.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\tariff.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\util.css
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data\routes.json
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data\schema.json
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\images
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\api.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\booking.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\career.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\common.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\contact.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\index.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\routes-single.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\routes.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\tariff.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_footer.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_header.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_hero.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_seo_schema.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions\submit-booking.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions\travels-api.js
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\node_modules
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes\chennai-to-thiruvarur.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes\trichy-to-chennai.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates\index.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates\route_template.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\_headers
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\_redirects
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.gitignore
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.txt
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\booking.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\build.py
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\career.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\contact.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\index.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify.toml
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\package-lock.json
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\package.json
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\privacy-policy.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\requirements.txt
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\route_template.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes_generator.py
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\services.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\shrish-credentials.json
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\tariff.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\template.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\terms-of-service.html
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\test_sheet.py
-C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\WORKFLOW.md
+Here is your full directory list converted into a **clean, readable table** — grouped and organized so you can easily understand your project structure.
+
+---
+
+# 📁 **Shrish Travels Project Structure (Readable Table Format)**
+
+---
+
+## **1. Root Directory Files**
+
+| File / Folder           | Status | Notes               |
+| ----------------------- | ------ | ------------------- |
+| .venv                   | —      | Virtual environment |
+| .gitignore              | —      | Git ignore rules    |
+| .txt                    | —      | Unknown text file   |
+| booking.html            | ✔ Done |                     |
+| index.html              | ✔ Done |                     |
+| career.html             | —      |                     |
+| contact.html            | —      |                     |
+| privacy-policy.html     | —      |                     |
+| terms-of-service.html   | —      |                     |
+| services.html           | —      |                     |
+| routes.html             | —      |                     |
+| tariff.html             | —      |                     |
+| template.html           | —      |                     |
+| test_sheet.py           | —      |                     |
+| build.py                | —      |                     |
+| routes_generator.py     | —      |                     |
+| shrish-credentials.json | —      |                     |
+| requirements.txt        | —      |                     |
+| package.json            | —      |                     |
+| package-lock.json       | —      |                     |
+| netlify.toml            | —      |                     |
+| _headers                | —      |                     |
+| _redirects              | —      |                     |
+
+---
+
+## **2. /admin**
+
+| File / Folder    | Status |
+| ---------------- | ------ |
+| admin/           | —      |
+| admin/index.html | —      |
+
+---
+
+## **3. /assets**
+
+### **/assets/css**
+
+| File              | Status       |
+| ----------------- | ------------ |
+| booking.css       | ✔ Done       |
+| career.css        | —            |
+| common.css        | ▶ Processing |
+| contact.css       | —            |
+| index.css         | ✔ Done       |
+| routes-list.css   | —            |
+| routes-single.css | —            |
+| services.css      | —            |
+| tariff.css        | —            |
+| util.css          | —            |
+
+---
+
+### **/assets/js**
+
+| File             | Status       |
+| ---------------- | ------------ |
+| api.js           | ▶ Processing |
+| booking.js       | ✔ Done       |
+| career.js        | —            |
+| common.js        | ▶ Processing |
+| contact.js       | —            |
+| index.js         | ✔ Done       |
+| routes-single.js | —            |
+| routes.js        | —            |
+| tariff.js        | —            |
+
+---
+
+### **/assets/data**
+
+| File        | Status |
+| ----------- | ------ |
+| routes.json | —      |
+| schema.json | —      |
+
+---
+
+### **/assets/images**
+
+| Folder  | Notes           |
+| ------- | --------------- |
+| images/ | Contains images |
+
+---
+
+## **4. /components**
+
+| File             | Status |
+| ---------------- | ------ |
+| _footer.html     | ✔ Done |
+| _header.html     | ✔ Done |
+| _hero.html       | ✔ Done |
+| _seo_schema.html | ✔ Done |
+
+---
+
+## **5. /netlify/functions**
+
+| File              | Status       |
+| ----------------- | ------------ |
+| submit-booking.js | ▶ Processing |
+| travels-api.js    | ▶ Processing |
+
+---
+
+## **6. /routes**
+
+| File                       | Status |
+| -------------------------- | ------ |
+| chennai-to-thiruvarur.html | —      |
+| trichy-to-chennai.html     | —      |
+
+---
+
+## **7. /templates**
+
+| File                | Status |
+| ------------------- | ------ |
+| route_template.html | —      |
+
+---
+
+## **8. Other HTML Pages**
+
+| File          | Status |
+| ------------- | ------ |
+| routes.html   | —      |
+| template.html | —      |
+
+---
+
+# ✅ If you want:
+
+I can also generate:
+
+### ✔ A collapsible tree view
+
+### ✔ A visual folder diagram
+
+### ✔ A markdown file (README-friendly)
+
+### ✔ A spreadsheet format for documentation
+
+Just tell me!

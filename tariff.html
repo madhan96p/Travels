@@ -1,346 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <title>Chennai Car Rental Tariffs 2025 | Shrish Travels - Outstation & Local Rates</title>
-    <meta name="description"
-        content="Get transparent 2025 cab rates in Chennai from Shrish Travels. View clear tariffs for local (50km) and outstation (per km) trips. Book Innova, Crysta, Sedan, or Tempo Traveller today!" />
-    <meta name="keywords"
-        content="cab rates chennai 2025, outstation taxi price per km, innova crysta rental chennai, local cab charges, driver bata" />
-    <link rel="canonical" href="https://travels.shrishgroup.com/tariff.html" />
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "TravelAgency",
-        "name": "Shrish Travels",
-        "url": "https://travels.shrishgroup.com/tariff.html",
-        "priceRange": "₹₹",
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Car Rental Tariffs 2025",
-            "validThrough": "2025-12-31", 
-            "itemListElement": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local Sedan Package (5 Hrs, 50 KMs)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "1300", "priceCurrency": "INR" }},
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Outstation Innova (Per KM)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "19", "priceCurrency": "INR", "unitText": "per kilometer" }}
-            ]
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What is 'Driver BATA' for outstation trips?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Driver BATA (Boarding, Travel, and Accommodation Allowance) is a mandatory daily charge that covers the driver's food and lodging. It applies for every 12-hour duty period." }
-            },
-            {
-                "@type": "Question",
-                "name": "Are toll fees and parking included in the estimated price?",
-                "acceptedAnswer": { "@type": "Answer", "text": "No, to ensure transparency, Toll fees, parking charges, and state entry permits are excluded from the estimate and charged based on actuals at the end of the trip." }
-            }
-        ]
-    }
-    </script>
-
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+    <title>Tariff & Pricing | Shrish Travels</title>
+    <meta name="description" content="Transparent car rental tariff in Chennai. Check rates for Sedan, Innova, Crysta, and Tempo Traveller." />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/tariff.css" />
 </head>
 
 <body>
+    <div id="header-placeholder"></div>
 
-    <header class="header">
-        <div class="header-content container">
-            <nav class="desktop-nav">
-                <ul class="nav-links-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="routes.html">Routes</a></li>
-                    <li><a href="tariff.html" class="active">Tariff</a></li>
-                </ul>
+    <main>
+        <div class="page-header">
+            <div class="container">
+                <h1>Transparent Pricing</h1>
+                <p>No hidden charges. Pay only for what you use.</p>
+            </div>
+        </div>
 
-                <a href="index.html" class="logo">
-                    <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo-icon">
-                </a>
-
-                <ul class="nav-links-right">
-                    <li><a href="booking.html" class="cta-link">Book Now</a></li>
-                    <li><a href="career.html">Careers</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </nav>
-
-            <div class="mobile-header-bar">
-                <a href="index.html" class="mobile-logo">
-                    <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo-icon">
-                </a>
-                <div class="header-title">
-                    <span id="mobile-page-title" class="main-heading">Transparent Tariffs</span>
-                </div>
-                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="ri-menu-line"></i>
+        <div class="container tariff-section">
+            
+            <div class="tariff-tabs">
+                <button class="tab-btn active" data-target="local">
+                    <i class="ri-time-line"></i> Hourly / Local
+                </button>
+                <button class="tab-btn" data-target="outstation">
+                    <i class="ri-road-map-line"></i> Outstation
                 </button>
             </div>
+
+            <div id="tariff-loader" class="text-center">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p>Loading latest rates...</p>
+            </div>
+
+            <div id="tariff-content" class="tariff-grid hidden">
+                </div>
+
         </div>
-    </header>
-    <main>
-        <section id="tariff-hero" class="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="hero-content container" data-aos="fade-in">
-                <h1 class="hero-title">Transparent Pricing. No Surprises.</h1>
-                <p class="hero-subtitle">Clear, competitive rates for our entire fleet. Plan your budget with our **interactive fare estimator** and book with confidence.</p>
-                <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#tariff-main" class="cta-btn primary">View Rates Now</a>
-                    <a href="contact.html?query=b2b" class="cta-btn secondary"><i class="ri-briefcase-4-line"></i> B2B Corporate Rates Inquiry</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="tariff-main" class="section light-bg">
-            <div class="container">
-                <div class="tabs-container" data-aos="fade-up">
-                    <button class="tab-button active" data-tab="local">
-                        <i class="ri-map-pin-2-fill"></i>
-                        <span>Local Packages (City)</span>
-                    </button>
-                    <button class="tab-button" data-tab="outstation">
-                        <i class="ri-road-map-fill"></i>
-                        <span>Outstation Packages (Per KM)</span>
-                    </button>
-                </div>
-
-                <div id="local-tab" class="tab-content active">
-                    <div class="intro-note" data-aos="fade-up">
-                        <h4><i class="ri-information-fill"></i> Local Tariffs Explained (Chennai)</h4>
-                        <p>Rates are based on a **5-hour, 50 KM package** from shed-to-shed. Extra kilometers and hours are billed separately to maximize savings.</p>
-                    </div>
-                    <div class="packages-grid">
-                        <div class="package-card" data-vehicle="local-sedan" data-aos="fade-up">
-                            <div class="card-header"><h3>4+1 Sedan</h3></div>
-                            <div class="card-price"><span class="price">₹1,300</span><span class="price-unit">Base Fare</span></div>
-                            <ul class="card-features">
-                                <li><i class="ri-time-line"></i> Extra Hour: ₹260</li>
-                                <li><i class="ri-route-line"></i> Extra KM: ₹14</li>
-                            </ul>
-                            <div class="card-actions">
-                                <button class="btn-estimate" data-vehicle-id="local-sedan">Estimate Fare</button>
-                                <a href="booking.html" class="btn-book">Book Now</a>
-                            </div>
-                        </div>
-                        <div class="package-card popular" data-vehicle="local-innova" data-aos="fade-up" data-aos-delay="100">
-                            <div class="popular-badge">Most Popular</div>
-                            <div class="card-header"><h3>7+1 Innova</h3></div>
-                            <div class="card-price"><span class="price">₹1,900</span><span class="price-unit">Base Fare</span></div>
-                            <ul class="card-features">
-                                <li><i class="ri-time-line"></i> Extra Hour: ₹300</li>
-                                <li><i class="ri-route-line"></i> Extra KM: ₹19</li>
-                            </ul>
-                            <div class="card-actions">
-                                <button class="btn-estimate" data-vehicle-id="local-innova">Estimate Fare</button>
-                                <a href="booking.html" class="btn-book">Book Now</a>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-
-                <div id="outstation-tab" class="tab-content">
-                    <div class="intro-note" data-aos="fade-up">
-                        <h4><i class="ri-information-fill"></i> Outstation Tariffs Explained (Per KM)</h4>
-                        <p>Rates include the **per-kilometer charge** and a **mandatory Driver BATA** (Boarding, Travel, and Accommodation Allowance) per day. A minimum of 250 KMs per day applies.</p>
-                    </div>
-                    <div class="packages-grid">
-                        <div class="package-card" data-vehicle="outstation-sedan" data-aos="fade-up">
-                            <div class="card-header"><h3>4+1 Sedan</h3></div>
-                            <div class="card-price"><span class="price">₹14</span><span class="price-unit">Per KM</span></div>
-                            <ul class="card-features">
-                                <li><i class="ri-wallet-3-fill"></i> Driver BATA: ₹700 / Day</li>
-                                <li><i class="ri-arrow-left-right-fill"></i> Min. 250 KMs / Day</li>
-                            </ul>
-                            <div class="card-actions">
-                                <button class="btn-estimate" data-vehicle-id="outstation-sedan">Estimate Fare</button>
-                                <a href="booking.html" class="btn-book">Book Now</a>
-                            </div>
-                        </div>
-                        <div class="package-card popular" data-vehicle="outstation-crysta" data-aos="fade-up" data-aos-delay="200">
-                            <div class="popular-badge">Premium Pick</div>
-                            <div class="card-header"><h3>7+1 Innova Crysta</h3></div>
-                            <div class="card-price"><span class="price">₹22</span><span class="price-unit">Per KM</span></div>
-                            <ul class="card-features">
-                                <li><i class="ri-wallet-3-fill"></i> Driver BATA: ₹800 / Day</li>
-                                <li><i class="ri-arrow-left-right-fill"></i> Min. 250 KMs / Day</li>
-                            </ul>
-                            <div class="card-actions">
-                                <button class="btn-estimate" data-vehicle-id="outstation-crysta">Estimate Fare</button>
-                                <a href="booking.html" class="btn-book">Book Now</a>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="section dark-bg">
-            <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Common Pricing Questions</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question"><span>What does "shed to shed" billing mean for local trips?</span><i class="ri-add-line icon-open"></i><i class="ri-subtract-line icon-close"></i></button>
-                        <div class="faq-content"><p>Time and kilometers are calculated from the point our vehicle leaves our garage (shed) until it returns. This is a standard and fair practice for calculating local hire charges.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question"><span>What charges are excluded from the quote?</span><i class="ri-add-line icon-open"></i><i class="ri-subtract-line icon-close"></i></button>
-                        <div class="faq-content"><p>All our estimates exclude Toll fees, Parking charges, and State Entry Permits. These variable costs are charged based on actuals at the end of your trip to ensure complete transparency.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <div id="estimatorModal" class="modal-overlay hidden">
-            <div class="modal-container">
-                <div class="modal-header">
-                    <h3 id="modalTitle" class="modal-title">Estimate Fare</h3>
-                    <button class="modal-close"><i class="ri-close-line"></i></button>
-                </div>
-                <div id="modalBody" class="modal-body">
-                    </div>
-                <div id="modalFooter" class="modal-footer">
-                </div>
-            </div>
-        </div>
-
     </main>
 
-    <nav class="mobile-bottom-nav">
-        <a href="index.html" class="nav-item" aria-label="Go to Home page">
-            <i class="ri-home-line"></i><span>Home</span>
-        </a>
-        <a href="booking.html" class="nav-item nav-item--cta" aria-label="Book a Cab Now">
-            <i class="ri-calendar-check-line"></i><span>Booking</span>
-        </a>
-        <a href="services.html" class="nav-item" aria-label="View Car Rental Services">
-            <i class="ri-car-line"></i><span>Services</span>
-        </a>
-        <a href="tariff.html" class="nav-item active" aria-label="View Pricing and Tariffs">
-            <i class="ri-money-dollar-circle-line"></i><span>Tariff</span>
-        </a>
-        <a href="contact.html" class="nav-item" aria-label="Contact Support 24/7">
-            <i class="ri-message-2-line"></i><span>Contact</span>
-        </a>
-    </nav>
-    <div class="floating-whatsapp-btn">
-        <a href="https://wa.me/918883451668?text=Hello%20Shrish%20Travels,%20I%20have%20an%20inquiry%20about%20your%20tariffs."
-            target="_blank" aria-label="Chat with Shrish Travels on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+    <div id="estimatorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Estimate Cost</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                </div>
+            <div id="modalFooter" class="modal-footer">
+                </div>
+        </div>
     </div>
-    <footer class="footer">
-        <div class="footer-container container">
-            <div class="footer-grid">
 
-                <div class="footer-brand" data-aos="fade-up">
-                    <a href="index.html">
-                        <img src="assets/images/sh1.webp" alt="Shrish Travels Logo" class="logo">
-                    </a>
-                    <p>Your reliable partner for premium corporate and personal travel in Chennai and across Tamil Nadu.
-                        Reliability and professionalism, guaranteed.</p>
-                    <div class="footer-socials">
-                        <a href="https://www.instagram.com/shrish_travels" target="_blank" aria-label="Instagram"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UC5xOOggNg80T7uoijMfz3jA" target="_blank"
-                            aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/918883451668" target="_blank" aria-label="WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a>
-                        <a href="https://g.page/r/CaYoGVSEfXMNEBM/review" target="_blank" aria-label="Google Reviews"><i
-                                class="ri-google-fill"></i></a>
-                    </div>
-                </div>
+    <div id="footer-placeholder"></div>
 
-                <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="routes.html">Outstation Routes</a></li>
-                        <li><a href="tariff.html">View Tariffs</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Shrish Group</h3>
-                    <ul>
-                        <li><a href="booking.html">Instant Booking</a></li>
-                        <li><a href="career.html">Careers (Drive with Us)</a></li>
-                        <li><a href="blog.html">Travel Blog</a></li>
-                        <li class="footer-divider"></li>
-                        <li><a href="https://www.shrishgroup.com" target="_blank" rel="noopener noreferrer">Shrish
-                                Group (Main)</a></li>
-                        <li><a href="https://associates.shrishgroup.com" target="_blank"
-                                rel="noopener noreferrer">Shrish Associates</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i>
-                            <div><span>Phone (24/7)</span><a href="tel:+918883451668">+91 888 345 1668</a></div>
-                        </li>
-                        <li><i class="fas fa-envelope"></i>
-                            <div><span>Email</span><a
-                                    href="mailto:travels@shrishgroup.com">travels@shrishgroup.com</a></div>
-                        </li>
-                        <li><i class="fas fa-map-marker-alt"></i>
-                            <div><span>Office Address</span>
-                                <address>Gangai Nagar, Velachery,<br />Chennai, Tamil Nadu 600042</address>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-links-bar" data-aos="fade-up">
-                <hr />
-                <h3>Important Information</h3>
-                <div class="links-container">
-                    <a href="privacy-policy.html" rel="nofollow">Privacy Policy</a>
-                    <a href="terms-of-service.html" rel="nofollow">Terms of Service</a>
-                    <a href="contact.html">Site Map</a>
-                    <a href="404.html">404 Page</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <span id="copyright-year"></span> Shrish Group Pvt Ltd. All rights reserved.</p>
-            <div class="developer-credit">
-                <a href="https://pragadeeshfolio.netlify.app" class="developer-link" target="_blank">Developed by
-                    <strong>PS</strong></a>
-            </div>
-        </div>
-    </footer>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
-    </script>
-
-    <script src="assets/js/common.js" defer></script>
-    <script src="assets/js/tariff.js" defer></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/tariff.js"></script>
 </body>
-
 </html>
