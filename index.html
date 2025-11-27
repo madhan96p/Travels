@@ -5,57 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrish Travels - Premium Corporate & Outstation Taxi Chennai</title>
-    <meta name="description"
-        content="Book premium outstation taxis, corporate car rentals, and airport transfers in Chennai. Safe, sanitized, and reliable 24/7 service. Call +91 8883451668.">
+    <meta name="description" content="Book premium outstation taxis in Chennai. Safe, sanitized, and reliable 24/7 service.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <link rel="stylesheet" href="assets/css/common.css">
-
-    <div id="schema-placeholder"></div>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-bg {
+            background-image: url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
 
+    <div id="schema-placeholder"></div>
     <div id="header-placeholder"></div>
 
-    <nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 transition-all duration-300">
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <a href="/" class="flex items-center gap-2 group">
-                <img src="assets/images/favicon/favicon.svg" alt="Shrish Travels"
-                    class="w-10 h-10 group-hover:scale-110 transition">
-                <span class="font-extrabold text-xl tracking-tight text-blue-900">Shrish<span
-                        class="text-blue-600">.</span></span>
+                <span class="font-extrabold text-xl tracking-tight text-blue-900">Shrish<span class="text-blue-600">.</span></span>
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="/" class="text-sm font-bold text-blue-600">Home</a>
-                <a href="services.html"
-                    class="text-sm font-bold text-gray-600 hover:text-blue-600 transition">Services</a>
-                <a href="routes.html" class="text-sm font-bold text-gray-600 hover:text-blue-600 transition">Routes</a>
-                <a href="tariff.html" class="text-sm font-bold text-gray-600 hover:text-blue-600 transition">Tariff</a>
-                <a href="contact.html"
-                    class="text-sm font-bold text-gray-600 hover:text-blue-600 transition">Contact</a>
+                <a href="services.html" class="text-sm font-bold text-gray-600 hover:text-blue-600">Services</a>
+                <a href="routes.html" class="text-sm font-bold text-gray-600 hover:text-blue-600">Routes</a>
+                <a href="contact.html" class="text-sm font-bold text-gray-600 hover:text-blue-600">Contact</a>
             </div>
-            <a href="tel:+918883451668"
-                class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:shadow-lg hover:scale-105 transition transform">
-                <i class="fas fa-phone-alt animate-pulse"></i>
-                <span class="hidden sm:inline">+91 8883451668</span>
-                <span class="sm:hidden">Call</span>
+            <a href="tel:+918883451668" class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-2.5 rounded-full font-bold text-sm hover:shadow-lg">
+                <i class="fas fa-phone-alt"></i> <span>+91 8883451668</span>
             </a>
         </div>
     </nav>
 
-    <section
-        class="bg-white py-8 border-b border-gray-100 relative z-20 -mt-6 mx-4 rounded-xl shadow-lg lg:mx-auto lg:max-w-6xl lg:rounded-full lg:-mt-10">
-        <div
-            class="flex flex-wrap justify-center gap-6 md:gap-12 text-center text-gray-600 text-xs font-bold uppercase tracking-wider">
-            <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-xl"></i> 5.0 Google Rated
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden hero-bg">
+        <div class="absolute inset-0 bg-slate-900/80 z-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+
+            <div class="text-center lg:text-left text-white">
+                <div class="inline-block px-4 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">
+                    #1 Taxi Service in Chennai
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Your Journey,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Our Responsibility.</span>
+                </h1>
+                <p class="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 mb-8">
+                    Premium outstation cabs, airport transfers, and corporate rentals. Safe, sanitized, and available 24/7.
+                </p>
             </div>
-            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-500 text-xl"></i> Verified
-                Drivers</div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-2xl transform transition hover:scale-[1.01] max-w-md mx-auto w-full relative z-20">
+                <form id="quickBookForm">
+                    <input type="hidden" id="tripType" name="tripType" value="One Way">
+
+                    <div class="flex bg-gray-100 p-1 rounded-xl mb-4">
+                        <button type="button" class="trip-btn flex-1 py-2.5 rounded-lg shadow-sm text-sm font-bold bg-white text-blue-900 border border-gray-200" onclick="setTripType('One Way')">One Way</button>
+                        <button type="button" class="trip-btn flex-1 py-2.5 rounded-lg text-gray-500 text-sm font-medium" onclick="setTripType('Round Trip')">Round Trip</button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <input type="text" id="pickup" name="Pickup_City" required placeholder="From City" class="w-full px-4 py-3 border rounded-xl bg-gray-50 text-sm">
+                            <input type="text" id="drop" name="Drop_City" required placeholder="To City" class="w-full px-4 py-3 border rounded-xl bg-gray-50 text-sm">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <input type="text" id="customer_name" name="Customer_Name" required placeholder="Name" class="w-full px-4 py-3 border rounded-xl bg-gray-50 text-sm">
+                            <input type="date" id="travelDate" name="Travel_Date" required class="w-full px-4 py-3 border rounded-xl bg-gray-50 text-sm text-gray-600">
+                        </div>
+                        <input type="tel" id="mobile" name="Mobile_Number" required placeholder="Mobile Number" class="w-full px-4 py-3 border rounded-xl bg-gray-50 text-sm">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mt-6">
+                        <button type="submit" id="btnEstimate" class="col-span-1 bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition flex justify-center items-center gap-2 text-sm">
+                            <span>Get Estimate</span> <i class="fab fa-whatsapp"></i>
+                        </button>
+
+                        <button type="button" id="btnBookNow" class="col-span-1 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition flex justify-center items-center gap-2 text-sm">
+                            <span>Book Now</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <p id="formStatus" class="text-xs text-center text-gray-500 mt-2 h-4"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white py-8 border-b border-gray-100 relative z-20 -mt-6 mx-4 rounded-xl shadow-lg lg:mx-auto lg:max-w-6xl lg:rounded-full lg:-mt-10">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center text-gray-600 text-xs font-bold uppercase tracking-wider">
+            <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-xl"></i> 5.0 Google Rated</div>
+            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-blue-500 text-xl"></i> Verified Drivers</div>
             <div class="flex items-center gap-2"><i class="fas fa-clock text-purple-500 text-xl"></i> 24/7 Service</div>
             <div class="flex items-center gap-2"><i class="fas fa-car text-green-500 text-xl"></i> AC Cabs</div>
         </div>
@@ -67,154 +109,46 @@
             <p class="text-gray-500 mt-2">Top destinations from Chennai</p>
         </div>
         <div id="routes-container" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-            <div class="bg-gray-100 h-32 rounded-xl animate-pulse"></div>
-        </div>
+            </div>
         <div class="mt-10 text-center">
-            <a href="/routes.html"
-                class="inline-block border border-gray-300 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition">View
-                All Routes</a>
+            <a href="/routes.html" class="inline-block border border-gray-300 text-gray-700 font-bold py-3 px-8 rounded-full hover:bg-gray-50 transition">View All Routes</a>
         </div>
     </section>
 
     <section class="bg-slate-50 py-20 px-4">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Voices of Our Happy Travelers</h2>
-            <p class="text-gray-500 mb-10 max-w-2xl mx-auto">Discover why hundreds of customers trust Shrish Travels.
-            </p>
+            <p class="text-gray-500 mb-10 max-w-2xl mx-auto">Discover why hundreds of customers trust Shrish Travels.</p>
             <script src="https://static.elfsight.com/platform/platform.js" async></script>
             <div class="elfsight-app-6b4baccb-caf5-4d45-a9f8-97df6c9e7fd3" data-elfsight-app-lazy></div>
         </div>
     </section>
 
     <section class="py-20 px-4 bg-white">
-        <div
-            class="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-10 text-center text-white shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
             <div class="relative z-10">
                 <h2 class="text-3xl font-bold mb-4">We’d Love to Hear From You!</h2>
-                <p class="text-blue-100 mb-8 text-lg">Have feedback or need a custom package? We are committed to
-                    providing the best experience.</p>
-                <a href="contact.html"
-                    class="inline-block bg-white text-blue-800 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition transform hover:-translate-y-1 shadow-lg">Contact
-                    Us</a>
+                <p class="text-blue-100 mb-8 text-lg">Have feedback or need a custom package? We are committed to providing the best experience.</p>
+                <a href="contact.html" class="inline-block bg-white text-blue-800 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition transform hover:-translate-y-1 shadow-lg">Contact Us</a>
             </div>
         </div>
     </section>
 
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden hero-bg">
-        <div class="absolute inset-0 bg-slate-900/80 z-0"></div>
-        <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-
-            <div class="text-center lg:text-left text-white">
-                <div
-                    class="inline-block px-4 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-300 text-xs font-bold uppercase tracking-widest mb-4 animate-fade-in-up">
-                    #1 Taxi Service in Chennai
-                </div>
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-                    Your Journey,<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Our
-                        Responsibility.</span>
-                </h1>
-                <p class="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 mb-8">
-                    Premium outstation cabs, airport transfers, and corporate rentals. Safe, sanitized, and available
-                    24/7.
-                </p>
-                <div class="flex flex-wrap justify-center lg:justify-start gap-4 text-sm font-medium text-slate-300">
-                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> No Hidden
-                        Charges</span>
-                    <span class="flex items-center gap-2"><i class="fas fa-check-circle text-green-400"></i> On-Time
-                        Pickup</span>
-                </div>
-            </div>
-
-            <div
-                class="bg-white p-6 rounded-2xl shadow-2xl transform transition hover:scale-[1.01] max-w-md mx-auto w-full relative z-20">
-                <form id="quickBookForm">
-                    <input type="hidden" id="tripType" name="tripType" value="One Way">
-
-                    <div class="flex bg-gray-100 p-1 rounded-xl mb-4">
-                        <button type="button"
-                            class="trip-btn flex-1 py-2.5 rounded-lg shadow-sm text-sm font-bold bg-white text-blue-900 border border-gray-200 transition"
-                            onclick="setTripType('One Way')">One Way</button>
-                        <button type="button"
-                            class="trip-btn flex-1 py-2.5 rounded-lg text-gray-500 text-sm font-medium hover:text-gray-700 transition"
-                            onclick="setTripType('Round Trip')">Round Trip</button>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="relative group">
-                                <i class="fas fa-map-marker-alt absolute left-4 top-3.5 text-green-600"></i>
-                                <input type="text" id="pickup" name="Pickup_City" required placeholder="Pickup City"
-                                    class="form-input w-full pl-10 py-3 rounded-xl bg-gray-50 text-sm">
-                            </div>
-                            <div class="relative group">
-                                <i class="fas fa-location-arrow absolute left-4 top-3.5 text-red-500"></i>
-                                <input type="text" id="drop" name="Drop_City" required placeholder="Drop City"
-                                    class="form-input w-full pl-10 py-3 rounded-xl bg-gray-50 text-sm">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="relative group">
-                                <i class="fas fa-user absolute left-4 top-3.5 text-gray-400"></i>
-                                <input type="text" name="Customer_Name" required placeholder="Your Name"
-                                    class="form-input w-full pl-10 py-3 rounded-xl bg-gray-50 text-sm">
-                            </div>
-                            <div class="relative group">
-                                <input type="date" id="travelDate" name="Travel_Date" required
-                                    class="form-input w-full px-4 py-3 rounded-xl bg-gray-50 text-sm text-gray-600">
-                            </div>
-                        </div>
-
-                        <div class="relative group">
-                            <i class="fas fa-phone absolute left-4 top-3.5 text-gray-400"></i>
-                            <input type="tel" id="mobile" name="Mobile_Number" required placeholder="Mobile Number"
-                                class="form-input w-full pl-10 py-3 rounded-xl bg-gray-50 text-sm">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3 mt-6">
-                        <button type="submit"
-                            class="col-span-1 bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition flex justify-center items-center gap-2 text-sm">
-                            <span>Get Estimate</span> <i class="fab fa-whatsapp"></i>
-                        </button>
-                        <button type="button" id="btnBookNow"
-                            class="col-span-1 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition flex justify-center items-center gap-2 text-sm">
-                            <span>Book Now</span> <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    <p id="formStatus" class="text-xs text-center text-gray-400 mt-3 h-4 font-semibold"></p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <div id="footer-placeholder"></div>
-
-    <a href="https://wa.me/918883451668?text=Hi Shrish Travels" target="_blank"
-        class="fixed bottom-24 right-4 bg-green-500 text-white w-12 h-12 rounded-full shadow-lg z-40 flex items-center justify-center hover:bg-green-600 transition animate-bounce">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-
-    <div id="cookie-banner"
-        class="fixed bottom-20 md:bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur text-white p-4 z-50 text-center text-sm hidden border-t border-gray-700">
+    <div id="cookie-banner" class="fixed bottom-20 md:bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur text-white p-4 z-50 text-center text-sm hidden border-t border-gray-700">
         <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <p>🍪 We use cookies to improve your experience.</p>
             <div class="flex gap-3">
-                <button onclick="acceptCookies()"
-                    class="bg-green-500 px-6 py-2 rounded-full font-bold hover:bg-green-600 transition text-xs uppercase tracking-wide">Accept</button>
-                <button onclick="document.getElementById('cookie-banner').style.display='none'"
-                    class="text-gray-400 hover:text-white underline text-xs">Close</button>
+                <button onclick="acceptCookies()" class="bg-green-500 px-6 py-2 rounded-full font-bold hover:bg-green-600 transition text-xs uppercase tracking-wide">Accept</button>
+                <button onclick="document.getElementById('cookie-banner').style.display='none'" class="text-gray-400 hover:text-white underline text-xs">Close</button>
             </div>
         </div>
     </div>
+
+    <div id="footer-placeholder"></div>
 
     <script src="assets/js/api.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/index.js"></script>
 </body>
-
 </html>

@@ -1,53 +1,68 @@
-travels.shrishgroup.com/
-├── assets/
-│   ├── css/
-│   │   ├── common.css              // Global styles (header, footer, buttons, typography, variables...)
-│   │   ├── index.css               // Home page unique styles
-│   │   ├── services.css            // Service page styles
-│   │   ├── routes-list.css         // Routes (list) page styles
-│   │   ├── routes-single.css       // Individual Route page styles
-│   │   ├── tariff.css              // Tariff/Pricing page styles
-│   │   ├── booking.css             // Booking page styles
-│   │   ├── career.css              // Careers page styles
-│   │   ├── contact.css             // Contact page styles
-│   │   └── util.css                // Utility classes (e.g., margins, floats)
-│   ├── js/
-│   │   ├── common.js               // Global scripts (nav, footer year, FAQ accordion)
-│   │   ├── index.js                // Hero form and animations
-│   │   ├── routes.js               // Logic for Routes List (fetching from API, filtering)
-│   │   ├── routes-single.js        // Logic for single route page (map embed, form, image slider)
-│   │   ├── tariff.js               // Logic for Tariff tab switching and fare estimator
-│   │   ├── booking.js              // Logic for Booking form submission (API) and pre-filling
-│   │   ├── career.js               // Logic for Career form submission (API)
-│   │   └── contact.js              // Logic for Contact form submission (API)
-│   ├── images/
-│   │   ├── sh1.webp                // Main Logo
-│   │   ├── favicon/                // Favicon files
-│   │   ├── fleet/                  // Vehicle images (Sedan, Innova, Tempo Traveller, etc.)
-│   │   └── routes/                 // High-res images for single route pages
-│   └── data/
-│       └── routes.json             // (Backup/Development source for route data)
-│
-├── netlify/
-│   └── functions/
-│       └── travels-api.js          // Unified API endpoint for all form submissions and data requests (Booking, Contact, Careers, Routes)
-│
-├── routes/                         // Generated Directory for Static Route Pages
-│   └── ... (All will generat route) - Need Your Help... To Get and Scrape Routes "Gemini"
-│
-├── components/                     // Modular HTML blocks for consistency
-│   ├── _header.html                // Global Header and Navigation structure
-│   ├── _mobile_nav.html            // Floating bottom navigation bar
-│   └── _footer.html                // Global Footer structure
-│   └── _sidebar.html
-|
-├── index.html                      // Homepage
-├── services.html                   // Services Overview
-├── routes.html                     // Routes List (Interactive page, links to /routes/)
-├── tariff.html                     // Transparent Pricing/Tariffs
-├── booking.html                    // Full Booking Form
-├── career.html                     // Driver Career Application
-├── contact.html                    // Contact and Map Embed
-├── privacy-policy.html             // Legal page
-├── terms-of-service.html           // Legal page
-└── route_template.html             // Master template for Python generator
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.venv
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\admin
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\admin\index.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\booking.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\career.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\common.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\contact.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\index.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\routes-list.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\routes-single.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\services.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\tariff.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\css\util.css
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data\routes.json
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\data\schema.json
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\images
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\api.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\booking.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\career.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\common.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\contact.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\index.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\routes-single.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\routes.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\assets\js\tariff.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_footer.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_header.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_hero.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\components\_seo_schema.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions\submit-booking.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify\functions\travels-api.js
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\node_modules
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes\chennai-to-thiruvarur.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes\trichy-to-chennai.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates\index.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\templates\route_template.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\_headers
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\_redirects
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.gitignore
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\.txt
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\booking.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\build.py
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\career.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\contact.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\index.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\netlify.toml
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\package-lock.json
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\package.json
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\privacy-policy.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\requirements.txt
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\route_template.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes_generator.py
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\routes.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\services.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\shrish-credentials.json
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\tariff.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\template.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\terms-of-service.html
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\test_sheet.py
+C:\Users\Windows\Desktop\D\Github\Shrish API\Travels\WORKFLOW.md

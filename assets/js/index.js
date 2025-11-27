@@ -1,105 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Set Default Date to Today
+    // 1. Set Default Date
     const dateInput = document.getElementById('travelDate');
-    if(dateInput) {
-        dateInput.valueAsDate = new Date();
-    }
+    if (dateInput) dateInput.valueAsDate = new Date();
 
-    // 1. TRIP TYPE TOGGLE
+    // 2. Trip Type Toggle Logic
     window.setTripType = function(type) {
         document.getElementById('tripType').value = type;
         const btns = document.querySelectorAll('.trip-btn');
         btns.forEach(btn => {
-            if(btn.innerText.includes(type)) {
-                btn.className = "trip-btn flex-1 py-2.5 rounded-lg shadow-sm text-sm font-bold bg-white text-blue-900 border border-gray-200 transition transform scale-105";
+            if (btn.innerText.includes(type)) {
+                btn.className = "trip-btn flex-1 py-2.5 rounded-lg shadow-sm text-sm font-bold bg-white text-blue-900 border border-gray-200 transition transform";
             } else {
                 btn.className = "trip-btn flex-1 py-2.5 rounded-lg text-gray-500 text-sm font-medium hover:text-gray-700 transition";
             }
         });
     };
 
-    // 2. QUICK ESTIMATE & BOOKING
+    // 3. LOGIC: Get Estimate (Form Submit)
     const form = document.getElementById('quickBookForm');
     const statusMsg = document.getElementById('formStatus');
 
-    if(form) {
+    if (form) {
         form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // --- SPAM CHECK (Frontend) ---
-            const lastBooked = localStorage.getItem('lastBookingTime');
-            const now = Date.now();
-            
-            // If booked within last 5 minutes (300000 ms)
-            if (lastBooked && (now - lastBooked) < 300000) {
-                alert("⚠️ You have already requested a booking recently.\n\nOur team is reviewing your request. Please wait for our call!");
-                return; // Stop execution
-            }
+            e.preventDefault(); // Stop page reload
 
-            const data = new FormData(form);
+            // Get Values
             const pickup = document.getElementById('pickup').value;
             const drop = document.getElementById('drop').value;
             const mobile = document.getElementById('mobile').value;
+            const date = document.getElementById('travelDate').value;
             const type = document.getElementById('tripType').value;
 
-            statusMsg.innerText = "Processing...";
-            statusMsg.style.color = "blue";
-
-            // A. API Call (Send to Sheet)
-            ApiService.submitLead(data).then(res => {
-                if(res.success) {
-                    // Save timestamp to prevent spam
-                    localStorage.setItem('lastBookingTime', Date.now());
-                    console.log("Booking Saved:", res);
-                }
-            }).catch(err => {
-                console.error("Save Failed:", err);
-            });
-
-            // B. WhatsApp Redirect
-            const msg = `Hi Shrish Travels, I need a *${type}* taxi estimate.%0A%0A🚖 *Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0APhone: ${mobile}`;
+            // A. Immediate WhatsApp Redirect (User Experience First)
+            const msg = `Hi Shrish Travels, I need a *${type}* estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0ADate: ${date}%0APhone: ${mobile}`;
+            const waLink = `https://wa.me/918883451668?text=${msg}`;
             
-            setTimeout(() => {
-                statusMsg.innerText = "Redirecting...";
-                window.open(ApiService.getWhatsAppLink(msg), '_blank');
-            }, 800); 
+            // Open WhatsApp in new tab immediately
+            window.open(waLink, '_blank');
+
+            // B. Silent Background Save (Fire and Forget)
+            statusMsg.innerText = "Sent to dispatch...";
+            const formData = new FormData(form);
+
+            // Use the API Service defined in api.js
+            ApiService.submitLead(formData)
+                .then(res => console.log("Silent Save Success:", res))
+                .catch(err => console.error("Silent Save Error:", err));
         });
     }
 
-    // 3. LOAD POPULAR ROUTES
-    ApiService.getRoutes()
-    .then(data => {
+    // 4. LOGIC: Book Now (Redirect with Parameters)
+    const btnBookNow = document.getElementById('btnBookNow');
+    if (btnBookNow) {
+        btnBookNow.addEventListener('click', () => {
+            // Get current values from the inputs
+            const pickup = document.getElementById('pickup').value;
+            const drop = document.getElementById('drop').value;
+            const date = document.getElementById('travelDate').value;
+
+            if(!pickup || !drop) {
+                alert("Please enter Pickup and Drop cities first.");
+                return;
+            }
+
+            // Construct URL Params
+            const params = new URLSearchParams({
+                from: pickup,
+                to: drop,
+                date: date
+            });
+
+            // Redirect to booking page
+            window.location.href = `booking.html?${params.toString()}`;
+        });
+    }
+
+    // 5. Load Routes (Visuals)
+    ApiService.getRoutes().then(data => {
         const container = document.getElementById('routes-container');
-        if(container && data) {
+        if (container && data) {
             container.innerHTML = '';
-            // Limit to 6 routes for homepage
             data.slice(0, 6).forEach(route => {
-                // Handle missing properties safely
-                const origin = route.Origin || 'Chennai';
-                const dest = route.Destination || 'Destination';
-                const km = route.Distance_Km || '0';
-                const price = route.Price_Sedan || 'Ask';
-                
-                const slug = `routes/${origin.toLowerCase()}-to-${dest.toLowerCase()}.html`.replace(/\s+/g, '');
-                
                 container.innerHTML += `
-                    <a href="${slug}" class="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 group flex justify-between items-center">
-                        <div>
-                            <div class="text-xs font-bold text-gray-400 uppercase mb-1 flex items-center gap-1">
-                                <i class="fas fa-road"></i> ${km} km
-                            </div>
-                            <h3 class="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition">
-                                ${origin} <span class="text-gray-300">➝</span> ${dest}
-                            </h3>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-gray-400 uppercase">${route.Distance_Km || '0'} km</span>
+                            <span class="font-bold text-green-600">₹${route.Price_Sedan || 'Ask'}</span>
                         </div>
-                        <div class="text-right">
-                            <span class="block font-extrabold text-xl text-green-600">₹${price}</span>
-                            <span class="text-xs text-gray-400 font-medium">Sedan</span>
-                        </div>
-                    </a>`;
+                        <h3 class="font-bold text-lg text-gray-900">${route.Origin} ➝ ${route.Destination}</h3>
+                    </div>`;
             });
         }
-    })
-    .catch(e => console.error("Routes error:", e));
+    });
 });
