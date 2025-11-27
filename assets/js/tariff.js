@@ -6,97 +6,119 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active class from all
             tabs.forEach(t => t.classList.remove('active'));
             contents.forEach(c => c.classList.remove('active'));
-
-            // Add active to clicked
             tab.classList.add('active');
             document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
         });
     });
 
     // 2. GOOGLE SHEET DATA FETCH
-    // We fetch data to ensure prices are up-to-date. 
-    // If fetch fails, we keep the hardcoded HTML as a backup.
     fetch('/.netlify/functions/travels-api?action=getTariff')
         .then(res => res.json())
         .then(data => {
             if (data.local && data.local.length > 0) {
-                updateLocalCards(data.local);
+                processCards(data.local, 'local');
             }
             if (data.outstation && data.outstation.length > 0) {
-                updateOutstationCards(data.outstation);
+                processCards(data.outstation, 'outstation');
             }
         })
         .catch(err => console.log("Using static fallback data due to API error:", err));
 
-    // 3. MODAL LOGIC (The Calculator)
+
+    // --- 3. SMART PROCESSING LOGIC (The Magic) ---
+    function processCards(data, type) {
+        const container = document.querySelector(`#${type}-tab .tariff-grid`);
+        
+        data.forEach(item => {
+            // Try to find existing card
+            const existingCard = document.querySelector(`.package-card[data-vehicle="${item.ID}"]`);
+
+            if (existingCard) {
+                // A. UPDATE EXISTING (SEO Card)
+                updateCardData(existingCard, item, type);
+            } else {
+                // B. CREATE NEW (Dynamic Card)
+                const newCardHTML = createCardHTML(item, type);
+                // Append to grid
+                container.insertAdjacentHTML('beforeend', newCardHTML);
+            }
+        });
+    }
+
+    // Helper: Updates existing HTML
+    function updateCardData(card, item, type) {
+        if (type === 'local') {
+            card.querySelector('.price').textContent = `₹${Number(item.Base_Fare).toLocaleString()}`;
+            const features = card.querySelectorAll('.card-features li');
+            if(features.length >= 2) {
+                features[0].innerHTML = `<i class="ri-time-line"></i> Extra Hour: ₹${item.Extra_Hr_Rate}`;
+                features[1].innerHTML = `<i class="ri-route-line"></i> Extra KM: ₹${item.Extra_Km_Rate}`;
+            }
+        } else {
+            card.querySelector('.price').textContent = `₹${item.Rate_Per_Km}`;
+            const features = card.querySelectorAll('.card-features li');
+            if(features.length >= 1) {
+                features[0].innerHTML = `Driver BATA: ₹${item.Driver_Bata}/day`;
+            }
+        }
+    }
+
+    // Helper: Builds New HTML for new vehicles
+    function createCardHTML(item, type) {
+        // Default icon if missing in sheet
+        const iconClass = item.Image_Class || 'fas fa-car'; 
+        
+        if (type === 'local') {
+            return `
+            <div class="package-card" data-vehicle="${item.ID}">
+                <div class="card-icon"><i class="${iconClass}"></i></div>
+                <h3>${item.Name}</h3>
+                <div class="card-price"><span class="price">₹${Number(item.Base_Fare).toLocaleString()}</span> / ${item.Base_Hr}hr</div>
+                <ul class="card-features">
+                    <li><i class="ri-time-line"></i> Extra Hour: ₹${item.Extra_Hr_Rate}</li>
+                    <li><i class="ri-route-line"></i> Extra KM: ₹${item.Extra_Km_Rate}</li>
+                </ul>
+                <button class="btn-estimate" data-vehicle-id="${item.ID}">Estimate Fare</button>
+            </div>`;
+        } else {
+            return `
+            <div class="package-card" data-vehicle="${item.ID}">
+                <div class="card-icon"><i class="${iconClass}"></i></div>
+                <h3>${item.Name}</h3>
+                <div class="card-price"><span class="price">₹${item.Rate_Per_Km}</span> / km</div>
+                <ul class="card-features">
+                    <li>Driver BATA: ₹${item.Driver_Bata}/day</li>
+                    <li>Min ${item.Min_Km_Per_Day}km / day</li>
+                </ul>
+                <button class="btn-estimate" data-vehicle-id="${item.ID}">Estimate Fare</button>
+            </div>`;
+        }
+    }
+
+
+    // 4. MODAL LOGIC (Event Delegation - Works for New Cards too!)
     const modal = document.getElementById('estimatorModal');
-    
-    // SAFETY FIX: Look for either class name (.modal-close OR .close-modal)
     const closeBtn = document.querySelector('.modal-close') || document.querySelector('.close-modal');
     
-    // Attach Click Event to ALL "Estimate Fare" buttons
     document.body.addEventListener('click', (e) => {
-        // Handle the "Estimate Fare" buttons
         if (e.target.classList.contains('btn-estimate')) {
             const vehicleId = e.target.getAttribute('data-vehicle-id');
             openCalculator(vehicleId);
         }
-        
-        // Handle the "Close" button inside the modal (Alternative way)
         if (e.target.closest('.modal-close') || e.target.closest('.close-modal')) {
             if(modal) modal.classList.add('hidden');
         }
     });
 
-    // Only attach listener if button explicitly exists (Prevents the Line 46 error)
-    if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
-    }
-
-    // Close on clicking outside the modal box
     if (modal) {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) modal.classList.add('hidden');
         });
     }
 
-    function updateLocalCards(data) {
-        // This function looks for cards with matching data-vehicle IDs and updates price
-        data.forEach(item => {
-            const card = document.querySelector(`.package-card[data-vehicle="${item.ID}"]`);
-            if (card) {
-                // Update Price
-                const priceEl = card.querySelector('.price');
-                if(priceEl) priceEl.textContent = `₹${item.Base_Fare}`;
-                
-                // Update Details (Extra Hr/Km)
-                const features = card.querySelectorAll('.card-features li');
-                if(features.length >= 2) {
-                    features[0].innerHTML = `<i class="ri-time-line"></i> Extra Hour: ₹${item.Extra_Hr_Rate}`;
-                    features[1].innerHTML = `<i class="ri-route-line"></i> Extra KM: ₹${item.Extra_Km_Rate}`;
-                }
-            }
-        });
-    }
-
-    function updateOutstationCards(data) {
-        data.forEach(item => {
-            const card = document.querySelector(`.package-card[data-vehicle="${item.ID}"]`);
-            if (card) {
-                const priceEl = card.querySelector('.price');
-                if(priceEl) priceEl.textContent = `₹${item.Rate_Per_Km}`;
-                
-                const features = card.querySelectorAll('.card-features li');
-                if(features.length >= 1) {
-                    features[0].innerHTML = `<i class="ri-wallet-3-fill"></i> Driver BATA: ₹${item.Driver_Bata} / Day`;
-                }
-            }
-        });
-    }
-
+    // CALCULATOR LOGIC (Same as before)
     function openCalculator(vehicleId) {
         const modalBody = document.getElementById('modalBody');
         const modalFooter = document.getElementById('modalFooter');
@@ -104,12 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         modal.classList.remove('hidden');
         
-        // Retrieve price from the Card itself (Client-side source of truth)
+        // Find card (works for both static and dynamic)
         const card = document.querySelector(`.package-card[data-vehicle="${vehicleId}"]`);
+        if(!card) return;
+
         const title = card.querySelector('h3').innerText;
         const isLocal = card.closest('#local-tab') !== null;
         
-        // Parse prices from the visible text (removes '₹' and ',')
         const getPrice = (selector) => {
             const text = card.querySelector(selector)?.innerText || "0";
             return parseInt(text.replace(/[^\d]/g, ''));
@@ -118,18 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.innerText = `Estimate: ${title}`;
 
         if (isLocal) {
-            // Logic for Local
             const baseFare = getPrice('.price');
-            const extraHrRate = parseInt(card.querySelectorAll('.card-features li')[0].innerText.replace(/[^\d]/g, ''));
-            const extraKmRate = parseInt(card.querySelectorAll('.card-features li')[1].innerText.replace(/[^\d]/g, ''));
+            // Logic handles dynamic cards correctly
+            const rows = card.querySelectorAll('.card-features li');
+            const extraHrRate = rows[0] ? parseInt(rows[0].innerText.replace(/[^\d]/g, '')) : 0;
+            const extraKmRate = rows[1] ? parseInt(rows[1].innerText.replace(/[^\d]/g, '')) : 0;
 
             modalBody.innerHTML = `
                 <div class="form-group">
-                    <label>Additional Kilometers (Over 50km)</label>
+                    <label>Additional Kilometers</label>
                     <input type="number" id="calc-km" class="form-input" value="0" min="0">
                 </div>
                 <div class="form-group">
-                    <label>Additional Hours (Over 5hrs)</label>
+                    <label>Additional Hours</label>
                     <input type="number" id="calc-hr" class="form-input" value="0" min="0">
                 </div>
                 <div class="result-box">
@@ -144,13 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const total = baseFare + (km * extraKmRate) + (hr * extraHrRate);
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
             };
-            
             modalBody.addEventListener('input', calculate);
 
         } else {
-            // Logic for Outstation
             const perKm = getPrice('.price');
-            const bata = parseInt(card.querySelectorAll('.card-features li')[0].innerText.replace(/[^\d]/g, ''));
+            const rows = card.querySelectorAll('.card-features li');
+            const bata = rows[0] ? parseInt(rows[0].innerText.replace(/[^\d]/g, '')) : 0;
 
             modalBody.innerHTML = `
                 <div class="form-group">
@@ -160,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="form-group">
                     <label>Total Distance (Round Trip KMs)</label>
                     <input type="number" id="calc-dist" class="form-input" value="300" min="250">
-                    <small style="color:#666; font-size:12px;">Min 250km per day</small>
                 </div>
                 <div class="result-box">
                     <p>Estimated Total</p>
@@ -171,14 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const calculate = () => {
                 const days = parseInt(document.getElementById('calc-days').value) || 1;
                 const dist = parseInt(document.getElementById('calc-dist').value) || 0;
-                
                 const minDist = days * 250;
                 const chargeableDist = Math.max(dist, minDist);
                 const total = (chargeableDist * perKm) + (days * bata);
-                
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
             };
-            
             modalBody.addEventListener('input', calculate);
         }
 
