@@ -1,442 +1,292 @@
 /* =========================================
-   1. VARIABLES & RESET (The Foundation)
+   1. VARIABLES & RESET (The Premium Palette)
    ========================================= */
-   :root {
+:root {
     /* Brand Colors */
-    --primary-color: #0F172A;  /* Deep Navy (Text/Headings) */
-    --accent-color: #2563EB;   /* Royal Blue (Buttons/Links) */
-    --accent-dark: #1D4ED8;    /* Darker Blue (Hover) */
-    --accent-light: #EFF6FF;   /* Light Blue (Backgrounds) */
+    --primary-dark: #0F172A;   /* Deep Navy - CEO Trust */
+    --primary: #1E293B;        /* Slate - Professional */
+    --accent: #10B981;         /* Emerald Green - Action/Success */
+    --accent-hover: #059669;
     
-    /* Neutrals */
-    --bg-body: #F8FAFC;        /* Off-white background */
-    --bg-white: #FFFFFF;
-    --text-main: #334155;      /* Dark Grey */
-    --text-muted: #64748B;     /* Light Grey */
-    --border-color: #E2E8F0;
+    /* Utility Colors */
+    --text-main: #334155;
+    --text-light: #64748B;
+    --bg-light: #F8FAFC;       /* Very light grey for backgrounds */
+    --white: #ffffff;
+    
+    /* Premium Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2); /* Subtle green glow */
 
-    /* Spacing & Layout */
-    --container-width: 1200px; /* Maximum width */
-    --header-height: 70px;
-    --radius-sm: 8px;
-    --radius-lg: 16px;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    /* Spacing */
+    --container-width: 1200px;
+    --header-height: 80px;
 }
 
-/* Reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-body);
     color: var(--text-main);
+    background-color: var(--bg-light);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
-a { text-decoration: none; color: inherit; transition: 0.2s ease; }
-ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; border: none; }
 
-/* Utility Container */
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* =========================================
+   2. UTILITY CLASSES
+   ========================================= */
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 1.5rem; /* Left/Right padding */
+    padding: 0 20px;
 }
+
+/* Premium Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-white {
+    background: var(--white);
+    color: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.btn-outline {
+    border: 2px solid var(--primary-dark);
+    color: var(--primary-dark);
+    background: transparent;
+}
+.btn-outline:hover { background: var(--primary-dark); color: var(--white); }
 
 /* =========================================
-   2. HEADER & NAVIGATION
+   3. HEADER (Top Bar & Main Nav)
    ========================================= */
 
-/* Top Utility Bar (Desktop Only) */
+/* A. Top Utility Bar (The "Corporate" Strip) */
 .top-utility-bar {
-    background-color: var(--primary-color);
-    color: #94A3B8;
-    font-size: 0.85rem;
-    padding: 0.5rem 0;
+    background-color: var(--primary-dark);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    padding: 8px 0;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.utility-flex { display: flex; justify-content: space-between; align-items: center; }
-.parent-link { color: #E2E8F0; font-weight: 600; margin-left: 0.5rem; }
-.parent-link:hover { color: var(--accent-color); }
-.utility-actions { display: flex; gap: 1rem; align-items: center; }
-.util-link:hover { color: #FFF; }
-.util-phone { color: #FFF; font-weight: 700; }
-.divider { color: #334155; }
 
-/* Main Sticky Header */
+.utility-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-actions a:hover { color: var(--white); }
+.divider { margin: 0 10px; opacity: 0.3; }
+
+/* B. Main Header */
 .main-header {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); /* Glass effect */
     height: var(--header-height);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 1000;
-    display: flex;
-    align-items: center;
 }
+
 .header-layout {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    height: 100%;
 }
 
 /* Logo */
-.brand-logo { display: flex; align-items: center; gap: 0.5rem; }
-.logo-icon { height: 32px; width: auto; }
-.brand-name { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); letter-spacing: -0.5px; }
-.brand-dot { color: var(--accent-color); }
-
-/* Desktop Nav */
-.desktop-nav .nav-list { display: flex; gap: 2rem; }
-.nav-link { 
-    font-weight: 500; 
-    color: var(--text-main); 
-    font-size: 0.95rem; 
-    display: flex; 
-    align-items: center; 
-    gap: 4px;
-}
-.nav-link:hover, .nav-link.active { color: var(--accent-color); }
-
-/* Header CTA Button */
-.header-cta {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 0.6rem 1.25rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
+.brand-logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    gap: 10px;
 }
-.header-cta:hover { background-color: var(--accent-dark); transform: translateY(-1px); }
+.logo-icon { height: 40px; width: auto; }
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+}
+.brand-dot { color: var(--accent); }
 
-/* Mobile Menu Toggle */
-.mobile-menu-toggle { font-size: 1.5rem; background: none; color: var(--primary-color); display: none; }
+/* Desktop Navigation */
+.desktop-nav .nav-list { display: flex; gap: 30px; align-items: center; }
 
-/* Dropdown Logic */
+.nav-link {
+    font-weight: 500;
+    color: var(--primary);
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Hover Underline Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* Dropdowns */
 .has-dropdown { position: relative; }
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    min-width: 220px;
+    background: var(--white);
+    min-width: 200px;
     box-shadow: var(--shadow-lg);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-    padding: 0.5rem;
+    border-radius: 8px;
+    padding: 10px 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: 0.3s ease;
 }
 .has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-.dropdown-menu a { display: block; padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.9rem; }
-.dropdown-menu a:hover { background-color: var(--bg-body); color: var(--accent-color); }
-.dropdown-divider { height: 1px; background: var(--border-color); margin: 0.5rem 0; }
-
-/* =========================================
-   3. HERO SECTION (The Showstopper)
-   ========================================= */
-.hero-section {
-    position: relative;
-    padding: 4rem 0;
-    background-color: var(--bg-body);
-    overflow: hidden;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: var(--text-main);
 }
+.dropdown-menu li a:hover { background: var(--bg-light); color: var(--accent); }
 
-/* Abstract Blobs Background */
-.hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
-.blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; }
-.blob-1 { width: 300px; height: 300px; background: #60A5FA; top: -50px; right: -50px; }
-.blob-2 { width: 400px; height: 400px; background: #A78BFA; bottom: -100px; left: -100px; }
+/* Header Actions */
+.header-actions { display: flex; align-items: center; gap: 15px; }
 
-.hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    position: relative;
-    z-index: 1;
-    align-items: center;
-}
-
-/* Hero Text */
-.hero-headline { font-size: 3.5rem; line-height: 1.1; font-weight: 800; color: var(--primary-color); margin-bottom: 1.5rem; }
-.highlight-text { 
-    background: linear-gradient(to right, var(--accent-color), #9333ea);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-.hero-subheadline { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 90%; }
-.hero-trust-badges { display: flex; gap: 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
-.hero-trust-badges span { display: flex; align-items: center; gap: 0.4rem; background: white; padding: 0.5rem 1rem; border-radius: 50px; box-shadow: var(--shadow-sm); }
-.hero-trust-badges i { color: var(--accent-color); }
-
-/* Booking Widget Card */
-.booking-widget-card {
-    background: white;
-    padding: 2rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-color);
-}
-
-/* Trip Tabs */
-.trip-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem; }
-.tab-radio { cursor: pointer; position: relative; }
-.tab-radio input { display: none; }
-.tab-label { color: var(--text-muted); font-weight: 600; padding-bottom: 1rem; transition: 0.3s; }
-.tab-radio input:checked + .tab-label { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
-
-/* Widget Inputs */
-.form-inputs { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
-.input-group { position: relative; }
-.input-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
-.form-inputs input {
-    width: 100%;
-    padding: 1rem 1rem 1rem 2.8rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    transition: 0.2s;
-    background: var(--bg-body);
-}
-.form-inputs input:focus { outline: none; border-color: var(--accent-color); background: white; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
-
-.hero-submit-btn {
-    width: 100%;
-    background: var(--primary-color);
-    color: white;
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    font-size: 1.1rem;
+.header-cta {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 50px; /* Pill shape */
     font-weight: 600;
+    font-size: 0.9rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    transition: 0.2s;
+    gap: 8px;
 }
-.hero-submit-btn:hover { background: black; transform: translateY(-2px); }
+.header-cta:hover { background: var(--accent); box-shadow: var(--shadow-glow); }
+
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
 
 /* =========================================
    4. FOOTER
    ========================================= */
-.main-footer { background: white; padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); margin-top: 4rem; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-.footer-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-.footer-col h3 { font-size: 1.5rem; color: var(--primary-color); }
-.footer-col h4 { font-size: 1.1rem; margin-bottom: 1.25rem; color: var(--primary-color); }
-.footer-col ul li { margin-bottom: 0.75rem; color: var(--text-muted); }
-.footer-col ul li a:hover { color: var(--accent-color); text-decoration: underline; }
-.footer-col i { color: var(--accent-color); margin-right: 0.5rem; width: 20px; text-align: center; }
-.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; color: var(--text-muted); }
+.main-footer {
+    background: var(--primary-dark);
+    color: #cbd5e1;
+    padding: 60px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 15px; }
+.footer-col h4 { color: var(--white); margin-bottom: 20px; font-weight: 600; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a:hover { color: var(--accent); padding-left: 5px; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+}
 
 /* =========================================
-   5. MOBILE BOTTOM NAVIGATION
+   5. MOBILE & RESPONSIVE
    ========================================= */
 .mobile-bottom-nav {
     display: none; /* Hidden on Desktop */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    z-index: 1001;
-    justify-content: space-around;
-    padding: 0.5rem 0;
-    border-top: 1px solid var(--border-color);
-}
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    gap: 4px;
-}
-.nav-item i { font-size: 1.25rem; }
-.nav-item.active, .nav-item:hover { color: var(--accent-color); }
-
-/* Floating Action Button (FAB) in Nav */
-.fab-item .fab-circle {
-    background: var(--accent-color);
-    color: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -25px; /* Pulls it up */
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
-    border: 4px solid white;
 }
 
-/* =========================================
-   6. RESPONSIVE MEDIA QUERIES
-   ========================================= */
-@media (max-width: 968px) {
-    /* Header Changes */
+@media (max-width: 768px) {
     .top-utility-bar, .desktop-nav, .header-cta { display: none; }
     .mobile-menu-toggle { display: block; }
-    .main-header { justify-content: center; }
     
-    /* Hero Changes */
-    .hero-section { padding: 6rem 0 2rem; min-height: auto; }
-    .hero-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-    .hero-headline { font-size: 2.5rem; }
-    .hero-trust-badges { justify-content: center; flex-wrap: wrap; }
-    .hero-subheadline { margin: 0 auto 2rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
     
-    /* Footer Changes */
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .main-footer { padding-bottom: 5rem; /* Space for bottom nav */ }
-    
-    /* Show Mobile Nav */
-    .mobile-bottom-nav { display: flex; }
-}
-
-/* Cookie Banner */
-.cookie-banner {
-    position: fixed;
-    bottom: 80px; /* Above mobile nav */
-    left: 1rem;
-    right: 1rem;
-    background: #1e293b;
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    z-index: 2000;
-    display: flex;
-    justify-content: center;
-}
-.cookie-content { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px; gap: 1rem; }
-.cookie-actions { display: flex; gap: 0.5rem; }
-.btn-accept { background: var(--accent-color); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.85rem; }
-.btn-close { background: transparent; color: #94a3b8; text-decoration: underline; font-size: 0.85rem; }
-.hidden { display: none; }
-
-/* =========================================
-   7. MOBILE UI & FIXES (The Polish)
-   ========================================= */
-
-/* A. Fix Footer Overlap */
-/* Add padding to body so the bottom nav doesn't cover content */
-body {
-    padding-bottom: 80px; /* Height of bottom nav */
-}
-
-/* B. Fix "Ugly" Home Booking Widget */
-@media (max-width: 968px) {
-    
-    /* Give the Hero text some breathing room */
-    .hero-content {
-        padding-top: 2rem;
-        gap: 2rem;
+    /* Bottom Navigation Bar */
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: var(--white);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 1001;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
     }
 
-    /* THE WIDGET FIX */
-    .booking-widget-card {
-        background: white;
-        border-radius: 20px;
-        padding: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Stronger shadow for "pop" */
-        margin: 0 1rem; /* Prevent touching screen edges */
-        position: relative;
-        top: -10px; /* Slight overlap for depth */
-        border: 1px solid #EFF6FF;
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.7rem;
+        color: var(--text-light);
     }
+    .nav-item i { font-size: 1.2rem; margin-bottom: 4px; }
+    .nav-item.active { color: var(--primary-dark); font-weight: 600; }
 
-    /* Make Inputs Chunky & Tappable */
-    .form-inputs .input-group input {
-        height: 55px; /* Taller inputs */
-        font-size: 16px; /* Prevent IOS zoom */
-        border-radius: 12px;
-        background: #F8FAFC;
-        border: 1px solid #E2E8F0;
+    /* Floating Action Button (FAB) in center */
+    .fab-item .fab-circle {
+        background: var(--primary-dark);
+        color: var(--white);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px; /* Push it up */
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.4);
+        border: 4px solid var(--white);
     }
-    
-    .input-icon {
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.2rem;
-        color: var(--accent-color);
-    }
-
-    /* Tabs look like pills */
-    .trip-tabs {
-        background: #F1F5F9;
-        padding: 0.5rem;
-        border-radius: 12px;
-        border: none;
-        justify-content: space-between;
-    }
-    
-    .tab-radio {
-        width: 48%;
-        text-align: center;
-    }
-    
-    .tab-label {
-        display: block;
-        padding: 0.5rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        border: none !important; /* Remove old underline style */
-        z-index: 2;
-        position: relative;
-    }
-
-    /* Active Tab Style (White Pill) */
-    .tab-radio input:checked + .tab-label {
-        background: white;
-        color: var(--accent-color);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    /* Big Action Button */
-    .hero-submit-btn {
-        height: 55px;
-        font-size: 1.1rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
-    }
-}
-
-/* C. Bottom Nav Enhancements */
-.mobile-bottom-nav {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.98);
-}
-
-/* Make the center FAB (Book) float properly */
-.fab-item .fab-circle {
-    width: 55px;
-    height: 55px;
-    margin-top: -35px; /* Pop out more */
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
-    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
-    border: 5px solid white; /* Thicker border */
 }
