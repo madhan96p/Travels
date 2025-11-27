@@ -46,9 +46,18 @@ exports.handler = async function (event, context) {
             let sheet = doc.sheetsByTitle['bookings'];
             if (!sheet) sheet = doc.sheetsByIndex[0];
 
-            const bookingID = `ST-${Date.now().toString().slice(-6)}`;
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
 
-            // Inside exports.handler -> if (action === 'submitBooking') ...
+            // Generate 4 random characters (excluding confusing ones like I, O, 0, 1)
+            const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+            let randomStr = '';
+            for (let i = 0; i < 4; i++) {
+                randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            const bookingID = `ST-${day}${month}-${randomStr}`;
 
             await sheet.addRow({
                 Booking_ID: bookingID,
