@@ -30,19 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const drop = document.getElementById('drop').value;
             const mobile = document.getElementById('mobile').value;
             const date = document.getElementById('travelDate').value;
-            const type = document.getElementById('tripType').value;
+            
+            // FIXED: Get value from Radio Buttons
+            const typeRadio = document.querySelector('input[name="trip_type"]:checked');
+            const type = typeRadio ? typeRadio.value : "One Way";
 
-            // A. Immediate WhatsApp Redirect (User Experience First)
+            // A. Immediate WhatsApp Redirect
             const msg = `Hi Shrish Travels, I need a *${type}* estimate.%0A%0A🚖 *Trip Details:*%0AFrom: ${pickup}%0ATo: ${drop}%0ADate: ${date}%0APhone: ${mobile}`;
             const waLink = `https://wa.me/918883451668?text=${msg}`;
             
-            // Open WhatsApp in new tab immediately
             window.open(waLink, '_blank');
 
-            // B. Silent Background Save (Fire and Forget)
+            // B. Silent Background Save
             if(statusMsg) statusMsg.innerText = "Request sent...";
 
-            // Prepare data for the API (Matches the 'submitLead' action we made)
             const leadData = {
                 pickup: pickup,
                 drop: drop,
@@ -51,14 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 type: type
             };
 
-            // Send to Netlify Function
             fetch('/.netlify/functions/travels-api?action=submitLead', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(leadData)
             })
             .then(response => response.json())
-            .then(data => console.log("Lead Saved Successfully:", data))
+            .then(data => console.log("Lead Saved:", data))
             .catch(err => console.error("Silent Save Error:", err));
         });
     }

@@ -86,24 +86,45 @@ exports.handler = async function (event, context) {
         else if (action === 'submitLead') {
             const data = JSON.parse(event.body);
 
-            // Connect to Sheet (Fallback to first sheet)
-            let sheet = doc.sheetsByTitle['leads']; // Create a tab named 'leads' in your sheet
+            // 1. Use Main Sheet ('bookings')
+            let sheet = doc.sheetsByTitle['bookings'];
             if (!sheet) sheet = doc.sheetsByIndex[0];
 
+            // 2. Generate WA- ID
             const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+            let randomStr = '';
+            for (let i = 0; i < 4; i++) randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
 
-            // Add row to Google Sheet
+            const bookingID = `WA-${day}${month}-${randomStr}`;
+
+            // 3. Save Data (Mapping to your existing columns)
             await sheet.addRow({
+                Booking_ID: bookingID,
                 Timestamp: now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                Type: 'WhatsApp Estimate',
-                Pickup: data.pickup || '',
-                Drop: data.drop || '',
-                Date: data.date || '',
-                Mobile: data.mobile || '',
-                Vehicle_Type: data.type || ''
+                Pickup_City: data.pickup || 'Unknown',
+                Drop_City: data.drop || 'Unknown',
+                Travel_Date: data.date || 'N/A',
+                Mobile_Number: data.mobile || 'Pending',
+                Journey_Type: data.type || 'One Way',
+
+                // Defaults for columns we don't have data for yet
+                Customer_Name: 'WhatsApp User',
+                Email: 'N/A',
+                Pickup_Time: 'N/A',
+                Return_Date: 'N/A',
+                Travelers: 'N/A',
+                Vehicle_Type: 'N/A',
+                Company_Name: 'N/A',
+                Is_Corporate: 'No',
+                Comments: 'Quick Estimate Request',
+                Status: 'WhatsApp Estimate',
+                Driver_Assigned: 'Pending'
             });
 
-            responseData = { success: true, message: "Lead Saved" };
+            responseData = { success: true, message: "Lead Saved to Main Sheet" };
         }
 
         else {
