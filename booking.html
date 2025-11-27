@@ -8,7 +8,7 @@
 
     <title>Premium Booking | Shrish Travels</title>
     <meta name="description" content="Securely book your car rental with Shrish Travels." />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -41,22 +41,23 @@
         <div class="booking-hero">
             <div class="container">
                 <h1 data-aos="fade-up">Finalize Your Journey</h1>
-                <p data-aos="fade-up" data-aos-delay="100">Premium fleet. Professional Chauffeurs. Guaranteed Callback.</p>
+                <p data-aos="fade-up" data-aos-delay="100">Premium fleet. Professional Chauffeurs. Guaranteed Callback.
+                </p>
             </div>
         </div>
 
         <div class="booking-section container">
             <div class="booking-grid">
-                
+
                 <div class="form-wrapper" data-aos="fade-up">
                     <form id="full-booking-form">
-                        
+
                         <div class="form-card">
                             <div class="card-header">
                                 <i class="ri-map-pin-time-line"></i>
                                 <h3>Where are we going?</h3>
                             </div>
-                            
+
                             <div class="journey-type-selector">
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="One Way" checked>
@@ -86,31 +87,70 @@
                                     <label>Pickup Location</label>
                                     <div class="input-wrapper">
                                         <i class="ri-map-pin-user-fill"></i>
-                                        <input type="text" id="pickup" name="pickup" placeholder="Airport, Hotel, or Address" required>
+                                        <input type="text" id="pickup" name="pickup"
+                                            placeholder="Airport, Hotel, or Address" required>
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <label>Drop Destination</label>
                                     <div class="input-wrapper">
                                         <i class="ri-map-pin-2-fill"></i>
-                                        <input type="text" id="dropoff" name="dropoff" placeholder="City or Specific Address" required>
+                                        <input type="text" id="dropoff" name="dropoff"
+                                            placeholder="City or Specific Address" required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="input-grid">
-                                <div class="input-group">
-                                    <label>Date</label>
+                                <div class="input-grid">
+                                    <div class="input-group">
+                                        <label>Pickup Date</label>
+                                        <div class="input-wrapper">
+                                            <i class="ri-calendar-event-fill"></i>
+                                            <input type="date" id="date" name="date" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label>Pickup Time</label>
+                                        <div class="input-wrapper">
+                                            <i class="ri-time-fill"></i>
+                                            <input type="time" id="time" name="time" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="return-date-container" class="input-group hidden-slide">
+                                    <label>Return Date</label>
                                     <div class="input-wrapper">
-                                        <i class="ri-calendar-event-fill"></i>
-                                        <input type="date" id="date" name="date" required>
+                                        <i class="ri-calendar-check-fill"></i>
+                                        <input type="date" id="return_date" name="return_date">
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Passengers</label>
+                                    <div class="input-wrapper">
+                                        <i class="ri-group-fill"></i>
+                                        <input type="number" id="travelers" name="travelers" min="1" max="50"
+                                            placeholder="e.g. 4" required>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Special Requests (Optional)</label>
+                                    <div class="input-wrapper">
+                                        <i class="ri-message-2-line"></i>
+                                        <input type="text" id="comments" name="comments"
+                                            placeholder="e.g. Roof carrier needed, Pet friendly...">
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <label>Passengers</label>
                                     <div class="input-wrapper">
                                         <i class="ri-group-fill"></i>
-                                        <input type="number" id="travelers" name="travelers" min="1" max="50" placeholder="e.g. 4" required>
+                                        <input type="number" id="travelers" name="travelers" min="1" max="50"
+                                            placeholder="e.g. 4" required>
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +175,16 @@
                                     <label>Phone Number</label>
                                     <div class="input-wrapper">
                                         <i class="ri-smartphone-line"></i>
-                                        <input type="tel" id="phone" name="phone" placeholder="10-digit Mobile Number" pattern="[0-9]{10}" required>
+                                        <input type="tel" id="phone" name="phone" placeholder="10-digit Mobile Number"
+                                            pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <label>Email (Optional)</label>
                                     <div class="input-wrapper">
                                         <i class="ri-mail-send-line"></i>
-                                        <input type="email" id="email" name="email" placeholder="For booking confirmation">
+                                        <input type="email" id="email" name="email"
+                                            placeholder="For booking confirmation">
                                     </div>
                                 </div>
                             </div>
@@ -153,13 +195,14 @@
                                     <label for="corporate-booking-checkbox" class="toggle-slider"></label>
                                     <span class="toggle-text">This is a Corporate / B2B Booking</span>
                                 </div>
-                                
+
                                 <div id="corporate-fields" class="hidden-fields">
                                     <div class="input-group">
                                         <label>Company Name</label>
                                         <div class="input-wrapper">
                                             <i class="ri-building-4-fill"></i>
-                                            <input type="text" id="company_name" name="company_name" placeholder="Organization Name">
+                                            <input type="text" id="company_name" name="company_name"
+                                                placeholder="Organization Name">
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +250,8 @@
                         <div class="divider"></div>
                         <div class="urgent-help">
                             <p>Need it urgently?</p>
-                            <a href="tel:+918883451668" class="call-btn"><i class="ri-phone-fill"></i> +91 888 345 1668</a>
+                            <a href="tel:+918883451668" class="call-btn"><i class="ri-phone-fill"></i> +91 888 345
+                                1668</a>
                         </div>
                     </div>
                 </aside>
@@ -220,4 +264,5 @@
     <script src="assets/js/common.js"></script>
     <script src="assets/js/booking.js"></script>
 </body>
+
 </html>

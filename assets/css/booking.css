@@ -374,3 +374,58 @@ body {
     .radio-card span { font-size: 0.8rem; }
     .input-grid { grid-template-columns: 1fr; }
 }
+
+/* --- ANIMATIONS & INTERACTIVITY --- */
+
+/* Smooth Slide for Return Date */
+.hidden-slide {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+}
+
+.hidden-slide.active {
+    max-height: 100px; /* Enough space for the input */
+    opacity: 1;
+    margin-top: 1.5rem;
+    transform: translateY(0);
+}
+
+/* --- MOBILE "CUTE" UI TWEAKS --- */
+@media (max-width: 768px) {
+    .booking-section { padding-bottom: 6rem; } /* Space for bottom nav */
+    
+    .form-card {
+        padding: 1.25rem; /* Compact padding */
+        border-radius: 20px; /* Softer corners */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Softer shadow */
+    }
+
+    /* Make inputs feel "tappable" but not huge */
+    .input-wrapper input {
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        background: #f8fafc; /* Slight off-white background */
+    }
+    
+    .input-wrapper i {
+        font-size: 1rem;
+        left: 0.85rem;
+        color: var(--accent-color); /* Colorful icons */
+    }
+
+    /* Cute Radio Cards on Mobile */
+    .journey-type-selector {
+        gap: 0.5rem;
+    }
+    .radio-card .card-content {
+        padding: 0.6rem 0.2rem;
+        border-radius: 10px;
+    }
+    .radio-card i { font-size: 1.2rem; margin-bottom: 2px; }
+    .radio-card span { font-size: 0.75rem; }
+}

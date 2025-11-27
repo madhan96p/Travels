@@ -1,30 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. UI LOGIC: Corporate Toggle Animation ---
+
+    // --- 1. UI LOGIC: Toggles & Animations ---
+
+    // A. Corporate Toggle
     const corpCheckbox = document.getElementById('corporate-booking-checkbox');
     const corpFields = document.getElementById('corporate-fields');
 
     if (corpCheckbox && corpFields) {
         corpCheckbox.addEventListener('change', function() {
             if (this.checked) {
-                // Show fields
                 corpFields.style.maxHeight = corpFields.scrollHeight + "px";
                 corpFields.style.marginTop = "1rem";
             } else {
-                // Hide fields
                 corpFields.style.maxHeight = "0";
                 corpFields.style.marginTop = "0";
             }
         });
     }
 
+    // B. Return Date Toggle (Round Trip Logic) - NEW
+    const radioButtons = document.querySelectorAll('input[name="journeytype"]');
+    const returnDateContainer = document.getElementById('return-date-container');
+    const returnDateInput = document.getElementById('return_date');
+    const startDateInput = document.getElementById('date');
+
+    function toggleReturnDate() {
+        // Find which radio is checked
+        const selected = document.querySelector('input[name="journeytype"]:checked');
+        if (selected && returnDateContainer) {
+            if (selected.value === 'Round Trip') {
+                returnDateContainer.classList.add('active');
+                if(returnDateInput) returnDateInput.required = true;
+            } else {
+                returnDateContainer.classList.remove('active');
+                if(returnDateInput) {
+                    returnDateInput.required = false;
+                    returnDateInput.value = ''; // Reset date if switching back
+                }
+            }
+        }
+    }
+
+    // Attach listeners to all radio buttons
+    radioButtons.forEach(radio => radio.addEventListener('change', toggleReturnDate));
+    
+    // Prevent selecting a return date before the start date
+    if (startDateInput && returnDateInput) {
+        startDateInput.addEventListener('change', () => {
+            returnDateInput.min = startDateInput.value;
+        });
+    }
+
+    // Run once on load to set initial state
+    toggleReturnDate();
+
+
     // --- 2. PRE-FILL: Catch Data from Home Page URL ---
-    // Example URL: booking.html?from=Chennai&to=Bangalore&date=2025-10-10
     const params = new URLSearchParams(window.location.search);
     
     if (params.has('from')) document.getElementById('pickup').value = params.get('from');
     if (params.has('to')) document.getElementById('dropoff').value = params.get('to');
     if (params.has('date')) document.getElementById('date').value = params.get('date');
+
 
     // --- 3. SUBMISSION LOGIC ---
     const form = document.getElementById('full-booking-form');
@@ -45,24 +82,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             // Prepare the clean object for API
-            // We map the HTML "name" attributes to your Google Sheet Headers
+            // The keys here MUST match the Header Names in your Google Sheet
             const payload = {
+                // Journey Details
                 Pickup_City: data.pickup,
                 Drop_City: data.dropoff,
                 Travel_Date: data.date,
+                Pickup_Time: data.time, // Captured from new input
+                Return_Date: data.journeytype === 'Round Trip' ? data.return_date : 'N/A', // Conditional Logic
+                Journey_Type: data.journeytype, 
                 Travelers: data.travelers,
-                Journey_Type: data.journeytype, // Value from Radio Button
+                
+                // Personal Details
                 Customer_Name: data.name,
                 Mobile_Number: data.phone,
                 Email: data.email || 'N/A',
+                
+                // Corporate Logic
                 Company_Name: data.company_name || 'N/A',
-                Is_Corporate: corpCheckbox.checked ? 'Yes' : 'No',
-                Vehicle_Type: 'Any Premium' // Default, as they get a quote first
+                Is_Corporate: corpCheckbox && corpCheckbox.checked ? 'Yes' : 'No',
+                
+                // Extras
+                Comments: data.comments || '', 
+                Vehicle_Type: 'Any Premium' // Default
             };
 
             // C. Send to Backend
             try {
-                // We use the existing logic in api.js (ensure ApiService is loaded)
+                // Calls netlify/functions/travels-api.js
                 const response = await fetch('/.netlify/functions/travels-api?action=submitBooking', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -76,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.innerHTML = '<i class="fas fa-check-circle"></i> Request Sent!';
                     btn.style.background = "#10B981"; // Green
                     
-                    // Show success message or redirect
                     alert(`Thank you, ${data.name}! Your Booking ID is #${result.id}. Our team will call you shortly.`);
                     window.location.href = "/index.html"; 
                 } else {
@@ -92,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Revert button after 3 seconds
                 setTimeout(() => {
                     btn.innerHTML = originalText;
-                    btn.style.background = ""; // Reset to CSS default
+                    btn.style.background = ""; 
                 }, 3000);
             }
         });

@@ -41,29 +41,34 @@ exports.handler = async function (event, context) {
 
         if (action === 'submitBooking') {
             const data = JSON.parse(event.body);
-            
+
             // Connect to Sheet (Fallback to first sheet if 'bookings' is missing)
             let sheet = doc.sheetsByTitle['bookings'];
             if (!sheet) sheet = doc.sheetsByIndex[0];
 
             const bookingID = `ST-${Date.now().toString().slice(-6)}`;
-            
+
+            // Inside exports.handler -> if (action === 'submitBooking') ...
+
             await sheet.addRow({
                 Booking_ID: bookingID,
                 Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                Customer_Name: data.Customer_Name || data.name || 'Web User',
-                Mobile_Number: data.Mobile_Number || data.mobile || 'Pending',
+                Customer_Name: data.Customer_Name || 'Web User',
+                Mobile_Number: data.Mobile_Number || 'Pending',
                 Email: data.Email || 'N/A',
+                Journey_Type: data.Journey_Type || 'One Way',
+                Pickup_City: data.Pickup_City || 'Unknown',
+                Drop_City: data.Drop_City || 'Unknown',
+                Travel_Date: data.Travel_Date || 'N/A',
+                Pickup_Time: data.Pickup_Time || 'N/A',
+                Return_Date: data.Return_Date || 'N/A',
+                Travelers: data.Travelers || '1',
+                Vehicle_Type: data.Vehicle_Type || 'Sedan',
                 Company_Name: data.Company_Name || 'N/A',
                 Is_Corporate: data.Is_Corporate || 'No',
-                Journey_Type: data.Journey_Type || 'One Way',
-                Travelers: data.Travelers || '1',
-                Driver_Assigned: 'Pending',
-                Pickup_City: data.Pickup_City || data.pickup,
-                Drop_City: data.Drop_City || data.drop,
-                Travel_Date: data.Travel_Date || data.date,
-                Vehicle_Type: data.Vehicle_Type || 'Sedan',
-                Status: 'New Inquiry'
+                Comments: data.Comments || '',
+                Status: 'New Inquiry',
+                Driver_Assigned: 'Pending'
             });
 
             responseData = { success: true, message: "Booking Saved", id: bookingID };
