@@ -127,8 +127,10 @@ exports.handler = async function (event, context) {
             responseData = { success: true, message: "Lead Saved to Main Sheet" };
         }
 
+        // --- CASE C: GET TARIFFS (Fetch Pricing from Sheet) ---
         else if (action === 'getTariff') {
             // 1. Load both sheets
+            // Note: Ensure your sheet tabs are exactly named 'tariff_local' and 'tariff_outstation'
             const localSheet = doc.sheetsByTitle['tariff_local'];
             const outstationSheet = doc.sheetsByTitle['tariff_outstation'];
 
@@ -136,12 +138,21 @@ exports.handler = async function (event, context) {
             const localRows = localSheet ? await localSheet.getRows() : [];
             const outstationRows = outstationSheet ? await outstationSheet.getRows() : [];
 
-            // 3. Helper to clean data
+            // 3. Helper to clean data (UPDATED TO FIX 500 ERROR)
             const cleanRow = (row) => {
+                // Method A: Try the library's built-in converter (Works on v3/v4)
+                if (typeof row.toObject === 'function') {
+                    return row.toObject();
+                }
+                
+                // Method B: Fallback (Manually copy keys)
                 const obj = {};
-                row._rawData.forEach((val, i) => {
-                    obj[row._headerValues[i]] = val;
-                });
+                for (const key in row) {
+                    // unexpected properties usually start with _ in this library
+                    if (!key.startsWith('_') && typeof row[key] !== 'function') {
+                        obj[key] = row[key];
+                    }
+                }
                 return obj;
             };
 
