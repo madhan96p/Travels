@@ -275,3 +275,117 @@
     .cta-card { padding: 40px 20px; }
     .cta-content h2 { font-size: 1.8rem; }
 }
+
+/* =========================================
+   NEW SECTIONS (Fleet, Services, Why Us)
+   ========================================= */
+
+/* --- Fleet Section --- */
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.fleet-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: 0.3s;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.fleet-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+
+.fleet-tag {
+    position: absolute; top: 15px; right: 15px;
+    background: var(--primary-dark); color: #fff;
+    padding: 5px 12px; font-size: 0.75rem; font-weight: 600;
+    border-radius: 50px; z-index: 2;
+}
+.premium-tag { background: linear-gradient(45deg, #10B981, #059669); }
+
+.fleet-img-box {
+    height: 180px;
+    background: #F1F5F9;
+    display: flex; align-items: center; justify-content: center;
+}
+.fleet-icon { font-size: 4rem; color: #CBD5E1; } /* Placeholder for real image */
+
+.fleet-details { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+.fleet-details h3 { font-size: 1.25rem; margin-bottom: 5px; }
+.fleet-model { color: #64748B; font-size: 0.9rem; margin-bottom: 15px; }
+
+.fleet-features {
+    display: flex; gap: 15px; margin-bottom: 20px;
+    color: #475569; font-size: 0.85rem;
+}
+.fleet-features li { display: flex; align-items: center; gap: 6px; }
+
+.fleet-price {
+    margin-top: auto; /* Push to bottom */
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #F1F5F9; padding-top: 15px;
+}
+.price-label { font-size: 0.9rem; color: #64748B; }
+.price-amount { font-size: 1.3rem; font-weight: 700; color: var(--primary-dark); }
+.price-amount small { font-size: 0.9rem; font-weight: 500; }
+
+/* --- Services Section --- */
+.bg-white { background: #fff; }
+
+.services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+.service-card {
+    padding: 30px 20px;
+    border-radius: 16px;
+    background: var(--bg-body);
+    text-align: center;
+    transition: 0.3s;
+}
+.service-card:hover { background: #fff; box-shadow: var(--shadow-md); }
+
+.icon-circle {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+}
+.bg-blue-light { background: #DBEAFE; }
+.bg-green-light { background: #D1FAE5; }
+.bg-purple-light { background: #EDE9FE; }
+.bg-gold-light { background: #FEF3C7; }
+.text-gold { color: #D97706; }
+
+.service-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.service-card p { font-size: 0.9rem; color: #64748B; }
+
+/* --- Why Us Section --- */
+.why-us-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 40px; align-items: center;
+}
+.lead-text { font-size: 1.2rem; font-weight: 600; color: var(--accent); margin-bottom: 15px; }
+
+.check-list { margin: 25px 0; }
+.check-list li { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; }
+.check-list i { color: var(--accent); margin-top: 4px; }
+
+.blob-image-placeholder {
+    height: 300px; width: 100%;
+    background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; color: #fff;
+}
+
+@media (min-width: 992px) {
+    .why-us-grid { grid-template-columns: 1fr 1fr; }
+}
