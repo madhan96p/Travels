@@ -1,44 +1,47 @@
 /* =========================================
-   1. VARIABLES & PREMIUM RESET
+   1. VARIABLES & RESET (The Premium Palette)
    ========================================= */
 :root {
-    /* --- Brand Identity --- */
-    --primary-dark: #0F172A;   /* CEO Blue: Deep, authoritative */
-    --primary: #334155;        /* Slate: Professional text */
-    --accent: #10B981;         /* Action Green: High conversion */
-    --accent-hover: #059669;   /* Darker Green for hover */
-    --gold: #F59E0B;           /* Premium accents (Stars/Ratings) */
+    /* Brand Colors */
+    --primary-dark: #0F172A;   /* Deep Navy - CEO Trust */
+    --primary: #1E293B;        /* Slate - Professional */
+    --accent: #10B981;         /* Emerald Green - Action/Success */
+    --accent-hover: #059669;
+    
+    /* Utility Colors */
+    --text-main: #334155;
+    --text-light: #64748B;
+    --bg-light: #F8FAFC;       /* Very light grey for backgrounds */
+    --white: #ffffff;
+    
+    /* Premium Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2); /* Subtle green glow */
 
-    /* --- Surfaces & Backgrounds --- */
-    --bg-body: #F8FAFC;        /* Cool Grey (Not boring white) */
-    --surface-white: #FFFFFF;
-    --surface-glass: rgba(255, 255, 255, 0.9);
-    
-    /* --- Typography --- */
-    --font-main: 'Poppins', sans-serif;
-    
-    /* --- Premium Shadows (The "Luxury" Secret) --- */
-    --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-    --shadow-glow: 0 0 15px rgba(16, 185, 129, 0.3); /* Green glow for buttons */
-    
-    /* --- Layout --- */
+    /* Spacing */
     --container-width: 1200px;
-    --header-height: 70px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    --header-height: 80px;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--bg-body);
-    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-light);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
 
 /* =========================================
    2. UTILITY CLASSES
@@ -49,159 +52,241 @@ body {
     padding: 0 20px;
 }
 
-/* Typography Utilities */
-h1, h2, h3 { color: var(--primary-dark); font-weight: 700; line-height: 1.2; }
-.text-accent { color: var(--accent); }
-.text-gold { color: var(--gold); }
-
 /* Premium Buttons */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
+    display: inline-block;
+    padding: 12px 28px;
     font-weight: 600;
-    font-size: 1rem;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    gap: 8px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
 }
 
 .btn-white {
-    background: var(--surface-white);
+    background: var(--white);
     color: var(--primary-dark);
     box-shadow: var(--shadow-md);
 }
-.btn-white:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+.btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
 .btn-outline {
-    background: transparent;
     border: 2px solid var(--primary-dark);
     color: var(--primary-dark);
+    background: transparent;
 }
-.btn-outline:hover { background: var(--primary-dark); color: var(--surface-white); }
+.btn-outline:hover { background: var(--primary-dark); color: var(--white); }
 
 /* =========================================
-   3. HEADER (Glassmorphism)
+   3. HEADER (Top Bar & Main Nav)
    ========================================= */
-.top-utility-bar {
-    background: var(--primary-dark);
-    color: rgba(255,255,255,0.7);
-    font-size: 0.75rem;
-    padding: 8px 0;
-}
-.utility-flex { display: flex; justify-content: space-between; align-items: center; }
-.utility-flex a { color: #fff; margin-left: 15px; transition: 0.2s; }
-.utility-flex a:hover { color: var(--accent); }
 
+/* A. Top Utility Bar (The "Corporate" Strip) */
+.top-utility-bar {
+    background-color: var(--primary-dark);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.utility-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-actions a:hover { color: var(--white); }
+.divider { margin: 0 10px; opacity: 0.3; }
+
+/* B. Main Header */
 .main-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Glass effect */
     height: var(--header-height);
-    background: rgba(255, 255, 255, 0.85); /* Glass Base */
-    backdrop-filter: blur(12px);            /* The Blur */
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-.header-layout { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+.header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
 
-.brand-name { font-size: 1.5rem; font-weight: 800; color: var(--primary-dark); letter-spacing: -1px; }
+/* Logo */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-icon { height: 40px; width: auto; }
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+}
 .brand-dot { color: var(--accent); }
 
-/* Desktop Nav */
-.desktop-nav { display: none; } /* Mobile First Default */
-@media (min-width: 992px) {
-    .desktop-nav { display: block; }
-    .nav-list { display: flex; gap: 32px; }
-    .nav-link { 
-        font-weight: 500; color: var(--primary); font-size: 0.95rem; 
-        position: relative; padding: 5px 0;
-    }
-    .nav-link:hover, .nav-link.active { color: var(--primary-dark); }
-    .nav-link::after {
-        content: ''; position: absolute; width: 0; height: 2px;
-        bottom: 0; left: 0; background: var(--accent); transition: 0.3s;
-    }
-    .nav-link:hover::after { width: 100%; }
+/* Desktop Navigation */
+.desktop-nav .nav-list { display: flex; gap: 30px; align-items: center; }
+
+.nav-link {
+    font-weight: 500;
+    color: var(--primary);
+    position: relative;
+    padding: 5px 0;
 }
+
+/* Hover Underline Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* Dropdowns */
+.has-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+}
+.has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+.dropdown-menu li a:hover { background: var(--bg-light); color: var(--accent); }
+
+/* Header Actions */
+.header-actions { display: flex; align-items: center; gap: 15px; }
 
 .header-cta {
     background: var(--primary-dark);
-    color: #fff;
+    color: var(--white);
     padding: 10px 24px;
-    border-radius: 50px;
+    border-radius: 50px; /* Pill shape */
     font-weight: 600;
     font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .header-cta:hover { background: var(--accent); box-shadow: var(--shadow-glow); }
 
-/* Mobile Menu Toggle (Hamburger) */
-.mobile-menu-toggle { display: block; font-size: 1.5rem; background: none; border: none; color: var(--primary-dark); }
-@media (min-width: 992px) { .mobile-menu-toggle, .mobile-bottom-nav { display: none; } }
+.mobile-menu-toggle {
+    display: none; /* Hidden on desktop */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
 
 /* =========================================
    4. FOOTER
    ========================================= */
 .main-footer {
     background: var(--primary-dark);
-    color: #94A3B8;
-    padding: 60px 0 30px;
-    margin-top: 60px;
+    color: #cbd5e1;
+    padding: 60px 0 20px;
+    margin-top: 50px;
 }
-.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-.footer-logo h3 { color: #fff; font-size: 1.8rem; margin-bottom: 10px; }
-.footer-col h4 { color: #fff; margin-bottom: 20px; font-weight: 600; }
-.footer-col ul li { margin-bottom: 12px; }
-.footer-col a:hover { color: var(--accent); padding-left: 5px; }
 
-@media (min-width: 768px) {
-    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 15px; }
+.footer-col h4 { color: var(--white); margin-bottom: 20px; font-weight: 600; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a:hover { color: var(--accent); padding-left: 5px; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
 }
 
 /* =========================================
-   5. MOBILE BOTTOM NAV (The App-Like Feel)
+   5. MOBILE & RESPONSIVE
    ========================================= */
 .mobile-bottom-nav {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    position: fixed;
-    bottom: 0; left: 0; width: 100%;
-    background: #fff;
-    height: 65px;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-    z-index: 1001;
-    border-radius: 20px 20px 0 0;
+    display: none; /* Hidden on Desktop */
 }
 
-.nav-item {
-    display: flex; flex-direction: column; 
-    align-items: center; justify-content: center;
-    color: #94A3B8; font-size: 0.7rem; font-weight: 500;
-}
-.nav-item i { font-size: 1.3rem; margin-bottom: 4px; transition: 0.3s; }
-.nav-item.active { color: var(--primary-dark); }
-.nav-item.active i { transform: translateY(-2px); }
+@media (max-width: 768px) {
+    .top-utility-bar, .desktop-nav, .header-cta { display: none; }
+    .mobile-menu-toggle { display: block; }
+    
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    
+    /* Bottom Navigation Bar */
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: var(--white);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 1001;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
 
-/* The Floating "Book" Button */
-.fab-item { position: relative; top: -25px; }
-.fab-circle {
-    width: 56px; height: 56px;
-    background: var(--primary-dark);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
-    border: 4px solid var(--bg-body); /* Creates the 'cutout' effect */
-    transition: 0.3s;
-}
-.fab-circle i { font-size: 1.4rem; margin: 0; }
-.fab-item.active .fab-circle { background: var(--accent); box-shadow: var(--shadow-glow); }
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.7rem;
+        color: var(--text-light);
+    }
+    .nav-item i { font-size: 1.2rem; margin-bottom: 4px; }
+    .nav-item.active { color: var(--primary-dark); font-weight: 600; }
 
-/* =========================================
-   6. UTILITIES
-   ========================================= */
-.hidden { display: none !important; }
+    /* Floating Action Button (FAB) in center */
+    .fab-item .fab-circle {
+        background: var(--primary-dark);
+        color: var(--white);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px; /* Push it up */
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.4);
+        border: 4px solid var(--white);
+    }
+}
