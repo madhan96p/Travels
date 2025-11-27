@@ -1,218 +1,277 @@
 /* =========================================
-   1. HERO SECTION (First Impression)
+   1. HERO SECTION (The First Impression)
    ========================================= */
 .hero-section {
     position: relative;
-    padding: 40px 0 80px; /* Mobile spacing */
+    height: 600px; /* Or 85vh */
+    background: #f1f5f9;
     overflow: hidden;
-}
-
-/* The Animated Blobs */
-.hero-bg-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; /* Behind content */
-}
-.blob {
-    position: absolute;
-    filter: blur(60px);
-    opacity: 0.5;
-    animation: float 10s infinite ease-in-out alternate;
-}
-.blob-1 {
-    top: -5%; right: -10%; width: 300px; height: 300px;
-    background: #DBEAFE; /* Light Blue */
-    border-radius: 50%;
-}
-.blob-2 {
-    bottom: 10%; left: -10%; width: 250px; height: 250px;
-    background: #D1FAE5; /* Light Green */
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-    animation-delay: -5s;
-}
-
-@keyframes float {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(20px, 40px); }
-}
-
-/* Layout */
-.hero-content {
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile Stack */
-    gap: 40px;
+    display: flex;
     align-items: center;
 }
 
-/* Typography */
+/* Animated Blobs Background */
+.hero-bg-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: moveBlob 10s infinite alternate;
+}
+.blob-1 {
+    top: -10%; right: -10%; width: 500px; height: 500px;
+    background: #dbeafe; /* Light Blue */
+    border-radius: 50%;
+}
+.blob-2 {
+    bottom: -10%; left: -10%; width: 400px; height: 400px;
+    background: #d1fae5; /* Light Green */
+    border-radius: 60% 40% 30% 70%;
+    animation-delay: -5s;
+}
+
+@keyframes moveBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, 40px) scale(1.1); }
+}
+
+/* Content Layout */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Hero Typography */
 .hero-headline {
-    font-size: 2.5rem; /* Mobile Size */
+    font-size: 3.5rem;
+    line-height: 1.1;
     font-weight: 800;
     color: var(--primary-dark);
-    margin-bottom: 15px;
-    line-height: 1.1;
+    margin-bottom: 20px;
 }
+
 .highlight-text {
-    color: transparent;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+    color: var(--accent);
+    background: -webkit-linear-gradient(45deg, var(--primary-dark), var(--accent));
     -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
 .hero-subheadline {
-    font-size: 1rem;
-    color: var(--primary);
-    margin-bottom: 25px;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    max-width: 90%;
 }
-.hero-trust-badges {
-    display: flex; gap: 15px; flex-wrap: wrap;
-    font-size: 0.85rem; font-weight: 600; color: var(--primary);
+
+.hero-trust-badges span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-main);
 }
-.hero-trust-badges i { color: var(--accent); margin-right: 5px; }
+.hero-trust-badges i { color: var(--accent); }
 
 /* =========================================
-   2. BOOKING WIDGET (The Money Maker)
+   2. BOOKING WIDGET (The Commercial Engine)
    ========================================= */
 .booking-widget-card {
-    background: var(--surface-white);
-    padding: 25px;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl); /* Deep float effect */
-    border: 1px solid rgba(255,255,255,0.6);
-    position: relative;
-    z-index: 10;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Tab Switcher */
 .trip-tabs {
     display: flex;
-    background: #F1F5F9;
-    padding: 5px;
+    background: var(--bg-light);
+    padding: 4px;
     border-radius: 12px;
     margin-bottom: 20px;
 }
-.tab-radio { flex: 1; position: relative; cursor: pointer; }
+
+.tab-radio { flex: 1; cursor: pointer; }
 .tab-radio input { display: none; }
 .tab-label {
-    display: block; text-align: center; padding: 10px;
-    font-size: 0.9rem; font-weight: 600; color: #64748B;
-    border-radius: 8px; transition: 0.2s;
-}
-/* Active Tab */
-.tab-radio input:checked + .tab-label {
-    background: #fff; color: var(--primary-dark);
-    box-shadow: var(--shadow-xs);
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: 0.3s;
 }
 
-/* Inputs */
+/* Active Tab Logic */
+.tab-radio input:checked + .tab-label {
+    background: var(--white);
+    color: var(--primary-dark);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+}
+
 .form-inputs { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
 
-.input-group { position: relative; }
-.input-icon {
-    position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-    color: #94A3B8; font-size: 1.1rem; pointer-events: none;
-}
-.input-group input {
-    width: 100%;
-    padding: 16px 16px 16px 50px; /* Space for icon */
-    font-size: 1rem;
-    border: 2px solid #E2E8F0;
-    border-radius: 12px;
-    background: #F8FAFC;
-    color: var(--primary-dark);
-    font-weight: 500;
-    outline: none;
+.input-group {
+    position: relative;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: var(--white);
     transition: 0.3s;
-    font-family: var(--font-main);
 }
-.input-group input:focus {
+.input-group:focus-within {
     border-color: var(--primary-dark);
-    background: #fff;
-    box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.1);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
 }
 
-/* Submit Button */
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 45px; /* Space for icon */
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    outline: none;
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
 .hero-submit-btn {
     width: 100%;
-    padding: 16px;
+    padding: 15px;
     background: var(--primary-dark);
-    color: #fff;
+    color: var(--white);
     border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 600;
-    display: flex; justify-content: center; align-items: center; gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: var(--shadow-md);
 }
 .hero-submit-btn:hover {
     background: var(--accent);
     box-shadow: var(--shadow-glow);
-    transform: translateY(-2px);
 }
 
 /* =========================================
-   3. SECTIONS (Trust, Routes, CTA)
+   3. TRUST SECTION (Icons)
    ========================================= */
+.trust-section {
+    padding: 40px 0;
+    background: var(--white);
+    border-bottom: 1px solid #f1f5f9;
+}
 
-/* Trust Grid */
-.trust-section { padding: 40px 0; background: #fff; }
 .trust-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); /* 2x2 on Mobile */
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
+
 .trust-item {
-    display: flex; flex-direction: column; align-items: center; text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
     padding: 15px;
-    background: var(--bg-body); border-radius: 12px;
-    font-size: 0.9rem; font-weight: 600; color: var(--primary);
+    border-radius: 10px;
+    transition: 0.3s;
 }
-.trust-item i { font-size: 1.5rem; margin-bottom: 8px; }
-.text-yellow { color: #FBBF24; }
+.trust-item:hover { background: var(--bg-light); }
+
+.trust-item i { font-size: 1.5rem; }
+.trust-item span { font-weight: 600; color: var(--text-main); }
+
+/* Color utilities referenced in HTML */
+.text-yellow { color: #F59E0B; }
 .text-blue { color: #3B82F6; }
 .text-purple { color: #8B5CF6; }
 .text-green { color: #10B981; }
 
-/* Routes Section */
-.section { padding: 60px 0; }
-.section-header { text-align: center; margin-bottom: 40px; }
-.section-header h2 { font-size: 2rem; margin-bottom: 10px; }
+/* =========================================
+   4. ROUTES SECTION (Cards)
+   ========================================= */
+.section { padding: 80px 0; }
+
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: 2.2rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 10px; }
+.section-header p { color: var(--text-light); font-size: 1.1rem; }
 
 .routes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
-/* CTA Card */
-.cta-card {
-    background: linear-gradient(135deg, var(--primary-dark), #1e293b);
-    padding: 40px 20px;
-    border-radius: var(--radius-xl);
-    text-align: center;
-    color: #fff;
-    box-shadow: var(--shadow-xl);
+.center-btn { text-align: center; }
+
+/* Skeleton Loading Animation */
+.skeleton-card {
+    height: 150px;
+    background: #e2e8f0;
+    border-radius: 12px;
+    animation: pulse 1.5s infinite;
 }
-.cta-content h2 { color: #fff; margin-bottom: 15px; }
-.cta-content p { color: rgba(255,255,255,0.8); margin-bottom: 25px; }
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
 
 /* =========================================
-   4. DESKTOP RESPONSIVE (Large Screens)
+   5. CTA SECTION
    ========================================= */
-@media (min-width: 992px) {
-    .hero-section { height: 85vh; min-height: 600px; display: flex; align-items: center; }
-    .hero-content { grid-template-columns: 1.2fr 1fr; gap: 80px; }
-    .hero-headline { font-size: 4rem; }
-    .hero-subheadline { font-size: 1.2rem; max-width: 90%; }
-    
-    .blob-1 { width: 500px; height: 500px; right: -5%; }
-    .blob-2 { width: 400px; height: 400px; left: -5%; }
-    
-    .trust-grid { grid-template-columns: repeat(4, 1fr); }
-    .trust-item { flex-direction: row; text-align: left; gap: 15px; padding: 20px; }
-    .trust-item i { margin-bottom: 0; }
-    
-    .cta-card { padding: 60px; }
+.cta-section { padding-bottom: 80px; }
+
+.cta-card {
+    background: linear-gradient(135deg, var(--primary-dark), #334155);
+    border-radius: 20px;
+    padding: 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-content { position: relative; z-index: 2; }
+.cta-content h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.cta-content p { margin-bottom: 30px; opacity: 0.9; }
+
+/* =========================================
+   6. RESPONSIVE HERO
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-section { height: auto; padding: 100px 0 50px; }
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero-headline { font-size: 2.5rem; }
+    .trust-grid { grid-template-columns: 1fr 1fr; } /* 2x2 grid on mobile */
+    .cta-card { padding: 40px 20px; }
+    .cta-content h2 { font-size: 1.8rem; }
 }
