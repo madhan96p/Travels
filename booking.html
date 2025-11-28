@@ -6,36 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Premium Booking | Shrish Travels</title>
-    <meta name="description" content="Securely book your car rental with Shrish Travels." />
+    <title>Book Outstation Taxi & Local Cabs | Instant Quote - Shrish Travels</title>
+    <meta name="description" content="Secure your ride in 60 seconds. Book Innova, Sedan, or Tempo Traveller for outstation and local trips in Chennai. No hidden charges. Guaranteed callback." />
+    <meta name="keywords" content="book taxi chennai, online cab booking, outstation cab reservation, chennai taxi booking form, shrish travels booking" />
+    <link rel="canonical" href="https://travels.shrishgroup.com/booking.html" />
+
+    <meta property="og:title" content="Book Your Ride - Shrish Travels" />
+    <meta property="og:description" content="Premium fleet. Verified Drivers. Book now for a safe journey." />
+    <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/booking-og.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link rel="preload" href="assets/css/common.css" as="style">
-
+    <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/booking.css" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TravelAgency",
+          "name": "Shrish Travels",
+          "image": "https://travels.shrishgroup.com/assets/images/logo.png",
+          "telephone": "+918883451668",
+          "priceRange": "₹₹"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "Do I need to pay an advance for booking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, a small token advance (approx 20%) is required to confirm the vehicle assignment and driver roster."
+            }
+          }, {
+            "@type": "Question",
+            "name": "Is the booking cancellable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, cancellations made 24 hours prior to the trip are eligible for a full refund of the advance."
+            }
+          }]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
 
-    <!-- HEADER PLACEHOLDER -->
     <div id="header-placeholder"></div>
-
-    <!-- HERO PLACEHOLDER -->
-    <!-- <div id="hero-placeholder"></div> -->
-
 
     <main>
         <div class="booking-hero">
             <div class="container">
-                <h1 data-aos="fade-up">Finalize Your Journey</h1>
+                <h1 data-aos="fade-down">Secure Your Ride</h1>
                 <p data-aos="fade-up" data-aos-delay="100">
-                    Premium fleet. Professional Chauffeurs. Guaranteed Callback.
+                    Premium Service. Transparent Pricing. Zero Hassle.
                 </p>
             </div>
         </div>
@@ -46,35 +80,29 @@
                 <div class="form-wrapper" data-aos="fade-up">
                     <form id="full-booking-form">
 
-                        <!-- TRIP DETAILS CARD -->
                         <div class="form-card">
                             <div class="card-header">
                                 <i class="ri-map-pin-time-line"></i>
-                                <h3>Where are we going?</h3>
+                                <h3>1. Trip Details</h3>
                             </div>
 
                             <div class="journey-type-selector">
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="One Way" checked>
                                     <div class="card-content">
-                                        <i class="ri-arrow-right-line"></i>
-                                        <span>One Way</span>
+                                        <i class="ri-arrow-right-line"></i> <span>One Way</span>
                                     </div>
                                 </label>
-
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="Round Trip">
                                     <div class="card-content">
-                                        <i class="ri-loop-left-line"></i>
-                                        <span>Round Trip</span>
+                                        <i class="ri-loop-left-line"></i> <span>Round Trip</span>
                                     </div>
                                 </label>
-
                                 <label class="radio-card">
                                     <input type="radio" name="journeytype" value="Local Hire">
                                     <div class="card-content">
-                                        <i class="ri-time-line"></i>
-                                        <span>Hourly</span>
+                                        <i class="ri-time-line"></i> <span>Hourly</span>
                                     </div>
                                 </label>
                             </div>
@@ -84,178 +112,176 @@
                                     <label>Pickup Location</label>
                                     <div class="input-wrapper">
                                         <i class="ri-map-pin-user-fill"></i>
-                                        <input type="text" id="pickup" name="pickup"
-                                            placeholder="Airport, Hotel, or Address" required>
+                                        <input type="text" id="pickup" name="pickup" placeholder="Airport, Hotel, or Area" required>
                                     </div>
                                 </div>
-
                                 <div class="input-group">
                                     <label>Drop Destination</label>
                                     <div class="input-wrapper">
                                         <i class="ri-map-pin-2-fill"></i>
-                                        <input type="text" id="dropoff" name="dropoff"
-                                            placeholder="City or Specific Address" required>
+                                        <input type="text" id="dropoff" name="dropoff" placeholder="City or Address" required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="input-grid">
-                                <div class="input-grid">
-
-                                    <div class="input-group">
-                                        <label>Pickup Date</label>
-                                        <div class="input-wrapper">
-                                            <i class="ri-calendar-event-fill"></i>
-                                            <input type="date" id="date" name="date" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Pickup Time</label>
-                                        <div class="input-wrapper">
-                                            <i class="ri-time-fill"></i>
-                                            <input type="time" id="time" name="time" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="return-date-container" class="input-group hidden-slide">
-                                    <label>Return Date</label>
+                                <div class="input-group">
+                                    <label>Pickup Date</label>
                                     <div class="input-wrapper">
-                                        <i class="ri-calendar-check-fill"></i>
-                                        <input type="date" id="return_date" name="return_date">
+                                        <i class="ri-calendar-event-fill"></i>
+                                        <input type="date" id="date" name="date" required>
                                     </div>
                                 </div>
+                                <div class="input-group">
+                                    <label>Pickup Time</label>
+                                    <div class="input-wrapper">
+                                        <i class="ri-time-fill"></i>
+                                        <input type="time" id="time" name="time" required>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div id="return-date-container" class="input-group hidden-slide" style="display:none;">
+                                <label>Return Date</label>
+                                <div class="input-wrapper">
+                                    <i class="ri-calendar-check-fill"></i>
+                                    <input type="date" id="return_date" name="return_date">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-card">
+                            <div class="card-header">
+                                <i class="ri-car-fill"></i>
+                                <h3>2. Preferences</h3>
+                            </div>
+                            <div class="input-grid">
                                 <div class="input-group">
                                     <label>Passengers</label>
                                     <div class="input-wrapper">
                                         <i class="ri-group-fill"></i>
-                                        <input type="number" id="travelers" name="travelers" min="1" max="50"
-                                            placeholder="e.g. 4" required>
+                                        <input type="number" id="travelers" name="travelers" min="1" max="15" placeholder="Total Pax" required>
                                     </div>
                                 </div>
-
                                 <div class="input-group">
-                                    <label>Special Requests (Optional)</label>
+                                    <label>Preferred Vehicle (Optional)</label>
                                     <div class="input-wrapper">
-                                        <i class="ri-message-2-line"></i>
-                                        <input type="text" id="comments" name="comments"
-                                            placeholder="e.g. Roof carrier needed, Pet friendly...">
+                                        <i class="ri-steering-2-line"></i>
+                                        <select id="vehicle_pref" name="vehicle_pref">
+                                            <option value="Any">Any Suitable Vehicle</option>
+                                            <option value="Sedan">Sedan (Etios/Dzire)</option>
+                                            <option value="Innova">Innova / Crysta</option>
+                                            <option value="Tempo">Tempo Traveller</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- CONTACT DETAILS CARD -->
                         <div class="form-card">
                             <div class="card-header">
                                 <i class="ri-user-star-line"></i>
-                                <h3>Contact Details</h3>
+                                <h3>3. Your Details</h3>
                             </div>
-
                             <div class="input-group">
                                 <label>Full Name</label>
                                 <div class="input-wrapper">
                                     <i class="ri-user-3-fill"></i>
-                                    <input type="text" id="name" name="name" placeholder="Name as per ID" required>
+                                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
                                 </div>
                             </div>
-
                             <div class="input-grid">
                                 <div class="input-group">
-                                    <label>Phone Number</label>
+                                    <label>Mobile Number</label>
                                     <div class="input-wrapper">
                                         <i class="ri-smartphone-line"></i>
-                                        <input type="tel" id="phone" name="phone" placeholder="10-digit Mobile Number"
-                                            pattern="[0-9]{10}" required>
+                                        <input type="tel" id="phone" name="phone" placeholder="10-digit Number" pattern="[0-9]{10}" required>
                                     </div>
                                 </div>
-
                                 <div class="input-group">
                                     <label>Email (Optional)</label>
                                     <div class="input-wrapper">
                                         <i class="ri-mail-send-line"></i>
-                                        <input type="email" id="email" name="email"
-                                            placeholder="For booking confirmation">
+                                        <input type="email" id="email" name="email" placeholder="email@example.com">
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- CORPORATE SECTION -->
+                            
                             <div class="corporate-section">
                                 <div class="toggle-wrapper">
                                     <input type="checkbox" id="corporate-booking-checkbox">
                                     <label for="corporate-booking-checkbox" class="toggle-slider"></label>
-                                    <span class="toggle-text">This is a Corporate / B2B Booking</span>
+                                    <span class="toggle-text">Corporate / GST Billing Required?</span>
                                 </div>
-
-                                <div id="corporate-fields" class="hidden-fields">
+                                <div id="corporate-fields" class="hidden-fields" style="display:none; margin-top:15px;">
                                     <div class="input-group">
                                         <label>Company Name</label>
                                         <div class="input-wrapper">
                                             <i class="ri-building-4-fill"></i>
-                                            <input type="text" id="company_name" name="company_name"
-                                                placeholder="Organization Name">
+                                            <input type="text" id="company_name" name="company_name" placeholder="Company Name for Invoice">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- SUBMIT BUTTON -->
                         <button type="submit" class="premium-submit-btn">
-                            <span>Get Instant Quote</span>
-                            <i class="ri-arrow-right-line"></i>
+                            <span>Get My Quote via WhatsApp</span>
+                            <i class="fab fa-whatsapp"></i>
                         </button>
 
                         <p class="spam-notice">
-                            <i class="ri-lock-2-line"></i> Your details are secure. No spam.
+                            <i class="ri-lock-2-line"></i> Your data is processed securely via SSL.
                         </p>
-
                     </form>
                 </div>
 
-                <!-- SIDEBAR -->
                 <aside class="sidebar-wrapper" data-aos="fade-left" data-aos-delay="200">
-                    <div class="trust-card">
+                    <div class="trust-card" style="margin-bottom: 20px;">
                         <div class="trust-header">
-                            <img src="assets/images/sh1.webp" alt="Logo" class="mini-logo">
-                            <h4>Shrish Promise</h4>
+                            <h4>Why Shrish Travels?</h4>
                         </div>
-
                         <ul class="benefit-list">
                             <li>
-                                <span class="icon-box"><i class="ri-verified-badge-fill"></i></span>
+                                <span class="icon-box warning"><i class="ri-alert-line"></i></span>
                                 <div>
-                                    <strong>Verified Chauffeurs</strong>
-                                    <p>Background checked & trained.</p>
+                                    <strong>No Last-Minute Cancels</strong>
+                                    <p class="small-text">Other apps cancel on you. We don't.</p>
                                 </div>
                             </li>
-
                             <li>
-                                <span class="icon-box"><i class="ri-money-rupee-circle-fill"></i></span>
+                                <span class="icon-box success"><i class="ri-shield-check-line"></i></span>
                                 <div>
-                                    <strong>Transparent Pricing</strong>
-                                    <p>No hidden surges or fees.</p>
-                                </div>
-                            </li>
-
-                            <li>
-                                <span class="icon-box"><i class="ri-e-bike-2-fill"></i></span>
-                                <div>
-                                    <strong>Premium Fleet</strong>
-                                    <p>Sedans, SUVs & Tempo Travellers.</p>
+                                    <strong>Safe & Sanitized</strong>
+                                    <p class="small-text">Clean cars. Verified drivers.</p>
                                 </div>
                             </li>
                         </ul>
+                    </div>
 
+                    <div class="trust-card">
+                        <div class="trust-header">
+                            <h4>How it Works</h4>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot">1</div>
+                                <p>Fill this form to request a trip.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">2</div>
+                                <p>We send a quote via WhatsApp.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">3</div>
+                                <p>Pay small advance to confirm.</p>
+                            </div>
+                        </div>
                         <div class="divider"></div>
-
                         <div class="urgent-help">
-                            <p>Need it urgently?</p>
+                            <p>Urgent Booking?</p>
                             <a href="tel:+918883451668" class="call-btn">
-                                <i class="ri-phone-fill"></i> +91 888 345 1668
+                                <i class="ri-phone-fill"></i> Call +91 888 345 1668
                             </a>
                         </div>
                     </div>
@@ -263,18 +289,69 @@
 
             </div>
         </div>
+
+        <section class="section container">
+            <h2 class="text-center mb-4">Booking Questions</h2>
+            <div class="faq-grid booking-faq">
+                <div class="faq-item">
+                    <h4><i class="ri-question-line"></i> Is advance payment mandatory?</h4>
+                    <p>Yes, to secure your vehicle reservation, a token advance is required. The balance is paid to the driver.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="ri-file-list-3-line"></i> Do I get a bill?</h4>
+                    <p>Absolutely. We provide digital receipts and GST invoices for all corporate bookings.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- FOOTER PLACEHOLDER -->
     <div id="footer-placeholder"></div>
 
+    <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20booking%20enquiry" class="floating-cta" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
-
-    <link rel="preload" href="assets/js/common.js" as="script">
-
+    <script src="assets/js/common.js"></script>
     <script src="assets/js/booking.js"></script>
+    
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Logic to show/hide Return Date
+        const radioButtons = document.querySelectorAll('input[name="journeytype"]');
+        const returnDateContainer = document.getElementById('return-date-container');
+        
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'Round Trip') {
+                    returnDateContainer.style.display = 'block';
+                    returnDateContainer.classList.add('fade-in');
+                } else {
+                    returnDateContainer.style.display = 'none';
+                }
+            });
+        });
+
+        // Logic for Corporate Toggle
+        const corporateCheck = document.getElementById('corporate-booking-checkbox');
+        const corporateFields = document.getElementById('corporate-fields');
+        if(corporateCheck){
+            corporateCheck.addEventListener('change', function() {
+                corporateFields.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+
+        // Loader
+        async function loadComponent(id, url) {
+            try { const res = await fetch(url); if(res.ok) document.getElementById(id).innerHTML = await res.text(); } catch(e){}
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('header-placeholder', 'components/_header.html');
+            loadComponent('footer-placeholder', 'components/_footer.html');
+        });
+    </script>
 
 </body>
-
 </html>

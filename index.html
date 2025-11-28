@@ -9,30 +9,24 @@
     <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
     <meta name="theme-color" content="#0F172A" />
+    
     <title>Shrish Travels | Premium Car Rental in Chennai @ Local Prices</title>
-
-    <meta name="description"
-        content="Book premium outstation taxis in Chennai at local rates. Family-run business offering safe 24/7 service, verified drivers, and luxury AC cars. Managed by Shrish Group.">
-
-    <meta name="author" content="Shrish Group" />
-    <meta name="keywords"
-        content="Chennai taxi service, luxury car rental chennai, budget outstation cab, Innova Crysta rental, Chennai to Trichy taxi, wedding car rental chennai, corporate car rental, Shrish Group, travel agency Velachery">
-
+    <meta name="description" content="Book premium outstation taxis in Chennai at local rates. Innova, Sedan & Tempo Traveller. Safe 24/7 service, verified drivers, and transparent billing.">
+    <meta name="keywords" content="Chennai taxi service, luxury car rental chennai, Innova Crysta rental per km, Chennai to Pondicherry taxi, corporate car rental, Shrish Group">
     <link rel="canonical" href="https://travels.shrishgroup.com/" />
 
-    <meta property="og:site_name" content="Shrish Travels by Shrish Group" />
+    <meta property="og:site_name" content="Shrish Travels" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://travels.shrishgroup.com/" />
-    <meta property="og:title" content="Premium Rides. Local Prices. | Shrish Travels Chennai" />
-    <meta property="og:description"
-        content="Safe, sanitized, and reliable. Book outstation and local trips with Chennai's most trusted family-run travel partners." />
+    <meta property="og:title" content="Premium Rides. Local Prices. | Shrish Travels" />
+    <meta property="og:description" content="Safe, sanitized, and reliable. Book outstation and local trips with Chennai's most trusted family-run travel partners." />
     <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/social-preview.jpg" />
-    <meta property="og:locale" content="en_IN" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -43,30 +37,13 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
-          "@id": "https://shrishgroup.com/#organization",
-          "name": "Shrish Group",
-          "url": "https://shrishgroup.com",
-          "logo": "https://travels.shrishgroup.com/assets/images/favicon/favicon.svg",
-          "founder": {
-            "@type": "Person",
-            "name": "SaravanaPerumal Subramani",
-            "jobTitle": "CEO",
-            "sameAs": "https://www.instagram.com/saravanaperumal0994/"
-          }
-        },
-        {
           "@type": "TravelAgency",
           "@id": "https://travels.shrishgroup.com/#business",
           "name": "Shrish Travels",
-          "parentOrganization": {
-              "@id": "https://shrishgroup.com/#organization"
-          },
-          "description": "A premium yet affordable family-run travel agency in Chennai, part of the Shrish Group. Specializing in corporate transport, outstation packages, and wedding fleets.",
-          "url": "https://travels.shrishgroup.com/",
-          "telephone": "+918883451668",
-          "priceRange": "₹₹",
           "image": "https://travels.shrishgroup.com/assets/images/hero-car.jpg",
+          "description": "Premium family-run taxi service in Chennai offering local and outstation trips.",
+          "priceRange": "₹13/km - ₹24/km",
+          "telephone": "+918883451668",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "5, Gangai Nagar 1st Main Rd, Velachery",
@@ -75,112 +52,101 @@
             "postalCode": "600042",
             "addressCountry": "IN"
           },
-          "employee": [
-            {
-              "@type": "Person",
-              "name": "Jeganraj Srinivasan",
-              "jobTitle": "Manager & Head of Operations",
-              "description": "Ensures 24/7 fleet reliability and customer satisfaction.",
-              "sameAs": "https://www.instagram.com/jeganrak/"
+          "areaServed": ["Chennai", "Pondicherry", "Trichy", "Madurai", "Coimbatore"],
+          "paymentAccepted": ["Cash", "UPI", "Credit Card", "Bank Transfer"]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "Is Shrish Travels a corporate or family business?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shrish Travels is a family-run business under the Shrish Group, ensuring personal care with professional fleet standards."
             }
-          ],
-          "areaServed": [
-            { "@type": "City", "name": "Chennai" },
-            { "@type": "City", "name": "Coimbatore" },
-            { "@type": "City", "name": "Madurai" },
-            { "@type": "City", "name": "Pondicherry" },
-            { "@type": "State", "name": "Tamil Nadu" }
-          ]
+          }, {
+            "@type": "Question",
+            "name": "What is the starting price for a taxi in Chennai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our rates start at ₹13/km for Sedans and ₹18/km for SUVs for outstation trips."
+            }
+          }]
         }
       ]
     }
     </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Is Shrish Travels a corporate or family business?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Shrish Travels is a family-run business operating under the Shrish Group. We combine the personal care of a family business with the professional standards of a corporate fleet."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Do you offer luxury cars at affordable rates?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our 'Premium Rides, Local Prices' model ensures you get clean, high-end vehicles (like Innova Crysta, Etios) at competitive market rates starting from ₹13/km."
-        }
-      }]
-    }
-    </script>
+    
+    <style>
+        /* Floating WhatsApp Button for CRO */
+        .floating-cta { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+        .floating-cta:hover { transform: scale(1.1); }
+        /* Visible FAQ Styling */
+        .faq-section { background: #f8fafc; padding: 60px 0; }
+        .faq-item { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq-item h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 10px; }
+        .faq-item p { color: #64748b; font-size: 0.95rem; }
+    </style>
 </head>
-
-<head>
 
 <body>
 
-    <div id="seo-schema-placeholder"></div>
-
     <div id="header-placeholder"></div>
-
     <div id="hero-placeholder"></div>
 
     <main>
 
         <section class="trust-section">
             <div class="container trust-grid">
-                <div class="trust-item">
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-star text-yellow"></i>
-                    <span>5.0 Google Rated</span>
+                    <span><strong>5.0 Rated</strong><br><small>Trusted by Locals</small></span>
                 </div>
-                <div class="trust-item">
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-shield-alt text-blue"></i>
-                    <span>Verified Drivers</span>
+                    <span><strong>Safe Drivers</strong><br><small>Police Verified</small></span>
                 </div>
-                <div class="trust-item">
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-clock text-purple"></i>
-                    <span>24/7 Dispatch</span>
+                    <span><strong>On Time</strong><br><small>Or ride is free*</small></span>
                 </div>
-                <div class="trust-item">
+                <div class="trust-item" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-file-invoice text-green"></i>
-                    <span>GST Invoices</span>
+                    <span><strong>GST Bill</strong><br><small>For Corporate</small></span>
                 </div>
             </div>
         </section>
 
         <section class="section fleet-section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header" data-aos="fade-up">
                     <h2>Travel in Comfort</h2>
-                    <p>Clean, sanitized, and well-maintained vehicles for every group size.</p>
+                    <p>Clean, sanitized, and well-maintained vehicles for every family size.</p>
                 </div>
 
                 <div class="fleet-grid">
-                    <div class="fleet-card">
-                        <div class="fleet-tag">Most Popular</div>
+                    <div class="fleet-card" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="fleet-tag">Budget Friendly</div>
                         <div class="fleet-img-box">
                             <i class="fas fa-car-side fleet-icon"></i>
                         </div>
                         <div class="fleet-details">
                             <h3>Comfort Sedan</h3>
-                            <p class="fleet-model">Etios / Dzire / Aura</p>
+                            <p class="fleet-model">Etios / Dzire</p>
                             <ul class="fleet-features">
                                 <li><i class="fas fa-user"></i> 4 Pax</li>
                                 <li><i class="fas fa-suitcase"></i> 2 Bags</li>
                                 <li><i class="fas fa-wind"></i> AC</li>
                             </ul>
                             <div class="fleet-price">
-                                <span class="price-label">Starts at</span>
+                                <span class="price-label">Outstation</span>
                                 <span class="price-amount">₹13<small>/km</small></span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="fleet-card">
+                    <div class="fleet-card" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="fleet-tag">Most Popular</div>
                         <div class="fleet-img-box">
                             <i class="fas fa-shuttle-van fleet-icon"></i>
                         </div>
@@ -190,16 +156,16 @@
                             <ul class="fleet-features">
                                 <li><i class="fas fa-user"></i> 6-7 Pax</li>
                                 <li><i class="fas fa-suitcase"></i> 4 Bags</li>
-                                <li><i class="fas fa-wind"></i> AC</li>
+                                <li><i class="fas fa-wind"></i> Dual AC</li>
                             </ul>
                             <div class="fleet-price">
-                                <span class="price-label">Starts at</span>
+                                <span class="price-label">Outstation</span>
                                 <span class="price-amount">₹18<small>/km</small></span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="fleet-card highlight-card">
+                    <div class="fleet-card highlight-card" data-aos="zoom-in-up" data-aos-delay="300">
                         <div class="fleet-tag premium-tag">Premium</div>
                         <div class="fleet-img-box">
                             <i class="fas fa-gem fleet-icon"></i>
@@ -210,122 +176,109 @@
                             <ul class="fleet-features">
                                 <li><i class="fas fa-user"></i> 7 Pax</li>
                                 <li><i class="fas fa-star"></i> VIP Comfort</li>
-                                <li><i class="fas fa-wind"></i> Dual AC</li>
+                                <li><i class="fas fa-wind"></i> Captain Seats</li>
                             </ul>
                             <div class="fleet-price">
-                                <span class="price-label">Starts at</span>
+                                <span class="price-label">Outstation</span>
                                 <span class="price-amount">₹22<small>/km</small></span>
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="center-btn" style="margin-top: 30px;">
+                    <a href="tariff.html" class="btn btn-primary" data-aos="fade-up">View Full Tariff Card</a>
                 </div>
             </div>
         </section>
 
         <section class="section services-section bg-white">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header" data-aos="fade-up">
                     <h2>Our Services</h2>
-                    <p>More than just a taxi. Complete travel solutions for you.</p>
+                    <p>Complete travel solutions for individuals and corporations.</p>
                 </div>
                 
                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="icon-circle bg-blue-light">
-                            <i class="fas fa-plane-departure text-blue"></i>
-                        </div>
+                    <div class="service-card" data-aos="fade-left" data-aos-delay="100">
+                        <div class="icon-circle bg-blue-light"><i class="fas fa-plane-departure text-blue"></i></div>
                         <h3>Airport Transfers</h3>
-                        <p>Reliable pickups from MAA Chennai Airport. We track flight delays so you don't wait.</p>
+                        <p>Reliable pickups from MAA Chennai Airport. Flight tracking included.</p>
                     </div>
                     
-                    <div class="service-card">
-                        <div class="icon-circle bg-green-light">
-                            <i class="fas fa-route text-green"></i>
-                        </div>
-                        <h3>Outstation Drops</h3>
-                        <p>One-way and Round-trip packages to Pondicherry, Trichy, Bangalore, and all of TN.</p>
+                    <div class="service-card" data-aos="fade-left" data-aos-delay="200">
+                        <div class="icon-circle bg-green-light"><i class="fas fa-route text-green"></i></div>
+                        <h3>Outstation Packages</h3>
+                        <p>Trips to Pondicherry, Tirupati, Trichy, and Bangalore.</p>
                     </div>
 
-                    <div class="service-card">
-                        <div class="icon-circle bg-purple-light">
-                            <i class="fas fa-briefcase text-purple"></i>
-                        </div>
+                    <div class="service-card" data-aos="fade-left" data-aos-delay="300">
+                        <div class="icon-circle bg-purple-light"><i class="fas fa-briefcase text-purple"></i></div>
                         <h3>Corporate Monthly</h3>
-                        <p>Employee transportation and monthly cab rentals for companies with GST billing.</p>
+                        <p>Employee transport and monthly rentals with GST billing.</p>
                     </div>
 
-                    <div class="service-card">
-                        <div class="icon-circle bg-gold-light">
-                            <i class="fas fa-rings-wedding text-gold"></i>
-                        </div>
+                    <div class="service-card" data-aos="fade-left" data-aos-delay="400">
+                        <div class="icon-circle bg-gold-light"><i class="fas fa-rings-wedding text-gold"></i></div>
                         <h3>Wedding Fleet</h3>
-                        <p>Luxury cars for the bride & groom, and buses/vans for guest logistics.</p>
+                        <p>Luxury cars for the couple and buses for guest logistics.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section routes-section">
+        <section class="section faq-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>Popular Routes</h2>
-                    <p>Top destinations from Chennai at unbeatable prices.</p>
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Common Questions</h2>
+                    <p>Transparent answers for a worry-free trip.</p>
                 </div>
-
-                <div id="routes-container" class="routes-grid">
-                    <div class="skeleton-card"></div>
-                    <div class="skeleton-card"></div>
-                    <div class="skeleton-card"></div>
-                </div>
-
-                <div class="center-btn" style="margin-top: 30px;">
-                    <a href="/routes.html" class="btn btn-outline">View All Routes</a>
+                <div class="faq-grid" style="max-width: 800px; margin: 0 auto;">
+                    <div class="faq-item" data-aos="fade-up">
+                        <h3>Is Shrish Travels a corporate or family business?</h3>
+                        <p>We are a family-run business under the Shrish Group. We combine the personal care of a family business with the professional standards of a corporate fleet.</p>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <h3>What is the starting price for a taxi in Chennai?</h3>
+                        <p>Our rates start at ₹13/km for Sedans (Etios/Dzire) and ₹18/km for SUVs (Innova) for outstation trips. No hidden charges.</p>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Do you provide invoices for GST?</h3>
+                        <p>Yes, we provide 100% compliant GST invoices for all corporate and personal trips upon request.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="section why-us-section">
             <div class="container why-us-grid">
-                <div class="why-text">
+                <div class="why-text" data-aos="fade-right">
                     <h2>The Shrish Promise.</h2>
-                    <p class="lead-text">We aren't an algorithm. We are a family.</p>
-                    <p>Unlike aggregator apps that surge prices when you need them most, Shrish Travels offers consistent, fair pricing.</p>
+                    <p class="lead-text">Engineered for Precision. Delivered with Care.</p>
+                    <p>Unlike aggregator apps with surge pricing, Shrish Travels offers consistent, fair pricing 365 days a year.</p>
                     
                     <ul class="check-list">
-                        <li><i class="fas fa-check-circle"></i> <strong>No Hidden Charges:</strong> Tolls & Parking clearly explained.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Safety First:</strong> Live location tracking sharing available.</li>
-                        <li><i class="fas fa-check-circle"></i> <strong>Human Support:</strong> Speak to Jegan or our team directly, 24/7.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Transparent Billing:</strong> Tolls & Parking clearly explained.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Safety First:</strong> 24/7 Live location tracking.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Human Support:</strong> Direct access to operations, no bots.</li>
                     </ul>
-                    
-                    <a href="about.html" class="btn btn-white btn-sm">Read Our Story</a>
                 </div>
-                <div class="why-image">
+                <div class="why-image" data-aos="fade-left">
                     <div class="blob-image-placeholder">
-                        <i class="fas fa-user-shield"></i>
+                        <i class="fas fa-user-shield" style="font-size: 5rem; color: #0F172A;"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section testimonials-section bg-white">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Voices of Happy Travelers</h2>
-                    <p>Discover why hundreds of customers trust Shrish Travels.</p>
-                </div>
-                <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                <div class="elfsight-app-6b4baccb-caf5-4d45-a9f8-97df6c9e7fd3" data-elfsight-app-lazy></div>
-            </div>
-        </section>
-
         <section class="section cta-section">
             <div class="container">
-                <div class="cta-card">
+                <div class="cta-card" data-aos="zoom-in">
                     <div class="cta-content">
                         <h2>Ready for your next trip?</h2>
-                        <p>Get a quote in less than 2 minutes via WhatsApp.</p>
-                        <a href="https://wa.me/918883451668" target="_blank" class="btn btn-white">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        <p>Get a precise quote in less than 2 minutes.</p>
+                        <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20I%20need%20a%20quote" target="_blank" class="btn btn-white">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
                         </a>
                     </div>
                 </div>
@@ -335,13 +288,23 @@
     </main>
 
     <div id="footer-placeholder"></div>
+    
+    <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20enquiry%20from%20website" class="floating-cta" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="assets/js/api.js"></script>
-    <link rel="preload" href="assets/js/common.js" as="script">
-
     <script src="assets/js/index.js"></script>
-
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 800, // Animation duration in ms
+            once: true,    // Whether animation should happen only once
+            offset: 100    // Offset (in px) from the original trigger point
+        });
+
         // Load Components
         async function loadComponent(id, url) {
             try {
@@ -356,9 +319,7 @@
             loadComponent('header-placeholder', 'components/_header.html');
             loadComponent('hero-placeholder', 'components/_hero.html');
             loadComponent('footer-placeholder', 'components/_footer.html');
-            loadComponent('seo-schema-placeholder', 'components/_seo_schema.html');
         });
     </script>
 </body>
-
 </html>

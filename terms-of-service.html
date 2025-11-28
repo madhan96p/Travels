@@ -3,50 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service | Shrish Travels</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <title>Terms of Service & Refund Policy | Shrish Travels Chennai</title>
+    <meta name="description" content="Transparent booking terms, cancellation policies, and refund rules for Shrish Travels. Understand our garage-to-garage calculation and passenger guidelines.">
+    <meta name="keywords" content="taxi cancellation policy chennai, car rental terms, outstation cab rules, shrish travels refund policy, garage to garage calculation">
+    
+    <meta property="og:title" content="Terms of Service - Shrish Travels" />
+    <meta property="og:description" content="Transparent policies for a safe journey. Read our booking and cancellation terms." />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
-        .legal-content { max-width: 800px; margin: 100px auto; padding: 40px 20px; line-height: 1.8; color: #334155; }
-        .legal-content h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 20px; }
-        .legal-content h2 { font-size: 1.5rem; color: #0f172a; margin-top: 30px; margin-bottom: 15px; }
-        .alert-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 15px; margin: 20px 0; color: #9a3412; }
+        /* Terms Specific Styling */
+        .legal-header { background: #f8fafc; padding: 60px 0; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .legal-header h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 10px; }
+        .legal-header p { color: #64748b; font-size: 1.1rem; }
+
+        .legal-content { max-width: 900px; margin: 0 auto; padding: 50px 20px; line-height: 1.8; color: #334155; }
+        
+        /* Section Styling */
+        .term-section { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
+        .term-section:last-child { border-bottom: none; }
+        .term-section h2 { font-size: 1.5rem; color: #0f172a; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .term-section h2 i { color: #2563eb; font-size: 1.2rem; }
+        
+        /* Alert & Info Boxes (UX) */
+        .alert-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        
+        /* Table Styling */
+        .policy-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .policy-table th, .policy-table td { padding: 15px; text-align: left; border: 1px solid #e2e8f0; }
+        .policy-table th { background: #f8fafc; color: #0f172a; font-weight: 600; }
+        
+        /* Lists */
+        .styled-list { list-style: none; padding: 0; }
+        .styled-list li { padding-left: 25px; position: relative; margin-bottom: 10px; }
+        .styled-list li::before { content: "\f058"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; left: 0; color: #10b981; }
+        .styled-list.warning li::before { content: "\f071"; color: #ef4444; }
+
+        /* Floating WhatsApp */
+        .floating-cta { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How is the kilometer calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kilometers are calculated from our Garage (Velachery) back to our Garage. For outstation trips, a minimum of 250km per calendar day is charged."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is fuel and driver bata included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, fuel is included. Driver BATA is charged separately for outstation trips. Tolls and Parking are extra."
+        }
+      }]
+    }
+    </script>
 </head>
+
 <body>
     <div id="header-placeholder"></div>
 
-    <main class="legal-content">
-        <h1>Terms & Conditions</h1>
-        <p>By booking a vehicle with Shrish Travels, you agree to the following terms and conditions.</p>
+    <main>
+        <section class="legal-header">
+            <div class="container">
+                <h1 data-aos="fade-down">Terms & Conditions</h1>
+                <p data-aos="fade-up" data-aos-delay="100">Transparent rules for a seamless journey.</p>
+            </div>
+        </section>
 
-        <div class="alert-box">
-            <strong>Important Note:</strong> All bookings are subject to vehicle availability. We reserve the right to cancel or replace a vehicle in case of mechanical failure.
+        <div class="legal-content">
+            
+            <div class="info-box" data-aos="fade-up">
+                <h3><i class="fas fa-info-circle"></i> Quick Summary (TL;DR)</h3>
+                <p><strong>1. Pricing:</strong> Tolls, Parking & Permit charges are extra.</p>
+                <p><strong>2. Calculation:</strong> Mileage starts/ends at our Garage (Velachery).</p>
+                <p><strong>3. Forbidden:</strong> No smoking or alcohol consumption inside the vehicle.</p>
+                <p><strong>4. AC:</strong> AC will be switched off in hilly areas (Ghat sections) to prevent engine overheating.</p>
+            </div>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-file-signature"></i> 1. Booking & Payment</h2>
+                <p>To confirm a booking, an advance payment (20% of estimated fare) is required. The balance amount must be settled directly with the driver or via UPI at the end of the trip.</p>
+                <ul class="styled-list">
+                    <li>We accept Cash, GPay, PhonePe, and Bank Transfers.</li>
+                    <li>GST invoices must be requested prior to trip completion.</li>
+                </ul>
+            </section>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-rupee-sign"></i> 2. Inclusions & Exclusions</h2>
+                <p>Our quoted tariff covers Fuel, Car Rent, and Driver Service. However, the following are <strong>excluded</strong>:</p>
+                <ul class="styled-list warning">
+                    <li><strong>Toll Fees:</strong> All toll plaza charges (Fastag) are to be paid by the guest.</li>
+                    <li><strong>Parking:</strong> Airport, Railway station, or Temple parking fees.</li>
+                    <li><strong>Permit Charges:</strong> Required for entering other states (e.g., Andhra Pradesh, Kerala, Pondicherry).</li>
+                </ul>
+            </section>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-calculator"></i> 3. Distance & Time Calculation</h2>
+                <div class="alert-box">
+                    <strong>Garage to Garage Rule:</strong> Distance and Time are calculated from our Garage (Velachery) and back to our Garage, not from the pickup point.
+                </div>
+                <p><strong>Outstation Minimum:</strong> A minimum of 250 km per calendar day (00:00 to 23:59) will be charged for outstation trips.</p>
+                <p><em>Example: If you travel for 2 days, the minimum billable distance is 500 km, even if actual usage is lower.</em></p>
+            </section>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-ban"></i> 4. Cancellation & Refunds</h2>
+                <p>We understand plans change. Our refund structure is designed to be fair to both parties.</p>
+                <table class="policy-table">
+                    <thead>
+                        <tr>
+                            <th>Time of Cancellation</th>
+                            <th>Refund Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>24+ Hours before trip</td>
+                            <td>100% Refund of Advance</td>
+                        </tr>
+                        <tr>
+                            <td>12 - 24 Hours before</td>
+                            <td>50% Refund of Advance</td>
+                        </tr>
+                        <tr>
+                            <td>Less than 4 Hours</td>
+                            <td>No Refund (Driver Assigned)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-users-slash"></i> 5. Passenger Guidelines</h2>
+                <p>To ensure safety and vehicle hygiene, we strictly enforce the following:</p>
+                <ul class="styled-list warning">
+                    <li><strong>No Smoking/Alcohol:</strong> Consumption of alcohol or smoking inside the cab is strictly prohibited. The driver reserves the right to stop the trip if this rule is violated.</li>
+                    <li><strong>Luggage:</strong> Please inform us of excess luggage during booking. Roof carriers are subject to availability.</li>
+                    <li><strong>AC on Hills:</strong> For safety and engine health, AC will be turned off while climbing steep hills (Ghat sections).</li>
+                </ul>
+            </section>
+
+            <section class="term-section" data-aos="fade-up">
+                <h2><i class="fas fa-gavel"></i> 6. Liability & Disputes</h2>
+                <p>Shrish Travels is not responsible for any loss of valuables left in the vehicle. Passengers are advised to check their belongings before deboarding.</p>
+                <p>In case of vehicle breakdown, we will arrange an alternative vehicle as soon as possible, but we are not liable for missed flights or trains due to unavoidable mechanical issues or traffic delays.</p>
+            </section>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <p>Have specific questions?</p>
+                <a href="https://wa.me/918883451668" class="btn btn-primary">Contact Support</a>
+            </div>
+
         </div>
-
-        <h2>1. Pricing & Exclusions</h2>
-        <p>Our quoted prices typically include fuel and driver charges. However, the following are <strong>excluded</strong> and must be paid by the customer directly:</p>
-        <ul>
-            <li>Toll Fees (Intercity and Local).</li>
-            <li>Parking Charges (Airport, Railway Station, etc.).</li>
-            <li>Inter-State Permit Charges (if entering another state like Andhra/Kerala).</li>
-        </ul>
-
-        <h2>2. Kilometer Calculation</h2>
-        <p>For local packages, kilometers and hours are calculated from our garage (Shed) back to our garage (Shed).</p>
-        <p>For outstation trips, a minimum of 250 KMs per calendar day will be charged.</p>
-
-        <h2>3. Driver Policy</h2>
-        <p>Our drivers are instructed to drive within speed limits. Please do not force drivers to overspeed. Driver BATA covers their food and accommodation.</p>
-
-        <h2>4. Cancellation Policy</h2>
-        <p>Cancellations made 24 hours prior to the trip will receive a full refund (if advance was paid). Cancellations within 4 hours of the trip may attract a cancellation fee.</p>
     </main>
 
     <div id="footer-placeholder"></div>
-    <link rel="preload" href="assets/js/common.js" as="script">
+    
+    <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20I%20have%20a%20question%20about%20Terms" class="floating-cta" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/common.js"></script>
     <script>
+        AOS.init({ duration: 800, once: true });
+
         async function loadComponent(id, url) {
             try { const res = await fetch(url); if(res.ok) document.getElementById(id).innerHTML = await res.text(); } catch(e){}
         }
