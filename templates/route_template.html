@@ -1,89 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxi from {{ origin }} to {{ destination }} - Starting ₹{{ price_sedan }} | Shrish Travels</title>
-    <meta name="description" content="Book a safe taxi from {{ origin }} to {{ destination }}. Distance: {{ distance }}km. Time: {{ time }}. Lowest price guarantee. Call +91 8883451668.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Chennai to {destination} Taxi | One Way Cab from ₹{price_sedan} | Shrish Travels</title>
+    <meta name="description" content="Book a safe {origin} to {destination} taxi. Distance: {distance}km. Time: {duration}. Lowest price guarantee starting @ ₹{price_sedan}. No hidden charges." />
+    <meta name="keywords" content="chennai to {destination_slug} taxi, cab from {origin} to {destination}, outstation taxi chennai, one way drop {destination}" />
     
-    <!-- Tailwind & Icons -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style> body { font-family: 'Inter', sans-serif; } </style>
-</head>
-<body class="bg-gray-50 flex flex-col min-h-screen pt-16">
+    <meta property="og:title" content="Taxi from {origin} to {destination} - Premium Service" />
+    <meta property="og:description" content="Flat rate outstation cabs. Sedan, Innova & Tempo Traveller available. Book now for ₹{price_sedan}." />
+    <meta property="og:image" content="{image_url}" />
 
-    <!-- Inject Header -->
-    {% include 'components/_header.html' %}
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/booking.css" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
-    <!-- Route Hero -->
-    <header class="bg-blue-900 text-white py-12 px-4 text-center">
-        <div class="max-w-2xl mx-auto">
-            <p class="text-blue-200 font-bold uppercase tracking-widest text-sm mb-2">One Way Trip</p>
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">
-                {{ origin }} <span class="text-blue-400">to</span> {{ destination }}
-            </h1>
-            <p class="text-lg opacity-90 mb-8">
-                <i class="fas fa-road mr-2"></i> {{ distance }}km &nbsp;•&nbsp; 
-                <i class="fas fa-clock mr-2"></i> {{ time }}
-            </p>
-            
-            <div class="bg-white text-gray-900 rounded-xl p-6 shadow-xl max-w-sm mx-auto">
-                <p class="text-xs text-gray-500 uppercase font-bold tracking-wide">Estimated Fare (Sedan)</p>
-                <div class="text-4xl font-extrabold text-green-600 my-2">₹{{ price_sedan }}</div>
-                <a href="https://wa.me/918883451668?text=Hi, I want to book a taxi from {{ origin }} to {{ destination }}." 
-                   class="block w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition">
-                   Book Now
-                </a>
-            </div>
-        </div>
-    </header>
+    <style>
+        .route-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('{image_url}');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+        .price-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        .price-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+        .price-card:hover { transform: translateY(-5px); border-color: #10B981; }
+        .car-icon { font-size: 2.5rem; color: #10B981; margin-bottom: 15px; }
+        .price-val { font-size: 2rem; font-weight: 800; color: #0f172a; display: block; }
+        .price-lbl { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+        .book-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .book-btn:hover { background: #10B981; }
+        
+        .details-section { padding: 80px 0; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        @media(max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+    </style>
 
-    <!-- Details Section -->
-    <section class="max-w-4xl mx-auto py-12 px-4 w-full">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800">Vehicle Options</h2>
-        <div class="grid md:grid-cols-2 gap-4">
-            <!-- Sedan Card -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold text-lg">Sedan</h3>
-                    <p class="text-sm text-gray-500">Etios / Dzire (4 Pax)</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-2xl font-bold text-gray-900">₹{{ price_sedan }}</p>
-                </div>
-            </div>
-            <!-- SUV Card -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold text-lg">SUV</h3>
-                    <p class="text-sm text-gray-500">Innova / Crysta (6-7 Pax)</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-2xl font-bold text-gray-900">₹{{ price_innova }}</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Inject Footer -->
-    {% include 'components/_footer.html' %}
-
-    <!-- Inject Schema Dynamically -->
-    <script>
-        fetch('../assets/data/schema.json')
-            .then(res => res.json())
-            .then(data => {
-                // Modify Schema for this specific route
-                data['@graph'][0]['name'] = "Taxi from {{ origin }} to {{ destination }} | Shrish Travels";
-                data['@graph'][0]['description'] = "Book a taxi from {{ origin }} to {{ destination }} for just ₹{{ price_sedan }}.";
-                
-                const script = document.createElement('script');
-                script.type = 'application/ld+json';
-                script.text = JSON.stringify(data);
-                document.head.appendChild(script);
-            });
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Taxi from {origin} to {destination}",
+      "description": "Premium outstation cab service from {origin} to {destination}. Distance: {distance}km.",
+      "image": "{image_url}",
+      "brand": { "@type": "Brand", "name": "Shrish Travels" },
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "{price_sedan}",
+        "priceCurrency": "INR"
+      }
+    }
     </script>
+</head>
+
+<body>
+
+
+    <!--HEADER-->
+
+    <main>
+        <section class="route-hero">
+            <div class="container">
+                <span style="background: #10B981; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">ONE WAY TRIP</span>
+                <h1 style="font-size: 3rem; margin: 15px 0 10px;">{origin} <span style="color:#64748b;">to</span> {destination}</h1>
+                <p style="font-size: 1.2rem; color: #cbd5e1;">
+                    <i class="ri-road-map-line"></i> {distance} km &nbsp;&bull;&nbsp; 
+                    <i class="ri-time-line"></i> {duration}
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="price-card-grid">
+                <div class="price-card">
+                    <div class="car-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Sedan</h3>
+                    <span class="price-lbl">Etios / Dzire (4 Pax)</span>
+                    <span class="price-val">₹{price_sedan}</span>
+                    <a href="https://wa.me/918883451668?text=Hi Shrish Travels, I want to book a *Sedan* from {origin} to {destination}." target="_blank" class="book-btn">Book Sedan</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="car-icon"><i class="fas fa-shuttle-van"></i></div>
+                    <h3>Innova</h3>
+                    <span class="price-lbl">SUV (6-7 Pax)</span>
+                    <span class="price-val">₹{price_innova}</span>
+                    <a href="https://wa.me/918883451668?text=Hi Shrish Travels, I want to book an *Innova* from {origin} to {destination}." target="_blank" class="book-btn">Book Innova</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="car-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Crysta</h3>
+                    <span class="price-lbl">Premium (6-7 Pax)</span>
+                    <span class="price-val">₹{price_crysta}</span>
+                    <a href="https://wa.me/918883451668?text=Hi Shrish Travels, I want to book a *Crysta* from {origin} to {destination}." target="_blank" class="book-btn">Book Crysta</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="car-icon"><i class="fas fa-bus"></i></div>
+                    <h3>Tempo</h3>
+                    <span class="price-lbl">Traveller (12+ Pax)</span>
+                    <span class="price-val">₹{price_tempo}</span>
+                    <a href="https://wa.me/918883451668?text=Hi Shrish Travels, I want to book a *Tempo Traveller* from {origin} to {destination}." target="_blank" class="book-btn">Book Tempo</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="details-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div>
+                        <h2 style="margin-bottom: 20px;">About the Journey</h2>
+                        <p style="color: #475569; line-height: 1.6; margin-bottom: 20px;">
+                            {description}
+                        </p>
+                        <p style="color: #475569; line-height: 1.6;">
+                            Travel comfortably from {origin} to {destination} with Shrish Travels. 
+                            Our verified drivers ensure a safe journey along the highway. 
+                            The distance is approximately <strong>{distance} km</strong> and takes about <strong>{duration}</strong> depending on traffic.
+                        </p>
+                        
+                        <h3 style="margin-top: 30px; margin-bottom: 15px;">Why Choose Shrish?</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 10px;"><i class="ri-check-double-line" style="color: #10B981; margin-right: 10px;"></i> No Hidden Charges (Tolls Extra)</li>
+                            <li style="margin-bottom: 10px;"><i class="ri-check-double-line" style="color: #10B981; margin-right: 10px;"></i> Clean, Sanitized Cars</li>
+                            <li style="margin-bottom: 10px;"><i class="ri-check-double-line" style="color: #10B981; margin-right: 10px;"></i> 24/7 Customer Support</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 30px; border-radius: 15px; border: 1px solid #e2e8f0;">
+                        <h3 style="margin-bottom: 20px;">Need a Custom Quote?</h3>
+                        <form id="route-booking-form">
+                            <div class="input-group" style="margin-bottom: 15px;">
+                                <label style="display:block; margin-bottom:5px; font-weight:500;">Pickup Date</label>
+                                <div class="input-wrapper" style="display:flex; align-items:center; background:white; border:1px solid #cbd5e1; padding:10px; border-radius:8px;">
+                                    <i class="ri-calendar-line" style="margin-right:10px; color:#64748b;"></i>
+                                    <input type="date" required style="border:none; outline:none; width:100%;">
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin-bottom: 15px;">
+                                <label style="display:block; margin-bottom:5px; font-weight:500;">Mobile Number</label>
+                                <div class="input-wrapper" style="display:flex; align-items:center; background:white; border:1px solid #cbd5e1; padding:10px; border-radius:8px;">
+                                    <i class="ri-phone-line" style="margin-right:10px; color:#64748b;"></i>
+                                    <input type="tel" placeholder="10-digit number" required style="border:none; outline:none; width:100%;">
+                                </div>
+                            </div>
+                            <a href="../booking.html?from={origin}&to={destination}" class="book-btn" style="text-align:center;">
+                                Proceed to Book
+                            </a>
+                            <p style="font-size: 0.8rem; color: #94a3b8; text-align: center; margin-top: 10px;">
+                                <i class="ri-lock-line"></i> Secure Booking
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </main>
+
+    <!--FOOTER-->
+
 </body>
 </html>

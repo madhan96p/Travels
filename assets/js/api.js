@@ -1,33 +1,66 @@
-const API_CONFIG = {
-    // We are using 'travels-api', NOT 'submit-booking'
-    FUNCTION_URL: "/.netlify/functions/travels-api", 
-    WHATSAPP_NUM: "918883451668"
-};
+/**
+ * Shrish Travels API Service
+ * Centralizes all communication with Netlify Functions (Backend)
+ */
+
+const API_BASE_URL = '/.netlify/functions/travels-api';
 
 const ApiService = {
-    submitLead: async (formData) => {
+
+    // 1. Get All Routes (For routes.html)
+    async getRoutes() {
         try {
-            const plainData = Object.fromEntries(formData.entries());
-            
-            // Sends data to travels-api.js
-            const response = await fetch(`${API_CONFIG.FUNCTION_URL}?action=submitBooking`, {
+            const response = await fetch(`${API_BASE_URL}?action=getRoutes`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching routes:", error);
+            return []; // Return empty array on error to prevent crash
+        }
+    },
+
+    // 2. Get Tariff Data (For tariff.html)
+    async getTariff() {
+        try {
+            const response = await fetch(`${API_BASE_URL}?action=getTariff`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching tariffs:", error);
+            return { local: [], outstation: [] };
+        }
+    },
+
+    // 3. Submit Quick Lead (For Home Page / WhatsApp Click)
+    async submitLead(data) {
+        try {
+            const response = await fetch(`${API_BASE_URL}?action=submitLead`, {
                 method: 'POST',
-                body: JSON.stringify(plainData)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             });
             return await response.json();
         } catch (error) {
-            console.error("API Error:", error);
+            console.error("Error submitting lead:", error);
             return { success: false };
         }
     },
-    
-    getRoutes: async () => {
-        // Fetches from local JSON file
+
+    // 4. Submit Full Booking (For Booking Page)
+    async submitBooking(data) {
         try {
-            const response = await fetch('assets/data/routes.json');
+            const response = await fetch(`${API_BASE_URL}?action=submitBooking`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
             return await response.json();
-        } catch (e) { return []; }
+        } catch (error) {
+            console.error("Error submitting booking:", error);
+            throw error; // Let the booking page handle the error alert
+        }
     }
 };
 
+// Make it available globally (so index.js and other files can use it)
 window.ApiService = ApiService;

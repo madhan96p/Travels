@@ -1,7 +1,3 @@
-Here is your full directory list converted into a **clean, readable table** — grouped and organized so you can easily understand your project structure.
-
----
-
 # 📁 **Shrish Travels Project Structure (Readable Table Format)**
 
 ---
@@ -21,7 +17,7 @@ Here is your full directory list converted into a **clean, readable table** — 
 | terms-of-service.html   | —      |                     |
 | services.html           | —      |                     |
 | routes.html             | —      |                     |
-| tariff.html             | —      |                     |
+| tariff.html             | ✔ Done |                     |
 | template.html           | —      |                     |
 | test_sheet.py           | —      |                     |
 | build.py                | —      |                     |
@@ -59,7 +55,7 @@ Here is your full directory list converted into a **clean, readable table** — 
 | routes-list.css   | —            |
 | routes-single.css | —            |
 | services.css      | —            |
-| tariff.css        | —            |
+| tariff.css        | ✔ Done       |
 | util.css          | —            |
 
 ---
@@ -76,7 +72,7 @@ Here is your full directory list converted into a **clean, readable table** — 
 | index.js         | ✔ Done       |
 | routes-single.js | —            |
 | routes.js        | —            |
-| tariff.js        | —            |
+| tariff.js        | ✔ Done       |
 
 ---
 
@@ -142,17 +138,99 @@ Here is your full directory list converted into a **clean, readable table** — 
 | template.html | —      |
 
 ---
+Understood — you want the **entire Excel structure in one compact, space-saving document**, without large tables, without heavy spacing, and easy to copy/paste.
 
-# ✅ If you want:
+So here is the **FULL DOCUMENT**, compressed and clean, showing **Sheet Name → Columns** in the most compact readable form.
 
-I can also generate:
+---
 
-### ✔ A collapsible tree view
+# 📘 **Shrish Admin – Data (FULL COMPACT DOCUMENT)**
 
-### ✔ A visual folder diagram
+### *(Every Sheet + All Columns in minimum space)*
 
-### ✔ A markdown file (README-friendly)
+---
 
-### ✔ A spreadsheet format for documentation
+### **Sheet: duty_slips**
 
-Just tell me!
+DS_No, Date, Organisation, Guest_Name, Guest_Mobile, Booked_By, Reporting_Time, Reporting_Address, Spl_Instruction, Vehicle_Type, Vehicle_No, Driver_Name, Driver_Mobile, Assignment, Routing, Date_Out, Date_In, Total_Days, Time_Out, Time_In, Km_Out, Km_In, Driver_Time_Out, Driver_Time_In, Driver_Km_Out, Driver_Km_In, Driver_Total_Hrs, Driver_Total_Kms, Status, Booking_ID, Timestamp, Auth_Signature_Link, Guest_Signature_Link
+
+---
+
+### **Sheet: g_reviews**
+
+review_id, ds_no, reviewer_name, rating, comment, guest_mobile, follow_up_sent, follow_up_client_sent
+
+---
+
+### **Sheet: invoices**
+
+Invoice_ID, Booking_ID, Invoice_Date, UPI_ID, Guest_Name, Guest_Mobile, Vehicle_Type, Vehicle_No, Trip_Start_Date, Trip_End_Date, Total_KMs, Calculated_Extra_KMs, Total_Hours, Billing_Slabs, Included_KMs_per_Slab, Base_Rate, Extra_KM_Rate, Batta_Rate, Total_Tolls, Total_Permits, Package_Cost, Extra_KM_Cost, Batta_Cost, Total_Expenses, Grand_Total, Status, Shareable_Link, Public_ID, Last_Updated, Invoice_Note
+
+---
+
+### **Sheet: salary_slips**
+
+DateGenerated, ShareCode, PayPeriod, EmployeeName, EmployeeID, Designation, MonthlySalary, LOPDays, PayableDays, OutstationQty, OutstationTotal, ExtraDutyQty, ExtraDutyTotal, TotalEarnings, AdvanceDeduction, LOPDeduction, TotalDeductions, NetPayableAmount, AuthSignature, EmployeeSignature, Status, ENotes, ApprovalNotes
+
+---
+
+### **Sheet: Employees**
+
+EmployeeID, EmployeeName, Designation, MobileNumber, Email, MonthlySalary, SignatureURL, JoinedDate, Status
+
+---
+
+### **Sheet: Financials**
+
+Entry_ID, Date, Flow, Account, Category, Sub_Category, Amount, Payment_Method, Particulars, Timestamp
+
+---
+
+### **Sheet: bookings**
+
+Booking_ID, Timestamp, Customer_Name, Mobile_Number, Email, Journey_Type, Pickup_City, Drop_City, Travel_Date, Pickup_Time, Return_Date, Travelers, Company_Name, Is_Corporate, Comments, Status, Driver_Assigned
+
+---
+
+### **Sheet: reviews**
+
+Customer_Name, Rating, Review_Text, Show_On_Site
+
+---
+
+### **Sheet: travels_careers**
+
+Timestamp, Status, Full_Name, Phone_Number, Email_Address, City_Area, Experience
+
+---
+
+### **Sheet: routes**
+
+Origin, Destination, Distance_Km, Time_Hours, Price_Sedan, Price_Innova, Popular_Route
+
+---
+
+### **Sheet: tariff_local**
+
+ID, Name, Base_Fare, Base_Km, Base_Hr, Extra_Km_Rate, Extra_Hr_Rate, Image_Class
+
+---
+
+### **Sheet: tariff_outstation**
+
+ID, Name, Min_Km_Per_Day, Rate_Per_Km, Driver_Bata, Image_Class
+
+---
+
+# 🟦 Sheets Connected to **admin.shrishgroup.com**
+
+```
+duty_slips
+g_reviews
+invoices
+salary_slips
+Employees
+Financials
+```
+
+---

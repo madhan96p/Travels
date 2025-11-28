@@ -163,6 +163,32 @@ exports.handler = async function (event, context) {
             };
         }
 
+        else if (action === 'getRoutes') {
+            // 1. Connect to the 'routes' sheet
+            let sheet = doc.sheetsByTitle['routes'];
+            if (!sheet) {
+                // Safety check: if tab is missing, return empty array
+                responseData = []; 
+            } else {
+                const rows = await sheet.getRows();
+                
+                // 2. Helper to clean data (Safe Version)
+                const cleanRow = (row) => {
+                    if (typeof row.toObject === 'function') return row.toObject();
+                    const obj = {};
+                    for (const key in row) {
+                        if (!key.startsWith('_') && typeof row[key] !== 'function') {
+                            obj[key] = row[key];
+                        }
+                    }
+                    return obj;
+                };
+
+                // 3. Return the data
+                responseData = rows.map(cleanRow);
+            }
+        }
+
         else {
             responseData = { error: "Invalid Action" };
         }
