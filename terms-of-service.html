@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Shrish Travels</title>
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .legal-content { max-width: 800px; margin: 100px auto; padding: 40px 20px; line-height: 1.8; color: #334155; }
+        .legal-content h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 20px; }
+        .legal-content h2 { font-size: 1.5rem; color: #0f172a; margin-top: 30px; margin-bottom: 15px; }
+        .alert-box { background: #fff7ed; border-left: 4px solid #f97316; padding: 15px; margin: 20px 0; color: #9a3412; }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="legal-content">
+        <h1>Terms & Conditions</h1>
+        <p>By booking a vehicle with Shrish Travels, you agree to the following terms and conditions.</p>
+
+        <div class="alert-box">
+            <strong>Important Note:</strong> All bookings are subject to vehicle availability. We reserve the right to cancel or replace a vehicle in case of mechanical failure.
+        </div>
+
+        <h2>1. Pricing & Exclusions</h2>
+        <p>Our quoted prices typically include fuel and driver charges. However, the following are <strong>excluded</strong> and must be paid by the customer directly:</p>
+        <ul>
+            <li>Toll Fees (Intercity and Local).</li>
+            <li>Parking Charges (Airport, Railway Station, etc.).</li>
+            <li>Inter-State Permit Charges (if entering another state like Andhra/Kerala).</li>
+        </ul>
+
+        <h2>2. Kilometer Calculation</h2>
+        <p>For local packages, kilometers and hours are calculated from our garage (Shed) back to our garage (Shed).</p>
+        <p>For outstation trips, a minimum of 250 KMs per calendar day will be charged.</p>
+
+        <h2>3. Driver Policy</h2>
+        <p>Our drivers are instructed to drive within speed limits. Please do not force drivers to overspeed. Driver BATA covers their food and accommodation.</p>
+
+        <h2>4. Cancellation Policy</h2>
+        <p>Cancellations made 24 hours prior to the trip will receive a full refund (if advance was paid). Cancellations within 4 hours of the trip may attract a cancellation fee.</p>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/common.js"></script>
+    <script>
+        async function loadComponent(id, url) {
+            try { const res = await fetch(url); if(res.ok) document.getElementById(id).innerHTML = await res.text(); } catch(e){}
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            loadComponent('header-placeholder', 'components/_header.html');
+            loadComponent('footer-placeholder', 'components/_footer.html');
+        });
+    </script>
+</body>
+</html>
