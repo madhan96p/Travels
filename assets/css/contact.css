@@ -1,0 +1,194 @@
+/* --- CONTACT PAGE STYLES --- */
+
+/* 1. Hero Section */
+.contact-hero {
+    background: #0f172a;
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.contact-hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-hero p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+/* 2. Contact Cards Grid */
+.section { padding: 80px 0; }
+.bg-light { background-color: #f8fafc; }
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: -100px; /* Overlap Hero */
+    position: relative;
+    z-index: 10;
+}
+
+.contact-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: #10B981;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: #ecfdf5;
+    color: #10B981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 20px;
+}
+
+.contact-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #0f172a;
+}
+
+.contact-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0f172a;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+.contact-link.sm { font-size: 1rem; color: #475569; }
+
+.vcf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0f172a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.vcf-btn:hover { background: #1e293b; }
+
+.vcf-btn.outline {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+}
+.vcf-btn.outline:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.address-text {
+    display: block;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* 3. Map & Form Split */
+.map-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0; /* Seamless join */
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.map-wrapper {
+    min-height: 500px;
+    background: #e2e8f0;
+}
+
+.form-wrapper {
+    padding: 50px;
+}
+
+.form-header h3 { font-size: 1.8rem; margin-bottom: 10px; color: #0f172a; }
+.form-header p { color: #64748b; margin-bottom: 30px; }
+
+/* Form Elements */
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: #10B981;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #10B981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover { background: #059669; }
+.submit-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+.status-msg { text-align: center; margin-top: 15px; font-weight: 500; font-size: 0.9rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-grid { margin-top: 0; }
+    .map-form-grid { grid-template-columns: 1fr; }
+    .map-wrapper { min-height: 300px; order: 2; }
+    .form-wrapper { padding: 30px; order: 1; }
+}
