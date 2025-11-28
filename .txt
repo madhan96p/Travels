@@ -71,7 +71,7 @@
 | contact.js       | —            |
 | index.js         | ✔ Done       |
 | routes-single.js | —            |
-| routes.js        | —            |
+| routes.js        | ✔ Done      |
 | tariff.js        | ✔ Done       |
 
 ---
@@ -80,7 +80,7 @@
 
 | File        | Status |
 | ----------- | ------ |
-| routes.json | —      |
+| routes.json | ✔ Done |
 | schema.json | —      |
 
 ---
@@ -117,8 +117,8 @@
 
 | File                       | Status |
 | -------------------------- | ------ |
-| chennai-to-thiruvarur.html | —      |
-| trichy-to-chennai.html     | —      |
+| routes/chennai-to-bangalore.html routes/chennai-to-coimbatore.html routes/chennai-to-kanchipuram.html routes/chennai-to-kanyakumari.html routes/chennai-to-kodaikanal.html routes/chennai-to-madurai.html routes/chennai-to-mahabalipuram.html routes/chennai-to-mysore.html routes/chennai-to-ooty.html routes/chennai-to-pondicherry.html routes/chennai-to-rameswaram.html routes/chennai-to-salem.html routes/chennai-to-thiruvannamalai.html routes/chennai-to-thiruvarur.html routes/chennai-to-tirupati.html routes/chennai-to-trichy.html routes/chennai-to-velankanni.html routes/chennai-to-vellore.html routes/trichy-to-chennai.html | ✔ Done |
+| trichy-to-chennai.html     | ✔ Done |
 
 ---
 
@@ -126,7 +126,7 @@
 
 | File                | Status |
 | ------------------- | ------ |
-| route_template.html | —      |
+| route_template.html | ✔ Done |
 
 ---
 
@@ -134,15 +134,9 @@
 
 | File          | Status |
 | ------------- | ------ |
-| routes.html   | —      |
-| template.html | —      |
+| routes.html   | ✔ Done|
+| template.html | ✔ Done|
 
----
-Understood — you want the **entire Excel structure in one compact, space-saving document**, without large tables, without heavy spacing, and easy to copy/paste.
-
-So here is the **FULL DOCUMENT**, compressed and clean, showing **Sheet Name → Columns** in the most compact readable form.
-
----
 
 # 📘 **Shrish Admin – Data (FULL COMPACT DOCUMENT)**
 
@@ -206,7 +200,7 @@ Timestamp, Status, Full_Name, Phone_Number, Email_Address, City_Area, Experience
 
 ### **Sheet: routes**
 
-Origin, Destination, Distance_Km, Time_Hours, Price_Sedan, Price_Innova, Popular_Route
+Route_Slug,	Origin,	Destination, Distance_Km,	Time_Hours,	Price_Sedan,	Price_Innova,	Price_Crysta,	Price_Tempo,	Description,	Image_URL,	Popular_Route					
 
 ---
 
