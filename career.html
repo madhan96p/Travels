@@ -140,6 +140,7 @@
         }
 
         // Form Submission Logic
+        // Form Submission Logic
         document.getElementById('careerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
@@ -148,25 +149,23 @@
             const originalText = btn.innerText;
 
             btn.disabled = true;
-            btn.innerText = "Submitting...";
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             status.innerText = "";
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Use Centralized API
-                const url = window.ApiService 
-                    ? 'https://admin.shrishgroup.com/.netlify/functions/api?action=submitCareer' 
-                    : '/.netlify/functions/travels-api?action=submitCareer'; // Fallback
+                // USE THE NEW API SERVICE
+                if (window.ApiService) {
+                    await ApiService.submitCareer(data);
+                } else {
+                    throw new Error("API Service not loaded");
+                }
 
-                await fetch(url, {
-                    method: 'POST',
-                    body: JSON.stringify(data)
-                });
-
+                // Success
                 btn.style.background = "#10B981";
-                btn.innerText = "Application Sent!";
+                btn.innerHTML = '<i class="fas fa-check"></i> Application Sent!';
                 status.style.color = "green";
                 status.innerText = "Success! We will contact you shortly.";
                 form.reset();
@@ -174,9 +173,9 @@
             } catch (err) {
                 console.error(err);
                 btn.style.background = "#ef4444";
-                btn.innerText = "Error";
+                btn.innerText = "Submission Failed";
                 status.style.color = "red";
-                status.innerText = "Submission failed. Please call us.";
+                status.innerText = "Could not connect to server. Please check your internet or try again later.";
             } finally {
                 setTimeout(() => {
                     btn.disabled = false;

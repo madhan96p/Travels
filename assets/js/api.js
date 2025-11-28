@@ -59,7 +59,23 @@ const ApiService = {
             console.error("Error submitting booking:", error);
             throw error; // Let the booking page handle the error alert
         }
+    },
+
+    async submitCareer(data) {
+        try {
+            const response = await fetch(`${API_BASE_URL}?action=submitCareer`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) throw new Error(`API Error: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error("Career Submission Error:", error);
+            throw error; // Let the form handle the error message
+        }
     }
+
 };
 
 // Make it available globally (so index.js and other files can use it)
