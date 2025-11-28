@@ -1,149 +1,241 @@
-.page-header {
-    background: #0f172a;
-    color: white;
-    padding: 120px 0 60px;
-    text-align: center;
+/* --- 1. CORE VARIABLES & TYPOGRAPHY --- */
+:root {
+    --primary: #007bff; /* Trust Blue */
+    --primary-dark: #0056b3;
+    --secondary: #25D366; /* WhatsApp Green */
+    --text-dark: #1a202c;
+    --text-gray: #718096;
+    --bg-light: #f7fafc;
+    --white: #ffffff;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tariff-section { padding: 50px 20px; }
+/* --- 2. LAYOUT & ANIMATIONS --- */
+.section {
+    padding: 60px 0;
+    background-color: var(--bg-light);
+}
 
-/* Tabs */
+/* Fade In Up Animation for Cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 3. TAB NAVIGATION (Pill Design) --- */
 .tariff-tabs {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
 }
 
-.tab-btn {
+.tab-button {
+    background: var(--white);
+    border: 1px solid #e2e8f0;
     padding: 12px 30px;
-    border: 2px solid #e2e8f0;
-    background: white;
     border-radius: 50px;
     font-weight: 600;
+    color: var(--text-gray);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     gap: 8px;
+    box-shadow: var(--shadow-sm);
+    font-size: 1rem;
 }
 
-.tab-btn.active {
-    background: #10B981; /* Green */
-    color: white;
-    border-color: #10B981;
+.tab-button i {
+    font-size: 1.1rem;
 }
 
-/* Grid */
+.tab-button:hover {
+    transform: translateY(-2px);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.tab-button.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* Tab Content Transitions */
+.tab-content {
+    display: none;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- 4. TARIFF GRID (Responsive) --- */
 .tariff-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    padding: 10px;
 }
 
-/* Card */
-.tariff-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 15px;
-    padding: 25px;
+/* --- 5. PACKAGE CARDS (The "Fear-Free" Design) --- */
+.package-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 30px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    position: relative;
+    overflow: hidden;
 }
 
-.tariff-card:hover { transform: translateY(-5px); border-color: #10B981; }
+/* Hover Lift Effect */
+.package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 123, 255, 0.1);
+}
 
+/* Decorative Gradient Top Line */
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #00d2ff);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.package-card:hover::before {
+    opacity: 1;
+}
+
+/* Icons */
 .card-icon {
-    font-size: 2.5rem;
-    color: #0f172a;
+    width: 70px;
+    height: 70px;
+    background: #eef6ff;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+    transition: var(--transition);
+}
+
+.package-card:hover .card-icon {
+    background: var(--primary);
+    color: var(--white);
+    transform: rotateY(180deg);
+}
+
+/* Typography */
+.package-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
     margin-bottom: 15px;
-}
-
-.card-price {
-    font-size: 2rem;
     font-weight: 700;
-    color: #10B981;
-    margin: 10px 0;
 }
 
-.card-unit { font-size: 0.9rem; color: #64748b; font-weight: 400; }
+/* Price Styling - Friendly & Clear */
+.card-price {
+    margin-bottom: 20px;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
 
+.card-price .price {
+    font-size: 2rem;
+    color: var(--text-dark);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Features List */
 .card-features {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin-bottom: 25px;
     text-align: left;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 15px;
 }
 
 .card-features li {
-    margin-bottom: 10px;
-    color: #475569;
+    padding: 8px 0;
+    color: var(--text-gray);
     font-size: 0.9rem;
     display: flex;
-    justify-content: space-between;
-}
-
-.btn-calc {
-    width: 100%;
-    padding: 12px;
-    background: #0f172a;
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.hidden { display: none; }
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
-.modal.active { display: flex; }
-
-.modal-content {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 90vh;
-    overflow-y: auto;
+.card-features li i {
+    color: var(--primary);
 }
 
-.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.close-modal { font-size: 1.5rem; background: none; border: none; cursor: pointer; }
+.card-features li:not(:last-child) {
+    border-bottom: 1px solid #edf2f7;
+}
 
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
-.form-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; }
-
-.result-box {
-    background: #f1f5f9;
-    padding: 15px;
+/* Estimate Button */
+.btn-estimate {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
     border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
 }
-.result-price { font-size: 1.8rem; font-weight: 700; color: #10B981; }
 
-/* Add to assets/css/tariff.css */
+.btn-estimate:hover {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* --- 6. MODAL & ESTIMATOR (UX Focused) --- */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker for focus */
+    backdrop-filter: blur(5px); /* Modern blur effect */
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -154,305 +246,150 @@
 }
 
 .modal-container {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
+    background: var(--white);
     width: 90%;
     max-width: 450px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.result-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.result-box h2 {
-    color: #16a34a; /* Green */
-    font-size: 2rem;
-    margin: 5px 0 0 0;
-}
-
-/* --- TARIFF PAGE STYLES --- */
-
-/* 1. Page Header (Dark Background) */
-.page-header {
-    background: #0f172a; /* Dark Navy */
-    color: white;
-    padding: 80px 0 60px;
-    text-align: center;
-}
-
-.page-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.page-header p {
-    color: #94a3b8;
-    font-size: 1.1rem;
-}
-
-/* 2. Layout & Spacing */
-.section {
-    padding: 60px 0;
-}
-
-.light-bg {
-    background-color: #f8fafc; /* Very light gray */
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 3. Tabs Navigation (The Toggle) */
-.tariff-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 50px;
-}
-
-.tab-button {
-    background: white;
-    border: 1px solid #e2e8f0;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.tab-button:hover {
-    border-color: #10B981;
-    color: #10B981;
-}
-
-.tab-button.active {
-    background: #10B981; /* Green Brand Color */
-    color: white;
-    border-color: #10B981;
-    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-}
-
-/* 4. The Grid System (Fixes the alignment) */
-.tariff-grid {
-    display: grid;
-    /* This automatically creates columns: 1 on mobile, 2 on tablet, 3 on desktop */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px;
-    justify-content: center;
-}
-
-/* 5. Package Cards (The "Premium" Look) */
-.package-card {
-    background: white;
-    border: 1px solid #f1f5f9;
     border-radius: 16px;
-    padding: 30px 25px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
+    padding: 0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     overflow: hidden;
 }
 
-/* Hover Effect: Lift up */
-.package-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #10B981;
+.modal-overlay.hidden .modal-container {
+    transform: scale(0.9);
 }
 
-/* Card Icon */
-.card-icon {
-    width: 60px;
-    height: 60px;
-    background: #ecfdf5; /* Light Green Bg */
-    color: #10B981;      /* Dark Green Icon */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 1.5rem;
-}
-
-.package-card h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 10px;
-}
-
-/* Price Styling */
-.card-price {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.card-price .price {
-    display: block;
-    font-size: 2rem;
-    font-weight: 800;
-    color: #0f172a; /* Dark text */
-    line-height: 1;
-    margin-bottom: 5px;
-}
-
-/* Features List */
-.card-features {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.card-features li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    color: #475569;
-    font-size: 0.95rem;
-}
-
-.card-features li i {
-    color: #10B981;
-    margin-right: 8px;
-}
-
-/* 6. Buttons (Fixes the ugly gray buttons) */
-.btn-estimate {
-    width: 100%;
-    background: #0f172a; /* Navy Blue */
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.btn-estimate:hover {
-    background: #1e293b; /* Lighter Navy */
-}
-
-/* 7. Tab Visibility Logic */
-.tab-content {
-    display: none; /* Hide all tabs by default */
-    animation: fadeIn 0.5s ease;
-}
-
-.tab-content.active {
-    display: block; /* Show active tab */
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 8. Modal Styling (Popup) */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-
-.modal-overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal-container {
-    background: white;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    position: relative;
-}
-
+/* Modal Header */
 .modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #edf2f7;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #f1f5f9;
-    padding-bottom: 15px;
+    background: #fcfcfc;
 }
 
-.modal-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0; }
+.modal-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
 
 .modal-close {
     background: none;
     border: none;
     font-size: 1.5rem;
+    color: var(--text-gray);
     cursor: pointer;
-    color: #94a3b8;
+    transition: color 0.2s;
+    padding: 0;
+    line-height: 1;
 }
 
-.modal-close:hover { color: #ef4444; }
+.modal-close:hover {
+    color: #e53e3e;
+}
 
-/* Modal Form Elements */
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px; color: #475569; }
+/* Modal Body & Inputs */
+.modal-body {
+    padding: 25px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+
 .form-input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-family: inherit;
+    padding: 12px 15px;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: #f8fafc;
+    transition: var(--transition);
 }
 
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Result Box */
 .result-box {
-    background: #f0fdf4; /* Light Green Bg */
-    border: 1px solid #bbf7d0;
-    border-radius: 8px;
-    padding: 15px;
+    background: #f0fff4 !important; /* Trust Green tint */
+    border: 1px solid #c6f6d5 !important;
+    border-radius: 12px;
+    padding: 20px;
     text-align: center;
-    margin-top: 20px;
-}
-
-.result-box p { margin: 0; font-size: 0.9rem; color: #166534; }
-.result-box h2 { margin: 5px 0 0; color: #15803d; font-size: 1.8rem; }
-
-.cta-btn.primary {
-    display: block;
-    background: #25D366; /* WhatsApp Green */
-    color: white;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
     margin-top: 15px;
 }
 
-.cta-btn.primary:hover { background: #128c7e; }
+.result-box h2 {
+    color: #276749 !important; /* Deep Green */
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 20px 25px;
+    background: #fcfcfc;
+    border-top: 1px solid #edf2f7;
+}
+
+/* WhatsApp Button (Inside Modal) */
+.cta-btn.primary {
+    background: #25D366 !important;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
+}
+
+.cta-btn.primary:hover {
+    transform: translateY(-2px);
+    background: #20bd5a !important;
+}
+
+/* --- 7. MOBILE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 0;
+    }
+    
+    .tariff-tabs {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 20px;
+    }
+    
+    .tab-button {
+        justify-content: center;
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .tariff-grid {
+        grid-template-columns: 1fr; /* Full width cards on mobile */
+        padding: 0 20px;
+    }
+    
+    .package-card {
+        padding: 25px;
+    }
+
+    .modal-container {
+        width: 95%;
+        margin: 0 10px;
+    }
+}
