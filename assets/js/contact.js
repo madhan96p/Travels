@@ -1,15 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. MATCH THE ID EXACTLY
-    const form = document.getElementById('contact-form'); // Fixed ID
-    
-    // Create a status message element if it doesn't exist
-    let statusMsg = document.getElementById('form-status');
-    if (!statusMsg) {
-        statusMsg = document.createElement('p');
-        statusMsg.id = 'form-status';
-        statusMsg.className = 'status-msg';
-        form.appendChild(statusMsg);
-    }
+    // 1. Target the form by the correct ID
+    const form = document.getElementById('contactForm'); 
+    const statusMsg = document.getElementById('form-status');
 
     if (form) {
         form.addEventListener('submit', async (e) => {
@@ -21,36 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
             // A. Loading State
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            statusMsg.innerText = "";
+            if(statusMsg) statusMsg.innerText = "";
 
             // B. Gather Data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
-            // C. Prepare Payload
-            // Maps your form fields to the Google Sheet columns
+            // C. Prepare Data for Google Sheet
+            // DIFFERENTIATION STRATEGY: 
+            // We map 'Subject' to 'Journey_Type' so you can filter it in Excel.
             const payload = {
                 Customer_Name: data.name,
                 Mobile_Number: data.phone,
-                Email: data.email,
-                Journey_Type: "General Inquiry", // Or use data.subject if you add a subject field
+                Email: data.email, // Now captured!
+                Journey_Type: data.subject, // e.g., "Corporate Partnership"
                 Comments: data.message,
                 
-                // Defaults for required sheet columns
+                // Defaults for required columns (so the API doesn't break)
                 Pickup_City: 'N/A',
                 Drop_City: 'N/A',
                 Travel_Date: new Date().toLocaleDateString(),
-                Status: 'New Lead', 
+                Status: 'Inquiry', // Different from 'New Booking'
                 Driver_Assigned: 'Pending'
             };
 
             // D. Send to Backend
             try {
-                // Use the centralized API service
+                // Use centralized API if available
                 if (window.ApiService) {
                     await ApiService.submitBooking(payload);
                 } else {
-                    // Fallback fetch if ApiService isn't loaded
                     await fetch('/.netlify/functions/travels-api?action=submitBooking', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -59,13 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Success State
-                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully';
                 btn.style.background = "#10B981"; // Green
-                statusMsg.style.color = "green";
-                statusMsg.innerText = "Thank you! We will contact you shortly.";
+                if(statusMsg) {
+                    statusMsg.style.color = "green";
+                    statusMsg.innerText = "Thank you! We will contact you shortly.";
+                }
                 form.reset();
 
-                // Reset button after 3 seconds
+                // Reset button
                 setTimeout(() => {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
@@ -74,10 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error("Submission Error:", error);
-                btn.innerHTML = '<i class="ri-error-warning-line"></i> Try Again';
+                btn.innerHTML = 'Try Again';
                 btn.style.background = "#EF4444"; // Red
-                statusMsg.style.color = "red";
-                statusMsg.innerText = "Error sending message. Please call us directly.";
+                if(statusMsg) {
+                    statusMsg.style.color = "red";
+                    statusMsg.innerText = "Error sending message. Please call us.";
+                }
                 btn.disabled = false;
             }
         });
