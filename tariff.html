@@ -3,12 +3,90 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chennai Car Rental Tariffs 2025 | Shrish Travels</title>
+    
+    <title>Car Rental Tariff Chennai 2025 | Local & Outstation Taxi Rates - Shrish Travels</title>
+    <meta name="description" content="Transparent car rental rates in Chennai. Sedan @ ₹13/km, Innova @ ₹18/km. No hidden charges. Calculate fare instantly for Local & Outstation trips." />
+    <meta name="keywords" content="Chennai car rental tariff, taxi rates chennai, innova crysta per km rate, outstation taxi tariff, local cab packages" />
+    <link rel="canonical" href="https://travels.shrishgroup.com/tariff.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Transparent Taxi Tariffs - Shrish Travels" />
+    <meta property="og:description" content="Check our fixed rates for Sedan, Innova, and Tempo Traveller. No hidden costs." />
+    <meta property="og:url" content="https://travels.shrishgroup.com/tariff.html" />
+    <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/og-tariff.jpg" />
+
+    <link rel="preload" href="assets/css/common.css" as="style">
+    <link rel="preload" href="assets/css/tariff.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
     
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/tariff.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Shrish Travels",
+      "url": "https://travels.shrishgroup.com",
+      "logo": "https://travels.shrishgroup.com/assets/logo.png",
+      "image": "https://travels.shrishgroup.com/assets/hero-car.jpg",
+      "description": "24/7 Cabs for Local & Outstation Trips in Chennai.",
+      "telephone": "+918883451668",
+      "email": "travels@shrishgroup.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹1300 - ₹5000",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Car Rental Tariffs 2025",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Local Sedan Package (5hr/50km)",
+              "description": "Etios/Dzire for local city usage."
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "1300",
+              "priceCurrency": "INR",
+              "unitCode": "HUR"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Outstation Innova Rental",
+              "description": "Toyota Innova for outstation trips."
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "19",
+              "priceCurrency": "INR",
+              "unitCode": "KMT"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+        /* AEO Utility: Hidden text for AI context without cluttering UI */
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        
+        /* CRO: Floating Call Button for Mobile */
+        .floating-cta { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #25d366; color: white; padding: 15px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-size: 24px; text-decoration: none; }
+        @media (max-width: 768px) { .floating-cta { display: flex; align-items: center; justify-content: center; } }
+    </style>
 </head>
 
 <body>
@@ -25,41 +103,54 @@
         <section id="tariff-main" class="section light-bg">
             <div class="container">
                 
-                <div class="tariff-tabs">
-                    <button class="tab-button active" data-tab="local">
+                <div class="tariff-tabs" role="tablist">
+                    <button class="tab-button active" data-tab="local" role="tab" aria-selected="true">
                         <i class="ri-map-pin-2-fill"></i> Local Packages
                     </button>
-                    <button class="tab-button" data-tab="outstation">
+                    <button class="tab-button" data-tab="outstation" role="tab" aria-selected="false">
                         <i class="ri-road-map-fill"></i> Outstation
                     </button>
                 </div>
 
-                <div id="local-tab" class="tab-content active">
+                <div id="local-tab" class="tab-content active" role="tabpanel">
                     <div class="tariff-grid">
                         
-                        <div class="package-card" data-vehicle="local_sedan">
-                            <div class="card-icon"><i class="fas fa-car-side"></i></div>
+                        <article class="package-card" data-vehicle="local_sedan" itemscope itemtype="https://schema.org/Product">
+                            <meta itemprop="name" content="Sedan Local Rental">
+                            <meta itemprop="description" content="4+1 Seater Sedan (Etios/Dzire) for local Chennai trips.">
+                            
+                            <div class="card-icon"><i class="fas fa-car-side" aria-hidden="true"></i></div>
                             <h3>4+1 Sedan</h3>
-                            <div class="card-price"><span class="price">₹1,300</span> / 5hr</div>
+                            
+                            <div class="card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="INR">
+                                <span class="price" itemprop="price" content="1300">₹1,300</span> / 5hr
+                            </div>
+                            
                             <ul class="card-features">
                                 <li><i class="ri-time-line"></i> Extra Hour: ₹260</li>
                                 <li><i class="ri-route-line"></i> Extra KM: ₹14</li>
                             </ul>
-                            <button class="btn-estimate" data-vehicle-id="local_sedan">Estimate Fare</button>
-                        </div>
+                            <p class="sr-only">Best budget taxi for shopping and office commute in Chennai.</p>
+                            <button class="btn-estimate" data-vehicle-id="local_sedan" aria-label="Estimate Sedan Fare">Estimate Fare</button>
+                        </article>
 
-                        <div class="package-card" data-vehicle="local_innova">
-                            <div class="card-icon"><i class="fas fa-shuttle-van"></i></div>
+                        <article class="package-card" data-vehicle="local_innova" itemscope itemtype="https://schema.org/Product">
+                            <meta itemprop="name" content="Innova Local Rental">
+                            <div class="card-icon"><i class="fas fa-shuttle-van" aria-hidden="true"></i></div>
                             <h3>7+1 Innova</h3>
-                            <div class="card-price"><span class="price">₹1,900</span> / 5hr</div>
+                            <div class="card-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="price" itemprop="price" content="1900">₹1,900</span> / 5hr
+                            </div>
                             <ul class="card-features">
                                 <li><i class="ri-time-line"></i> Extra Hour: ₹300</li>
                                 <li><i class="ri-route-line"></i> Extra KM: ₹19</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="local_innova">Estimate Fare</button>
-                        </div>
-                         <div class="package-card" data-vehicle="local_crysta">
-                            <div class="card-icon"><i class="fas fa-gem"></i></div>
+                        </article>
+
+                        <article class="package-card" data-vehicle="local_crysta" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-gem" aria-hidden="true"></i></div>
                             <h3>7+1 Crysta</h3>
                             <div class="card-price"><span class="price">₹2,200</span> / 5hr</div>
                             <ul class="card-features">
@@ -67,10 +158,10 @@
                                 <li><i class="ri-route-line"></i> Extra KM: ₹22</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="local_crysta">Estimate Fare</button>
-                        </div>
+                        </article>
 
-                        <div class="package-card" data-vehicle="local_tempo">
-                            <div class="card-icon"><i class="fas fa-bus"></i></div>
+                        <article class="package-card" data-vehicle="local_tempo" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-bus" aria-hidden="true"></i></div>
                             <h3>12+1 Tempo</h3>
                             <div class="card-price"><span class="price">₹3,000</span> / 5hr</div>
                             <ul class="card-features">
@@ -78,15 +169,16 @@
                                 <li><i class="ri-route-line"></i> Extra KM: ₹24</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="local_tempo">Estimate Fare</button>
-                        </div>
+                        </article>
 
                     </div>
                 </div>
 
-                <div id="outstation-tab" class="tab-content">
+                <div id="outstation-tab" class="tab-content" role="tabpanel">
                     <div class="tariff-grid">
-                        <div class="package-card" data-vehicle="out_sedan">
-                            <div class="card-icon"><i class="fas fa-car-side"></i></div>
+                        
+                        <article class="package-card" data-vehicle="out_sedan" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-car-side" aria-hidden="true"></i></div>
                             <h3>4+1 Sedan</h3>
                             <div class="card-price"><span class="price">₹14</span> / km</div>
                             <ul class="card-features">
@@ -94,10 +186,10 @@
                                 <li>Min 250km / day</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="out_sedan">Estimate Fare</button>
-                        </div>
+                        </article>
                         
-                        <div class="package-card" data-vehicle="out_innova">
-                            <div class="card-icon"><i class="fas fa-shuttle-van"></i></div>
+                        <article class="package-card" data-vehicle="out_innova" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-shuttle-van" aria-hidden="true"></i></div>
                             <h3>7+1 Innova</h3>
                             <div class="card-price"><span class="price">₹19</span> / km</div>
                             <ul class="card-features">
@@ -105,10 +197,10 @@
                                 <li>Min 250km / day</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="out_innova">Estimate Fare</button>
-                        </div>
+                        </article>
 
-                         <div class="package-card" data-vehicle="out_crysta">
-                            <div class="card-icon"><i class="fas fa-gem"></i></div>
+                        <article class="package-card" data-vehicle="out_crysta" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-gem" aria-hidden="true"></i></div>
                             <h3>7+1 Crysta</h3>
                             <div class="card-price"><span class="price">₹22</span> / km</div>
                             <ul class="card-features">
@@ -116,10 +208,10 @@
                                 <li>Min 250km / day</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="out_crysta">Estimate Fare</button>
-                        </div>
+                        </article>
 
-                         <div class="package-card" data-vehicle="out_tempo">
-                            <div class="card-icon"><i class="fas fa-bus"></i></div>
+                        <article class="package-card" data-vehicle="out_tempo" itemscope itemtype="https://schema.org/Product">
+                            <div class="card-icon"><i class="fas fa-bus" aria-hidden="true"></i></div>
                             <h3>12+1 Tempo</h3>
                             <div class="card-price"><span class="price">₹24</span> / km</div>
                             <ul class="card-features">
@@ -127,31 +219,37 @@
                                 <li>Min 300km / day</li>
                             </ul>
                             <button class="btn-estimate" data-vehicle-id="out_tempo">Estimate Fare</button>
-                        </div>
+                        </article>
 
                     </div>
                 </div>
             </div>
         </section>
 
-        <div id="estimatorModal" class="modal-overlay hidden">
+        <div id="estimatorModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
             <div class="modal-container">
                 <div class="modal-header">
                     <h3 id="modalTitle" class="modal-title">Estimate Fare</h3>
-                    <button class="modal-close"><i class="ri-close-line"></i></button>
+                    <button class="modal-close" aria-label="Close Calculator"><i class="ri-close-line"></i></button>
                 </div>
                 <div id="modalBody" class="modal-body"></div>
                 <div id="modalFooter" class="modal-footer"></div>
             </div>
         </div>
+        
+        <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20I%20want%20to%20enquire%20about%20a%20trip" class="floating-cta" target="_blank" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
 
     </main>
+
     <div id="footer-placeholder"></div>
 
-    <script src="assets/js/common.js"></script>
-    <script src="assets/js/tariff.js"></script>
+    <script src="assets/js/common.js" defer></script>
+    <script src="assets/js/tariff.js" defer></script>
+    
     <script>
-        // Simple loader for Header/Footer
+        // Efficient Loader
         async function loadComponent(id, url) {
             try {
                 const response = await fetch(url);

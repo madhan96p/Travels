@@ -44,7 +44,8 @@
     </main>
 
     <div id="footer-placeholder"></div>
-    <script src="assets/js/common.js"></script>
+    <link rel="preload" href="assets/js/common.js" as="script">
+
     <script>
         async function loadComponent(id, url) {
             try { const res = await fetch(url); if(res.ok) document.getElementById(id).innerHTML = await res.text(); } catch(e){}
