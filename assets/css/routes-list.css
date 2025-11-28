@@ -1,315 +1,196 @@
 /* =========================================
-   ROUTES LIST UI & UX DESIGN
-   Theme: Premium Navy & Green | Mobile First
+   ROUTES LIST UI (SEO Pages)
+   Theme: Card Grid | Mobile Optimized
    ========================================= */
 
-/* --- 1. HERO SECTION & SEARCH --- */
+/* --- Hero & Search --- */
 #routes-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    padding: 120px 0 80px;
+    background: var(--primary-dark);
+    padding: 100px 0 60px;
     color: white;
     text-align: center;
     position: relative;
-    overflow: hidden;
-}
-
-/* Decorative Pattern (Optional) */
-#routes-hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: radial-gradient(#ffffff 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.05;
-    pointer-events: none;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .hero-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     margin-bottom: 10px;
-    letter-spacing: -0.5px;
 }
 
 .hero-subtitle {
+    font-size: 1rem;
     color: #cbd5e1;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 30px;
 }
 
-/* Modern Search Bar Container */
+/* Floating Search Bar */
 .search-bar-container {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
     background: white;
-    padding: 8px;
+    padding: 8px 15px;
     border-radius: 50px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    z-index: 20;
 }
 
-.search-bar-container:focus-within {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.2), 0 8px 10px -6px rgba(16, 185, 129, 0.1);
-    border: 2px solid #10B981; /* Green Border Focus */
-}
-
-.search-bar-container i {
-    font-size: 1.2rem;
-    color: #64748b;
-    margin-left: 15px;
-    margin-right: 10px;
-}
-
+.search-bar-container i { color: var(--text-light); font-size: 1.2rem; margin-right: 10px; }
 .search-bar-container input {
-    flex: 1;
     border: none;
     outline: none;
-    font-size: 1rem;
-    color: #1e293b;
+    flex-grow: 1;
     padding: 10px 0;
-    background: transparent;
+    font-size: 1rem;
+    color: var(--primary-dark);
 }
 
-/* Search Dropdown Results */
+/* Dropdown */
 .search-results-dropdown {
     position: absolute;
-    top: 110%;
-    left: 20px;
-    right: 20px;
+    top: 115%; left: 15px; right: 15px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 50;
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
-    text-align: left;
-    border: 1px solid #e2e8f0;
+    color: var(--text-main);
+    z-index: 100;
 }
-
 .search-result-item {
-    display: block;
-    padding: 12px 20px;
-    color: #334155;
-    text-decoration: none;
-    border-bottom: 1px solid #f1f5f9;
-    transition: background 0.2s;
-    font-size: 0.95rem;
+    display: block; padding: 12px 15px;
+    border-bottom: 1px solid #f1f5f9; font-size: 0.9rem;
 }
+.search-result-item:hover { background: #f8fafc; color: var(--action-green); }
 
-.search-result-item:hover {
-    background: #f0fdf4; /* Light Green */
-    color: #10B981;
-}
-
-.search-result-item small {
-    color: #94a3b8;
-    margin-left: 5px;
-}
-
-/* --- 2. FILTERS SECTION --- */
+/* --- Filters --- */
 .filters-container {
     display: flex;
-    justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
+    overflow-x: auto;
+    padding: 20px 20px 10px;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
 }
+/* Hide Scrollbar */
+.filters-container::-webkit-scrollbar { display: none; }
 
 .filter-button {
+    white-space: nowrap;
+    padding: 8px 20px;
+    border-radius: 20px;
     background: white;
-    border: 1px solid #e2e8f0;
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-size: 0.9rem;
+    border: 1px solid #E2E8F0;
+    color: var(--text-light);
+    font-size: 0.85rem;
     font-weight: 600;
-    color: #64748b;
+    transition: all 0.2s;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
-.filter-button:hover {
-    background: #f8fafc;
-    color: #0f172a;
-    transform: translateY(-1px);
-}
-
-.filter-button.active {
-    background: #0f172a;
+.filter-button.active, .filter-button:hover {
+    background: var(--primary-dark);
     color: white;
-    border-color: #0f172a;
-    box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.3);
+    border-color: var(--primary-dark);
 }
 
-/* --- 3. ROUTES GRID --- */
-.section.light-bg {
-    background-color: #f8fafc;
-    padding: 60px 0;
+@media (min-width: 768px) {
+    .filters-container { justify-content: center; }
 }
 
+/* --- Routes Grid --- */
 .routes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    min-height: 300px; /* Prevent collapse during load */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 0 60px;
 }
 
-/* --- 4. ROUTE CARD DESIGN --- */
 .route-card {
     background: white;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid #e2e8f0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-sm);
+    transition: 0.3s;
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
-.route-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #10B981; /* Green Highlight */
-}
+.route-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 
 .route-card img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
-    background-color: #cbd5e1; /* Placeholder color */
+    background: #f1f5f9;
 }
 
 .card-content {
-    padding: 25px;
+    padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Tag (e.g., Spiritual, Hill Station) */
 .card-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    align-self: flex-start;
     padding: 4px 10px;
     border-radius: 4px;
-    margin-bottom: 15px;
-    width: fit-content;
-}
-
-/* Tag Colors */
-.card-tag.spiritual { background: #fff7ed; color: #ea580c; } /* Orange */
-.card-tag.hills { background: #f0fdf4; color: #16a34a; }     /* Green */
-.card-tag.leisure { background: #eff6ff; color: #2563eb; }   /* Blue */
-.card-tag.b2b { background: #f1f5f9; color: #475569; }       /* Gray */
-.card-tag.all { background: #f1f5f9; color: #475569; }
-
-.route-card h3 {
-    font-size: 1.25rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 12px;
-    line-height: 1.4;
+    text-transform: uppercase;
+    margin-bottom: 10px;
 }
+.card-tag.spiritual { background: #FFF7ED; color: #EA580C; }
+.card-tag.hills { background: #F0FDF4; color: #16A34A; }
+.card-tag.leisure { background: #EFF6FF; color: #2563EB; }
+.card-tag.b2b { background: #F1F5F9; color: #475569; }
+
+.route-card h3 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 10px; }
 
 .route-info {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.9rem; color: var(--text-light);
+    margin-bottom: 5px;
 }
+.route-info i { color: var(--action-green); }
 
-.route-info i {
-    color: #10B981; /* Green Icons */
-}
-
-/* Button inside card */
 .route-card .cta-btn {
-    margin-top: auto; /* Pushes button to bottom */
-    text-align: center;
-    display: block;
-    background: white;
-    color: #0f172a;
-    border: 1px solid #0f172a;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s;
     margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--primary-dark);
+    border-radius: 8px;
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
 }
 
 .route-card .cta-btn:hover {
-    background: #0f172a;
+    background: var(--primary-dark);
     color: white;
 }
 
-/* --- 5. FOOTER CTA SECTION --- */
+/* --- Footer CTA --- */
 .routes-footer {
-    margin-top: 60px;
-    background: #0f172a;
-    color: white;
+    background: var(--bg-white);
     border-radius: 20px;
-    padding: 50px;
+    padding: 40px 20px;
     text-align: center;
-    background-image: url('../images/pattern.png'); /* Optional texture */
-    background-blend-mode: overlay;
+    margin-top: 40px;
+    border: 1px solid #E2E8F0;
 }
+.routes-footer h3 { font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 10px; }
+.routes-footer p { margin-bottom: 25px; color: var(--text-light); }
 
-.routes-footer h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-}
-
-.routes-footer p {
-    color: #cbd5e1;
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
-
-.cta-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.cta-btn.secondary {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-}
-.cta-btn.secondary:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: white;
-}
-
-/* --- 6. UTILITIES --- */
-.hidden { display: none !important; }
-
-/* Loading Spinner */
-.rotating {
-    animation: rotate 1s linear infinite;
-}
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* --- 7. RESPONSIVE --- */
-@media (max-width: 768px) {
-    .hero-title { font-size: 2rem; }
-    .filters-container { gap: 8px; }
-    .filter-button { padding: 8px 16px; font-size: 0.85rem; }
-    .routes-footer { padding: 30px 20px; }
-    .routes-footer h3 { font-size: 1.5rem; }
-}
+.cta-container { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.cta-btn.primary { background: var(--primary-dark); color: white; padding: 12px 24px; border-radius: 50px; }
+.cta-btn.secondary { background: white; border: 1px solid var(--primary-dark); color: var(--primary-dark); padding: 12px 24px; border-radius: 50px; }

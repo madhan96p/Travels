@@ -1,0 +1,131 @@
+/* =========================================
+   SINGLE ROUTE PAGE (Travel Guide Layout)
+   Theme: Immersive Header | Sticky Price
+   ========================================= */
+
+/* --- 1. Immersive Hero --- */
+.route-hero {
+    position: relative;
+    padding: 120px 0 80px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+}
+/* Overlay is handled by inline linear-gradient in HTML, but fallback here */
+.route-hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.7); /* Fallback overlay */
+    z-index: 1;
+}
+.route-hero .container { position: relative; z-index: 2; }
+
+.route-hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; line-height: 1.2; }
+.route-hero p { font-size: 1rem; color: #E2E8F0; opacity: 0.9; }
+
+@media (min-width: 768px) {
+    .route-hero { padding: 160px 0 100px; }
+    .route-hero h1 { font-size: 3.5rem; }
+    .route-hero p { font-size: 1.2rem; }
+}
+
+/* --- 2. Pricing Cards Grid --- */
+.price-card-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 20px;
+    margin-top: -40px; /* Overlap hero */
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .price-card-grid { grid-template-columns: repeat(4, 1fr); margin-top: -60px; }
+}
+
+.price-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.price-card:hover { transform: translateY(-5px); border-color: var(--action-green); }
+
+.car-icon { font-size: 2.5rem; color: var(--action-green); margin-bottom: 15px; }
+.price-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 5px; }
+.price-lbl { display: block; font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px; }
+.price-val { display: block; font-size: 1.8rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 20px; }
+
+.book-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-body);
+    color: var(--primary-dark);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.book-btn:hover { background: var(--primary-dark); color: white; }
+
+/* --- 3. Details Section --- */
+.details-section { padding: 60px 0 100px; }
+
+.info-grid {
+    display: grid;
+    gap: 40px;
+}
+@media (min-width: 992px) {
+    .info-grid { grid-template-columns: 2fr 1fr; }
+}
+
+.info-grid h2 { font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 20px; }
+.info-grid p { line-height: 1.8; color: var(--text-main); margin-bottom: 20px; }
+
+.info-grid ul li {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px; font-weight: 500; color: var(--text-main);
+}
+.info-grid ul li i { color: var(--action-green); font-size: 1.2rem; }
+
+/* Booking Form in Sidebar */
+#route-booking-form {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+    box-shadow: var(--shadow-sm);
+}
+
+#route-booking-form .input-wrapper {
+    background: var(--bg-body);
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+#route-booking-form .input-wrapper:focus-within {
+    background: white; border-color: var(--primary-dark);
+}
+
+#route-booking-form .book-btn {
+    background: var(--action-green);
+    color: white;
+    margin-top: 10px;
+}
+#route-booking-form .book-btn:hover { background: var(--action-hover); }
+
+/* --- 4. Mobile Sticky Footer Action (Optional enhancement) --- */
+/* If you want a specific sticky bar only for single route pages */
+.mobile-sticky-book {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: white; padding: 15px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    z-index: 1001;
+    display: flex; justify-content: space-between; align-items: center;
+}
+@media (min-width: 768px) { .mobile-sticky-book { display: none; } }
