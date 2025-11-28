@@ -1,145 +1,190 @@
 /* ===================================================================
-   ROUTES PAGE JAVASCRIPT (FIXED) | SHRISH TRAVELS
+   ROUTES PAGE JAVASCRIPT (FINAL) | SHRISH TRAVELS
+   Fetches data, Auto-Categorizes routes, and Renders Premium Cards.
    =================================================================== */
 
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. DOM Element Selection ---
+    // --- 1. CONFIGURATION & DOM ELEMENTS ---
+    const API_ENDPOINT = '/.netlify/functions/travels-api?action=getRoutes';
+    
     const searchInput = document.getElementById('route-search');
+    const searchDropdown = document.getElementById('search-results-dropdown');
     const filterButtons = document.querySelectorAll('.filter-button');
     const routesGrid = document.querySelector('.routes-grid');
     const loadingElement = document.getElementById('loading-routes');
     
-    // FIX 1: Corrected Action Name to match travels-api.js
-    const API_ENDPOINT = '/.netlify/functions/travels-api?action=getRoutes';
-    let allRoutesData = []; 
-    
-    // --- 2. Fetch and Render ---
+    let allRoutesData = []; // Global store
 
+    // --- 2. INITIALIZATION ---
     async function initializeRoutes() {
         try {
             const response = await fetch(API_ENDPOINT);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            if (!response.ok) throw new Error('Network error');
             
-            const result = await response.json();
+            const data = await response.json();
             
-            // FIX 2: Handle Raw Array response from Backend
-            // The backend returns [ {route1}, {route2} ] directly
-            if (Array.isArray(result)) {
-                allRoutesData = result;
-                renderRouteCards(allRoutesData);
-                updateSchema(allRoutesData);
-                setupFiltering(allRoutesData);
-            } 
-            // Fallback: If you later change backend to return { success: true, routes: [] }
-            else if (result.success && result.routes) {
-                allRoutesData = result.routes;
-                renderRouteCards(allRoutesData);
-                updateSchema(allRoutesData);
-                setupFiltering(allRoutesData);
+            // Handle different API response structures (Array vs Object)
+            const routes = Array.isArray(data) ? data : (data.routes || []);
+            
+            if (routes.length > 0) {
+                // Enrich data with categories before rendering
+                allRoutesData = routes.map(processRouteData);
+                renderRoutes(allRoutesData);
             } else {
-                throw new Error('API returned empty or invalid data.');
+                showError('No routes found in the database.');
             }
 
         } catch (error) {
-            console.error("Route Fetch Error:", error);
-            if (routesGrid) {
-                routesGrid.innerHTML = `<div style="text-align:center; padding:40px; color:#ef4444;">
-                    <i class="ri-error-warning-line" style="font-size:2rem; margin-bottom:10px;"></i><br>
-                    Unable to load routes. Please refresh the page.
-                </div>`;
-            }
+            console.error("Route Load Error:", error);
+            showError('Unable to load routes. Please refresh the page.');
         } finally {
-             if (loadingElement) loadingElement.style.display = 'none';
+            if (loadingElement) loadingElement.style.display = 'none';
         }
     }
-    
-    function renderRouteCards(routesToRender) {
-        if (!routesGrid) return;
+
+    // --- 3. HELPER: DATA PROCESSING (The Smart Part) ---
+    function processRouteData(route) {
+        const dest = (route.Destination || route.destination || '').trim();
+        const origin = (route.Origin || route.origin || '').trim();
+        
+        // Auto-assign Categories based on destination keywords
+        let category = 'b2b'; // Default
+        let catDisplay = 'Intercity';
+
+        const spiritualPlaces = ['Tirupati', 'Tiruvannamalai', 'Velankanni', 'Rameswaram', 'Kanchipuram', 'Madurai', 'Palani', 'Chidambaram', 'Kumbakonam', 'Thanjavur'];
+        const hillStations = ['Ooty', 'Kodaikanal', 'Yercaud', 'Munnar', 'Yelagiri', 'Valparai', 'Coorg'];
+        const leisure = ['Pondicherry', 'Mahabalipuram', 'Goa', 'Mysore', 'Kanyakumari', 'Hogenakkal'];
+
+        if (spiritualPlaces.some(p => dest.includes(p))) {
+            category = 'spiritual';
+            catDisplay = 'Spiritual';
+        } else if (hillStations.some(p => dest.includes(p))) {
+            category = 'hills';
+            catDisplay = 'Hill Station';
+        } else if (leisure.some(p => dest.includes(p))) {
+            category = 'leisure';
+            catDisplay = 'Leisure';
+        }
+
+        // Clean Image URL
+        let img = route.Image_URL || route.image;
+        if (!img || !img.startsWith('http')) {
+            img = 'assets/images/default-route.jpg';
+        }
+
+        return {
+            ...route, // Keep original data
+            cleanOrigin: origin,
+            cleanDest: dest,
+            category: category,
+            categoryDisplay: catDisplay,
+            cleanImg: img,
+            // Create a filename slug (e.g. chennai-to-madurai.html)
+            fileLink: (route.Route_Slug || route.slug || `${origin}-to-${dest}`).toLowerCase().replace(/\s+/g, '-') + '.html',
+            // Create a search string
+            searchStr: `${origin} ${dest} ${catDisplay}`.toLowerCase()
+        };
+    }
+
+    // --- 4. RENDER LOGIC ---
+    function renderRoutes(routes) {
         routesGrid.innerHTML = '';
 
-        if (routesToRender.length === 0) {
-            routesGrid.innerHTML = '<p style="text-align:center; padding: 30px; width:100%; grid-column: 1 / -1;">No routes found matching your criteria.</p>';
+        if (routes.length === 0) {
+            routesGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #64748b;">
+                    <i class="ri-search-2-line" style="font-size: 2rem; margin-bottom: 10px; display:block;"></i>
+                    No routes found matching your criteria.
+                </div>`;
             return;
         }
 
-        routesToRender.forEach(route => {
-            const originLower = (route.Origin || route.origin || 'na').toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            const destLower = (route.Destination || route.destination || 'na').toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            const fileName = (route.Route_Slug || route.slug || `${originLower}-to-${destLower}`) + '.html';
-            
-            // Handle different casing keys (API vs JSON file differences)
-            const rOrigin = route.Origin || route.origin;
-            const rDest = route.Destination || route.destination;
-            const rDist = route.Distance_Km || route.distance;
-            const rTime = route.Time_Hours || route.duration;
-            const rImg = route.Image_URL || route.image;
-
+        routes.forEach(route => {
             const card = document.createElement('div');
             card.className = 'route-card';
             card.setAttribute('data-aos', 'fade-up');
             
-            // Search Meta Data
-            card.dataset.name = `${rOrigin} ${rDest}`.toLowerCase();
-            
-            // Image handling (Clean check)
-            const imageUrl = rImg && rImg.includes('http') ? rImg : 'assets/images/default-route.jpg';
+            // DATA ATTRIBUTES FOR FILTERING
+            card.dataset.category = route.category;
+            card.dataset.name = route.searchStr;
 
+            // HTML STRUCTURE (Matches your routes-list.css)
             card.innerHTML = `
-                <div class="route-img-box">
-                    <img src="${imageUrl}" alt="${rOrigin} to ${rDest}" loading="lazy" onerror="this.src='assets/images/default-route.jpg'">
-                </div>
-                <div class="route-content">
-                    <div class="route-header">
-                        <div class="route-title">
-                            <h3>${rDest}</h3>
-                            <div class="route-dist">
-                                <i class="ri-road-map-line"></i> ${rDist} km • ${rTime} hrs
-                            </div>
-                        </div>
+                <img src="${route.cleanImg}" alt="${route.cleanDest}" loading="lazy" onerror="this.src='assets/images/default-route.jpg'">
+                <div class="card-content">
+                    <span class="card-tag ${route.category}">${route.categoryDisplay}</span>
+                    <h3>${route.cleanDest}</h3>
+                    
+                    <div class="route-info">
+                        <i class="ri-map-pin-user-line"></i> From ${route.cleanOrigin}
                     </div>
-                    <p class="route-desc">One-way trip from ${rOrigin} to ${rDest}</p>
-                    <a href="routes/${fileName}" class="btn-route">View Options</a>
+                    <div class="route-info">
+                        <i class="ri-road-map-line"></i> ${route.Distance_Km || route.distance || '0'} km
+                    </div>
+                    
+                    <a href="routes/${route.fileLink}" class="cta-btn">View Options</a>
                 </div>
             `;
             routesGrid.appendChild(card);
         });
     }
 
-    function updateSchema(routesData) {
-        // Optional: Keep schema logic simple or remove if causing issues
-    }
+    // --- 5. FILTERING & SEARCH LOGIC ---
+    
+    // A. Filter Buttons
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // UI Update
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filterValue = btn.getAttribute('data-filter');
+            
+            // Logic
+            if (filterValue === 'all') {
+                renderRoutes(allRoutesData);
+            } else {
+                const filtered = allRoutesData.filter(r => r.category === filterValue);
+                renderRoutes(filtered);
+            }
+        });
+    });
 
-    function setupFiltering(routesData) {
-        // Basic Search Logic
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const cards = document.querySelectorAll('.route-card');
+    // B. Search Input
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            
+            if (term.length > 0) {
+                const filtered = allRoutesData.filter(r => r.searchStr.includes(term));
+                renderRoutes(filtered);
+            } else {
+                // If empty, reset to current active filter
+                const activeBtn = document.querySelector('.filter-button.active');
+                const activeFilter = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
                 
-                cards.forEach(card => {
-                    const name = card.dataset.name;
-                    if (name.includes(term)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        }
-        
-        // Filter Buttons
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                // Note: Real filtering requires 'Category' column in GSheet.
-                // For now, this just highlights the button.
-            });
+                if (activeFilter === 'all') {
+                    renderRoutes(allRoutesData);
+                } else {
+                    renderRoutes(allRoutesData.filter(r => r.category === activeFilter));
+                }
+            }
         });
     }
 
+    // Helper: Show Error in Grid
+    function showError(msg) {
+        if (routesGrid) {
+            routesGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px;">
+                <i class="ri-error-warning-fill" style="font-size: 2rem;"></i>
+                <p>${msg}</p>
+            </div>`;
+        }
+    }
+
+    // Start App
     initializeRoutes();
 });

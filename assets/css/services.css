@@ -1,0 +1,264 @@
+/* --- SERVICES PAGE STYLES --- */
+
+/* 1. Hero Section */
+.services-hero {
+    background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('../images/services-hero.jpg'); /* You can add a bg image later */
+    background-color: #0f172a;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.services-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.services-hero p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 2. Services Grid */
+.section {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: -120px; /* Overlap effect */
+    position: relative;
+    z-index: 10;
+}
+
+.service-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: #10B981;
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: #ecfdf5;
+    color: #10B981;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.service-card p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.service-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.service-features li i {
+    color: #10B981;
+}
+
+.service-link {
+    color: #0f172a;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+
+.service-link:hover {
+    color: #10B981;
+}
+
+/* 3. Feature Sections (Corporate/Wedding) */
+.feature-section {
+    padding: 100px 0;
+}
+
+.feature-section.bg-dark {
+    background: #0f172a;
+    color: white;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Reverse layout for Wedding section */
+.feature-grid.reverse .feature-content {
+    order: 2; /* Text on right */
+}
+.feature-grid.reverse .feature-image {
+    order: 1; /* Image on left */
+}
+
+.section-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #10B981;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.feature-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: inherit;
+}
+
+.bg-dark .feature-content p { color: #cbd5e1; }
+.feature-content p { color: #64748b; font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px; }
+
+.feature-list {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.f-item {
+    display: flex;
+    gap: 15px;
+}
+
+.f-item i {
+    font-size: 1.5rem;
+    color: #10B981;
+    margin-top: 5px;
+}
+
+.f-item strong { display: block; font-size: 1.1rem; margin-bottom: 5px; }
+.f-item p { font-size: 0.95rem; margin: 0; }
+
+/* Image Placeholders */
+.img-placeholder {
+    width: 100%;
+    height: 400px;
+    background: #1e293b;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.wedding-bg { background: #fdf2f8; color: #db2777; }
+
+/* Buttons */
+.btn-primary {
+    background: #10B981;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.3s;
+}
+.btn-primary:hover { background: #059669; }
+
+.btn-outline {
+    border: 2px solid #0f172a;
+    color: #0f172a;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s;
+}
+.btn-outline:hover { background: #0f172a; color: white; }
+
+/* 4. CTA Bar */
+.cta-bar {
+    background: #10B981;
+    padding: 60px 0;
+    color: white;
+    text-align: center;
+}
+
+.cta-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cta-buttons { display: flex; gap: 15px; }
+
+.btn-white { background: white; color: #10B981; padding: 12px 25px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+.btn-dark { background: #0f172a; color: white; padding: 12px 25px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services-hero h1 { font-size: 2rem; }
+    .services-grid { margin-top: 0; }
+    .feature-grid { grid-template-columns: 1fr; gap: 40px; }
+    .feature-grid.reverse .feature-content { order: 1; }
+    .feature-grid.reverse .feature-image { order: 2; }
+    .cta-bar .container { flex-direction: column; gap: 20px; }
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .cta-buttons a { width: 100%; text-align: center; }
+}
