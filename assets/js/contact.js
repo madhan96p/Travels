@@ -219,15 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 5. Send to Backend
             try {
-                if (window.ApiService) {
-                    await ApiService.submitBooking(payload);
-                } else {
-                    await fetch('/.netlify/functions/travels-api?action=submitBooking', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                }
+                // FIX: Use direct fetch to ensure 'Source' tag is not stripped by ApiService
+                await fetch('/.netlify/functions/travels-api?action=submitBooking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
 
                 // Success
                 showToast('Message sent! We will call you shortly.', 'success');

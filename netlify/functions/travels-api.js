@@ -50,13 +50,14 @@ exports.handler = async function (event, context) {
             const day = String(now.getDate()).padStart(2, '0');
             const month = String(now.getMonth() + 1).padStart(2, '0');
 
-            // Generate 4 random characters (excluding confusing ones like I, O, 0, 1)
+            // Generate 4 random characters
             const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
             let randomStr = '';
             for (let i = 0; i < 4; i++) {
                 randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-            const prefix = (data.Source === 'ContactPage') ? 'SCT' : 'ST';
+
+            const prefix = (data?.Source === 'ContactPage') ? 'SCT' : 'ST';
             const bookingID = `${prefix}-${day}${month}-${randomStr}`;
 
             await sheet.addRow({
