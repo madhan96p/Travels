@@ -122,17 +122,43 @@
     gap: 0; /* Seamless join */
     background: white;
     border-radius: 20px;
-    overflow: hidden;
+    /* overflow: hidden; */
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: relative;
 }
 
 .map-wrapper {
     min-height: 500px;
     background: #e2e8f0;
+    /* Round the right corners only */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .form-wrapper {
     padding: 50px;
+    /* Round the left corners only */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: relative;
+    z-index: 20; /* Ensure Form (and Dropdown) floats ABOVE the map */
+}
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .contact-grid { margin-top: 0; }
+    .map-form-grid { grid-template-columns: 1fr; }
+    
+    .map-wrapper { 
+        min-height: 300px; 
+        order: 2; 
+        border-radius: 0 0 20px 20px; /* Round bottom only on mobile */
+    }
+    
+    .form-wrapper { 
+        padding: 30px; 
+        order: 1; 
+        border-radius: 20px 20px 0 0; /* Round top only on mobile */
+    }
 }
 
 .form-header h3 { font-size: 1.8rem; margin-bottom: 10px; color: #0f172a; }
@@ -324,7 +350,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 2px 10px; /* Slight padding */
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 /* THE MAGIC: When user clicks input, highlight the wrapper */
@@ -401,15 +427,13 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 8px 0;
 }
 
-/* --- CUSTOM SEARCHABLE DROPDOWN --- */
-
-/* The container for the flag/code */
 .custom-dropdown {
     position: relative;
-    width: 110px; /* Fixed width */
+    width: 110px; 
     height: 100%;
     cursor: pointer;
     user-select: none;
+    flex-shrink: 0; 
 }
 
 /* The Trigger (Flag + Code) */
@@ -433,20 +457,22 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 3px;
 }
 
-/* The Floating Menu */
 .dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
-    top: 100%; /* Right below the trigger */
-    left: -10px; /* Align with wrapper edge */
-    width: 280px; /* Wider than the trigger to show full names */
-    background: white;
+    top: 105%;
+    left: 0;
+    width: 300px;
+    background: white; /* Ensure it's not transparent */
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    z-index: 100;
-    padding: 10px;
-    margin-top: 10px;
+    z-index: 1000; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+/* Bigger touch targets for mobile */
+.dropdown-list li {
+    padding: 12px 15px; /* Bigger padding */
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .dropdown-menu.active {

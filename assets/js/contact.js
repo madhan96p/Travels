@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 display.innerText = `${country.flag} ${country.code}`;
                 hiddenInput.value = country.code; // Update the hidden field for the form
                 menu.classList.remove('active');
+                
+                // UX: Clear any previous error colors when switching countries
+                if(phoneInput) phoneInput.style.color = '#0f172a';
             });
 
             list.appendChild(li);
@@ -58,9 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // B. Toggle Dropdown
-    if (dropdown) {
-        dropdown.addEventListener('click', () => {
+    if (display) { // CHANGED: Listen to the 'display' (flag area), not the whole 'dropdown'
+        display.addEventListener('click', (e) => {
+            e.stopPropagation(); // Stop this click from triggering document listeners immediately
             menu.classList.toggle('active');
+            
             if (menu.classList.contains('active')) {
                 searchInput.focus(); // Focus search immediately
                 searchInput.value = ''; // Clear previous search
@@ -100,12 +105,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- PART 2: INPUT VALIDATION ---
+    // --- PART 2: SMART INPUT VALIDATION (UPDATED FOR +91 ONLY) ---
     
-    // Prevent non-numeric characters in phone field
     if (phoneInput) {
+        // A. Real-time cleaning
         phoneInput.addEventListener('input', function (e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            const currentCode = hiddenInput.value;
+
+            // 1. Remove non-numbers
+            let val = this.value.replace(/[^0-9]/g, '');
+
+            // 2. Remove leading '0' (Applies to all countries to save space)
+            if (val.startsWith('0')) {
+                val = val.substring(1);
+            }
+
+            // 3. Conditional Logic
+            if (currentCode === '+91') {
+                // INDIA: Strict 10 digits
+                if (val.length > 10) val = val.substring(0, 10);
+            } else {
+                // INTERNATIONAL: Allow up to 15 (Standard ITU max)
+                if (val.length > 15) val = val.substring(0, 15);
+            }
+
+            this.value = val;
+
+            // Visual Feedback
+            this.style.color = '#0f172a'; // Default black
+        });
+
+        // B. On Blur (Warning)
+        phoneInput.addEventListener('blur', function() {
+            const currentCode = hiddenInput.value;
+            const len = this.value.length;
+
+            if (len > 0) {
+                // If India, must be 10. If International, usually at least 7.
+                if (currentCode === '+91' && len !== 10) {
+                    showToast('Indian numbers must be 10 digits', 'error');
+                    this.style.color = 'red';
+                } 
+                else if (currentCode !== '+91' && len < 7) {
+                    showToast('Phone number seems too short', 'error');
+                    this.style.color = 'red';
+                }
+            }
         });
     }
 
@@ -127,21 +172,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             // 3. Logic: Combine Country Code + Phone
-            // Note: We get 'country_code' from the hidden input we updated earlier
-            const countryCode = data.country_code || "+91"; // Fallback default
+            const countryCode = data.country_code || "+91"; 
             const rawPhone = data.phone;
             const fullMobile = countryCode + rawPhone;
 
+            // --- VALIDATION CHECK (Logic Updated) ---
+            // Only stop submission for 10 digits if it is +91
+            if (countryCode === '+91' && rawPhone.length !== 10) {
+                showToast('Please enter a valid 10-digit Indian number', 'error');
+                
+                // Stop loading
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                return; // STOP HERE
+            }
+            // For international, just check it's not empty or too short
+            if (countryCode !== '+91' && rawPhone.length < 7) {
+                 showToast('Please enter a valid mobile number', 'error');
+                 btn.disabled = false;
+                 btn.innerHTML = originalText;
+                 return;
+            }
+
             // 4. Logic: Prepare Payload for Booking Sheet
-            // We differentiate "Inquiries" from "Bookings" to keep your sheet clean.
             const payload = {
                 Customer_Name: data.name,
                 Mobile_Number: fullMobile, 
-                Email: "Not Provided", // Add email input to HTML if needed
+                Email: "Not Provided", 
                 Journey_Type: data.subject, 
                 Comments: data.message,
 
-                // Defaults to avoid confusing the operations team
+                // Defaults
                 Pickup_City: '—', 
                 Drop_City: '—',
                 Travel_Date: 'Inquiry - No Date', 
@@ -151,11 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 5. Send to Backend
             try {
-                // Use centralized API if available
                 if (window.ApiService) {
                     await ApiService.submitBooking(payload);
                 } else {
-                    // Direct Fetch (Replace with your actual endpoint)
                     await fetch('/.netlify/functions/travels-api?action=submitBooking', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
