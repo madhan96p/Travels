@@ -190,6 +190,27 @@ exports.handler = async function (event, context) {
             }
         }
 
+        else if (action === 'submitCareer') {
+            const data = JSON.parse(event.body);
+
+            // Connect to a 'careers' sheet (Create this tab in your Google Sheet!)
+            let sheet = doc.sheetsByTitle['careers'];
+            if (!sheet) sheet = doc.sheetsByIndex[0]; // Fallback
+
+            await sheet.addRow({
+                Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                Type: data.type, // 'Driver Job' or 'Attach Vehicle'
+                Name: data.name,
+                Phone: data.phone,
+                City: data.city,
+                Experience: data.experience,
+                License: data.license,
+                Vehicle_Details: data.vehicle || 'N/A'
+            });
+
+            responseData = { success: true, message: "Application Received" };
+        }
+
         else {
             responseData = { error: "Invalid Action" };
         }
