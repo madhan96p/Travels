@@ -1,0 +1,9 @@
+{
+  "sheets_structure": {
+    "bookings": ["Booking_ID", "Timestamp", "Customer_Name", "Mobile_Number", "Email", "Journey_Type", "Pickup_City", "Drop_City", "Travel_Date", "Pickup_Time", "Return_Date", "Travelers", "Company_Name", "Is_Corporate", "Comments", "Status", "Driver_Assigned"],
+    "travels_careers": ["Timestamp", "Status", "Full_Name", "Phone_Number", "Email_Address", "City_Area", "Experience", "Application_Type", "License_Type", "Vehicle_Details"],
+    "routes": ["Route_Slug", "Origin", "Destination", "Distance_Km", "Time_Hours", "Price_Sedan", "Price_Innova", "Price_Crysta", "Price_Tempo", "Description", "Image_URL", "Popular_Route"],
+    "tariff_local": ["ID", "Name", "Base_Fare", "Base_Km", "Base_Hr", "Extra_Km_Rate", "Extra_Hr_Rate", "Image_Class"],
+    "tariff_outstation": ["ID", "Name", "Min_Km_Per_Day", "Rate_Per_Km", "Driver_Bata", "Image_Class"]
+  }
+}

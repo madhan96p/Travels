@@ -13,6 +13,19 @@
                 Support.
             </p>
 
+            <div style="margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                <h6 style="color:var(--accent); margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase;">Save
+                    Official Contacts</h6>
+                <div style="display:flex; gap: 10px;">
+                    <a href="assets/data/Contact/shrish_travels.vcf" class="btn-vcf" download>
+                        <i class="fas fa-address-card"></i> Travels
+                    </a>
+                    <a href="assets/data/Contact/shrish_associates.vcf" class="btn-vcf" download>
+                        <i class="fas fa-building"></i> Group
+                    </a>
+                </div>
+            </div>
+
             <h5 style="color:white; margin-bottom:10px; font-size:0.85rem; opacity:0.9;">We Accept:</h5>
             <div class="payment-icons">
                 <i class="fab fa-google-pay fa-2x" style="color:white;"></i>
@@ -50,16 +63,20 @@
                     <span>5, Gangai Nagar 1st Main Rd,<br>Velachery, Chennai - 600042</span>
                 </li>
                 <li>
-                    <a href="tel:+918883451668">
-                        <i class="fas fa-phone-alt"></i> +91 888 345 1668
-                    </a>
+                    <a href="tel:+918883451668"><i class="fas fa-phone-alt"></i> +91 888 345 1668</a>
                 </li>
                 <li>
-                    <a href="mailto:travels@shrishgroup.com">
-                        <i class="fas fa-envelope"></i> travels@shrishgroup.com
-                    </a>
+                    <a href="mailto:travels@shrishgroup.com"><i class="fas fa-envelope"></i> travels@shrishgroup.com</a>
                 </li>
             </ul>
+
+            <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                <ul class="footer-links-small" style="font-size: 0.85rem; opacity: 0.8;">
+                    <li><a href="/career.html">Careers / Attach Vehicle</a></li>
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                </ul>
+            </div>
 
             <div class="social-links" style="margin-top: 20px; display: flex; gap: 15px;">
                 <a href="https://www.linkedin.com/company/shrishgroup" target="_blank" aria-label="LinkedIn"><i
@@ -72,7 +89,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2025 Shrish Travels. A Unit of Shrish Group. All Rights Reserved.</p>
+        <p>&copy; <span id="currentYear"></span> Shrish Travels (A Unit of Shrish Group). All Rights Reserved.</p>
         <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 5px;">
             Developed by <a href="https://pragadeeshfolio.netlify.app" target="_blank"
                 style="text-decoration: underline; color: inherit;">PS</a>.
@@ -80,47 +97,6 @@
     </div>
 </footer>
 
-<a href="https://wa.me/918883451668?text=Hi%20Shrish,%20I%20need%20a%20taxi." target="_blank" class="floating-whatsapp"
-    aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<nav class="mobile-bottom-nav">
-    <a href="/" class="nav-item">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-    </a>
-
-    <a href="/tariff.html" class="nav-item">
-        <i class="fas fa-tags"></i>
-        <span>Tariff</span>
-    </a>
-
-    <a href="/booking.html" class="nav-item fab-item">
-        <div class="fab-circle">
-            <i class="fas fa-car-side"></i>
-        </div>
-        <span>Book</span>
-    </a>
-
-    <a href="/routes.html" class="nav-item">
-        <i class="fas fa-map-signs"></i>
-        <span>Routes</span>
-    </a>
-
-    <a href="/contact.html" class="nav-item">
-        <i class="fas fa-headset"></i>
-        <span>Support</span>
-    </a>
-</nav>
-
-<div id="cookie-banner" class="cookie-banner hidden">
-    <div class="cookie-content">
-        <p>🍪 We use cookies to ensure the best experience.</p>
-        <div class="cookie-actions">
-            <button onclick="acceptCookies()" class="btn-accept">Accept</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'"
-                class="btn-close">Close</button>
-        </div>
-    </div>
-</div>
+<script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
