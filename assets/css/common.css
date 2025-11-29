@@ -60,9 +60,14 @@ img {
     display: block;
 }
 
-#header-placeholder {
+/* #header-placeholder {
     min-height: 80px;
     display: block;
+} */
+#header-placeholder {
+    display: block;
+    /* REMOVE min-height. The body padding handles the spacing now. */
+    min-height: 0; 
 }
 
 /* =========================================
@@ -804,3 +809,105 @@ body.scroll-down .brand-tagline { display: none; }
     63% { transform: rotate(0deg); }
     100% { transform: rotate(0deg); }
 }
+
+/* =========================================
+   6. RESPONSIVE HERO (Fixing the Sink)
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        /* DRASTICALLY REDUCED TOP PADDING */
+        /* Was 100px, changing to 30px. 
+           The body padding-top (70px) handles the header clearance.
+           This 30px is just for visual breathing room inside the container. */
+        padding: 30px 0 50px; 
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px; /* Reduced gap */
+        text-align: center; /* Center align looks better on mobile hero */
+    }
+
+    .hero-text {
+        padding: 0 10px; /* Prevent text touching edges */
+    }
+
+    .hero-headline {
+        font-size: 2.2rem; /* Slightly smaller for better fit */
+        margin-bottom: 15px;
+    }
+
+    .hero-subheadline {
+        margin: 0 auto 20px auto; /* Center the subhead */
+        font-size: 1rem;
+    }
+
+    /* Fix Trust Badges alignment on mobile */
+    .hero-trust-badges {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-trust-badges span {
+        margin-right: 0; /* Remove right margin in flex context */
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .fab-item .fab-circle {
+        transform: translateY(-25px); /* Push it up a bit more */
+        width: 60px; /* Slightly larger touch target */
+        height: 60px;
+        background: var(--primary-dark); /* Ensure high contrast */
+        border: 4px solid var(--white); /* White border creates the "cutout" look */
+        box-shadow: 0 -5px 10px rgba(0,0,0,0.1); /* Shadow specifically on top */
+    }
+}
+/* --- FIX: Prevent Horizontal Scroll / Zoom Out --- */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* This cuts off anything sticking out */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Maintain your existing padding-top logic for the header */
+body {
+    padding-top: 120px; 
+}
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+.hero-section {
+    position: relative;
+    width: 100%; /* Ensure it doesn't stretch */
+    height: 600px; 
+    background: #f1f5f9;
+    overflow: hidden; /* CRITICAL: This chops off the blobs */
+    display: flex;
+    align-items: center;
+}
+
+/* On Mobile, reset the height */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding: 50px 0; /* Adjusted padding */
+    }
+}
+
+.overflow-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+}
+

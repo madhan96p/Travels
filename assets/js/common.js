@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     highlightActiveLinks();
     initializeMobileMenu();
     initializeCookieBanner();
+
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+        disable: 'mobile' // Add this line if the layout still breaks
+    });
+
 });
 
 // --- LOGIC HANDLERS ---
@@ -127,3 +135,5 @@ function initializeScrollEffect() {
         lastScrollY = currentScrollY;
     });
 }
+
+// THE SHRISH TRAVELS GROWTH BLUEPRINT (AEO + SEO + CRO + TECH STACK)
