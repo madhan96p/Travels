@@ -39,8 +39,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/common.css">
@@ -71,10 +72,16 @@
             <div class="container">
                 <div class="filters-container" data-aos="fade-up">
                     <button class="filter-button active" data-filter="all">All Routes</button>
-                    <button class="filter-button" data-filter="b2b">B2B & City Connectors</button>
+                    <button class="filter-button" data-filter="b2b">B2B & City</button>
                     <button class="filter-button" data-filter="hills">Hill Stations</button>
-                    <button class="filter-button" data-filter="spiritual">Spiritual Journeys</button>
-                    <button class="filter-button" data-filter="leisure">Weekend Getaways</button>
+                    <button class="filter-button" data-filter="spiritual">Spiritual</button>
+                    <button class="filter-button" data-filter="leisure">Leisure</button>
+                </div>
+
+                <div id="category-context" class="category-context" data-aos="fade-in">
+                    <h2 id="cat-title">Exploring All Routes</h2>
+                    <p id="cat-desc">Browse our complete network of premium outstation taxis connecting Chennai to all
+                        major destinations in South India.</p>
                 </div>
 
                 <div class="routes-grid">
@@ -84,13 +91,36 @@
                     </div>
                 </div>
 
+                <div id="load-more-container" class="load-more-wrapper hidden">
+                    <button id="btn-load-more" class="btn-outline">
+                        Load More Routes <i class="ri-arrow-down-s-line"></i>
+                    </button>
+                </div>
+
+                <div class="seo-content-block" data-aos="fade-up">
+                    <h3>Why Book Outstation with Shrish Travels?</h3>
+                    <div class="seo-grid">
+                        <div>
+                            <h4><i class="ri-road-map-fill"></i> Fixed Km Rates</h4>
+                            <p>Unlike apps that surge, our per-km rates for routes like Chennai to Bangalore are fixed.
+                            </p>
+                        </div>
+                        <div>
+                            <h4><i class="ri-steering-2-fill"></i> Driver Expertise</h4>
+                            <p>Our drivers know the hill roads of Ooty and the temple timings of Kumbakonam perfectly.
+                            </p>
+                        </div>
+                        <div>
+                            <h4><i class="ri-shield-check-fill"></i> Door-to-Door</h4>
+                            <p>We pick you up from your doorstep in Chennai and drop you at your hotel or temple.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="routes-footer" data-aos="fade-up">
-                    <h3>Can't Find Your Route? Request a Custom Itinerary.</h3>
-                    <p>For corporate tours or unique pilgrimage circuits, our travel experts can create a custom
-                        itinerary for any destination in South India.</p>
+                    <h3>Can't Find Your Route?</h3>
                     <div class="cta-container">
-                        <a href="tel:+918883451668" class="cta-btn primary"><i class="ri-phone-fill"></i> Call Our
-                            Experts</a>
+                        <a href="tel:+918883451668" class="cta-btn primary">Call Our Experts</a>
                         <a href="contact.html?query=custom+route" class="cta-btn secondary">Request Custom Quote</a>
                     </div>
                 </div>
@@ -141,4 +171,3 @@
 </body>
 
 </html>
-

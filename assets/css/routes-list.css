@@ -313,3 +313,74 @@
     .routes-footer { padding: 30px 20px; }
     .routes-footer h3 { font-size: 1.5rem; }
 }
+
+/* --- CONTEXT HEADER --- */
+.category-context {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+.category-context h2 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+.category-context p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* --- LOAD MORE BUTTON --- */
+.load-more-wrapper {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.load-more-wrapper.hidden { display: none; }
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #0F172A;
+    color: #0F172A;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-outline:hover {
+    background: #0F172A;
+    color: white;
+}
+
+/* --- SEO CONTENT BLOCK --- */
+.seo-content-block {
+    margin-top: 60px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+.seo-content-block h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0F172A;
+}
+.seo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+.seo-grid h4 {
+    color: #10b981; /* Brand Green */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.seo-grid p {
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.6;
+}
