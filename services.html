@@ -7,9 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Our Premium Services | Corporate, Wedding & Airport Taxi Chennai</title>
-    <meta name="description" content="Shrish Travels offers specialized transport solutions: Corporate Employee Transport, Wedding Fleets, Airport Transfers, and Monthly Car Rentals in Chennai." />
-    
+    <meta name="description"
+        content="Shrish Travels offers specialized transport solutions: Corporate Employee Transport, Wedding Fleets, 24/7 Airport Transfers, and Monthly Car Rentals in Chennai." />
+    <link rel="canonical" href="https://travels.shrishgroup.com/services.html" />
+
     <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+    <meta name="theme-color" content="#0F172A" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,9 +21,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link rel="preload" href="assets/css/common.css" as="style">
-
+    <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/services.css" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "Corporate Employee Transport",
+          "provider": { "@type": "LocalBusiness", "name": "Shrish Travels" },
+          "serviceType": "B2B Transport",
+          "areaServed": { "@type": "City", "name": "Chennai" },
+          "description": "Monthly cab services for employee pickups, drops, and client visits with GST billing."
+        },
+        {
+          "@type": "Service",
+          "name": "Airport Transfer Service",
+          "provider": { "@type": "LocalBusiness", "name": "Shrish Travels" },
+          "serviceType": "Taxi",
+          "description": "Reliable 24/7 airport taxi to and from Chennai International Airport (MAA). Includes flight tracking."
+        },
+        {
+          "@type": "Service",
+          "name": "Wedding Fleet Management",
+          "description": "Luxury car rental and bus logistics for weddings in Tamil Nadu. Decor-ready vehicles available."
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -27,12 +58,14 @@
     <div id="header-placeholder"></div>
 
     <main class="overflow-wrapper">
+
         <section class="services-hero">
             <div class="container">
-                <span class="hero-tag">Total Mobility Solutions</span>
-                <h1 data-aos="fade-up">More Than Just A Taxi.</h1>
-                <p data-aos="fade-up" data-aos-delay="100">
-                    From daily employee transport to grand wedding fleets, Shrish Travels delivers professional, reliable logistics for every occasion.
+                <span class="hero-tag" data-aos="fade-down">Total Mobility Solutions</span>
+                <h1 data-aos="fade-up" data-aos-delay="100">More Than Just A Taxi.</h1>
+                <p data-aos="fade-up" data-aos-delay="200">
+                    From daily employee transport to grand wedding fleets, we deliver professional, reliable logistics
+                    for every occasion.
                 </p>
             </div>
         </section>
@@ -40,25 +73,28 @@
         <section class="section">
             <div class="container">
                 <div class="services-grid">
-                    
+
                     <div class="service-card" data-aos="fade-up">
                         <div class="icon-box"><i class="ri-plane-fill"></i></div>
                         <h3>Airport Transfers</h3>
-                        <p>Reliable pickups and drops for MAA (Chennai Airport). We track flight schedules to ensure our chauffeur is waiting for you, not the other way around.</p>
+                        <p>Reliable pickups/drops for MAA (Chennai Airport). We track flight schedules to ensure our
+                            chauffeur waits for you.</p>
                         <ul class="service-features">
+                            <li><i class="ri-check-line"></i> 24/7 Operations</li>
                             <li><i class="ri-check-line"></i> Flight Tracking</li>
-                            <li><i class="ri-check-line"></i> Meet & Greet</li>
                         </ul>
-                        <a href="booking.html" class="service-link">Book Transfer <i class="ri-arrow-right-line"></i></a>
+                        <a href="booking.html?journeytype=Airport" class="service-link">Book Transfer <i
+                                class="ri-arrow-right-line"></i></a>
                     </div>
 
                     <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box"><i class="ri-road-map-fill"></i></div>
                         <h3>Outstation Packages</h3>
-                        <p>Explore Tamil Nadu and beyond. Whether it's a spiritual trip to Tirupati or a weekend in Pondicherry, our flat-rate packages offer peace of mind.</p>
+                        <p>Explore Tamil Nadu. Spiritual trips to Tirupati or weekends in Pondicherry, our flat-rate
+                            packages offer peace of mind.</p>
                         <ul class="service-features">
-                            <li><i class="ri-check-line"></i> Transparent Pricing</li>
-                            <li><i class="ri-check-line"></i> State Permit Handling</li>
+                            <li><i class="ri-check-line"></i> Fixed KM Rates</li>
+                            <li><i class="ri-check-line"></i> Permit Handling</li>
                         </ul>
                         <a href="routes.html" class="service-link">View Routes <i class="ri-arrow-right-line"></i></a>
                     </div>
@@ -66,10 +102,11 @@
                     <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box"><i class="ri-time-fill"></i></div>
                         <h3>Hourly Rentals</h3>
-                        <p>Need a car for the whole day? Our "8 Hrs / 80 Kms" packages are perfect for shopping, city meetings, or temple visits within Chennai.</p>
+                        <p>Need a car for the day? Our "8 Hrs / 80 Kms" packages are perfect for shopping, meetings, or
+                            temple visits in Chennai.</p>
                         <ul class="service-features">
-                            <li><i class="ri-check-line"></i> Flexible Extensions</li>
-                            <li><i class="ri-check-line"></i> Door-to-Door Service</li>
+                            <li><i class="ri-check-line"></i> Flexible Extension</li>
+                            <li><i class="ri-check-line"></i> Door-to-Door</li>
                         </ul>
                         <a href="tariff.html" class="service-link">Check Tariffs <i class="ri-arrow-right-line"></i></a>
                     </div>
@@ -83,29 +120,30 @@
                 <div class="feature-content" data-aos="fade-right">
                     <span class="section-tag">FOR BUSINESS</span>
                     <h2>Corporate Employee Transport</h2>
-                    <p>Streamline your company's logistics. We provide monthly cab services for employee pickups, client visits, and executive travel.</p>
-                    
+                    <p>Streamline your logistics. We provide monthly cab services for employee pickups, client visits,
+                        and executive travel.</p>
+
                     <div class="feature-list">
                         <div class="f-item">
                             <i class="ri-file-list-3-line"></i>
                             <div>
                                 <strong>GST Compliant Billing</strong>
-                                <p>Seamless monthly invoicing for your finance team.</p>
+                                <p>Seamless monthly invoicing for finance teams.</p>
                             </div>
                         </div>
                         <div class="f-item">
                             <i class="ri-shield-user-line"></i>
                             <div>
                                 <strong>Verified Chauffeurs</strong>
-                                <p>Background checked staff for safety and professionalism.</p>
+                                <p>Background checked staff for safety.</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="contact.html?query=corporate" class="btn-primary">Request Corporate Proposal</a>
+
+                    <a href="contact.html?query=corporate" class="btn-primary">Get B2B Rates</a>
                 </div>
                 <div class="feature-image" data-aos="fade-left">
-                    <div class="img-placeholder">
+                    <div class="img-placeholder corporate-bg">
                         <i class="ri-building-4-line"></i>
                     </div>
                 </div>
@@ -117,26 +155,27 @@
                 <div class="feature-content" data-aos="fade-left">
                     <span class="section-tag">FOR SPECIAL EVENTS</span>
                     <h2>Wedding Fleet Management</h2>
-                    <p>Make your big day stress-free. From luxury cars for the bride & groom to Tempo Travellers for guest logistics, we handle it all.</p>
-                    
+                    <p>Make your big day stress-free. From luxury cars for the couple to Tempo Travellers for guests, we
+                        handle it all.</p>
+
                     <div class="feature-list">
                         <div class="f-item">
                             <i class="ri-car-washing-fill"></i>
                             <div>
                                 <strong>Decor-Ready Cars</strong>
-                                <p>Premium polished vehicles ready for floral decoration.</p>
+                                <p>Polished vehicles ready for floral decoration.</p>
                             </div>
                         </div>
                         <div class="f-item">
                             <i class="ri-group-line"></i>
                             <div>
                                 <strong>Guest Logistics</strong>
-                                <p>Coordinated pickups for guests from airports/railway stations.</p>
+                                <p>Coordinated pickups from airports/stations.</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="contact.html?query=wedding" class="btn-outline">Plan Your Wedding Fleet</a>
+
+                    <a href="contact.html?query=wedding" class="btn-outline">Check Availability</a>
                 </div>
                 <div class="feature-image" data-aos="fade-right">
                     <div class="img-placeholder wedding-bg">
@@ -153,7 +192,8 @@
                     <p>Experience the Shrish Travels difference today.</p>
                 </div>
                 <div class="cta-buttons">
-                    <a href="https://wa.me/918883451668" class="btn-white"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+                    <a href="https://wa.me/918883451668" class="btn-white"><i class="fab fa-whatsapp"></i> WhatsApp
+                        Us</a>
                     <a href="booking.html" class="btn-dark">Book Online</a>
                 </div>
             </div>
@@ -162,18 +202,16 @@
     </main>
 
     <div id="footer-placeholder"></div>
+    <!-- <a href="https://wa.me/918883451668" class="floating-cta" target="_blank"><i class="fab fa-whatsapp"></i></a> -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
-    <link rel="preload" href="assets/js/common.js" as="script">
+    <script src="assets/js/common.js"></script>
 
     <script>
-        // Load Components
+        AOS.init({ duration: 800, once: true });
+
         async function loadComponent(id, url) {
-            try {
-                const response = await fetch(url);
-                if (response.ok) document.getElementById(id).innerHTML = await response.text();
-            } catch (e) { console.error("Error loading component:", url); }
+            try { const res = await fetch(url); if (res.ok) document.getElementById(id).innerHTML = await res.text(); } catch (e) { }
         }
         document.addEventListener("DOMContentLoaded", () => {
             loadComponent('header-placeholder', 'components/_header.html');
@@ -181,4 +219,5 @@
         });
     </script>
 </body>
+
 </html>
