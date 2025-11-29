@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- DOM ELEMENTS ---
     const form = document.getElementById('contactForm');
-    
+
     // Phone & Dropdown Elements
     const phoneInput = document.getElementById('phone-input');
     const dropdown = document.getElementById('country-dropdown');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.setAttribute('data-code', country.code);
             li.setAttribute('data-flag', country.flag);
             li.setAttribute('data-name', country.name.toLowerCase()); // For search optimization
-            
+
             // Handle Selection
             li.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 menu.classList.remove('active');
                 dropdown.classList.remove('active');
 
-                if(phoneInput) {
+                if (phoneInput) {
                     phoneInput.style.color = '#0f172a';
                     phoneInput.value = '';
                     phoneInput.focus();
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // C. Search Functionality
     if (searchInput) {
         searchInput.addEventListener('click', (e) => e.stopPropagation()); // Prevent closing when clicking input
-        
+
         searchInput.addEventListener('input', (e) => {
             filterList(e.target.value.toLowerCase());
         });
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => {
             const name = item.getAttribute('data-name');
             const code = item.getAttribute('data-code');
-            
+
             // Search matches Name OR Code (e.g., "Kuwait" or "+965")
             if (name.includes(query) || code.includes(query)) {
                 item.classList.remove('hidden');
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- PART 2: SMART INPUT VALIDATION (UPDATED FOR +91 ONLY) ---
-    
+
     if (phoneInput) {
         // A. Real-time cleaning
         phoneInput.addEventListener('input', function (e) {
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // B. On Blur (Warning)
-        phoneInput.addEventListener('blur', function() {
+        phoneInput.addEventListener('blur', function () {
             const currentCode = hiddenInput.value;
             const len = this.value.length;
 
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentCode === '+91' && len !== 10) {
                     showToast('Indian numbers must be 10 digits', 'error');
                     this.style.color = 'red';
-                } 
+                }
                 else if (currentCode !== '+91' && len < 7) {
                     showToast('Phone number seems too short', 'error');
                     this.style.color = 'red';
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             // 3. Logic: Combine Country Code + Phone
-            const countryCode = data.country_code || "+91"; 
+            const countryCode = data.country_code || "+91";
             const rawPhone = data.phone;
             const fullMobile = countryCode + rawPhone;
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Only stop submission for 10 digits if it is +91
             if (countryCode === '+91' && rawPhone.length !== 10) {
                 showToast('Please enter a valid 10-digit Indian number', 'error');
-                
+
                 // Stop loading
                 btn.disabled = false;
                 btn.innerHTML = originalText;
@@ -196,24 +196,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // For international, just check it's not empty or too short
             if (countryCode !== '+91' && rawPhone.length < 7) {
-                 showToast('Please enter a valid mobile number', 'error');
-                 btn.disabled = false;
-                 btn.innerHTML = originalText;
-                 return;
+                showToast('Please enter a valid mobile number', 'error');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                return;
             }
 
             // 4. Logic: Prepare Payload for Booking Sheet
             const payload = {
                 Customer_Name: data.name,
-                Mobile_Number: fullMobile, 
-                Email: "Not Provided", 
-                Journey_Type: data.subject, 
+                Mobile_Number: fullMobile,
+                Email: "Not Provided",
+                Journey_Type: data.subject,
                 Comments: data.message,
 
                 // Defaults
-                Pickup_City: '—', 
+                Pickup_City: '—',
                 Drop_City: '—',
-                Travel_Date: 'Inquiry - No Date', 
+                Travel_Date: 'Inquiry - No Date',
                 Status: 'Inquiry',
                 Driver_Assigned: 'Pending'
             };
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Success
                 showToast('Message sent! We will call you shortly.', 'success');
                 form.reset();
-                
+
                 // Reset Dropdown to Default
                 display.innerText = "🇮🇳 +91";
                 hiddenInput.value = "+91";
@@ -255,15 +255,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Set content
         toastMsg.innerText = message;
-        
+
         // Reset classes and set type
-        toast.className = 'toast-container show'; 
+        toast.className = 'toast-container show';
         if (type === 'success') {
             toast.classList.add('success');
-            if(toastIcon) toastIcon.className = 'ri-checkbox-circle-fill';
+            if (toastIcon) toastIcon.className = 'ri-checkbox-circle-fill';
         } else {
             toast.classList.add('error');
-            if(toastIcon) toastIcon.className = 'ri-error-warning-fill';
+            if (toastIcon) toastIcon.className = 'ri-error-warning-fill';
         }
 
         // Hide after 4 seconds
