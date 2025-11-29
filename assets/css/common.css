@@ -3,22 +3,27 @@
    ========================================= */
 :root {
     /* Brand Colors */
-    --primary-dark: #0F172A;   /* Deep Navy - CEO Trust */
-    --primary: #1E293B;        /* Slate - Professional */
-    --accent: #10B981;         /* Emerald Green - Action/Success */
+    --primary-dark: #0F172A;
+    /* Deep Navy - CEO Trust */
+    --primary: #1E293B;
+    /* Slate - Professional */
+    --accent: #10B981;
+    /* Emerald Green - Action/Success */
     --accent-hover: #059669;
-    
+
     /* Utility Colors */
     --text-main: #334155;
     --text-light: #64748B;
-    --bg-light: #F8FAFC;       /* Very light grey for backgrounds */
+    --bg-light: #F8FAFC;
+    /* Very light grey for backgrounds */
     --white: #ffffff;
-    
+
     /* Premium Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2); /* Subtle green glow */
+    --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
+    /* Subtle green glow */
 
     /* Spacing */
     --container-width: 1200px;
@@ -36,14 +41,30 @@ body {
     color: var(--text-main);
     background-color: var(--bg-light);
     line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
 }
 
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-ul { list-style: none; }
-img { max-width: 100%; display: block; }
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
 
-#header-placeholder { min-height: 80px; display: block; }
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+#header-placeholder {
+    min-height: 80px;
+    display: block;
+}
+
 /* =========================================
    2. UTILITY CLASSES
    ========================================= */
@@ -70,14 +91,22 @@ img { max-width: 100%; display: block; }
     color: var(--primary-dark);
     box-shadow: var(--shadow-md);
 }
-.btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
 
 .btn-outline {
     border: 2px solid var(--primary-dark);
     color: var(--primary-dark);
     background: transparent;
 }
-.btn-outline:hover { background: var(--primary-dark); color: var(--white); }
+
+.btn-outline:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+}
 
 /* =========================================
    3. HEADER (Top Bar & Main Nav)
@@ -86,10 +115,10 @@ img { max-width: 100%; display: block; }
 /* A. Top Utility Bar (The "Corporate" Strip) */
 .top-utility-bar {
     background-color: var(--primary-dark);
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.8rem;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .utility-flex {
@@ -98,13 +127,20 @@ img { max-width: 100%; display: block; }
     align-items: center;
 }
 
-.utility-actions a:hover { color: var(--white); }
-.divider { margin: 0 10px; opacity: 0.3; }
+.utility-actions a:hover {
+    color: var(--white);
+}
+
+.divider {
+    margin: 0 10px;
+    opacity: 0.3;
+}
 
 /* B. Main Header */
 .main-header {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px); /* Glass effect */
+    backdrop-filter: blur(10px);
+    /* Glass effect */
     height: var(--header-height);
     box-shadow: var(--shadow-sm);
     position: sticky;
@@ -125,17 +161,29 @@ img { max-width: 100%; display: block; }
     align-items: center;
     gap: 10px;
 }
-.logo-icon { height: 40px; width: auto; }
+
+.logo-icon {
+    height: 40px;
+    width: auto;
+}
+
 .brand-name {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-dark);
     letter-spacing: -0.5px;
 }
-.brand-dot { color: var(--accent); }
+
+.brand-dot {
+    color: var(--accent);
+}
 
 /* Desktop Navigation */
-.desktop-nav .nav-list { display: flex; gap: 30px; align-items: center; }
+.desktop-nav .nav-list {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
 
 .nav-link {
     font-weight: 500;
@@ -155,10 +203,17 @@ img { max-width: 100%; display: block; }
     background-color: var(--accent);
     transition: width 0.3s;
 }
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
 
 /* Dropdowns */
-.has-dropdown { position: relative; }
+.has-dropdown {
+    position: relative;
+}
+
 .dropdown-menu {
     position: absolute;
     top: 100%;
@@ -173,33 +228,53 @@ img { max-width: 100%; display: block; }
     transform: translateY(10px);
     transition: 0.3s ease;
 }
-.has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .dropdown-menu li a {
     display: block;
     padding: 10px 20px;
     font-size: 0.9rem;
     color: var(--text-main);
 }
-.dropdown-menu li a:hover { background: var(--bg-light); color: var(--accent); }
+
+.dropdown-menu li a:hover {
+    background: var(--bg-light);
+    color: var(--accent);
+}
 
 /* Header Actions */
-.header-actions { display: flex; align-items: center; gap: 15px; }
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
 .header-cta {
     background: var(--primary-dark);
     color: var(--white);
     padding: 10px 24px;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
+    /* Pill shape */
     font-weight: 600;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.header-cta:hover { background: var(--accent); box-shadow: var(--shadow-glow); }
+
+.header-cta:hover {
+    background: var(--accent);
+    box-shadow: var(--shadow-glow);
+}
 
 .mobile-menu-toggle {
-    display: none; /* Hidden on desktop */
+    display: none;
+    /* Hidden on desktop */
     font-size: 1.5rem;
     background: none;
     border: none;
@@ -224,15 +299,31 @@ img { max-width: 100%; display: block; }
     margin-bottom: 40px;
 }
 
-.footer-logo h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 15px; }
-.footer-col h4 { color: var(--white); margin-bottom: 20px; font-weight: 600; }
-.footer-col ul li { margin-bottom: 12px; }
-.footer-col ul li a:hover { color: var(--accent); padding-left: 5px; }
+.footer-logo h3 {
+    color: var(--white);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent);
+    padding-left: 5px;
+}
 
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.85rem;
 }
 
@@ -240,15 +331,27 @@ img { max-width: 100%; display: block; }
    5. MOBILE & RESPONSIVE
    ========================================= */
 .mobile-bottom-nav {
-    display: none; /* Hidden on Desktop */
+    display: none;
+    /* Hidden on Desktop */
 }
 
 @media (max-width: 768px) {
-    .top-utility-bar, .desktop-nav, .header-cta { display: none; }
-    .mobile-menu-toggle { display: block; }
-    
-    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-    
+
+    .top-utility-bar,
+    .desktop-nav,
+    .header-cta {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
     /* Bottom Navigation Bar */
     .mobile-bottom-nav {
         display: flex;
@@ -260,7 +363,7 @@ img { max-width: 100%; display: block; }
         width: 100%;
         height: 65px;
         background: var(--white);
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1001;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
@@ -273,8 +376,16 @@ img { max-width: 100%; display: block; }
         font-size: 0.7rem;
         color: var(--text-light);
     }
-    .nav-item i { font-size: 1.2rem; margin-bottom: 4px; }
-    .nav-item.active { color: var(--primary-dark); font-weight: 600; }
+
+    .nav-item i {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+
+    .nav-item.active {
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
 
     /* Floating Action Button (FAB) in center */
     .fab-item .fab-circle {
@@ -286,7 +397,8 @@ img { max-width: 100%; display: block; }
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 25px; /* Push it up */
+        margin-bottom: 25px;
+        /* Push it up */
         box-shadow: 0 5px 15px rgba(15, 23, 42, 0.4);
         border: 4px solid var(--white);
     }
@@ -303,4 +415,155 @@ img { max-width: 100%; display: block; }
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* =========================================
+   6. PREMIUM UPGRADES (Glass, Scroll, FAB)
+   ========================================= */
+
+/* --- A. PUMA STYLE HEADER LOGIC --- */
+/* The Top Bar moves up when scrolling down */
+.top-utility-bar {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top;
+}
+
+body.scroll-down .top-utility-bar {
+    transform: translateY(-100%);
+    /* Hides it */
+    position: absolute;
+    /* Prevents it from taking space */
+    width: 100%;
+}
+
+/* The Main Header sticks and compacts */
+.main-header {
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.scroll-down .main-header {
+    height: 60px;
+    /* Shrinks from 80px */
+    background: rgba(255, 255, 255, 0.98);
+    /* Less transparent to read better */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Shrink Logo on Scroll */
+body.scroll-down .logo-icon {
+    height: 30px;
+    /* Shrinks from 40px */
+    transition: height 0.3s ease;
+}
+
+body.scroll-down .brand-name {
+    font-size: 1.2rem;
+    transition: font-size 0.3s ease;
+}
+
+body.scroll-down .brand-tagline {
+    display: none !important;
+    /* Hide tagline to save space */
+}
+
+/* --- B. MOBILE BOTTOM NAV (Glass + Notch) --- */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        background: rgba(255, 255, 255, 0.85);
+        /* Glass base */
+        backdrop-filter: blur(12px);
+        /* The "Frosted" Glass Effect */
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+        height: 70px;
+        /* Slightly taller for the notch effect */
+        padding-bottom: 5px;
+    }
+
+    /* The Center "Book" Button - Floating Notch Style */
+    .fab-item .fab-circle {
+        transform: translateY(-20px);
+        /* Push it up outside the bar */
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        /* Borders match glass bg */
+        box-shadow: 0 8px 15px rgba(30, 58, 138, 0.3);
+    }
+
+    /* Active State Glow */
+    .nav-item.active i {
+        color: var(--primary-dark);
+        filter: drop-shadow(0 0 8px rgba(30, 58, 138, 0.3));
+    }
+}
+
+/* --- C. FLOATING WHATSAPP BUTTON --- */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 85px;
+    /* Above the bottom nav */
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1002;
+    transition: all 0.3s ease;
+    animation: pulse-green 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* --- D. FOOTER PAYMENT ICONS & ROUTE GRID --- */
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.pay-icon {
+    height: 25px;
+    opacity: 0.8;
+    background: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.route-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 2 columns */
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.route-grid li {
+    margin-bottom: 5px;
 }

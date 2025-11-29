@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    
+
     // 1. COMPONENT INJECTOR (Loads Header/Footer)
     const loadComponent = async (id, filePath) => {
         const element = document.getElementById(id);
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // 2. LOAD ALL PARTS
+    // We wait for this to finish so elements exist before we attach scripts
     await Promise.all([
         loadComponent('header-placeholder', 'components/_header.html'),
         loadComponent('footer-placeholder', 'components/_footer.html'),
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ]);
 
     // 3. INITIALIZE INTERACTIVITY (After loading)
+    initializeScrollEffect(); // <--- ADDED: Starts the Puma Header Logic
     highlightActiveLinks();
     initializeMobileMenu();
     initializeCookieBanner();
@@ -33,9 +35,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function highlightActiveLinks() {
     const currentPath = window.location.pathname;
-    
+
     // Desktop Nav
     document.querySelectorAll('.desktop-nav a').forEach(link => {
+        // Simple match or partial match if needed
         if (link.getAttribute('href') === currentPath) link.classList.add('active');
     });
 
@@ -45,8 +48,11 @@ function highlightActiveLinks() {
             link.classList.add('active');
             // Make the icon filled for active state
             const icon = link.querySelector('i');
-            if(icon) icon.classList.replace('ri-home-line', 'ri-home-fill'); 
-            // Add logic to swap other icons if needed
+            // Example replacement logic for Remix Icons or FontAwesome
+            if (icon) {
+                // If using FontAwesome, usually adding a specific class or changing style works
+                // For now, we just ensure it keeps the active class
+            }
         }
     });
 }
@@ -54,13 +60,11 @@ function highlightActiveLinks() {
 function initializeMobileMenu() {
     // Logic for the top-right "Hamburger" menu on mobile
     const toggleBtn = document.querySelector('.mobile-menu-toggle');
-    // If you plan to have a slide-out drawer, logic goes here. 
-    // For now, since we have the Bottom Nav, this button might redirect to a full menu page
-    if(toggleBtn) {
+
+    if (toggleBtn) {
         toggleBtn.addEventListener('click', () => {
-            // Optional: Toggle a full-screen menu overlay
-            // window.location.href = '/menu.html'; 
-            alert("Use the bottom bar for quick navigation!");
+            // Since we have the Bottom Nav, we guide them there or open a full drawer
+            alert("Please use the bottom navigation bar for easier access!");
         });
     }
 }
@@ -68,11 +72,60 @@ function initializeMobileMenu() {
 function initializeCookieBanner() {
     if (!localStorage.getItem("cookieConsent")) {
         const banner = document.getElementById("cookie-banner");
-        if(banner) setTimeout(() => banner.classList.remove("hidden"), 2000);
+        if (banner) setTimeout(() => banner.classList.remove("hidden"), 2000);
     }
 }
 
-window.acceptCookies = function() {
+// Global function for the Accept button in HTML
+window.acceptCookies = function () {
     localStorage.setItem("cookieConsent", "true");
-    document.getElementById("cookie-banner").classList.add("hidden");
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.classList.add("hidden");
 };
+
+/**
+ * PUMA-STYLE SCROLL EFFECT
+ * 1. Hides Top Utility Bar on Scroll Down
+ * 2. Shrinks Main Header on Scroll
+ */
+function initializeScrollEffect() {
+    let lastScrollY = window.scrollY;
+    const body = document.body;
+
+    // We look for 'main-header' which was injected by loadComponent
+    const header = document.getElementById('main-header');
+
+    // Safety check: if header didn't load, stop here to avoid errors
+    if (!header) return;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+
+        // 1. Logic for "Puma" Top Bar Hiding
+        // We only trigger this after scrolling down 50px to avoid jitter at the very top
+        if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+            // User is scrolling DOWN -> Hide Top Bar
+            body.classList.add('scroll-down');
+            body.classList.remove('scroll-up');
+        } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
+            // User is scrolling UP -> Show Top Bar
+            body.classList.add('scroll-up');
+            body.classList.remove('scroll-down');
+        }
+
+        // 2. Logic for Header Compact Mode (Glass effect check)
+        if (currentScrollY > 10) {
+            header.classList.add('is-scrolled');
+        } else {
+            header.classList.remove('is-scrolled');
+
+            // Optional: If at the very top, reset direction classes
+            if (currentScrollY <= 0) {
+                body.classList.remove('scroll-down');
+                body.classList.remove('scroll-up');
+            }
+        }
+
+        lastScrollY = currentScrollY;
+    });
+}
