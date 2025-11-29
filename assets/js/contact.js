@@ -47,13 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Handle Selection
             li.addEventListener('click', (e) => {
-                e.stopPropagation(); // Stop click from bubbling up
+                e.stopPropagation();
                 display.innerText = `${country.flag} ${country.code}`;
-                hiddenInput.value = country.code; // Update the hidden field for the form
+                hiddenInput.value = country.code;
                 menu.classList.remove('active');
-                
-                // UX: Clear any previous error colors when switching countries
-                if(phoneInput) phoneInput.style.color = '#0f172a';
+                dropdown.classList.remove('active');
+
+                if(phoneInput) {
+                    phoneInput.style.color = '#0f172a';
+                    phoneInput.value = '';
+                    phoneInput.focus();
+                }
             });
 
             list.appendChild(li);
@@ -61,15 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // B. Toggle Dropdown
-    if (display) { // CHANGED: Listen to the 'display' (flag area), not the whole 'dropdown'
+    if (display) {
         display.addEventListener('click', (e) => {
-            e.stopPropagation(); // Stop this click from triggering document listeners immediately
+            e.stopPropagation();
+            const isActive = menu.classList.contains('active');
+
             menu.classList.toggle('active');
-            
-            if (menu.classList.contains('active')) {
-                searchInput.focus(); // Focus search immediately
-                searchInput.value = ''; // Clear previous search
-                filterList(''); // Show all items
+            dropdown.classList.toggle('active');
+
+            if (!isActive) {
+                searchInput.focus();
+                searchInput.value = '';
+                filterList('');
             }
         });
     }
@@ -102,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         if (dropdown && !dropdown.contains(e.target)) {
             menu.classList.remove('active');
+            dropdown.classList.remove('active');
         }
     });
 
