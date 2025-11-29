@@ -1,150 +1,207 @@
-/* --- VARIABLES & RESET --- */
+/* --- 1. CORE VARIABLES & COMPACT THEME --- */
 :root {
-    --primary-color: #0F172A; /* Deep Navy */
-    --accent-color: #2563EB;  /* Royal Blue */
-    --accent-hover: #1D4ED8;
-    --bg-color: #F8FAFC;      /* Very Light Grey */
-    --card-bg: #FFFFFF;
-    --text-dark: #1E293B;
-    --text-light: #64748B;
-    --border-color: #E2E8F0;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Brand Palette */
+    --primary: #0F172A;
+    --accent: #2563EB;
+    --gold: #F59E0B;
+    
+    /* Surfaces */
+    --bg-page: #F1F5F9; /* Slightly darker to make white pop */
+    --bg-card: #FFFFFF;
+    --border-light: #E2E8F0;
+    
+    /* Text */
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    
+    /* Spacing - OPTIMIZED */
+    --space-card-pad: 1.25rem; /* Reduced from 2rem */
+    --space-gap: 0.85rem;      /* Reduced from 1.5rem */
+    --input-height: 48px;      /* Standard touch target */
+
+    /* Shadows & Animation */
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-float: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-dark);
-}
-
-/* --- HERO BANNER --- */
+/* --- 2. COMPACT LAYOUT --- */
 .booking-hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a8a 100%);
-    padding: 8rem 0 4rem; /* Top padding accounts for fixed header */
-    text-align: center;
+    background: var(--primary);
     color: white;
-    margin-bottom: -3rem; /* Overlap effect */
+    padding: 100px 0 40px; /* Reduced vertical height */
+    text-align: center;
+    /* Removed the extreme slant clip-path to save space */
+    border-bottom: 4px solid var(--accent);
+    margin-bottom: 1.5rem;
 }
 
 .booking-hero h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem; /* Smaller, punchier */
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin: 0;
 }
 
 .booking-hero p {
-    font-size: 1.1rem;
-    color: #cbd5e1;
-    font-weight: 300;
+    color: #CBD5E1;
+    font-size: 0.95rem;
+    margin-top: 5px;
+    display: none; /* Hide subtitle on mobile to save space */
 }
 
-/* --- LAYOUT GRID --- */
+@media (min-width: 768px) {
+    .booking-hero p { display: block; }
+    .booking-hero h1 { font-size: 2.2rem; }
+}
+
 .booking-section {
-    position: relative;
-    z-index: 10;
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
+    max-width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .booking-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Form takes 2/3, Sidebar 1/3 */
-    gap: 2rem;
-    align-items: start;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
 }
 
-/* --- FORM CARDS --- */
+/* Desktop Grid: 70% Form, 30% Sidebar */
+@media (min-width: 992px) {
+    .booking-grid {
+        grid-template-columns: 2.5fr 1fr;
+        align-items: start;
+    }
+    .sidebar-wrapper {
+        position: sticky;
+        top: 90px;
+        z-index: 10;
+    }
+}
+
+/* --- 3. COMPACT FORM CARDS --- */
 .form-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: var(--space-card-pad);
+    margin-bottom: 1rem; /* Tighter spacing between cards */
+    box-shadow: var(--shadow-card);
+    position: relative; /* Context for Z-index */
 }
 
 .card-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .card-header i {
-    font-size: 1.5rem;
-    color: var(--accent-color);
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-right: 0.75rem;
+    background: #EFF6FF;
+    padding: 6px;
+    border-radius: 6px;
 }
 
 .card-header h3 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-main);
     margin: 0;
 }
 
-/* --- RADIO CARDS (Journey Type) --- */
+/* --- 4. RADIO TILES (Mobile Optimized) --- */
 .journey-type-selector {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns on mobile */
+    gap: 0.5rem; /* Tight gap */
+    margin-bottom: 1.25rem;
+}
+
+.radio-card {
+    position: relative;
+    cursor: pointer;
+    margin: 0;
 }
 
 .radio-card input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-.radio-card .card-content {
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1rem;
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #F8FAFC;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 0.6rem 0.2rem; /* Compact padding */
+    transition: all 0.2s var(--ease);
+    height: 100%;
+}
+
+.card-content i {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-muted);
+}
+
+.card-content span {
+    font-size: 0.75rem; /* Smaller text for mobile fit */
+    font-weight: 500;
+    color: var(--text-main);
     text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-light);
+    line-height: 1.1;
 }
 
-.radio-card .card-content i {
-    display: block;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.radio-card .card-content span {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* Checked State */
+/* Selected State */
 .radio-card input:checked + .card-content {
-    border-color: var(--accent-color);
-    background-color: #eff6ff;
-    color: var(--accent-color);
-    box-shadow: var(--shadow-sm);
+    background: #EFF6FF;
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
 }
 
-/* --- INPUTS --- */
+.radio-card input:checked + .card-content i { color: var(--accent); }
+
+/* --- 5. INPUT FIELDS (Overlap Fixes) --- */
 .input-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: var(--space-gap);
+    margin-bottom: var(--space-gap);
+}
+
+@media (min-width: 600px) {
+    .input-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.35rem; /* Closer label to input */
+    position: relative; /* Critical for z-index stacking */
+}
+
+/* Force higher z-index for phone group to allow dropdown to float over next input */
+.input-group:has(.custom-dropdown) {
+    z-index: 20; 
 }
 
 .input-group label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03em;
 }
 
 .input-wrapper {
@@ -155,277 +212,186 @@ body {
 
 .input-wrapper i {
     position: absolute;
-    left: 1rem;
-    color: var(--text-light);
-    font-size: 1.1rem;
-}
-
-.input-wrapper input {
-    width: 100%;
-    padding: 0.85rem 1rem 0.85rem 3rem; /* Left padding for icon */
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    left: 0.9rem;
+    color: #94A3B8;
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-dark);
-    transition: 0.3s ease;
-    background-color: #fff;
+    pointer-events: none; /* Prevent icon blocking click */
 }
 
-.input-wrapper input:focus {
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    height: var(--input-height);
+    padding: 0 0.75rem 0 2.5rem; /* Compact padding */
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.2s;
+    /* Fix for iOS shadow */
+    -webkit-appearance: none; 
+    appearance: none;
+}
+
+.input-wrapper select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748B%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.65rem auto;
+    padding-right: 2rem;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: var(--accent);
     outline: none;
-    border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* --- CORPORATE TOGGLE --- */
-.corporate-section {
-    background: #f1f5f9;
-    padding: 1rem;
+/* --- 6. PHONE INPUT (Dropdown Z-Index Fix) --- */
+.phone-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light);
     border-radius: 8px;
+    height: var(--input-height);
+    background: #fff;
+    position: relative; /* Anchor for absolute dropdown */
+}
+
+.custom-dropdown {
+    position: relative;
+    height: 100%;
+    border-right: 1px solid var(--border-light);
+    min-width: 90px;
+}
+
+.selected-option {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: #F8FAFC;
+    border-radius: 8px 0 0 8px;
+}
+
+/* THE DROPDOWN FIX */
+.dropdown-menu {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 260px;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow-float);
+    z-index: 100; /* Super high so it floats over everything */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-search {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.dropdown-list li {
+    padding: 10px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+/* --- 7. CORPORATE & SUBMIT --- */
+.corporate-section {
     margin-top: 1rem;
+    padding: 0.75rem;
+    background: #F8FAFC;
+    border-radius: 8px;
 }
 
 .toggle-wrapper {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    cursor: pointer;
 }
 
-.toggle-slider {
-    position: relative;
-    width: 48px;
-    height: 24px;
-    background-color: #cbd5e1;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+.toggle-slider { width: 36px; height: 20px; margin-right: 10px; }
+.toggle-slider:before { width: 14px; height: 14px; left: 3px; bottom: 3px; }
+input:checked + .toggle-slider:before { transform: translateX(16px); }
+.toggle-text { font-size: 0.85rem; font-weight: 500; }
 
-.toggle-slider::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.3s;
-    box-shadow: var(--shadow-sm);
-}
-
-#corporate-booking-checkbox {
-    display: none;
-}
-
-#corporate-booking-checkbox:checked + .toggle-slider {
-    background-color: var(--accent-color);
-}
-
-#corporate-booking-checkbox:checked + .toggle-slider::after {
-    transform: translateX(24px);
-}
-
-.toggle-text {
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-.hidden-fields {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    margin-top: 0;
-}
-
-/* Show fields when triggered via JS/CSS logic */
-#corporate-booking-checkbox:checked ~ .hidden-fields {
-    max-height: 100px;
-    margin-top: 1rem;
-}
-
-/* --- BUTTONS --- */
 .premium-submit-btn {
     width: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    color: white;
+    height: 54px; /* Big touch target */
     border: none;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: 600;
     border-radius: 8px;
-    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 0.75rem;
-    box-shadow: var(--shadow-lg);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.premium-submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 20px -5px rgba(37, 99, 235, 0.4);
-}
-
-.spam-notice {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--text-light);
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
     margin-top: 1rem;
 }
 
-/* --- RIGHT SIDEBAR (Trust Signals) --- */
-.sidebar-wrapper {
-    position: sticky;
-    top: 2rem;
+/* --- 8. FLOATING CTA FIX (Overlap Issue) --- */
+.floating-cta {
+    bottom: 80px !important; /* Move UP so it doesn't block the submit button/footer */
+    width: 50px !important;  /* Smaller on mobile */
+    height: 50px !important;
+    font-size: 24px !important;
+    right: 15px !important;
 }
 
+/* Text label next to FAB (if exists) */
+.floating-cta::after {
+    display: none; /* Hide text label on mobile to prevent overlap */
+}
+
+@media (min-width: 768px) {
+    .floating-cta {
+        bottom: 30px !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* --- 9. TRUST SIDEBAR (Compact) --- */
 .trust-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
+    padding: var(--space-card-pad);
+    background: #F0FDF4; /* Light Green Tint */
+    border: 1px solid #BBF7D0;
 }
 
-.trust-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-}
-
-.mini-logo {
-    width: 40px;
-}
-
-.benefit-list {
-    list-style: none;
-    padding: 0;
-}
+.trust-header h4 { font-size: 1rem; margin-bottom: 0.75rem; }
 
 .benefit-list li {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .icon-box {
-    width: 40px;
-    height: 40px;
-    background: #eff6ff;
-    color: var(--accent-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-}
-
-.benefit-list strong {
-    display: block;
-    color: var(--text-dark);
-    font-size: 0.95rem;
-}
-
-.benefit-list p {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    margin: 0;
-}
-
-.divider {
-    height: 1px;
-    background: var(--border-color);
-    margin: 1.5rem 0;
-}
-
-.urgent-help {
-    text-align: center;
-}
-
-.call-btn {
-    display: inline-block;
-    margin-top: 0.5rem;
-    background: #fff0f0;
-    color: #dc2626;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.call-btn:hover {
-    background: #dc2626;
-    color: white;
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .booking-hero h1 { font-size: 1.8rem; }
-    .booking-grid { grid-template-columns: 1fr; }
-    .journey-type-selector { gap: 0.5rem; }
-    .radio-card .card-content { padding: 0.75rem 0.5rem; }
-    .radio-card span { font-size: 0.8rem; }
-    .input-grid { grid-template-columns: 1fr; }
-}
-
-/* --- ANIMATIONS & INTERACTIVITY --- */
-
-/* Smooth Slide for Return Date */
-.hidden-slide {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    margin-top: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-10px);
-}
-
-.hidden-slide.active {
-    max-height: 100px; /* Enough space for the input */
-    opacity: 1;
-    margin-top: 1.5rem;
-    transform: translateY(0);
-}
-
-/* --- MOBILE "CUTE" UI TWEAKS --- */
-@media (max-width: 768px) {
-    .booking-section { padding-bottom: 6rem; } /* Space for bottom nav */
-    
-    .form-card {
-        padding: 1.25rem; /* Compact padding */
-        border-radius: 20px; /* Softer corners */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Softer shadow */
-    }
-
-    /* Make inputs feel "tappable" but not huge */
-    .input-wrapper input {
-        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-        font-size: 0.95rem;
-        border-radius: 10px;
-        background: #f8fafc; /* Slight off-white background */
-    }
-    
-    .input-wrapper i {
-        font-size: 1rem;
-        left: 0.85rem;
-        color: var(--accent-color); /* Colorful icons */
-    }
-
-    /* Cute Radio Cards on Mobile */
-    .journey-type-selector {
-        gap: 0.5rem;
-    }
-    .radio-card .card-content {
-        padding: 0.6rem 0.2rem;
-        border-radius: 10px;
-    }
-    .radio-card i { font-size: 1.2rem; margin-bottom: 2px; }
-    .radio-card span { font-size: 0.75rem; }
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
 }
