@@ -911,3 +911,17 @@ body {
     width: 100%;
 }
 
+/* --- EXECUTION 1: PERF FIX (The Blob) --- */
+/* Add this to stop mobile lag. Tells browser to use GPU. */
+.blob {
+    will-change: transform;
+}
+
+/* --- EXECUTION 2: MOBILE UI CLEANUP --- */
+/* Hides the floating WhatsApp button on mobile so it doesn't overlap the Bottom Nav */
+@media (max-width: 768px) {
+    .floating-cta {
+        display: none !important;
+    }
+}
+

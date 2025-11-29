@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 t.setAttribute('aria-selected', 'false');
             });
             contents.forEach(c => c.classList.remove('active'));
-            
+
             // Add active class to current
             tab.classList.add('active');
             tab.setAttribute('aria-selected', 'true');
-            
+
             const targetId = tab.dataset.tab + '-tab';
             document.getElementById(targetId).classList.add('active');
         });
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.outstation && data.outstation.length > 0) {
                 processCards(data.outstation, 'outstation');
             }
+            updatePageSchema(data);
         })
         .catch(err => {
             console.log("Using static fallback data (API fetch failed or empty).", err);
@@ -46,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function processCards(data, type) {
         const container = document.querySelector(`#${type}-tab .tariff-grid`);
         if (!container) return;
-        
+
         data.forEach(item => {
             // Try to find existing card by data attribute to update in-place (better for speed)
             const existingCard = document.querySelector(`.package-card[data-vehicle="${item.ID}"]`);
-            
+
             if (existingCard) {
                 updateCardData(existingCard, item, type);
             } else {
@@ -64,26 +65,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Updates price numbers while keeping Schema structure intact
         if (type === 'local') {
             const priceEl = card.querySelector('.price');
-            if(priceEl) {
+            if (priceEl) {
                 priceEl.innerHTML = `₹${Number(item.Base_Fare).toLocaleString()}`;
                 priceEl.setAttribute('content', item.Base_Fare); // Update Schema meta
             }
-            
+
             // Update features list
             const features = card.querySelectorAll('.card-features li');
-            if(features.length >= 2) {
+            if (features.length >= 2) {
                 features[0].innerHTML = `<i class="ri-time-line"></i> Extra Hour: ₹${item.Extra_Hr_Rate}`;
                 features[1].innerHTML = `<i class="ri-route-line"></i> Extra KM: ₹${item.Extra_Km_Rate}`;
             }
         } else {
             const priceEl = card.querySelector('.price');
-            if(priceEl) {
+            if (priceEl) {
                 priceEl.innerHTML = `₹${item.Rate_Per_Km}`;
                 priceEl.setAttribute('content', item.Rate_Per_Km);
             }
 
             const features = card.querySelectorAll('.card-features li');
-            if(features.length >= 1) {
+            if (features.length >= 1) {
                 features[0].innerHTML = `Driver BATA: ₹${item.Driver_Bata}/day`;
             }
         }
@@ -95,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function createCardHTML(item, type) {
         // Default to 'fas fa-car' if API doesn't provide class
-        const iconClass = item.Image_Class || 'fas fa-car'; 
-        
+        const iconClass = item.Image_Class || 'fas fa-car';
+
         if (type === 'local') {
             return `
             <article class="package-card" data-vehicle="${item.ID}" itemscope itemtype="https://schema.org/Product">
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. MODAL & CALCULATOR LOGIC (CRO ENGINE)
     const modal = document.getElementById('estimatorModal');
-    
+
     // Event Delegation for dynamic buttons
     document.body.addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-estimate')) {
@@ -158,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Close modal logic
         if (e.target.closest('.modal-close') || e.target.closest('.close-modal')) {
-            if(modal) modal.classList.add('hidden');
+            if (modal) modal.classList.add('hidden');
         }
     });
 
@@ -173,18 +174,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalBody = document.getElementById('modalBody');
         const modalFooter = document.getElementById('modalFooter');
         const modalTitle = document.getElementById('modalTitle');
-        
-        if(!modal || !modalBody) return;
+
+        if (!modal || !modalBody) return;
 
         modal.classList.remove('hidden');
-        
+
         // Find data from the DOM card
         const card = document.querySelector(`.package-card[data-vehicle="${vehicleId}"]`);
-        if(!card) return;
+        if (!card) return;
 
         const title = card.querySelector('h3').innerText;
         const isLocal = card.closest('#local-tab') !== null;
-        
+
         // Helper to extract numbers
         const getNumber = (selector) => {
             const el = card.querySelector(selector);
@@ -207,12 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLocal) {
             // --- LOCAL CALCULATION ---
             const baseFare = getNumber('.price'); // Extracts 1300 from "₹1,300"
-            
+
             // Parse features safely
             const features = card.querySelectorAll('.card-features li');
-            let extraHrRate = 0; 
+            let extraHrRate = 0;
             let extraKmRate = 0;
-            
+
             if (features.length > 0) extraHrRate = parseInt(features[0].innerText.replace(/[^\d]/g, '')) || 0;
             if (features.length > 1) extraKmRate = parseInt(features[1].innerText.replace(/[^\d]/g, '')) || 0;
 
@@ -235,28 +236,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 const km = parseInt(document.getElementById('calc-km').value) || 0;
                 const hr = parseInt(document.getElementById('calc-hr').value) || 0;
                 const total = baseFare + (km * extraKmRate) + (hr * extraHrRate);
-                
+
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
                 waText.innerText = `Book via WhatsApp (₹${total})`;
 
                 const msg = `*New Local Booking* %0A%0A` +
-                            `🚗 *Car:* ${title} %0A` +
-                            `📍 *Base:* ₹${baseFare} %0A` + 
-                            `➕ *Extra:* ${km}km & ${hr}hr %0A` +
-                            `💰 *Total:* ₹${total} %0A` +
-                            `---------------- %0A` +
-                            `Check availability?`;
-                
+                    `🚗 *Car:* ${title} %0A` +
+                    `📍 *Base:* ₹${baseFare} %0A` +
+                    `➕ *Extra:* ${km}km & ${hr}hr %0A` +
+                    `💰 *Total:* ₹${total} %0A` +
+                    `---------------- %0A` +
+                    `Check availability?`;
+
                 waBtn.href = `https://wa.me/${OWNER_PHONE}?text=${msg}`;
             };
-            
+
             modalBody.addEventListener('input', calculate);
             calculate(); // Init
 
         } else {
             // --- OUTSTATION CALCULATION ---
             const perKm = getNumber('.price'); // Extracts 14 from "₹14"
-            
+
             const features = card.querySelectorAll('.card-features li');
             let bata = 0;
             let minKm = 250;
@@ -283,28 +284,95 @@ document.addEventListener('DOMContentLoaded', () => {
             const calculate = () => {
                 const days = parseInt(document.getElementById('calc-days').value) || 1;
                 const dist = parseInt(document.getElementById('calc-dist').value) || 0;
-                
+
                 const minTotalKm = days * minKm;
                 const chargeableDist = Math.max(dist, minTotalKm);
-                
+
                 const total = (chargeableDist * perKm) + (days * bata);
-                
+
                 document.getElementById('calc-total').innerText = `₹${total.toLocaleString()}`;
                 waText.innerText = `Book via WhatsApp (₹${total})`;
 
                 const msg = `*New Outstation Inquiry* %0A%0A` +
-                            `🚗 *Car:* ${title} %0A` +
-                            `📅 *Days:* ${days} %0A` + 
-                            `🛣 *Dist:* ${dist}km (Min: ${minTotalKm}km) %0A` +
-                            `💰 *Est Total:* ₹${total} %0A` +
-                            `---------------- %0A` +
-                            `I want to book this.`;
-                
+                    `🚗 *Car:* ${title} %0A` +
+                    `📅 *Days:* ${days} %0A` +
+                    `🛣 *Dist:* ${dist}km (Min: ${minTotalKm}km) %0A` +
+                    `💰 *Est Total:* ₹${total} %0A` +
+                    `---------------- %0A` +
+                    `I want to book this.`;
+
                 waBtn.href = `https://wa.me/${OWNER_PHONE}?text=${msg}`;
             };
-            
+
             modalBody.addEventListener('input', calculate);
             calculate(); // Init
         }
     }
+
+    /**
+ * 5. DYNAMIC SCHEMA UPDATER (AEO)
+ * Updates the JSON-LD in <head> to match the Live API Data
+ */
+    function updatePageSchema(data) {
+        const schemaScript = document.querySelector('script[type="application/ld+json"]');
+        if (!schemaScript) return;
+
+        try {
+            const schema = JSON.parse(schemaScript.textContent);
+
+            // Clear existing offers
+            if (schema.hasOfferCatalog) {
+                schema.hasOfferCatalog.itemListElement = [];
+
+                // Add Local Offers
+                if (data.local) {
+                    data.local.forEach(item => {
+                        schema.hasOfferCatalog.itemListElement.push({
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": `${item.Name} Local Package`,
+                                "description": `${item.Base_Hr}hr / ${item.Base_Km}km Package`
+                            },
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": item.Base_Fare,
+                                "priceCurrency": "INR"
+                            }
+                        });
+                    });
+                }
+
+                // Add Outstation Offers
+                if (data.outstation) {
+                    data.outstation.forEach(item => {
+                        schema.hasOfferCatalog.itemListElement.push({
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": `${item.Name} Outstation`,
+                                "description": `Outstation rental @ ₹${item.Rate_Per_Km}/km`
+                            },
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "price": item.Rate_Per_Km,
+                                "priceCurrency": "INR",
+                                "unitCode": "KMT" // UN Code for Kilometer
+                            }
+                        });
+                    });
+                }
+            }
+
+            // Update the DOM
+            schemaScript.textContent = JSON.stringify(schema, null, 2);
+            console.log("✅ Schema updated with Live Tariff Data");
+
+        } catch (e) {
+            console.error("Schema Update Failed", e);
+        }
+    }
 });
+
+
+// (AEO + SEO + CRO + TECH STACK + AOS + FAB + FAS + FAQ + QA...)

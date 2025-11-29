@@ -1,6 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. UI LOGIC: Toggles & Animations ---
+    // --- CONFIGURATION: Smart Phone Input (Reused) ---
+    const countries = [
+        { code: "+91", flag: "🇮🇳", name: "India" }, { code: "+971", flag: "🇦🇪", name: "UAE" },
+        { code: "+1", flag: "🇺🇸", name: "USA" }, { code: "+44", flag: "🇬🇧", name: "UK" },
+        { code: "+65", flag: "🇸🇬", name: "Singapore" }, { code: "+60", flag: "🇲🇾", name: "Malaysia" }
+    ];
+
+    // DOM Elements for Phone
+    const phoneInput = document.getElementById('phone-input');
+    const dropdown = document.getElementById('country-dropdown');
+    const display = document.getElementById('selected-display');
+    const hiddenInput = document.getElementById('hidden-country-code');
+    const menu = document.getElementById('dropdown-menu');
+    const list = document.getElementById('country-list');
+
+    // 1. INIT PHONE DROPDOWN
+    if (list) {
+        countries.forEach(c => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${c.flag}</span> <span>${c.name}</span> <span style="color:#ccc; margin-left:auto">${c.code}</span>`;
+            li.addEventListener('click', (e) => {
+                e.stopPropagation();
+                display.innerText = `${c.flag} ${c.code}`;
+                hiddenInput.value = c.code;
+                menu.classList.remove('active');
+                dropdown.classList.remove('active');
+                if(phoneInput) phoneInput.focus();
+            });
+            list.appendChild(li);
+        });
+    }
+    // Toggle
+    if (display) {
+        display.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('active');
+            dropdown.classList.toggle('active');
+        });
+    }
+    // Close Click Outside
+    document.addEventListener('click', (e) => {
+        if(dropdown && !dropdown.contains(e.target)) {
+            menu.classList.remove('active');
+            dropdown.classList.remove('active');
+        }
+    });
+
+
+    // --- 2. UI LOGIC: Toggles & Animations ---
 
     // A. Corporate Toggle
     const corpCheckbox = document.getElementById('corporate-booking-checkbox');
@@ -8,40 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (corpCheckbox && corpFields) {
         corpCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                corpFields.style.maxHeight = corpFields.scrollHeight + "px";
-                corpFields.style.marginTop = "1rem";
-            } else {
-                corpFields.style.maxHeight = "0";
-                corpFields.style.marginTop = "0";
-            }
+            corpFields.style.display = this.checked ? 'block' : 'none';
         });
     }
 
-    // B. Return Date Toggle (Round Trip Logic) - NEW
+    // B. Return Date Toggle (Round Trip Logic)
     const radioButtons = document.querySelectorAll('input[name="journeytype"]');
     const returnDateContainer = document.getElementById('return-date-container');
     const returnDateInput = document.getElementById('return_date');
     const startDateInput = document.getElementById('date');
 
     function toggleReturnDate() {
-        // Find which radio is checked
         const selected = document.querySelector('input[name="journeytype"]:checked');
         if (selected && returnDateContainer) {
             if (selected.value === 'Round Trip') {
-                returnDateContainer.classList.add('active');
+                returnDateContainer.style.display = 'block';
+                returnDateContainer.classList.add('fade-in');
                 if(returnDateInput) returnDateInput.required = true;
             } else {
-                returnDateContainer.classList.remove('active');
+                returnDateContainer.style.display = 'none';
                 if(returnDateInput) {
                     returnDateInput.required = false;
-                    returnDateInput.value = ''; // Reset date if switching back
+                    returnDateInput.value = '';
                 }
             }
         }
     }
-
-    // Attach listeners to all radio buttons
     radioButtons.forEach(radio => radio.addEventListener('change', toggleReturnDate));
     
     // Prevent selecting a return date before the start date
@@ -50,20 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
             returnDateInput.min = startDateInput.value;
         });
     }
-
-    // Run once on load to set initial state
-    toggleReturnDate();
+    toggleReturnDate(); // Run init
 
 
-    // --- 2. PRE-FILL: Catch Data from Home Page URL ---
+    // --- 3. PRE-FILL: Catch Data from Home Page URL ---
     const params = new URLSearchParams(window.location.search);
-    
     if (params.has('from')) document.getElementById('pickup').value = params.get('from');
     if (params.has('to')) document.getElementById('dropoff').value = params.get('to');
     if (params.has('date')) document.getElementById('date').value = params.get('date');
 
 
-    // --- 3. SUBMISSION LOGIC ---
+    // --- 4. SUBMISSION LOGIC ---
     const form = document.getElementById('full-booking-form');
     
     if (form) {
@@ -81,30 +118,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
+            // Combine Phone (Code + Number)
+            const fullMobile = data.country_code + data.phone;
+
             // Prepare the clean object for API
             // The keys here MUST match the Header Names in your Google Sheet
             const payload = {
                 Source: 'BookingPage',
+                
+                // Mapped Fields
                 Pickup_City: data.pickup,
                 Drop_City: data.dropoff,
                 Travel_Date: data.date,
-                Pickup_Time: data.time, // Captured from new input
-                Return_Date: data.journeytype === 'Round Trip' ? data.return_date : 'N/A', // Conditional Logic
+                Pickup_Time: data.time,
+                Return_Date: data.journeytype === 'Round Trip' ? data.return_date : 'N/A',
                 Journey_Type: data.journeytype, 
                 Travelers: data.travelers,
                 
+                // FIXED: Use the actual vehicle selection, fallback to Any
+                Vehicle_Type: data.vehicle_pref || 'Any Premium',
+
                 // Personal Details
                 Customer_Name: data.name,
-                Mobile_Number: data.phone,
+                Mobile_Number: fullMobile, // Uses the smart combined phone
                 Email: data.email || 'N/A',
                 
                 // Corporate Logic
                 Company_Name: data.company_name || 'N/A',
                 Is_Corporate: corpCheckbox && corpCheckbox.checked ? 'Yes' : 'No',
                 
-                // Extras
-                Comments: data.comments || '', 
-                Vehicle_Type: 'Any Premium' // Default
+                // Defaults
+                Comments: '', 
+                Status: 'New Web Booking',
+                Driver_Assigned: 'Pending'
             };
 
             // C. Send to Backend
@@ -119,28 +165,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (response.ok && result.success) {
-                    // D. Success State
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Request Sent!';
-                    btn.style.background = "#10B981"; // Green
-                    
-                    alert(`Thank you, ${data.name}! Your Booking ID is #${result.id}. Our team will call you shortly.`);
-                    window.location.href = "/index.html"; 
+                    showToast(`Booking #${result.id} Confirmed!`, 'success');
+                    form.reset();
+                    // Reset Phone Defaults
+                    display.innerText = "🇮🇳 +91";
+                    hiddenInput.value = "+91";
                 } else {
                     throw new Error(result.error || "Server Error");
                 }
             } catch (error) {
                 console.error("Booking Error:", error);
-                btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Try Again';
-                btn.style.background = "#EF4444"; // Red
-                alert("Something went wrong. Please call us directly at +91 8883451668.");
+                showToast("Connection failed. Please WhatsApp us.", 'error');
+            } finally {
                 btn.disabled = false;
-                
-                // Revert button after 3 seconds
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = ""; 
-                }, 3000);
+                btn.innerHTML = originalText;
             }
         });
+    }
+
+    // --- HELPER: Toast Notification ---
+    function showToast(message, type) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+
+        if (!toast || !toastMsg) return;
+
+        toastMsg.innerText = message;
+        toast.className = 'toast-container show';
+        
+        if (type === 'success') {
+            toast.classList.add('success');
+            if(toastIcon) toastIcon.className = 'ri-checkbox-circle-fill';
+        } else {
+            toast.classList.add('error');
+            if(toastIcon) toastIcon.className = 'ri-error-warning-fill';
+        }
+
+        setTimeout(() => toast.classList.remove('show'), 4000);
     }
 });

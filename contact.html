@@ -32,29 +32,44 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "mainEntity": {
-        "@type": "LocalBusiness",
-        "name": "Shrish Travels",
-        "image": "https://travels.shrishgroup.com/assets/images/logo.png",
-        "telephone": "+918883451668",
-        "email": "travels@shrishgroup.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "5, Gangai Nagar 1st Main Rd, Velachery",
-          "addressLocality": "Chennai",
-          "addressRegion": "TN",
-          "postalCode": "600042",
-          "addressCountry": "IN"
+      "@graph": [
+        {
+          "@type": "ContactPage",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Shrish Travels",
+            "image": "https://travels.shrishgroup.com/assets/images/logo.png",
+            "telephone": "+918883451668",
+            "email": "travels@shrishgroup.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "5, Gangai Nagar 1st Main Rd, Velachery",
+              "addressLocality": "Chennai",
+              "addressRegion": "TN",
+              "postalCode": "600042",
+              "addressCountry": "IN"
+            }
+          }
         },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+918883451668",
-          "contactType": "customer service",
-          "areaServed": "IN",
-          "availableLanguage": ["en", "ta"]
+        {
+          "@type": "FAQPage",
+          "mainEntity": [{
+            "@type": "Question",
+            "name": "Can I visit your office to book a cab?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, visit our Velachery HQ for bookings. We are open Mon-Sat, 10 AM - 7 PM."
+            }
+          }, {
+            "@type": "Question",
+            "name": "What are your support hours?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our phone support (+91 888 345 1668) is active 24/7 for ongoing trips."
+            }
+          }]
         }
-      }
+      ]
     }
     </script>
 </head>
@@ -212,9 +227,9 @@
 
                 <div class="map-wrapper" data-aos="fade-left">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.656519847123!2d80.220!3d12.970!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzEyLjAiTiA4MMKwMTMnMTIuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-                        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen=""
-                        loading="lazy">
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8044220832103!2d80.21255807377634!3d12.98435758733219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6bf31c7f9613e69%3A0xd737d84541928a6!2sShrish%20Travels!5e0!3m2!1sen!2sin!4v1764449737272!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
 

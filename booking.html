@@ -8,25 +8,21 @@
 
     <title>Book Outstation Taxi & Local Cabs | Instant Quote - Shrish Travels</title>
     <meta name="description" content="Secure your ride in 60 seconds. Book Innova, Sedan, or Tempo Traveller for outstation and local trips in Chennai. No hidden charges. Guaranteed callback." />
-    <meta name="keywords" content="book taxi chennai, online cab booking, outstation cab reservation, chennai taxi booking form, shrish travels booking" />
     <link rel="canonical" href="https://travels.shrishgroup.com/booking.html" />
 
-    <meta property="og:title" content="Book Your Ride - Shrish Travels" />
-    <meta property="og:description" content="Premium fleet. Verified Drivers. Book now for a safe journey." />
-    <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/booking-og.jpg" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+    <meta name="theme-color" content="#0F172A" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/booking.css" />
-
-    <script type="application/ld+json">
+    <link rel="stylesheet" href="assets/css/contact.css" /> <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -42,17 +38,11 @@
           "mainEntity": [{
             "@type": "Question",
             "name": "Do I need to pay an advance for booking?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, a small token advance (approx 20%) is required to confirm the vehicle assignment and driver roster."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, a small token advance is required to confirm the vehicle. The rest is paid to the driver." }
           }, {
             "@type": "Question",
             "name": "Is the booking cancellable?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, cancellations made 24 hours prior to the trip are eligible for a full refund of the advance."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, cancellations made 4 hours prior to the trip are eligible for a full refund." }
           }]
         }
       ]
@@ -168,7 +158,7 @@
                                     <div class="input-wrapper">
                                         <i class="ri-steering-2-line"></i>
                                         <select id="vehicle_pref" name="vehicle_pref">
-                                            <option value="Any">Any Suitable Vehicle</option>
+                                            <option value="Any Premium">Any Suitable Vehicle</option>
                                             <option value="Sedan">Sedan (Etios/Dzire)</option>
                                             <option value="Innova">Innova / Crysta</option>
                                             <option value="Tempo">Tempo Traveller</option>
@@ -190,20 +180,28 @@
                                     <input type="text" id="name" name="name" placeholder="Enter your name" required>
                                 </div>
                             </div>
-                            <div class="input-grid">
-                                <div class="input-group">
-                                    <label>Mobile Number</label>
-                                    <div class="input-wrapper">
-                                        <i class="ri-smartphone-line"></i>
-                                        <input type="tel" id="phone" name="phone" placeholder="10-digit Number" pattern="[0-9]{10}" required>
+                            
+                            <div class="input-group">
+                                <label>Mobile Number <span style="color:red">*</span></label>
+                                <div class="phone-wrapper">
+                                    <div class="custom-dropdown" id="country-dropdown">
+                                        <div class="selected-option" id="selected-display">🇮🇳 +91</div>
+                                        <input type="hidden" name="country_code" id="hidden-country-code" value="+91">
+                                        <div class="dropdown-menu" id="dropdown-menu">
+                                            <input type="text" class="dropdown-search" id="country-search" placeholder="Search..." autocomplete="off">
+                                            <ul class="dropdown-list" id="country-list"></ul>
+                                        </div>
                                     </div>
+                                    <div class="phone-divider"></div>
+                                    <input type="tel" name="phone" id="phone-input" class="phone-input-field" required placeholder="98765 43210" maxlength="15">
                                 </div>
-                                <div class="input-group">
-                                    <label>Email (Optional)</label>
-                                    <div class="input-wrapper">
-                                        <i class="ri-mail-send-line"></i>
-                                        <input type="email" id="email" name="email" placeholder="email@example.com">
-                                    </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Email (Optional)</label>
+                                <div class="input-wrapper">
+                                    <i class="ri-mail-send-line"></i>
+                                    <input type="email" id="email" name="email" placeholder="For booking receipt">
                                 </div>
                             </div>
                             
@@ -238,52 +236,17 @@
 
                 <aside class="sidebar-wrapper" data-aos="fade-left" data-aos-delay="200">
                     <div class="trust-card" style="margin-bottom: 20px;">
-                        <div class="trust-header">
-                            <h4>Why Shrish Travels?</h4>
-                        </div>
+                        <div class="trust-header"><h4>Why Shrish Travels?</h4></div>
                         <ul class="benefit-list">
                             <li>
                                 <span class="icon-box warning"><i class="ri-alert-line"></i></span>
-                                <div>
-                                    <strong>No Last-Minute Cancels</strong>
-                                    <p class="small-text">Other apps cancel on you. We don't.</p>
-                                </div>
+                                <div><strong>No Last-Minute Cancels</strong><p class="small-text">Reliable service guaranteed.</p></div>
                             </li>
                             <li>
                                 <span class="icon-box success"><i class="ri-shield-check-line"></i></span>
-                                <div>
-                                    <strong>Safe & Sanitized</strong>
-                                    <p class="small-text">Clean cars. Verified drivers.</p>
-                                </div>
+                                <div><strong>Safe & Sanitized</strong><p class="small-text">Clean cars. Verified drivers.</p></div>
                             </li>
                         </ul>
-                    </div>
-
-                    <div class="trust-card">
-                        <div class="trust-header">
-                            <h4>How it Works</h4>
-                        </div>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-dot">1</div>
-                                <p>Fill this form to request a trip.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot">2</div>
-                                <p>We send a quote via WhatsApp.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-dot">3</div>
-                                <p>Pay small advance to confirm.</p>
-                            </div>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="urgent-help">
-                            <p>Urgent Booking?</p>
-                            <a href="tel:+918883451668" class="call-btn">
-                                <i class="ri-phone-fill"></i> Call +91 888 345 1668
-                            </a>
-                        </div>
                     </div>
                 </aside>
 
@@ -304,13 +267,16 @@
             </div>
         </section>
 
+        <div id="toast" class="toast-container">
+            <i id="toast-icon" class="ri-checkbox-circle-fill" style="font-size: 1.5rem;"></i>
+            <span id="toast-message">Request sent successfully!</span>
+        </div>
+
     </main>
 
     <div id="footer-placeholder"></div>
 
-    <a href="https://wa.me/918883451668?text=Hi%20Shrish%20Travels,%20booking%20enquiry" class="floating-cta" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- <a href="https://wa.me/918883451668" class="floating-cta" target="_blank"><i class="fab fa-whatsapp"></i></a> -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/common.js"></script>
@@ -318,31 +284,6 @@
     
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Logic to show/hide Return Date
-        const radioButtons = document.querySelectorAll('input[name="journeytype"]');
-        const returnDateContainer = document.getElementById('return-date-container');
-        
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', () => {
-                if (radio.value === 'Round Trip') {
-                    returnDateContainer.style.display = 'block';
-                    returnDateContainer.classList.add('fade-in');
-                } else {
-                    returnDateContainer.style.display = 'none';
-                }
-            });
-        });
-
-        // Logic for Corporate Toggle
-        const corporateCheck = document.getElementById('corporate-booking-checkbox');
-        const corporateFields = document.getElementById('corporate-fields');
-        if(corporateCheck){
-            corporateCheck.addEventListener('change', function() {
-                corporateFields.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-
         // Loader
         async function loadComponent(id, url) {
             try { const res = await fetch(url); if(res.ok) document.getElementById(id).innerHTML = await res.text(); } catch(e){}
