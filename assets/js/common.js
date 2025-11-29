@@ -102,10 +102,8 @@ function initializeScrollEffect() {
         const currentScrollY = window.scrollY;
 
         // 1. Logic for "Puma" Top Bar Hiding
-        // We only trigger this after scrolling down 50px to avoid jitter at the very top
         if (currentScrollY > 50 && currentScrollY > lastScrollY) {
-            // User is scrolling DOWN -> Hide Top Bar
-            body.classList.add('scroll-down');
+            body.classList.add('scroll-down'); // Triggers CSS transform
             body.classList.remove('scroll-up');
         } else if (currentScrollY < lastScrollY || currentScrollY < 50) {
             // User is scrolling UP -> Show Top Bar
