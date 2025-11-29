@@ -56,8 +56,8 @@ exports.handler = async function (event, context) {
             for (let i = 0; i < 4; i++) {
                 randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
             }
-
-            const bookingID = `ST-${day}${month}-${randomStr}`;
+            const prefix = (data.Source === 'ContactPage') ? 'SCT' : 'ST';
+            const bookingID = `${prefix}-${day}${month}-${randomStr}`;
 
             await sheet.addRow({
                 Booking_ID: bookingID,
@@ -144,7 +144,7 @@ exports.handler = async function (event, context) {
                 if (typeof row.toObject === 'function') {
                     return row.toObject();
                 }
-                
+
                 // Method B: Fallback (Manually copy keys)
                 const obj = {};
                 for (const key in row) {
@@ -168,10 +168,10 @@ exports.handler = async function (event, context) {
             let sheet = doc.sheetsByTitle['routes'];
             if (!sheet) {
                 // Safety check: if tab is missing, return empty array
-                responseData = []; 
+                responseData = [];
             } else {
                 const rows = await sheet.getRows();
-                
+
                 // 2. Helper to clean data (Safe Version)
                 const cleanRow = (row) => {
                     if (typeof row.toObject === 'function') return row.toObject();

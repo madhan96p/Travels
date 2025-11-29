@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Prepare the clean object for API
             // The keys here MUST match the Header Names in your Google Sheet
             const payload = {
-                // Journey Details
+                Source: 'BookingPage',
                 Pickup_City: data.pickup,
                 Drop_City: data.dropoff,
                 Travel_Date: data.date,
