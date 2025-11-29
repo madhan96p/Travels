@@ -131,16 +131,17 @@
     </a>
 </nav>
 
-<div id="cookie-banner" class="cookie-banner hidden">
-    <div class="cookie-content">
-        <p>🍪 We use cookies to ensure the best experience.</p>
-        <div class="cookie-actions">
-            <button onclick="acceptCookies()" class="btn-accept">Accept</button>
-            <button onclick="document.getElementById('cookie-banner').style.display='none'"
-                class="btn-close">Close</button>
-        </div>
-    </div>
-</div>
 <script>
     document.getElementById("currentYear").textContent = new Date().getFullYear();
 </script>
+
+<div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-content">
+        <p>🍪 <strong>We value your privacy.</strong><br> We use cookies to enhance your booking experience and analyze site traffic.</p>
+        <div class="cookie-actions">
+            <button onclick="acceptCookies()" class="btn-accept">Accept</button>
+            
+            <button onclick="document.getElementById('cookie-banner').classList.add('hidden')" class="btn-close">Close</button>
+        </div>
+    </div>
+</div>

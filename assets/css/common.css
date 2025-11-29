@@ -1059,3 +1059,100 @@ body {
     color: var(--accent);
     text-decoration: underline;
 }
+
+/* =========================================
+   9. COOKIE CONSENT BANNER (Premium Glass)
+   ========================================= */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 100%;
+    max-width: 380px;
+    background: rgba(15, 23, 42, 0.95); /* Matches Primary Dark */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 9999;
+    
+    /* Animation State */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hidden State (Managed by JS) */
+.cookie-banner.hidden {
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+    pointer-events: none;
+}
+
+.cookie-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-accept {
+    background: var(--accent); /* Emerald Green */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: background 0.2s;
+}
+
+.btn-accept:hover {
+    background: var(--accent-hover);
+}
+
+.btn-close {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* Mobile Optimization: Full Width Bar */
+@media (max-width: 768px) {
+    .cookie-banner {
+        left: 0;
+        bottom: 0;
+        max-width: 100%;
+        border-radius: 15px 15px 0 0;
+        padding: 20px 25px 30px 25px; /* Extra bottom padding for safe area */
+    }
+    
+    /* Push it up slightly so it doesn't conflict with Bottom Nav if needed, 
+       though z-index 9999 puts it on top */
+    .cookie-banner {
+        bottom: 70px; /* Sits above the Mobile Nav Bar */
+        margin: 0 10px; /* Slight margin looks better */
+        width: calc(100% - 20px);
+        border-radius: 12px;
+    }
+}
