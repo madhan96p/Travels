@@ -30,12 +30,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     initializeMobileMenu();
     initializeCookieBanner();
 
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100,
-        disable: 'mobile' // Add this line if the layout still breaks
-    });
+    if (window.AOS) {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+            disable: 'mobile'
+        });
+    }
+
 
 });
 
