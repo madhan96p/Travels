@@ -74,7 +74,74 @@
 
 <body>
 
-    <div id="header-placeholder"></div>
+    <div class="top-utility-bar" id="top-bar">
+        <div class="container utility-flex">
+            <div class="group-link">
+                <span class="text-label" style="opacity: 0.8;">A Venture of</span>
+                <a href="https://shrishgroup.com" target="_blank" class="parent-link">
+                    <strong>Shrish Group </strong><i class="fas fa-external-link-alt" style="font-size: 0.7em;"></i>
+                </a>
+            </div>
+
+            <div class="utility-actions">
+                <a href="https://wa.me/918883451668?text=Hi%20Shrish,%20Track%20Ride" target="_blank"
+                    class="util-link track-ride-link">
+                    <i class="fas fa-map-marker-alt text-green-400"></i> Track Ride
+                </a>
+                <span class="divider">|</span>
+                <a href="https://admin.shrishgroup.com" class="util-link">
+                    <i class="fas fa-user-shield"></i> Partner Login
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header sticky-header" id="main-header">
+        <div class="container header-layout">
+
+            <a href="/" class="brand-logo">
+                <img src="/assets/images/favicon/favicon.svg" alt="Shrish Travels Logo" class="logo-icon">
+                <div class="brand-text">
+                    <span class="brand-name">Shrish<span class="brand-dot">.</span></span>
+                    <span class="brand-tagline"
+                        style="display:block; font-size: 0.6rem; letter-spacing: 1px; color: var(--text-light); font-weight: 500; margin-top: -5px;">PREMIUM
+                        TRAVELS</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="/services.html" class="nav-link">Services <i
+                                class="fas fa-chevron-down text-xs"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/services.html#corporate">Corporate Rentals</a></li>
+                            <li><a href="/services.html#airport">Airport Transfer</a></li>
+                            <li><a href="/services.html#wedding">Wedding Fleet</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/routes.html" class="nav-link">Routes</a></li>
+                    <li><a href="/tariff.html" class="nav-link">Tariff</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="tel:+918883451668" class="mobile-smart-btn" aria-label="Call Us">
+                    <span class="icon-container"><i class="fas fa-phone-alt"></i></span>
+                    <span class="dynamic-text"></span>
+                </a>
+
+                <a href="/booking.html" class="header-cta">
+                    <span>Book Now</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </header>
 
     <main class="overflow-wrapper">
 
@@ -188,7 +255,8 @@
                     <h2>About the Chennai to Madurai Route</h2>
                     <p>The journey from <strong>Chennai to Madurai</strong> covers a distance of approximately
                         <strong>460 km</strong> and takes around <strong>8 hours</strong> via
-                        NH-45/NH-44.</p>
+                        NH-45/NH-44.
+                    </p>
 
                     <p>The cultural capital of Tamil Nadu and Meenakshi Amman Temple.</p>
                     <h3>Why Choose Shrish Travels?</h3>
@@ -235,7 +303,159 @@
 
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer class="main-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="/assets/images/favicon/favicon.svg" alt="Shrish Travels Logo"
+                        style="height: 40px; margin-bottom: 15px;">
+                    <h3 style="display: inline-block; vertical-align: middle; color: #fff;">Shrish<span
+                            class="brand-dot">.</span></h3>
+                </div>
+                <p style="opacity: 0.8; font-size: 0.9rem; margin-bottom: 20px;">
+                    Premium Corporate Mobility & Outstation Taxi Service in Tamil Nadu. Verified Drivers, GST Billing &
+                    24/7
+                    Support.
+                </p>
+
+                <div style="margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <h6 style="color:var(--accent); margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase;">
+                        Save
+                        Official Contacts</h6>
+                    <div style="display:flex; gap: 10px;">
+                        <a href="assets/data/Contact/shrish_travels.vcf" class="btn-vcf" download>
+                            <i class="fas fa-address-card"></i> Travels
+                        </a>
+                        <a href="assets/data/Contact/shrish_associates.vcf" class="btn-vcf" download>
+                            <i class="fas fa-building"></i> Group
+                        </a>
+                    </div>
+                </div>
+
+                <h5 style="color:white; margin-bottom:10px; font-size:0.85rem; opacity:0.9;">We Accept:</h5>
+                <div class="payment-icons">
+                    <i class="fab fa-google-pay fa-2x" style="color:white;"></i>
+                    <i class="fab fa-cc-visa fa-2x" style="color:white;"></i>
+                    <i class="fas fa-money-bill-wave fa-2x" style="color:white;"></i>
+                    <span
+                        style="border:1px solid #777; padding:2px 8px; border-radius:4px; font-size:0.75rem; color:#ddd; display:inline-block; vertical-align:top; margin-top:2px;">UPI
+                        / QR</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Popular Routes</h4>
+                <ul class="route-grid">
+                    <li><a href="/routes/chennai-to-bangalore.html">Chennai ➔ Bangalore</a></li>
+                    <li><a href="/routes/chennai-to-pondicherry.html">Chennai ➔ Pondicherry</a></li>
+                    <li><a href="/routes/chennai-to-tirupati.html">Chennai ➔ Tirupati</a></li>
+                    <li><a href="/routes/chennai-to-madurai.html">Chennai ➔ Madurai</a></li>
+                    <li><a href="/routes/chennai-to-trichy.html">Chennai ➔ Trichy</a></li>
+                    <li><a href="/routes/chennai-to-salem.html">Chennai ➔ Salem</a></li>
+                    <li><a href="/routes/chennai-to-coimbatore.html">Chennai ➔ Coimbatore</a></li>
+                    <li><a href="/routes/chennai-to-yelagiri.html">Chennai ➔ Yelagiri</a></li>
+                </ul>
+                <div style="margin-top: 15px;">
+                    <a href="/routes.html"
+                        style="font-size:0.8rem; text-decoration:underline; color:var(--accent);">View
+                        all 50+ Routes</a>
+                </div>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Head Office</h4>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>5, Gangai Nagar 1st Main Rd,<br>Velachery, Chennai - 600042</span>
+                    </li>
+                    <li>
+                        <a href="tel:+918883451668"><i class="fas fa-phone-alt"></i> +91 888 345 1668</a>
+                    </li>
+                    <li>
+                        <a href="mailto:travels@shrishgroup.com"><i class="fas fa-envelope"></i>
+                            travels@shrishgroup.com</a>
+                    </li>
+                </ul>
+
+                <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                    <ul class="footer-links-small" style="font-size: 0.85rem; opacity: 0.8;">
+                        <li><a href="/career.html">Careers / Attach Vehicle</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div class="social-links" style="margin-top: 20px; display: flex; gap: 15px;">
+                    <a href="https://www.linkedin.com/company/shrishgroup" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://instagram.com/shrish_travels" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Shrish Travels (A Unit of Shrish Group). All Rights Reserved.</p>
+            <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 5px;">
+                Developed by <a href="https://pragadeeshfolio.netlify.app" target="_blank"
+                    style="text-decoration: underline; color: inherit;">PS</a>.
+            </p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918883451668?text=Hi%20Shrish,%20I%20need%20a%20taxi." target="_blank"
+        class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <nav class="mobile-bottom-nav">
+        <a href="/" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="/tariff.html" class="nav-item">
+            <i class="fas fa-tags"></i>
+            <span>Tariff</span>
+        </a>
+
+        <a href="/booking.html" class="nav-item fab-item">
+            <div class="fab-circle">
+                <i class="fas fa-car-side"></i>
+            </div>
+            <span>Book</span>
+        </a>
+
+        <a href="/routes.html" class="nav-item">
+            <i class="fas fa-map-signs"></i>
+            <span>Routes</span>
+        </a>
+
+        <a href="/contact.html" class="nav-item">
+            <i class="fas fa-headset"></i>
+            <span>Support</span>
+        </a>
+    </nav>
+
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-content">
+            <p>🍪 <strong>We value your privacy.</strong><br> We use cookies to enhance your booking experience and
+                analyze site traffic.</p>
+            <div class="cookie-actions">
+                <button onclick="acceptCookies()" class="btn-accept">Accept</button>
+
+                <button onclick="document.getElementById('cookie-banner').classList.add('hidden')"
+                    class="btn-close">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- <a href="https://wa.me/918883451668?text=Hi%20Shrish,%20I%20need%20a%20taxi%20from%20Chennai%20to%20Madurai"
         class="floating-cta" target="_blank">
