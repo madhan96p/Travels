@@ -8,6 +8,8 @@
 
     <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <meta name="theme-color" content="#0F172A" />
 
     <title>Shrish Travels | Premium Car Rental in Chennai @ Local Prices</title>
@@ -23,15 +25,21 @@
     <meta property="og:title" content="Premium Rides. Local Prices. | Shrish Travels" />
     <meta property="og:description"
         content="Safe, sanitized, and reliable. Book outstation and local trips with Chennai's most trusted family-run travel partners." />
-    <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/social-preview.jpg" />
+    <meta property="og:image" content="https://travels.shrishgroup.com/assets/images/og-home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shrish Travels - Premium Car Rental" />
+    <meta name="twitter:description"
+        content="Safe, sanitized, and reliable. Book outstation and local trips in Chennai." />
+    <meta name="twitter:image" content="https://travels.shrishgroup.com/assets/images/og-home.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -45,8 +53,7 @@
           "@id": "https://travels.shrishgroup.com/#business",
           "name": "Shrish Travels",
           "image": "https://travels.shrishgroup.com/assets/images/hero-car.jpg",
-          "description": "Premium family-run taxi service in Chennai. Fixed rates for outstation, transparent billing, and 24/7 support.",
-          "priceRange": "₹13/km - ₹24/km",
+          "description": "Premium family-run taxi service in Chennai.",
           "telephone": "+918883451668",
           "address": {
             "@type": "PostalAddress",
@@ -55,59 +62,13 @@
             "addressRegion": "TN",
             "postalCode": "600042",
             "addressCountry": "IN"
-          },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
           }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [{
-            "@type": "Question",
-            "name": "What is the Driver Batta allowance?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "For outstation trips, the Driver Batta is ₹700/day for Sedans, ₹800/day for Innova/SUV, and ₹1000/day for Tempo Traveller."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Is there a minimum kilometer limit for outstation trips?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. For outstation trips, the minimum billable distance is 250 km per day for cars (Sedan/SUV) and 300 km per day for Tempo Travellers."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Are tolls and parking charges included?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No, state permits, toll gate charges, and parking fees are extra and payable at actuals."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Do you charge extra for night driving?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Night driving allowances may apply for trips between 10 PM and 5 AM. Please confirm the exact amount with our booking desk."
-            }
-          }, {
-            "@type": "Question",
-            "name": "What is the starting price for a taxi in Chennai?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our rates start at ₹13/km for Sedans and ₹18/km for Innova SUVs for outstation trips."
-            }
-          }]
         }
       ]
     }
     </script>
 
     <style>
-        /* Floating WhatsApp Button for CRO */
         .floating-cta {
             position: fixed;
             bottom: 20px;
@@ -130,7 +91,6 @@
             transform: scale(1.1);
         }
 
-        /* Visible FAQ Styling */
         .faq-section {
             background: #f8fafc;
             padding: 60px 0;
@@ -157,7 +117,7 @@
     </style>
 </head>
 
-<body> 
+<body>
 
     <div id="header-placeholder"></div>
     <div id="hero-placeholder"></div>
