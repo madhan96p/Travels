@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# SITEMAP LOCATION
+Sitemap: https://travels.shrishgroup.com/sitemap.xml

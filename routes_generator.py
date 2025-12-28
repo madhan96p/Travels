@@ -1,6 +1,7 @@
 import os
 import json
-import traceback 
+import datetime
+import traceback
 
 # Try importing requests (for API), handle if missing
 try:
@@ -15,6 +16,10 @@ TEMPLATE_FILE = os.path.join(BASE_DIR, 'templates', 'route_template.html')
 HEADER_FILE = os.path.join(BASE_DIR, 'components', '_header.html')
 FOOTER_FILE = os.path.join(BASE_DIR, 'components', '_footer.html')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'routes')
+
+# SITEMAP CONFIG
+DOMAIN = "https://travels.shrishgroup.com"
+SITEMAP_FILE = os.path.join(BASE_DIR, 'sitemap.xml')
 
 # LIVE API ENDPOINT
 API_URL = "https://admin.shrishgroup.com/.netlify/functions/api?action=getRoutes"
@@ -39,37 +44,63 @@ def fix_relative_paths(html_content):
         html_content = html_content.replace(old, new)
     return html_content
 
-# --- FETCH DATA (HYBRID LOGIC) ---
+# --- FETCH DATA ---
 def get_routes_data():
-    # 1. Try Online API First
     if requests:
         print(f"🌐 Attempting to fetch routes from: {API_URL}...")
         try:
-            response = requests.get(API_URL, timeout=10) # 10 second timeout
+            response = requests.get(API_URL, timeout=10)
             if response.status_code == 200:
                 data = response.json()
                 if isinstance(data, list): return data
                 if 'routes' in data: return data['routes']
-                print("⚠️ API returned unexpected format.")
-            else:
-                print(f"⚠️ API Error: Status Code {response.status_code}")
         except Exception as e:
-            print(f"❌ Network Error: Could not reach API. ({e})")
-    else:
-        print("⚠️ 'requests' library not installed. Skipping online fetch.")
+            print(f"❌ Network Error: {e}")
 
-    # 2. Fallback to Local JSON
     print("📂 Switching to OFFLINE MODE (reading local routes.json)...")
     if os.path.exists(LOCAL_DATA_FILE):
         try:
             with open(LOCAL_DATA_FILE, 'r', encoding='utf-8') as f:
                 return json.load(f)
-        except Exception as e:
-            print(f"❌ Error reading local file: {e}")
+        except Exception:
             return []
-    else:
-        print("❌ Local 'routes.json' not found!")
-        return []
+    return []
+
+# --- SITEMAP GENERATOR ---
+def generate_sitemap(routes):
+    print("🗺️  Generating Sitemap.xml...")
+    
+    static_pages = [
+        "", "services.html", "routes.html", "tariff.html", 
+        "booking.html", "contact.html", "about.html"
+    ]
+    
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    
+    xml_content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml_content += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+    for page in static_pages:
+        priority = "1.0" if page == "" else "0.8"
+        url = f"{DOMAIN}/{page}"
+        xml_content += f'  <url>\n    <loc>{url}</loc>\n    <lastmod>{current_date}</lastmod>\n    <priority>{priority}</priority>\n  </url>\n'
+
+    for route in routes:
+        r_origin = route.get('Origin') or route.get('origin') or 'Chennai'
+        r_dest = route.get('Destination') or route.get('destination') or 'Unknown'
+        raw_slug = route.get('Route_Slug') or route.get('slug')
+        if not raw_slug:
+            raw_slug = f"{r_origin}-to-{r_dest}".lower().replace(' ', '-')
+        
+        url = f"{DOMAIN}/routes/{raw_slug}.html"
+        xml_content += f'  <url>\n    <loc>{url}</loc>\n    <lastmod>{current_date}</lastmod>\n    <priority>0.7</priority>\n  </url>\n'
+
+    xml_content += '</urlset>'
+
+    with open(SITEMAP_FILE, 'w', encoding='utf-8') as f:
+        f.write(xml_content)
+    
+    print(f"✅ Sitemap generated at: {SITEMAP_FILE}")
 
 # --- MAIN GENERATOR ---
 def generate():
@@ -78,28 +109,33 @@ def generate():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
 
-    # 1. Get Data
     routes = get_routes_data()
     if not routes:
         print("❌ No routes data found. Aborting.")
         return
 
-    # 2. Load Templates
+    # Load Templates
     try:
-        with open(TEMPLATE_FILE, 'r', encoding='utf-8') as f:
-            template = f.read()
-        with open(HEADER_FILE, 'r', encoding='utf-8') as f:
-            header = fix_relative_paths(f.read())
-        with open(FOOTER_FILE, 'r', encoding='utf-8') as f:
-            footer = fix_relative_paths(f.read())
+        with open(TEMPLATE_FILE, 'r', encoding='utf-8') as f: template = f.read()
+        with open(HEADER_FILE, 'r', encoding='utf-8') as f: header = fix_relative_paths(f.read())
+        with open(FOOTER_FILE, 'r', encoding='utf-8') as f: footer = fix_relative_paths(f.read())
     except Exception as e:
         print(f"❌ Critical Error loading templates: {e}")
         return
 
-    # 3. Generate Pages
     count = 0
     for route in routes:
+        r_slug = "Unknown" # Default for error handling
         try:
+            # Data Mapping
+            r_origin = route.get('Origin') or route.get('origin') or 'Chennai'
+            r_dest = route.get('Destination') or route.get('destination') or 'Unknown'
+            raw_slug = route.get('Route_Slug') or route.get('slug')
+            if not raw_slug:
+                raw_slug = f"{r_origin}-to-{r_dest}".lower().replace(' ', '-')
+            r_slug = str(raw_slug)
+
+            # Start with fresh template
             page = template
 
             # Inject Components (Safe Replace)
@@ -108,17 +144,7 @@ def generate():
             if '<!--FOOTER-->' in page:
                 page = page.replace('<!--FOOTER-->', footer)
 
-            # Data Mapping (Handles API vs Local keys)
-            r_origin = route.get('Origin') or route.get('origin') or 'Chennai'
-            r_dest = route.get('Destination') or route.get('destination') or 'Unknown'
-            
-            # Slug Logic
-            raw_slug = route.get('Route_Slug') or route.get('slug')
-            if not raw_slug:
-                raw_slug = f"{r_origin}-to-{r_dest}".lower().replace(' ', '-')
-            r_slug = str(raw_slug)
-
-            # Text Injection
+            # INJECTION: Content
             page = page.replace('{origin}', str(r_origin))
             page = page.replace('{destination}', str(r_dest))
             page = page.replace('{destination_slug}', r_slug.replace('chennai-to-', ''))
@@ -130,25 +156,27 @@ def generate():
             img = route.get('Image_URL') or route.get('image')
             page = page.replace('{image_url}', str(img if img else '../assets/images/default-route.jpg'))
             
-            # Pricing Injection
+            # INJECTION: Pricing
             page = page.replace('{price_sedan}', str(route.get('Price_Sedan') or route.get('price_sedan') or 'Ask'))
             page = page.replace('{price_innova}', str(route.get('Price_Innova') or route.get('price_innova') or 'Ask'))
             page = page.replace('{price_crysta}', str(route.get('Price_Crysta') or route.get('price_crysta') or 'Ask'))
             page = page.replace('{price_tempo}', str(route.get('Price_Tempo') or route.get('price_tempo') or 'Ask'))
 
-            # Save
+            # Save File
             filename = f"{r_slug}.html"
             filepath = os.path.join(OUTPUT_DIR, filename)
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(page)
             
-            print(f"✅ Generated: routes/{filename}")
+            # print(f"✅ Generated: routes/{filename}") # Uncomment if you want noisy output
             count += 1
 
         except Exception as e:
-            print(f"⚠️ Failed to generate: {e}")
+            print(f"⚠️ Failed to generate [{r_slug}]: {e}")
+            # traceback.print_exc() # Uncomment for deep debugging
 
     print(f"\n🎉 Success! Generated {count} pages.")
+    generate_sitemap(routes)
 
 if __name__ == "__main__":
     generate()
