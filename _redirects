@@ -9,3 +9,12 @@ https://www.shrishtravels.netlify.app/* https://shrishtravels.netlify.app/:splat
 # Optional cleanup redirects
 /%7Bignore%7D     /               301
 /{ignore}         /               301
+
+# Redirect old pages to new equivalents (301 = Permanent Move)
+/packages.html         /routes.html           301
+/about-us.html         /about.html            301
+/contact-us.html       /contact.html          301
+/terms.html            /terms-of-service.html 301
+
+# Catch-all for lost traffic (Send to Home)
+/* /index.html            200
