@@ -12,14 +12,14 @@ Use this as your main progress tracker.
 
 ## **Root & Build System**
 
-| File / Folder        | Status   | Description                                                     |
-| -------------------- | -------- | --------------------------------------------------------------- |
-| **build.py**         | 🔴 To Do | Core build engine. Generates static HTML from templates + JSON. |
-| **requirements.txt** | 🔴 To Do | Python dependencies (e.g., `requests`).                         |
-| **package.json**     | 🔴 To Do | Node dependencies (`nodemailer`, `google-spreadsheet`).         |
-| **.env**             | 🔴 To Do | Local-only secrets. Add to `.gitignore`.                        |
-| **netlify.toml**     | 🔴 To Do | Netlify build pipeline + redirects.                             |
-| **WORKFLOW.md**      | 🟢 Done  | This document.                                                  |
+| File / Folder        | Status     | Description                                                     |
+| -------------------- | ---------- | --------------------------------------------------------------- |
+| **routes_generator.py** | 🟢 Done  | Core build engine. Generates static HTML from API, Sheets or JSON. |
+| **requirements.txt** | 🟢 Done    | Python dependencies (e.g., `requests`).                         |
+| **package.json**     | 🟢 Done    | Node dependencies (`nodemailer`, `google-spreadsheet`).         |
+| **.env**             | 🔴 To Do   | Local-only secrets. Add to `.gitignore`.                        |
+| **netlify.toml**     | 🟢 Done    | Netlify build pipeline + redirects.                             |
+| **WORKFLOW.md**      | 🟢 Done    | This document.                                                  |
 
 ---
 
@@ -107,11 +107,11 @@ Use this as your main progress tracker.
 
 ## **A. Netlify Project Settings**
 
-| Setting                 | Value               | Purpose                                |
-| ----------------------- | ------------------- | -------------------------------------- |
-| **Build Command**       | `python build.py`   | Runs static generator.                 |
-| **Publish Directory**   | `public`            | Output folder created by build script. |
-| **Functions Directory** | `netlify/functions` | API endpoints.                         |
+| Setting                 | Value                         | Purpose                                |
+| ----------------------- | ----------------------------- | -------------------------------------- |
+| **Build Command**       | `python routes_generator.py`  | Runs static generator.                 |
+| **Publish Directory**   | `.`                           | Output folder is the project root.     |
+| **Functions Directory** | `netlify/functions`           | API endpoints.                         |
 
 ---
 
