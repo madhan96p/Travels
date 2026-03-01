@@ -115,3 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Add this at the bottom of index.js
+function imageLoaded(img) {
+    // Find the parent fleet-card and add the 'loaded' class
+    const card = img.closest('.fleet-card');
+    if (card) {
+        card.classList.add('loaded');
+    }
+}

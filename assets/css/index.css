@@ -455,16 +455,21 @@
 
 /* The Actual Image */
 .fleet-img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* Ensures image isn't stretched */
-    opacity: 0;
-    /* Hidden by default */
-    transition: opacity 0.5s ease-in-out;
+    height: auto;
+    display: block; /* Make sure it's not display: none */
+    opacity: 1 !important; /* Force visibility to see if it's a transparency issue */
+    position: relative;
+    z-index: 2;
+}
+
+/* Hide the icon ONLY when the image is present and loaded */
+.fleet-card.loaded .fleet-icon {
+    display: none;
+}
+/* Hide the icon once the image is ready */
+.fleet-card.loaded .fleet-icon {
+    display: none;
 }
 
 /* State: When the image is fully loaded */
