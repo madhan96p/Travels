@@ -1,0 +1,331 @@
+/* --- Global Reset & Typography --- */
+:root {
+    --primary-gold: #D4AF37;
+    --deep-red: #8B0000;
+    --dark-text: #1a1a1a;
+    --light-bg: #fdfbf7;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-text);
+    background-color: var(--light-bg);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--deep-red);
+}
+
+.logo span {
+    color: var(--primary-gold);
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80') center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.badge {
+    background: var(--primary-gold);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background: var(--primary-gold);
+    color: var(--white);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.btn-secondary {
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 10px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.btn-primary:hover { transform: translateY(-3px); background: #b8962d; }
+
+/* --- Temple Directory Grid --- */
+.temple-directory { padding: 80px 0; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: var(--deep-red); }
+
+.temple-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.temple-card {
+    background: var(--white);
+    padding: 30px;
+    border-left: 5px solid var(--primary-gold);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.temple-card:hover { transform: translateY(-5px); }
+.planet { color: var(--deep-red); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+
+/* --- Heritage Strip --- */
+.heritage-strip {
+    background: var(--deep-red);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.heritage-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* --- Timeline / Itinerary --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto;
+    border-left: 2px dashed var(--primary-gold);
+    padding-left: 40px;
+}
+
+.timeline-item { margin-bottom: 40px; position: relative; }
+.day-circle {
+    position: absolute;
+    left: -58px;
+    background: var(--deep-red);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* --- Form & Contact --- */
+.cta-banner {
+    background: #f4f4f4;
+    padding: 80px 0;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 30px auto;
+    gap: 15px;
+}
+
+form input, form select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* --- Footer --- */
+footer {
+    background: var(--dark-text);
+    color: #999;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- Mobile Responsive Queries --- */
+@media (max-width: 768px) {
+    
+    .hero h1 { font-size: 2.2rem; }
+    .hero-cta { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+    .btn-secondary { margin-left: 0; width: 100%; max-width: 250px; }
+    .btn-primary { width: 100%; max-width: 250px; }
+    
+    .temple-grid { grid-template-columns: 1fr; }
+    .heritage-grid { flex-direction: column; }
+    
+    .timeline { padding-left: 30px; margin-left: 20px; }
+    .day-circle { left: -48px; }
+    
+    .info-split { flex-direction: column; }
+}
+
+/* Card Base Styling */
+.temple-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Lift Effect */
+.temple-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: #b59410;
+}
+
+/* Highlighted Temple Style */
+.temple-card.highlight {
+    background: #fffdf2;
+    border: 2px solid #b59410;
+}
+
+.temple-card.highlight::after {
+    content: "Most Visited";
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: #b59410;
+    color: white;
+    font-size: 10px;
+    padding: 5px 35px;
+    transform: rotate(45deg);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Planet Label Colors */
+.planet {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.sun { background: #ffe9d6; color: #ff6b00; }
+.saturn { background: #e2e2e2; color: #333; }
+.mars { background: #ffd6d6; color: #d63031; }
+.jupiter { background: #fff4d6; color: #e1b12c; }
+
+
+        /* Itinerary Styling */
+        .itinerary-box { background: #fdfaf0; padding: 40px 0; border-top: 2px solid #e2d1a6; border-bottom: 2px solid #e2d1a6; }
+        .itinerary-content { max-width: 900px; margin: auto; line-height: 1.8; }
+        .day-plan { margin-top: 25px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .day-plan h4 { color: #b59410; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    .info-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.info-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f8f8f8;
+    padding-bottom: 15px;
+}
+
+.header-icon {
+    font-size: 1.5rem;
+    color: #b59410; /* Shrish Gold */
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+    font-size: 1rem;
+    color: #444;
+}
+
+.icon-check {
+    color: #27ae60; /* Success Green */
+    margin-top: 4px;
+}
+
+.icon-cross {
+    color: #e74c3c; /* Alert Red */
+    margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-split {
+        grid-template-columns: 1fr;
+    }
+}
+
