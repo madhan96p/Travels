@@ -1,0 +1,1158 @@
+/* =========================================
+   1. VARIABLES & RESET (The Premium Palette)
+   ========================================= */
+:root {
+    /* Brand Colors */
+    --primary-dark: #0F172A;
+    /* Deep Navy - CEO Trust */
+    --primary: #1E293B;
+    /* Slate - Professional */
+    --accent: #10B981;
+    /* Emerald Green - Action/Success */
+    --accent-hover: #059669;
+
+    /* Utility Colors */
+    --text-main: #334155;
+    --text-light: #64748B;
+    --bg-light: #F8FAFC;
+    /* Very light grey for backgrounds */
+    --white: #ffffff;
+
+    /* Premium Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
+    /* Subtle green glow */
+
+    /* Spacing */
+    --container-width: 1200px;
+    --header-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* #header-placeholder {
+    min-height: 80px;
+    display: block;
+} */
+#header-placeholder {
+    display: block;
+    /* REMOVE min-height. The body padding handles the spacing now. */
+    min-height: 0;
+}
+
+/* =========================================
+   2. UTILITY CLASSES
+   ========================================= */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Premium Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-white {
+    background: var(--white);
+    color: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-dark);
+    color: var(--primary-dark);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+}
+
+/* =========================================
+   3. HEADER (Top Bar & Main Nav)
+   ========================================= */
+
+/* A. Top Utility Bar (The "Corporate" Strip) */
+.top-utility-bar {
+    background-color: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.utility-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.utility-actions a:hover {
+    color: var(--white);
+}
+
+.divider {
+    margin: 0 10px;
+    opacity: 0.3;
+}
+
+/* B. Main Header */
+.main-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    /* Glass effect */
+    height: var(--header-height);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    height: 40px;
+    width: auto;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+}
+
+.brand-dot {
+    color: var(--accent);
+}
+
+/* Desktop Navigation */
+.desktop-nav .nav-list {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--primary);
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Hover Underline Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Dropdowns */
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s ease;
+}
+
+.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.dropdown-menu li a:hover {
+    background: var(--bg-light);
+    color: var(--accent);
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-cta {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 50px;
+    /* Pill shape */
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-cta:hover {
+    background: var(--accent);
+    box-shadow: var(--shadow-glow);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    /* Hidden on desktop */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
+
+/* =========================================
+   4. FOOTER
+   ========================================= */
+.main-footer {
+    background: var(--primary-dark);
+    color: #cbd5e1;
+    padding: 60px 0 20px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo h3 {
+    color: var(--white);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   5. MOBILE & RESPONSIVE
+   ========================================= */
+.mobile-bottom-nav {
+    display: none;
+    /* Hidden on Desktop */
+}
+
+@media (max-width: 768px) {
+
+    .top-utility-bar,
+    .desktop-nav,
+    .header-cta {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    /* Bottom Navigation Bar */
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: var(--white);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.7rem;
+        color: var(--text-light);
+    }
+
+    .nav-item i {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+    }
+
+    .nav-item.active {
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    /* Floating Action Button (FAB) in center */
+    .fab-item .fab-circle {
+        background: var(--primary-dark);
+        color: var(--white);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        /* Push it up */
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.4);
+        border: 4px solid var(--white);
+    }
+}
+
+/* AEO Optimization: Visible to AI, Hidden from Humans */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =========================================
+   6. PREMIUM UPGRADES (Glass, Scroll, FAB)
+   ========================================= */
+
+/* --- A. PUMA STYLE HEADER LOGIC --- */
+/* The Top Bar moves up when scrolling down */
+.top-utility-bar {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top;
+}
+
+body.scroll-down .top-utility-bar {
+    transform: translateY(-100%);
+    /* Hides it */
+    position: absolute;
+    /* Prevents it from taking space */
+    width: 100%;
+}
+
+/* The Main Header sticks and compacts */
+.main-header {
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.scroll-down .main-header {
+    height: 60px;
+    /* Shrinks from 80px */
+    background: rgba(255, 255, 255, 0.98);
+    /* Less transparent to read better */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Shrink Logo on Scroll */
+body.scroll-down .logo-icon {
+    height: 30px;
+    /* Shrinks from 40px */
+    transition: height 0.3s ease;
+}
+
+body.scroll-down .brand-name {
+    font-size: 1.2rem;
+    transition: font-size 0.3s ease;
+}
+
+body.scroll-down .brand-tagline {
+    display: none !important;
+    /* Hide tagline to save space */
+}
+
+/* --- B. MOBILE BOTTOM NAV (Glass + Notch) --- */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        background: rgba(255, 255, 255, 0.85);
+        /* Glass base */
+        backdrop-filter: blur(12px);
+        /* The "Frosted" Glass Effect */
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+        height: 70px;
+        /* Slightly taller for the notch effect */
+        padding-bottom: 5px;
+    }
+
+    /* The Center "Book" Button - Floating Notch Style */
+    .fab-item .fab-circle {
+        transform: translateY(-20px);
+        /* Push it up outside the bar */
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 100%);
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        /* Borders match glass bg */
+        box-shadow: 0 8px 15px rgba(30, 58, 138, 0.3);
+    }
+
+    /* Active State Glow */
+    .nav-item.active i {
+        color: var(--primary-dark);
+        filter: drop-shadow(0 0 8px rgba(30, 58, 138, 0.3));
+    }
+}
+
+/* --- C. FLOATING WHATSAPP BUTTON --- */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 85px;
+    /* Above the bottom nav */
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1002;
+    transition: all 0.3s ease;
+    animation: pulse-green 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* --- D. FOOTER PAYMENT ICONS & ROUTE GRID --- */
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.pay-icon {
+    height: 25px;
+    opacity: 0.8;
+    background: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.route-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 2 columns */
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.route-grid li {
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   3. HEADER (Top Bar & Main Nav) - FIXED VERSION
+   ========================================= */
+
+/* Prevent content from hiding behind the fixed header */
+body {
+    padding-top: 120px;
+    /* 40px TopBar + 80px Header */
+    overflow-x: hidden;
+    /* Fixes the horizontal scroll/overflow issue */
+}
+
+/* A. Top Utility Bar (The "Corporate" Strip) */
+.top-utility-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    /* Explicit Height */
+    background-color: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    z-index: 1002;
+    /* Highest priority */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Animation Properties */
+    transition: transform 0.3s ease-in-out;
+}
+
+.utility-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.utility-actions a:hover {
+    color: var(--white);
+}
+
+.divider {
+    margin: 0 10px;
+    opacity: 0.3;
+}
+
+/* B. Main Header (The Navigation) */
+.main-header {
+    position: fixed;
+    top: 40px;
+    /* Starts exactly below the Top Bar */
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* var(--header-height) */
+    background: rgba(255, 255, 255, 0.98);
+    /* Solid enough to hide content */
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    z-index: 1001;
+
+    /* Animation Properties */
+    transition: all 0.3s ease-in-out;
+}
+
+.header-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* --- SCROLL STATES (The Puma Effect) --- */
+
+/* 1. Scrolling DOWN: Hide Top Bar, Slide Header Up & Shrink */
+body.scroll-down .top-utility-bar {
+    transform: translateY(-100%);
+    /* Slides out of view */
+}
+
+body.scroll-down .main-header {
+    top: 0;
+    /* Slides up to the very top */
+    height: 60px;
+    /* Compacts to save space */
+    box-shadow: var(--shadow-md);
+}
+
+/* Shrink Elements on Scroll */
+body.scroll-down .logo-icon {
+    height: 30px;
+    transition: height 0.3s;
+}
+
+body.scroll-down .brand-name {
+    font-size: 1.3rem;
+    transition: font-size 0.3s;
+}
+
+body.scroll-down .brand-tagline {
+    display: none;
+}
+
+
+/* --- MOBILE SPECIFIC ADJUSTMENTS --- */
+@media (max-width: 768px) {
+
+    /* Mobile doesn't show Top Bar, so reset Body Padding & Header Top */
+    body {
+        padding-top: 70px;
+        /* Only header height needed */
+    }
+
+    .top-utility-bar {
+        display: none;
+        /* Hidden on mobile */
+    }
+
+    .main-header {
+        top: 0;
+        /* Always at top on mobile */
+        height: 70px;
+    }
+
+    /* Prevent header from shrinking too much on mobile or conflicting */
+    body.scroll-down .main-header {
+        height: 60px;
+        top: 0;
+    }
+}
+
+/* =========================================
+   7. MOBILE SMART BUTTON (ROTATING TEXT)
+   ========================================= */
+
+.mobile-smart-btn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-phone-btn.hidden-mobile {
+        display: none !important;
+    }
+
+    /* Main Button Container */
+    .mobile-smart-btn {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        height: 40px;
+        border-radius: 30px;
+        overflow: hidden;
+        background: transparent;
+        color: var(--primary-dark);
+
+        /* 7s Loop: Controls the Width & Background Color */
+        animation: smartExpand 7s infinite ease-in-out;
+    }
+
+    .mobile-smart-btn .icon-container {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+
+        /* 7s Loop: Wiggles the icon */
+        animation: smartShake 7s infinite ease-in-out;
+    }
+
+    /* The Dynamic Text Element */
+    .mobile-smart-btn .dynamic-text::after {
+        content: "Call Us";
+        /* Fallback */
+        display: block;
+        white-space: nowrap;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding-right: 15px;
+
+        /* TWO Animations running simultaneously:
+           1. smartFade (7s): Shows/Hides the text every cycle
+           2. textCycle (35s): Changes the words every cycle (5 * 7s)
+        */
+        animation:
+            smartFade 7s infinite ease-in-out,
+            textCycle 35s infinite step-start;
+    }
+
+    .header-cta {
+        /* <--- Make sure this is here */
+        display: none;
+    }
+}
+
+/* =========================================
+   8. ANIMATION KEYFRAMES
+   ========================================= */
+
+/* 1. BUTTON EXPANSION (7 Seconds) */
+@keyframes smartExpand {
+
+    0%,
+    60% {
+        width: 40px;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    65% {
+        width: 40px;
+        background: var(--accent);
+        color: var(--white);
+    }
+
+    70%,
+    90% {
+        width: 140px;
+        /* Wider to fit "Airport Taxi" etc */
+        background: var(--accent);
+        color: var(--white);
+        box-shadow: var(--shadow-glow);
+    }
+
+    95% {
+        width: 40px;
+        background: transparent;
+        color: var(--primary-dark);
+        box-shadow: none;
+    }
+
+    100% {
+        width: 40px;
+        background: transparent;
+    }
+}
+
+/* 2. TEXT FADE (7 Seconds) - Syncs with Expansion */
+@keyframes smartFade {
+
+    0%,
+    65% {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    70%,
+    90% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    95%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 3. TEXT CONTENT CYCLING (35 Seconds = 5 Phrases x 7s) */
+/* This changes the words instantly while the button is closed/invisible */
+@keyframes textCycle {
+    0% {
+        content: "Call Us";
+    }
+
+    /* Cycle 1 */
+    20% {
+        content: "Book Ride";
+    }
+
+    /* Cycle 2 */
+    40% {
+        content: "Need Cab?";
+    }
+
+    /* Cycle 3 */
+    60% {
+        content: "Low Fares";
+    }
+
+    /* Cycle 4 */
+    80% {
+        content: "Safe Trip";
+    }
+
+    /* Cycle 5 */
+    100% {
+        content: "Call Us";
+    }
+
+    /* Loop back */
+}
+
+/* 4. ICON WIGGLE (7 Seconds) */
+@keyframes smartShake {
+
+    0%,
+    55% {
+        transform: rotate(0deg);
+    }
+
+    57% {
+        transform: rotate(15deg);
+    }
+
+    59% {
+        transform: rotate(-15deg);
+    }
+
+    61% {
+        transform: rotate(15deg);
+    }
+
+    63% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* =========================================
+   6. RESPONSIVE HERO (Fixing the Sink)
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        /* DRASTICALLY REDUCED TOP PADDING */
+        /* Was 100px, changing to 30px. 
+           The body padding-top (70px) handles the header clearance.
+           This 30px is just for visual breathing room inside the container. */
+        padding: 30px 0 50px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        /* Reduced gap */
+        text-align: center;
+        /* Center align looks better on mobile hero */
+    }
+
+    .hero-text {
+        padding: 0 10px;
+        /* Prevent text touching edges */
+    }
+
+    .hero-headline {
+        font-size: 2.2rem;
+        /* Slightly smaller for better fit */
+        margin-bottom: 15px;
+    }
+
+    .hero-subheadline {
+        margin: 0 auto 20px auto;
+        /* Center the subhead */
+        font-size: 1rem;
+    }
+
+    /* Fix Trust Badges alignment on mobile */
+    .hero-trust-badges {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .hero-trust-badges span {
+        margin-right: 0;
+        /* Remove right margin in flex context */
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .fab-item .fab-circle {
+        transform: translateY(-25px);
+        /* Push it up a bit more */
+        width: 60px;
+        /* Slightly larger touch target */
+        height: 60px;
+        background: var(--primary-dark);
+        /* Ensure high contrast */
+        border: 4px solid var(--white);
+        /* White border creates the "cutout" look */
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        /* Shadow specifically on top */
+    }
+}
+
+/* --- FIX: Prevent Horizontal Scroll / Zoom Out --- */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* This cuts off anything sticking out */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Maintain your existing padding-top logic for the header */
+body {
+    padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    /* Ensure it doesn't stretch */
+    height: 600px;
+    background: #f1f5f9;
+    overflow: hidden;
+    /* CRITICAL: This chops off the blobs */
+    display: flex;
+    align-items: center;
+}
+
+/* On Mobile, reset the height */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding: 50px 0;
+        /* Adjusted padding */
+    }
+}
+
+.overflow-wrapper {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* --- EXECUTION 1: PERF FIX (The Blob) --- */
+/* Add this to stop mobile lag. Tells browser to use GPU. */
+.blob {
+    will-change: transform;
+}
+
+/* --- EXECUTION 2: MOBILE UI CLEANUP --- */
+/* Hides the floating WhatsApp button on mobile so it doesn't overlap the Bottom Nav */
+@media (max-width: 768px) {
+    .floating-cta {
+        display: none !important;
+    }
+}
+
+.btn-vcf {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-vcf:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.footer-links-small li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.footer-links-small li a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* =========================================
+   9. COOKIE CONSENT BANNER (Premium Glass)
+   ========================================= */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 100%;
+    max-width: 380px;
+    background: rgba(15, 23, 42, 0.95); /* Matches Primary Dark */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 9999;
+    
+    /* Animation State */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hidden State (Managed by JS) */
+.cookie-banner.hidden {
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+    pointer-events: none;
+}
+
+.cookie-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-accept {
+    background: var(--accent); /* Emerald Green */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: background 0.2s;
+}
+
+.btn-accept:hover {
+    background: var(--accent-hover);
+}
+
+.btn-close {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-close:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* Mobile Optimization: Full Width Bar */
+@media (max-width: 768px) {
+    .cookie-banner {
+        left: 0;
+        bottom: 0;
+        max-width: 100%;
+        border-radius: 15px 15px 0 0;
+        padding: 20px 25px 30px 25px; /* Extra bottom padding for safe area */
+    }
+    
+    /* Push it up slightly so it doesn't conflict with Bottom Nav if needed, 
+       though z-index 9999 puts it on top */
+    .cookie-banner {
+        bottom: 70px; /* Sits above the Mobile Nav Bar */
+        margin: 0 10px; /* Slight margin looks better */
+        width: calc(100% - 20px);
+        border-radius: 12px;
+    }
+}

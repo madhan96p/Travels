@@ -1,0 +1,69 @@
+<section class="hero-section">
+    <div class="hero-bg-overlay">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1 class="hero-headline">Premium Rides.<br><span class="highlight-text">Local Prices.</span></h1>
+            <p class="hero-subheadline">Chennai's #1 Corporate & Outstation Taxi Service. Verified Drivers & 24/7 Support.</p>
+            <div class="hero-trust-badges">
+                <span><i class="fas fa-shield-alt"></i> Safe</span>
+                <span><i class="fas fa-clock"></i> On-Time</span>
+                <span><i class="fas fa-star"></i> 5.0 Rated</span>
+            </div>
+        </div>
+
+        <div class="booking-widget-card">
+            
+            <form id="quickBookForm" class="hero-booking-form">
+                
+                <div class="trip-tabs">
+                    <label class="tab-radio">
+                        <input type="radio" name="trip_type" value="One Way" checked>
+                        <span class="tab-label">One Way</span>
+                    </label>
+                    <label class="tab-radio">
+                        <input type="radio" name="trip_type" value="Round Trip">
+                        <span class="tab-label">Round Trip</span>
+                    </label>
+                </div>
+
+                <div class="form-inputs">
+                    <div class="input-group">
+                        <i class="fas fa-location-dot input-icon start-icon"></i>
+                        <input type="text" id="pickup" placeholder="Pickup City" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-map-pin input-icon end-icon"></i>
+                        <input type="text" id="drop" placeholder="Drop City" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-calendar-alt input-icon start-icon"></i>
+                        <input type="date" id="travelDate" required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-phone input-icon phone-icon"></i>
+                        <input type="tel" id="mobile" placeholder="Mobile Number" required pattern="[0-9]{10}">
+                    </div>
+                </div>
+
+                <p id="formStatus" class="text-xs text-gray-500 mt-2 text-center"></p>
+
+                <div class="flex gap-3 mt-4">
+                    <button type="submit" class="flex-1 bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition">
+                        <i class="fab fa-whatsapp"></i> Get Estimate
+                    </button>
+
+                    <button type="button" id="btnBookNow" class="flex-1 bg-blue-900 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition">
+                        Book Now <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

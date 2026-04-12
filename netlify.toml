@@ -1,0 +1,4 @@
+[build]
+  # We change build.py to routes_generator.py
+  command = "pip install -r requirements.txt && python routes_generator.py"
+  publish = "."

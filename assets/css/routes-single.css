@@ -1,0 +1,410 @@
+/* =========================================
+   1. HERO SECTION (Immersive & Trust Building)
+   ========================================= */
+.route-hero {
+    /* Height and Alignment */
+    height: 60vh;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: white;
+    
+    /* Background handling - Specific image set inline in HTML */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect for premium feel */
+    
+    /* Spacing to account for fixed header */
+    margin-top: -80px; 
+    padding-top: 80px;
+}
+
+/* The Green Pill Badge */
+.route-badge {
+    background: #10B981;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+/* Glassmorphism Price Box in Hero */
+.hero-price {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 35px;
+    border-radius: 16px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.hero-price .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+.hero-price .amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #10B981; /* Brand Green */
+    line-height: 1.1;
+}
+
+.hero-price .vehicle {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* =========================================
+   2. PRICING CARDS (The "Menu")
+   ========================================= */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    /* Pull grid up to overlap Hero slightly for depth */
+    margin-top: -60px; 
+    position: relative;
+    z-index: 10;
+}
+
+.price-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    
+    /* Shadows & Borders */
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
+    border: 1px solid #f1f5f9;
+    
+    /* Animation */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+}
+
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.15);
+    border-color: #10B981;
+}
+
+/* Popular Card (Innova) Styling */
+.price-card.popular {
+    border: 2px solid #0F172A; /* Navy border */
+    transform: scale(1.05); /* Slightly bigger */
+    z-index: 2; /* Sit on top of others */
+}
+
+.price-card.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+/* Corner Ribbon for Popular Card */
+.ribbon {
+    position: absolute;
+    top: 20px;
+    right: -32px;
+    background: #0F172A;
+    color: white;
+    width: 120px;
+    text-align: center;
+    transform: rotate(45deg);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Card Content Typography */
+.card-header h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.card-header p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.card-price {
+    margin-bottom: 25px;
+    color: #0F172A;
+}
+
+.card-price .currency {
+    font-size: 1.4rem;
+    vertical-align: top;
+    font-weight: 500;
+}
+
+.card-price .value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Feature List */
+.features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: left;
+    background: #f8fafc; /* Light gray background for features */
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+.features li i {
+    color: #10B981;
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
+/* Book Buttons */
+.btn-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+    
+    /* Secondary Style (Outline) */
+    background: transparent;
+    border: 2px solid #0F172A;
+    color: #0F172A;
+}
+
+.btn-book:hover {
+    background: #0F172A;
+    color: white;
+}
+
+/* Primary Style (Solid) */
+.btn-book.primary {
+    background: #0F172A;
+    color: white;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
+}
+
+.btn-book.primary:hover {
+    background: #10B981;
+    border-color: #10B981;
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* =========================================
+   3. CONTENT & SEO SECTION
+   ========================================= */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: start;
+    padding: 40px 0;
+}
+
+.content-side h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #0F172A;
+}
+
+.content-side p {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+.check-list li {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    color: #334155;
+}
+
+.check-list li i {
+    color: #10B981;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* Map Placeholder (Visual Interest) */
+.map-placeholder {
+    background: #e2e8f0;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 20px 20px;
+    height: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    border: 2px dashed #94a3b8;
+    position: sticky;
+    top: 100px; /* Sticks when scrolling */
+}
+
+.map-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    color: #94a3b8;
+}
+
+/* =========================================
+   4. RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media (max-width: 900px) {
+    /* Hero */
+    .hero-content h1 { font-size: 2.2rem; }
+    .route-hero { min-height: 400px; }
+    
+    /* Grid */
+    .pricing-grid {
+        grid-template-columns: 1fr; /* Stack Cards */
+        margin-top: 0; /* Remove overlap on mobile */
+        gap: 20px;
+    }
+    
+    .price-card.popular {
+        transform: none; /* Remove scale effect */
+        order: -1; /* Show popular first on mobile */
+    }
+    
+    /* Layout */
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .map-placeholder {
+        height: 250px;
+        position: static;
+    }
+}
+
+/* =========================================
+   4. FAQ SECTION (The "Trust" Builder)
+   ========================================= */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.faq-item {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.faq-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-color: #10B981; /* Green border on hover */
+}
+
+.faq-item h4 {
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Add a dynamic icon via CSS before the question */
+.faq-item h4::before {
+    content: "\f059"; /* FontAwesome Question Circle */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #10B981;
+    font-size: 1rem;
+    margin-top: 3px;
+}
+
+.faq-item p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-left: 26px; /* Indent text to align with title */
+}
+
+/* =========================================
+   5. MAP SIDE ADJUSTMENTS
+   ========================================= */
+/* Ensure the map placeholder looks good on mobile */
+@media (max-width: 768px) {
+    .map-placeholder {
+        height: 250px;
+        margin-top: 30px;
+    }
+    
+    .content-side h2 {
+        font-size: 1.6rem;
+    }
+}

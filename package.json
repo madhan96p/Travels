@@ -1,0 +1,10 @@
+{
+  "name": "shrish-travels-api",
+  "version": "1.0.0",
+  "description": "Backend for Travels Website",
+  "main": "index.js",
+  "dependencies": {
+    "google-auth-library": "^9.0.0",
+    "google-spreadsheet": "^4.0.0"
+  }
+}
