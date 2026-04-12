@@ -2,212 +2,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://travels.shrishgroup.com/</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/services.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/routes.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/tariff.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/booking.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/contact.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/about.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-bangalore.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-chidambaram.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-coimbatore.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-courtallam.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-gingee.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-hogenakkal.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-kanchipuram.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-kanyakumari.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-karaikudi.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-kodaikanal.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-kumbakonam.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-madurai.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-mahabalipuram.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-mysore.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-nagore.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-ooty.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-palani.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-pollachi.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://travels.shrishgroup.com/routes/chennai-to-pondicherry.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-rameswaram.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-salem.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-thanjavur.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-theni.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-thiruvannamalai.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-thoothukudi.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-tiruchendur.html</loc>
-    <lastmod>2026-01-24</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-tirunelveli.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/routes/chennai-to-tirupati.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-tranquebar.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-bangalore.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-mahabalipuram.html</loc>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/routes/chennai-to-trichy.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-valparai.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-madurai.html</loc>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-velankanni.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-coimbatore.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-salem.html</loc>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://travels.shrishgroup.com/routes/chennai-to-vellore.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-yelagiri.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-kodaikanal.html</loc>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://travels.shrishgroup.com/routes/chennai-to-yercaud.html</loc>
-    <lastmod>2026-01-24</lastmod>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-ooty.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-rameswaram.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-kanchipuram.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-thiruvarur.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-kanyakumari.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-thiruvannamalai.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-velankanni.html</loc>
+    <lastmod>2026-01-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://travels.shrishgroup.com/routes/chennai-to-mysore.html</loc>
+    <lastmod>2026-01-25</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
