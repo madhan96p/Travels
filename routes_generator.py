@@ -3,6 +3,7 @@ import json
 import datetime
 import traceback
 import sys
+from html import escape
 
 # Try importing requests (for API), handle if missing
 try:
@@ -175,7 +176,8 @@ def generate_sitemap(routes):
     
     static_pages = [
         "", "services.html", "routes.html", "tariff.html", 
-        "booking.html", "contact.html", "about.html"
+        "booking.html", "contact.html", "about.html", "navagraha.html",
+        "career.html", "privacy-policy.html", "terms-of-service.html"
     ]
     
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -246,13 +248,14 @@ def generate():
             if '<!--FOOTER-->' in page: page = page.replace('<!--FOOTER-->', footer)
 
             # INJECTION: Content
-            page = page.replace('{origin}', str(r_origin))
-            page = page.replace('{destination}', str(r_dest))
-            page = page.replace('{destination_slug}', r_slug.replace('chennai-to-', ''))
+            page = page.replace('{origin}', escape(str(r_origin)))
+            page = page.replace('{destination}', escape(str(r_dest)))
+            # The canonical must match the generated filename, not just its destination.
+            page = page.replace('{route_slug}', escape(r_slug))
             
-            page = page.replace('{distance}', str(route.get('distance_km', 0)))
-            page = page.replace('{duration}', str(route.get('time_hours', 'N/A')))
-            page = page.replace('{description}', str(route.get('description', '')))
+            page = page.replace('{distance}', escape(str(route.get('distance_km', route.get('distance', '')))))
+            page = page.replace('{duration}', escape(str(route.get('time_hours', route.get('duration', '')))))
+            page = page.replace('{description}', escape(str(route.get('description', ''))))
             
             img = route.get('image_url') or route.get('image')
             page = page.replace('{image_url}', str(img if img else '../assets/images/default-route.jpg'))

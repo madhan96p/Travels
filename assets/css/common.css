@@ -753,7 +753,7 @@ body.scroll-down .brand-tagline {
         content: "Call Us";
         /* Fallback */
         display: block;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         font-weight: 700;
         font-size: 0.9rem;
         padding-right: 15px;
